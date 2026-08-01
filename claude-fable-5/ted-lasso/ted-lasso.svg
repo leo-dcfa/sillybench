@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" width="400" height="500">
+  <!-- Ted Lasso — Claude Fable 5, from the prompt: "create an SVG of Ted Lasso" -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#24457F"/>
+      <stop offset="1" stop-color="#16294D"/>
+    </linearGradient>
+  </defs>
+
+  <!-- background -->
+  <rect width="400" height="500" fill="url(#bg)"/>
+  <circle cx="200" cy="230" r="150" fill="#FFFFFF" opacity="0.06"/>
+
+  <!-- shoulders / coach jacket -->
+  <path d="M60 500 q6 -96 62 -118 q36 -14 78 -14 q42 0 78 14 q56 22 62 118 Z" fill="#1B3E8A"/>
+  <path d="M60 500 q6 -96 62 -118 l10 -4 q-40 40 -44 122 Z" fill="#D2342C"/>
+  <path d="M340 500 q-6 -96 -62 -118 l-10 -4 q40 40 44 122 Z" fill="#D2342C"/>
+  <!-- polo collar -->
+  <path d="M162 372 L200 404 L238 372 L238 352 L162 352 Z" fill="#FFFFFF"/>
+  <path d="M162 372 L200 404 L196 416 L150 380 Z" fill="#E4E9EF"/>
+  <path d="M238 372 L200 404 L204 416 L250 380 Z" fill="#E4E9EF"/>
+  <!-- zip -->
+  <line x1="200" y1="416" x2="200" y2="500" stroke="#FFFFFF" stroke-width="4"/>
+  <!-- whistle -->
+  <path d="M176 372 q20 40 22 58 M224 372 q-20 40 -22 58" fill="none" stroke="#2B2B2B" stroke-width="3"/>
+  <g transform="translate(196 434) rotate(14)">
+    <rect x="-3" y="-5" width="17" height="11" rx="5" fill="#C9CFD6" stroke="#89919A" stroke-width="1.5"/>
+    <circle cx="16" cy="0" r="5.5" fill="#C9CFD6" stroke="#89919A" stroke-width="1.5"/>
+  </g>
+
+  <!-- neck -->
+  <rect x="180" y="322" width="40" height="42" rx="12" fill="#EFBE92"/>
+  <path d="M180 330 q20 14 40 0 l0 12 q-20 12 -40 0 Z" fill="#DDA477"/>
+
+  <!-- ears -->
+  <circle cx="126" cy="242" r="13" fill="#EFBE92"/>
+  <circle cx="274" cy="242" r="13" fill="#EFBE92"/>
+  <circle cx="126" cy="242" r="5" fill="#DDA477"/>
+  <circle cx="274" cy="242" r="5" fill="#DDA477"/>
+
+  <!-- face -->
+  <path d="M130 220 q0 -76 70 -76 q70 0 70 76 q0 50 -18 76 q-20 28 -52 28 q-32 0 -52 -28 q-18 -26 -18 -76 Z" fill="#EFBE92"/>
+
+  <!-- hair: side-parted, short, a little wave -->
+  <path d="M128 226 q-8 -88 74 -90 q56 -1 68 44 q6 22 2 42 q-5 -12 -13 -17 q3 12 -1 22 q-7 -24 -22 -31 q-24 -12 -52 -8 q-34 5 -42 32 q-3 -3 -5 -9 q-4 6 -9 15 Z" fill="#8A5A34"/>
+  <path d="M150 160 q12 -12 28 -14 q-9 9 -12 19 q13 -10 28 -11 q-7 7 -9 16" fill="none" stroke="#6E4425" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- brows: expressive, slightly raised -->
+  <path d="M152 224 q16 -12 34 -5" fill="none" stroke="#7A4E2C" stroke-width="6" stroke-linecap="round"/>
+  <path d="M214 219 q18 -7 34 5" fill="none" stroke="#7A4E2C" stroke-width="6" stroke-linecap="round"/>
+
+  <!-- eyes: kind crinkle -->
+  <circle cx="172" cy="243" r="7" fill="#3B2B1E"/>
+  <circle cx="228" cy="243" r="7" fill="#3B2B1E"/>
+  <circle cx="174.5" cy="240.5" r="2.4" fill="#FFF"/>
+  <circle cx="230.5" cy="240.5" r="2.4" fill="#FFF"/>
+  <path d="M156 257 q5 4 11 4 M233 261 q6 0 11 -4" fill="none" stroke="#D69B6E" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- nose -->
+  <path d="M200 244 q-6 16 -9 22 q6 7 18 4" fill="none" stroke="#D69B6E" stroke-width="3.5" stroke-linecap="round"/>
+
+  <!-- the mustache -->
+  <path d="M200 282 q-8 -8 -21 -7 q-20 2 -28 15 q13 6 29 4 q13 -2 20 -8 q7 6 20 8 q16 2 29 -4 q-8 -13 -28 -15 q-13 -1 -21 7 Z" fill="#7A4E2C"/>
+  <path d="M158 285 q10 -6 22 -6 M242 285 q-10 -6 -22 -6" fill="none" stroke="#6E4425" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+
+  <!-- big warm smile under the mustache -->
+  <path d="M168 300 q32 28 64 0 q-9 22 -32 22 q-23 0 -32 -22 Z" fill="#FFFFFF" stroke="#B98A5F" stroke-width="2"/>
+  <path d="M168 300 q32 28 64 0" fill="none" stroke="#B98A5F" stroke-width="2"/>
+
+  <!-- cheek + chin lines -->
+  <path d="M154 292 q-5 8 -3 16 M246 292 q5 8 3 16" fill="none" stroke="#D69B6E" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M192 332 q8 5 16 0" fill="none" stroke="#D69B6E" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- caption -->
+  <text x="200" y="486" text-anchor="middle" font-family="Futura, 'Trebuchet MS', sans-serif" font-size="17" font-weight="700" fill="#FFD62E" letter-spacing="4">COACH LASSO</text>
+</svg>
