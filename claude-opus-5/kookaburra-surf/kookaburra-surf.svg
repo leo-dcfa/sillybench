@@ -1,0 +1,322 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-labelledby="title desc">
+  <title id="title">Kookaburra surfing a longboard</title>
+  <desc id="desc">A laughing kookaburra with a big beak rides a retro longboard across the face of a curling teal wave at golden hour.</desc>
+
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1E6FA8"/>
+      <stop offset="42%" stop-color="#74B9D8"/>
+      <stop offset="76%" stop-color="#FCD79B"/>
+      <stop offset="100%" stop-color="#F7A76C"/>
+    </linearGradient>
+
+    <radialGradient id="sunGlow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0%" stop-color="#FFF4CE" stop-opacity="0.95"/>
+      <stop offset="55%" stop-color="#FFD98A" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#FFD98A" stop-opacity="0"/>
+    </radialGradient>
+
+    <linearGradient id="waveBody" x1="0.9" y1="0" x2="0.15" y2="1">
+      <stop offset="0%" stop-color="#54D8CD"/>
+      <stop offset="40%" stop-color="#2AAFB6"/>
+      <stop offset="100%" stop-color="#127C95"/>
+    </linearGradient>
+
+    <linearGradient id="lipGrad" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E4FDF6"/>
+      <stop offset="50%" stop-color="#9BEDE4"/>
+      <stop offset="100%" stop-color="#3EBBBE"/>
+    </linearGradient>
+
+    <linearGradient id="deck" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFF7E6"/>
+      <stop offset="100%" stop-color="#EBD5AE"/>
+    </linearGradient>
+
+    <clipPath id="headClip">
+      <circle cx="-30" cy="-190" r="48"/>
+    </clipPath>
+
+    <clipPath id="bodyClip">
+      <path d="M -52,-62 C -66,-102 -58,-146 -22,-164 C 14,-180 56,-158 64,-116 C 72,-78 56,-38 20,-26 C -12,-16 -42,-28 -52,-62 Z"/>
+    </clipPath>
+
+    <clipPath id="tailClip">
+      <path d="M 44,-72 C 92,-74 146,-94 184,-116 C 190,-98 186,-74 174,-58 C 132,-42 82,-36 48,-40 Z"/>
+    </clipPath>
+
+    <clipPath id="wingClip">
+      <path d="M 16,-142 C 66,-166 126,-164 164,-128 C 138,-118 96,-104 52,-92 C 26,-88 6,-112 16,-142 Z"/>
+    </clipPath>
+  </defs>
+
+  <!-- ============ SKY ============ -->
+  <rect width="800" height="600" fill="url(#sky)"/>
+  <circle cx="642" cy="132" r="150" fill="url(#sunGlow)"/>
+  <circle cx="642" cy="132" r="46" fill="#FFF6D6"/>
+
+  <!-- wispy clouds -->
+  <g fill="#FFFFFF" opacity="0.5">
+    <ellipse cx="180" cy="96" rx="86" ry="12"/>
+    <ellipse cx="238" cy="82" rx="52" ry="9"/>
+    <ellipse cx="520" cy="60" rx="64" ry="8"/>
+    <ellipse cx="96" cy="168" rx="58" ry="8"/>
+  </g>
+
+  <!-- ============ OPEN OCEAN BEHIND ============ -->
+  <path d="M 0,300 L 800,300 L 800,600 L 0,600 Z" fill="#09415A"/>
+  <g stroke="#3E93A6" stroke-width="3" stroke-linecap="round" opacity="0.5" fill="none">
+    <path d="M 20,318 C 70,312 120,322 168,316"/>
+    <path d="M 250,308 C 300,302 348,312 400,306"/>
+    <path d="M 460,330 C 512,324 560,334 612,328"/>
+    <path d="M 60,352 C 120,344 180,356 240,348"/>
+    <path d="M 330,346 C 386,338 440,350 496,342"/>
+  </g>
+
+  <!-- ============ MAIN WAVE ============ -->
+  <path d="M 0,600 L 800,600 L 800,140
+           C 750,150 706,190 672,248
+           C 645,296 620,350 596,398
+           C 560,430 480,460 400,482
+           C 300,508 150,524 0,532 Z"
+        fill="url(#waveBody)"/>
+
+  <!-- sunlit translucent panel high on the face -->
+  <path d="M 800,152 C 750,164 708,204 676,258
+           C 650,304 626,354 604,400
+           C 642,394 680,368 706,328
+           C 742,268 772,208 800,180 Z"
+        fill="#8FF0DF" opacity="0.4"/>
+
+  <!-- cool shading low on the face, under the rider's line -->
+  <path d="M 0,532 C 150,524 300,508 400,482 C 480,460 560,430 596,398
+           C 572,442 516,482 428,514 C 318,552 150,572 0,578 Z"
+        fill="#0A5A72" opacity="0.45"/>
+
+  <!-- ============ THE CURL ============ -->
+  <!-- hollow of the barrel, in shadow under the throwing lip -->
+  <path d="M 800,130 C 748,138 692,170 644,218
+           C 606,256 578,298 558,332
+           C 610,324 668,286 714,240
+           C 758,196 788,160 800,146 Z"
+        fill="#0A5C74" opacity="0.9"/>
+
+  <!-- the lip itself, backlit and translucent -->
+  <path d="M 800,102 C 714,110 644,156 600,224
+           C 572,268 558,306 556,332
+           C 578,296 606,254 644,216
+           C 692,168 748,134 800,126 Z"
+        fill="url(#lipGrad)" opacity="0.97"/>
+
+  <!-- foam riding the outer edge of the lip -->
+  <g fill="#F4FEFF">
+    <circle cx="794" cy="108" r="17"/><circle cx="762" cy="115" r="16"/>
+    <circle cx="730" cy="128" r="15"/><circle cx="700" cy="145" r="14"/>
+    <circle cx="672" cy="166" r="14"/><circle cx="648" cy="190" r="13"/>
+    <circle cx="626" cy="217" r="12"/><circle cx="608" cy="245" r="11"/>
+    <circle cx="592" cy="273" r="10"/><circle cx="578" cy="299" r="9"/>
+    <circle cx="566" cy="321" r="7"/><circle cx="558" cy="337" r="5"/>
+  </g>
+  <g fill="#FFFFFF" opacity="0.7">
+    <circle cx="776" cy="93" r="7"/><circle cx="736" cy="105" r="6"/>
+    <circle cx="698" cy="123" r="5"/><circle cx="664" cy="147" r="5"/>
+    <circle cx="636" cy="176" r="4"/><circle cx="612" cy="208" r="4"/>
+  </g>
+
+  <!-- whitewater boiling where the curl meets the face -->
+  <g fill="#EAFBFF" opacity="0.9">
+    <circle cx="566" cy="352" r="14"/><circle cx="592" cy="344" r="11"/>
+    <circle cx="546" cy="368" r="9"/><circle cx="616" cy="356" r="8"/>
+  </g>
+
+  <!-- spray flicking off the pitching lip -->
+  <g fill="#FFFFFF" opacity="0.85">
+    <circle cx="712" cy="62" r="4"/><circle cx="668" cy="84" r="3"/>
+    <circle cx="616" cy="112" r="3.5"/><circle cx="578" cy="152" r="2.5"/>
+    <circle cx="548" cy="200" r="3"/><circle cx="528" cy="252" r="2"/>
+  </g>
+
+  <!-- ============ SPRAY FAN OFF THE TAIL ============ -->
+  <g fill="#EAFBFF" opacity="0.85">
+    <path d="M 566,446 C 610,430 650,396 672,352 C 660,404 624,444 578,462 Z"/>
+    <path d="M 572,456 C 620,448 664,424 692,388 C 674,436 630,470 580,478 Z"/>
+  </g>
+  <g fill="#FFFFFF" opacity="0.9">
+    <circle cx="682" cy="344" r="5"/><circle cx="704" cy="368" r="4"/>
+    <circle cx="662" cy="322" r="3"/><circle cx="716" cy="396" r="3.5"/>
+  </g>
+
+  <!-- ============ LONGBOARD ============ -->
+  <g transform="translate(400,470) rotate(-12)">
+    <!-- single fin, tucked under the tail -->
+    <path d="M 118,14 C 130,46 120,64 96,72 C 108,50 108,28 100,16 Z" fill="#C24A28"/>
+
+    <!-- board shadow on the water -->
+    <ellipse cx="-10" cy="26" rx="196" ry="16" fill="#07394D" opacity="0.35"/>
+
+    <!-- deck -->
+    <path d="M -215,0
+             C -210,-18 -150,-30 -40,-31
+             C 70,-32 145,-24 172,-10
+             C 178,-6 178,6 172,10
+             C 145,24 70,32 -40,31
+             C -150,30 -210,18 -215,0 Z"
+          fill="url(#deck)" stroke="#C87F45" stroke-width="5"/>
+
+    <!-- stringer + retro stripes -->
+    <path d="M -206,0 C -120,-6 40,-6 168,0 C 40,6 -120,6 -206,0 Z" fill="#B9793F" opacity="0.6"/>
+    <path d="M -150,-28 C -150,-9 -150,9 -150,28 L -128,29 C -128,9 -128,-9 -128,-29 Z" fill="#E4572E"/>
+    <path d="M -118,-29 C -118,-9 -118,9 -118,29 L -104,29 C -104,9 -104,-9 -104,-30 Z" fill="#2A9D8F"/>
+    <path d="M 96,-27 C 96,-9 96,9 96,27 L 116,25 C 116,8 116,-8 116,-25 Z" fill="#E4572E" opacity="0.9"/>
+  </g>
+
+  <!-- foam wash hugging the rail so the board bites the water -->
+  <path d="M 196,516 C 250,528 330,520 400,504 C 470,488 530,462 574,442
+           C 540,478 470,508 396,522 C 316,538 240,536 196,516 Z"
+        fill="#F4FEFF" opacity="0.9"/>
+  <g fill="#F4FEFF" opacity="0.8">
+    <circle cx="214" cy="522" r="13"/><circle cx="258" cy="530" r="11"/>
+    <circle cx="312" cy="528" r="12"/><circle cx="366" cy="520" r="10"/>
+    <circle cx="424" cy="506" r="9"/><circle cx="486" cy="486" r="8"/>
+  </g>
+
+  <!-- ============ KOOKABURRA ============ -->
+  <g transform="translate(423,434) rotate(-10)">
+
+    <!-- tail (behind everything) -->
+    <path d="M 44,-72 C 92,-74 146,-94 184,-116 C 190,-98 186,-74 174,-58 C 132,-42 82,-36 48,-40 Z"
+          fill="#C0693A"/>
+    <g clip-path="url(#tailClip)" stroke="#4A2E1E" stroke-width="10" stroke-linecap="butt" opacity="0.85">
+      <line x1="74" y1="-104" x2="96" y2="-16"/>
+      <line x1="100" y1="-110" x2="122" y2="-22"/>
+      <line x1="127" y1="-117" x2="149" y2="-29"/>
+      <line x1="153" y1="-123" x2="175" y2="-35"/>
+    </g>
+    <path d="M 44,-72 C 92,-74 146,-94 184,-116 C 190,-98 186,-74 174,-58 C 132,-42 82,-36 48,-40 Z"
+          fill="none" stroke="#8C4A26" stroke-width="3"/>
+
+    <!-- far wing, thrown forward for balance -->
+    <path d="M -26,-112 C -70,-108 -110,-84 -134,-44 C -104,-52 -62,-74 -30,-88 Z"
+          fill="#5E442F"/>
+    <g stroke="#4A3627" stroke-width="2.5" opacity="0.7" fill="none">
+      <path d="M -40,-100 C -70,-88 -96,-70 -116,-52"/>
+      <path d="M -34,-94 C -62,-82 -86,-66 -104,-50"/>
+    </g>
+
+    <!-- legs + feet -->
+    <g stroke="#5F6B6B" stroke-width="9" stroke-linecap="round" fill="none">
+      <path d="M -16,-36 L -20,-12 L -20,-3"/>
+      <path d="M 14,-34 L 12,-12 L 12,-3"/>
+    </g>
+    <g stroke="#5F6B6B" stroke-width="7" stroke-linecap="round" fill="none">
+      <path d="M -40,-1 L -20,-3 L -2,-1"/>
+      <path d="M -20,-3 L -30,5"/>
+      <path d="M -6,-1 L 12,-3 L 30,-1"/>
+      <path d="M 12,-3 L 3,5"/>
+    </g>
+
+    <!-- body -->
+    <path d="M -52,-62 C -66,-102 -58,-146 -22,-164 C 14,-180 56,-158 64,-116 C 72,-78 56,-38 20,-26 C -12,-16 -42,-28 -52,-62 Z"
+          fill="#F5EBDC"/>
+    <g clip-path="url(#bodyClip)">
+      <!-- brown mantle over the back -->
+      <path d="M 10,-192 C 62,-182 92,-120 82,-38 C 72,-8 20,-4 -2,-18 C 30,-58 34,-142 10,-192 Z"
+            fill="#7A5A40"/>
+      <!-- soft belly shading -->
+      <path d="M -70,-40 C -40,-18 10,-14 40,-30 L 40,10 L -70,10 Z" fill="#E2D0B7" opacity="0.8"/>
+      <!-- faint breast streaks -->
+      <g stroke="#DCC9AE" stroke-width="3" stroke-linecap="round" opacity="0.9">
+        <path d="M -40,-120 C -34,-108 -34,-96 -40,-84"/>
+        <path d="M -22,-128 C -16,-116 -16,-104 -22,-92"/>
+        <path d="M -4,-132 C 2,-120 2,-108 -4,-96"/>
+      </g>
+    </g>
+
+    <!-- near wing, cocked back and up -->
+    <path d="M 16,-142 C 66,-166 126,-164 164,-128 C 138,-118 96,-104 52,-92 C 26,-88 6,-112 16,-142 Z"
+          fill="#7A5A40"/>
+    <g clip-path="url(#wingClip)">
+      <!-- sky-blue coverts -->
+      <g fill="#4A90C4">
+        <ellipse cx="30" cy="-136" rx="9" ry="7"/>
+        <ellipse cx="50" cy="-144" rx="9" ry="7"/>
+        <ellipse cx="70" cy="-148" rx="8" ry="6"/>
+        <ellipse cx="40" cy="-118" rx="8" ry="6"/>
+        <ellipse cx="60" cy="-126" rx="8" ry="6"/>
+        <ellipse cx="80" cy="-132" rx="7" ry="6"/>
+      </g>
+      <g fill="#82C4E8">
+        <ellipse cx="36" cy="-140" rx="4" ry="3"/>
+        <ellipse cx="56" cy="-148" rx="4" ry="3"/>
+        <ellipse cx="46" cy="-122" rx="3.5" ry="2.5"/>
+      </g>
+      <!-- primaries -->
+      <g stroke="#4E3826" stroke-width="3" opacity="0.75" fill="none">
+        <path d="M 96,-152 C 112,-140 124,-126 130,-110"/>
+        <path d="M 116,-152 C 132,-140 144,-126 150,-112"/>
+        <path d="M 136,-148 C 150,-136 160,-124 166,-112"/>
+      </g>
+    </g>
+    <path d="M 16,-142 C 66,-166 126,-164 164,-128 C 138,-118 96,-104 52,-92 C 26,-88 6,-112 16,-142 Z"
+          fill="none" stroke="#5E442F" stroke-width="3"/>
+
+    <!-- head -->
+    <circle cx="-30" cy="-190" r="48" fill="#F5EBDC"/>
+    <g clip-path="url(#headClip)">
+      <!-- brown crown -->
+      <ellipse cx="-24" cy="-244" rx="60" ry="50" fill="#8A6547"/>
+      <!-- crown streaks -->
+      <g stroke="#6E4B32" stroke-width="3" stroke-linecap="round" opacity="0.8">
+        <path d="M -58,-216 C -50,-224 -44,-232 -40,-240"/>
+        <path d="M -34,-208 C -28,-218 -24,-226 -20,-236"/>
+        <path d="M -8,-210 C -2,-220 2,-228 6,-236"/>
+      </g>
+      <!-- dark eye stripe -->
+      <ellipse cx="-46" cy="-198" rx="46" ry="13" fill="#6E4B32" transform="rotate(-6 -46 -198)"/>
+      <!-- nape shading where head meets body -->
+      <path d="M 2,-160 C 22,-176 30,-200 28,-224 L 40,-224 L 40,-140 L -10,-140 Z" fill="#8A6547" opacity="0.55"/>
+    </g>
+    <circle cx="-30" cy="-190" r="48" fill="none" stroke="#D9C6AC" stroke-width="2"/>
+
+    <!-- eye -->
+    <circle cx="-52" cy="-200" r="11" fill="#2A1E16"/>
+    <circle cx="-55.5" cy="-203.5" r="4" fill="#FFFFFF"/>
+    <circle cx="-47" cy="-195" r="2" fill="#FFFFFF" opacity="0.6"/>
+
+    <!-- the famous beak -->
+    <path d="M -58,-210 Q -120,-202 -174,-186 Q -118,-184 -58,-184 Z" fill="#4A4038"/>
+    <path d="M -58,-184 Q -120,-184 -174,-186 Q -116,-170 -60,-166 Z" fill="#CDB893"/>
+    <path d="M -58,-207 Q -116,-200 -164,-186" fill="none" stroke="#6A5D52" stroke-width="3" stroke-linecap="round"/>
+    <path d="M -60,-184 Q -120,-185 -172,-186" fill="none" stroke="#3A3129" stroke-width="2.5"/>
+    <path d="M -60,-172 Q -110,-172 -150,-180" fill="none" stroke="#B39C77" stroke-width="2" opacity="0.8"/>
+
+  </g>
+
+  <!-- ============ FOREGROUND WHITEWATER ============ -->
+  <path d="M 0,600 L 800,600 L 800,560
+           C 740,548 690,566 636,558
+           C 578,550 540,566 486,562
+           C 430,558 392,574 336,568
+           C 278,562 236,578 180,572
+           C 124,566 62,580 0,570 Z"
+        fill="#EAFBFF" opacity="0.95"/>
+  <g fill="#FFFFFF" opacity="0.9">
+    <circle cx="70" cy="566" r="16"/><circle cx="148" cy="574" r="13"/>
+    <circle cx="232" cy="570" r="15"/><circle cx="330" cy="566" r="14"/>
+    <circle cx="424" cy="562" r="12"/><circle cx="520" cy="560" r="14"/>
+    <circle cx="618" cy="556" r="13"/><circle cx="714" cy="558" r="15"/>
+    <circle cx="782" cy="554" r="12"/>
+  </g>
+  <g fill="#BFE6EE" opacity="0.7">
+    <ellipse cx="200" cy="590" rx="70" ry="7"/>
+    <ellipse cx="470" cy="586" rx="86" ry="7"/>
+    <ellipse cx="700" cy="592" rx="64" ry="6"/>
+  </g>
+
+  <!-- stray droplets in the air -->
+  <g fill="#FFFFFF" opacity="0.8">
+    <circle cx="250" cy="420" r="3"/><circle cx="298" cy="452" r="2.5"/>
+    <circle cx="196" cy="470" r="3.5"/><circle cx="150" cy="500" r="2.5"/>
+    <circle cx="600" cy="470" r="3"/><circle cx="648" cy="492" r="2.5"/>
+  </g>
+</svg>

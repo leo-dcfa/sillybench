@@ -1,35 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
-  <!-- Sky gradient -->
   <defs>
-    <linearGradient id="sky" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style="stop-color:#1a8fe0"/>
-      <stop offset="60%" style="stop-color:#5cc8f5"/>
-      <stop offset="100%" style="stop-color:#a0e8ff"/>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#aee3ff"/>
+      <stop offset="100%" stop-color="#e8f8ff"/>
     </linearGradient>
-    <linearGradient id="waveGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style="stop-color:#2e9ed6"/>
-      <stop offset="40%" style="stop-color:#1a7ab8"/>
-      <stop offset="100%" style="stop-color:#0d5c99"/>
+    <linearGradient id="wave" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1687c7"/>
+      <stop offset="100%" stop-color="#2fb3e1"/>
     </linearGradient>
-    <linearGradient id="waveGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style="stop-color:#3db8e8"/>
-      <stop offset="100%" style="stop-color:#1a7ab8"/>
+    <linearGradient id="waveDeep" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0d6cae"/>
+      <stop offset="100%" stop-color="#0a4f80"/>
     </linearGradient>
-    <linearGradient id="boardGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#ff6b35"/>
-      <stop offset="30%" style="stop-color:#ffb347"/>
-      <stop offset="50%" style="stop-color:#ffffff"/>
-      <stop offset="70%" style="stop-color:#4ecb4e"/>
-      <stop offset="100%" style="stop-color:#ff6b35"/>
-    </linearGradient>
-    <radialGradient id="sun" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" style="stop-color:#fff7a0"/>
-      <stop offset="50%" style="stop-color:#ffdd00"/>
-      <stop offset="100%" style="stop-color:#ff9900"/>
-    </radialGradient>
-    <linearGradient id="sprayGrad" x1="0%" y1="100%" x2="0%" y2="0%">
-      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.8"/>
-      <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0"/>
+    <linearGradient id="board" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ff8c1a"/>
+      <stop offset="100%" stop-color="#e05e00"/>
     </linearGradient>
   </defs>
 
@@ -37,193 +22,138 @@
   <rect width="800" height="600" fill="url(#sky)"/>
 
   <!-- Sun -->
-  <circle cx="650" cy="100" r="55" fill="url(#sun)"/>
-  <circle cx="650" cy="100" r="55" fill="none" stroke="#ffdd00" stroke-width="3" opacity="0.5"/>
-  <circle cx="650" cy="100" r="65" fill="none" stroke="#ffdd00" stroke-width="2" opacity="0.3"/>
+  <circle cx="660" cy="110" r="55" fill="#ffd24a"/>
+  <circle cx="660" cy="110" r="70" fill="#ffd24a" opacity="0.3"/>
 
   <!-- Clouds -->
-  <g fill="white" opacity="0.7">
-    <ellipse cx="150" cy="80" rx="60" ry="25"/>
-    <ellipse cx="200" cy="70" rx="45" ry="20"/>
-    <ellipse cx="120" cy="75" rx="35" ry="18"/>
-    <ellipse cx="500" cy="60" rx="50" ry="20"/>
-    <ellipse cx="545" cy="50" rx="40" ry="18"/>
+  <g fill="#ffffff" opacity="0.85">
+    <ellipse cx="150" cy="90" rx="60" ry="22"/>
+    <ellipse cx="200" cy="72" rx="45" ry="18"/>
+    <ellipse cx="120" cy="78" rx="40" ry="16"/>
+    <ellipse cx="450" cy="60" rx="55" ry="18"/>
+    <ellipse cx="500" cy="48" rx="40" ry="15"/>
+    <ellipse cx="410" cy="52" rx="35" ry="13"/>
   </g>
 
-  <!-- Background wave -->
-  <path d="M0 420 Q100 350 200 380 Q300 410 400 360 Q500 310 600 370 Q700 420 800 380 L800 600 L0 600Z" fill="url(#waveGrad2)" opacity="0.5"/>
+  <!-- Background water -->
+  <rect y="380" width="800" height="220" fill="#0d6cae"/>
 
-  <!-- Main wave body -->
-  <path d="M0 450 Q80 400 160 370 Q240 340 320 330 Q360 325 380 300 Q400 280 420 290 Q450 305 470 310 Q550 330 630 360 Q710 390 800 400 L800 600 L0 600Z" fill="url(#waveGrad)"/>
+  <!-- Big curling wave -->
+  <path d="M0,420 C80,330 180,290 300,320 C380,340 420,380 420,420 Z" fill="url(#wave)"/>
+  <path d="M300,320 C340,335 380,370 400,420 L300,420 Z" fill="#2fb3e1"/>
+  <!-- Wave tube depth -->
+  <path d="M120,380 C200,340 290,350 348,410 L120,420 Z" fill="url(#waveDeep)"/>
+  <!-- Foam / lip -->
+  <path d="M0,420 C80,330 180,290 300,320 C330,328 355,342 375,365 C355,345 330,333 300,326 C200,300 110,335 40,410 Z" fill="#ffffff" opacity="0.95"/>
 
-  <!-- Wave curl / foam lip -->
-  <path d="M320 330 Q340 300 370 285 Q400 270 420 290 Q440 310 430 320 Q410 300 390 295 Q370 290 360 300 Q350 315 330 325Z" fill="#a0e8ff"/>
-  <path d="M340 320 Q355 295 380 280 Q400 270 415 285 Q425 295 415 305 Q405 290 390 288 Q375 286 365 295 Q355 305 345 315Z" fill="#d0f4ff"/>
-
-  <!-- Wave foam on top -->
-  <path d="M0 450 Q80 400 160 370 Q240 340 320 330 Q360 325 380 300 Q400 280 420 290 Q450 305 470 310 Q550 330 630 360 Q710 390 800 400" fill="none" stroke="white" stroke-width="4" opacity="0.6"/>
-  <path d="M200 360 Q260 340 320 332 Q360 328 375 310" fill="none" stroke="white" stroke-width="3" opacity="0.5"/>
-
-  <!-- Wave foam bubbles at curl -->
-  <g fill="white" opacity="0.7">
-    <circle cx="350" cy="315" r="4"/>
-    <circle cx="365" cy="305" r="3"/>
-    <circle cx="380" cy="298" r="5"/>
-    <circle cx="395" cy="290" r="3"/>
-    <circle cx="405" cy="295" r="4"/>
-    <circle cx="340" cy="325" r="3"/>
-    <circle cx="310" cy="335" r="4"/>
-    <circle cx="290" cy="340" r="3"/>
-  </g>
-
-  <!-- Spray droplets -->
-  <g fill="white" opacity="0.8">
+  <!-- Spray / droplets -->
+  <g fill="#ffffff" opacity="0.8">
+    <circle cx="360" cy="300" r="5"/>
+    <circle cx="378" cy="285" r="4"/>
+    <circle cx="392" cy="298" r="3"/>
     <circle cx="370" cy="270" r="3"/>
-    <circle cx="385" cy="260" r="2"/>
-    <circle cx="395" cy="255" r="4"/>
-    <circle cx="410" cy="265" r="2.5"/>
-    <circle cx="360" cy="280" r="2"/>
-    <circle cx="400" cy="248" r="3"/>
-    <circle cx="415" cy="258" r="2"/>
-    <circle cx="378" cy="250" r="2.5"/>
-    <circle cx="390" cy="240" r="2"/>
+    <circle cx="340" cy="290" r="4"/>
   </g>
 
-  <!-- Spray burst lines -->
-  <g stroke="white" stroke-width="2" opacity="0.5" stroke-linecap="round">
-    <line x1="380" y1="290" x2="390" y2="260"/>
-    <line x1="400" y1="285" x2="415" y2="255"/>
-    <line x1="365" y1="295" x2="355" y2="270"/>
+  <!-- Foreground water -->
+  <rect y="460" width="800" height="140" fill="#1687c7"/>
+
+  <!-- Water surface highlights -->
+  <g stroke="#7cc9ec" stroke-width="3" fill="none" opacity="0.6">
+    <path d="M60,500 C120,494 180,506 240,500 C300,494 360,506 420,500"/>
+    <path d="M400,540 C460,534 520,546 580,540 C640,534 700,546 760,540"/>
+    <path d="M150,580 C210,574 270,586 330,580"/>
   </g>
 
-  <!-- Surfboard -->
-  <g transform="translate(470, 290) rotate(12)">
-    <!-- Board shape -->
-    <ellipse cx="0" cy="0" rx="75" ry="14" fill="url(#boardGrad)" stroke="#333" stroke-width="2"/>
-    <!-- Board stripe -->
-    <rect x="-60" y="-2" width="120" height="4" fill="white" opacity="0.6" rx="2"/>
-    <!-- Board tail -->
-    <path d="M-70 0 Q-75 -5 -78 -2 Q-80 0 -78 2 Q-75 5 -70 0" fill="#ff6b35" stroke="#333" stroke-width="1.5"/>
-    <!-- Board nose -->
-    <path d="M65 0 Q72 -4 75 0 Q72 4 65 0" fill="#ff6b35" stroke="#333" stroke-width="1.5"/>
-    <!-- Fin -->
-    <path d="M15 13 L20 25 L25 13" fill="#1a7ab8" stroke="#333" stroke-width="1.5"/>
+  <!-- Spindrift on foreground wave line -->
+  <g fill="#ffffff" opacity="0.9">
+    <ellipse cx="120" cy="455" rx="30" ry="6"/>
+    <ellipse cx="200" cy="462" rx="22" ry="5"/>
+    <ellipse cx="40" cy="460" rx="20" ry="5"/>
   </g>
 
-  <!-- Kookaburra -->
-  <g transform="translate(470, 240)">
-    <!-- Legs -->
-    <line x1="-5" y1="50" x2="-10" y2="65" stroke="#b8860b" stroke-width="3"/>
-    <line x1="8" y1="50" x2="13" y2="65" stroke="#b8860b" stroke-width="3"/>
-    <!-- Feet -->
-    <path d="M-10 65 L-17 68 M-10 65 L-10 72 M-10 65 L-3 68" stroke="#b8860b" stroke-width="2" fill="none"/>
-    <path d="M13 65 L6 68 M13 65 L13 72 M13 65 L20 68" stroke="#b8860b" stroke-width="2" fill="none"/>
+  <!-- Surfer + board group -->
+  <g transform="translate(360,300) rotate(-8)">
+
+    <!-- Board shadow / splash wake -->
+    <path d="M-120,42 C-80,52 80,52 130,40 C90,58 -90,58 -120,42 Z" fill="#ffffff" opacity="0.7"/>
+
+    <!-- Longboard -->
+    <path d="M-150,20 C-120,4 120,4 150,20 C120,36 -120,36 -150,20 Z" fill="url(#board)" stroke="#b84c00" stroke-width="2"/>
+    <!-- Fins -->
+    <path d="M80,30 L88,52 L104,52 L96,32 Z" fill="#c8530a"/>
+    <path d="M110,30 L114,50 L124,50 L118,32 Z" fill="#c8530a"/>
+    <!-- Traction pad -->
+    <rect x="-70" y="16" width="120" height="9" rx="4" fill="#2e7d32" opacity="0.85"/>
+    <!-- Center stripe -->
+    <path d="M-150,20 C-120,4 120,4 150,20" stroke="none" fill="none"/>
+    <rect x="-140" y="19" width="280" height="2" fill="#ffffff" opacity="0.5"/>
+
+    <!-- Tail -->
+    <g fill="#1b1b3a">
+      <path d="M-60,-108 L-78,-150 L-64,-115 L-72,-160 L-56,-122 L-62,-168 L-44,-120 L-52,-150 L-48,-104 Z"/>
+    </g>
 
     <!-- Body -->
-    <ellipse cx="0" cy="30" rx="22" ry="28" fill="#8B6914" transform="rotate(10)"/>
-    <!-- Belly -->
-    <ellipse cx="2" cy="35" rx="14" ry="20" fill="#f5e6c8" transform="rotate(10)"/>
+    <ellipse cx="0" cy="-78" rx="40" ry="46" fill="#8a6a3f"/>
 
-    <!-- Tail feathers -->
-    <g transform="rotate(10)">
-      <path d="M-18 25 L-40 10 L-35 25Z" fill="#8B4513" stroke="#5a2d0c" stroke-width="1"/>
-      <path d="M-20 30 L-45 18 L-38 32Z" fill="#a0522d" stroke="#5a2d0c" stroke-width="1"/>
-      <path d="M-17 35 L-42 28 L-35 40Z" fill="#6b3410" stroke="#5a2d0c" stroke-width="1"/>
-      <!-- Tail tip -->
-      <path d="M-40 10 L-45 5 L-38 8Z" fill="#f5e6c8"/>
-      <path d="M-45 18 L-50 13 L-42 16Z" fill="#f5e6c8"/>
-    </g>
+    <!-- Left wing (behind body, folded) -->
+    <path d="M-30,-70 C-55,-62 -72,-45 -70,-30 C-60,-52 -42,-62 -22,-58 Z" fill="#4a5a6a"/>
 
-    <!-- Left wing -->
-    <g transform="rotate(10)">
-      <path d="M-8 15 Q-25 10 -30 20 Q-25 25 -10 22Z" fill="#6b3410"/>
-      <path d="M-8 20 Q-22 18 -27 25 Q-22 30 -8 28Z" fill="#8B4513"/>
-      <!-- Wing feather pattern -->
-      <path d="M-15 18 L-20 16 M-15 24 L-22 23" stroke="#5a2d0c" stroke-width="1" opacity="0.5"/>
-    </g>
+    <!-- Right wing (extended, waving) -->
+    <path d="M30,-75 C60,-95 105,-105 130,-95 C108,-88 90,-84 78,-84 C88,-112 82,-130 78,-142 C86,-112 84,-90 66,-72 Z" fill="#3f4b5e"/>
+    <path d="M30,-78 C70,-88 100,-96 118,-92 C100,-84 72,-76 46,-70 Z" fill="#2c3342"/>
 
-    <!-- Right wing (raised for balance) -->
-    <g transform="rotate(-20, 5, 20)">
-      <path d="M10 15 Q30 5 38 15 Q30 18 12 20Z" fill="#6b3410"/>
-      <path d="M12 20 Q28 15 33 22 Q28 26 12 26Z" fill="#8B4513"/>
-      <!-- Wing feather pattern -->
-      <path d="M20 14 L28 11 M20 20 L30 18" stroke="#5a2d0c" stroke-width="1" opacity="0.5"/>
-    </g>
+    <!-- Belly feather pattern -->
+    <path d="M-22,-62 C-8,-60 8,-60 22,-62 C22,-55 8,-52 -8,-52 C-22,-55 -22,-57 -22,-62 Z" fill="#d8d8d8" opacity="0.5"/>
+    <path d="M-10,-42 C-3,-40 3,-40 10,-42 C10,-36 3,-33 -3,-33 C-10,-36 -10,-38 -10,-42 Z" fill="#e8e8e8" opacity="0.6"/>
 
-    <!-- Neck -->
-    <ellipse cx="3" cy="8" rx="10" ry="10" fill="#8B6914"/>
+    <!-- Wing streak (blue) -->
+    <path d="M16,-52 C48,-66 88,-72 118,-66" stroke="#3a7bd5" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.9"/>
 
     <!-- Head -->
-    <ellipse cx="5" cy="-2" rx="14" ry="13" fill="#8B6914"/>
+    <ellipse cx="8" cy="-118" rx="38" ry="34" fill="#8a6a3f"/>
 
-    <!-- Head markings -->
-    <path d="M-3 -10 L5 -13 L8 -8 L5 -6 L-1 -8Z" fill="#2d1a0e"/>
-    <!-- Eyebrow stripe -->
-    <path d="M-4 -6 Q3 -9 12 -7" stroke="#2d1a0e" stroke-width="2.5" fill="none"/>
+    <!-- Head crown feathers (darker brown/ruffled) -->
+    <path d="M-18,-150 C-14,-160 -4,-162 4,-158 C8,-164 20,-162 24,-154 C26,-146 20,-140 12,-140" fill="#6b4f2c"/>
+    <path d="M-10,-148 C-6,-156 4,-158 10,-154 C14,-150 10,-144 2,-142" fill="#5a4224"/>
 
-    <!-- Eye stripe through eye -->
-    <path d="M-8 -2 Q3 -1 14 -3" stroke="#2d1a0e" stroke-width="3" fill="none"/>
+    <!-- Eye stripe (dark) -->
+    <path d="M18,-130 C10,-126 -4,-124 -14,-126" stroke="#1b1b3a" stroke-width="5" fill="none" stroke-linecap="round"/>
 
-    <!-- Eye white -->
-    <circle cx="6" cy="-4" r="4" fill="white"/>
-    <!-- Pupil -->
-    <circle cx="7" cy="-4" r="2.5" fill="#1a1a1a"/>
-    <!-- Eye highlight -->
-    <circle cx="8" cy="-5" r="1" fill="white"/>
+    <!-- Round head cap -->
+    <ellipse cx="0" cy="-126" rx="30" ry="16" fill="#5a4224"/>
 
-    <!-- Cheek -->
-    <ellipse cx="0" cy="0" rx="4" ry="2.5" fill="#c4a467" opacity="0.5"/>
+    <!-- Eye (white patch + dark eye) -->
+    <circle cx="14" cy="-120" r="7" fill="#ffffff"/>
+    <circle cx="16" cy="-120" r="3.4" fill="#1b1b3a"/>
+    <circle cx="17" cy="-121" r="1.2" fill="#ffffff"/>
 
-    <!-- Beak -->
-    <path d="M14 -3 L32 -2 L14 3Z" fill="#1a1a1a"/>
-    <!-- Beak highlight -->
-    <path d="M15 -2 L28 -2 L15 1Z" fill="#333"/>
-    <!-- Upper beak line -->
-    <path d="M14 -2 L32 -2" stroke="#000" stroke-width="0.5"/>
+    <!-- Cheek patch (light) -->
+    <ellipse cx="2" cy="-110" rx="14" ry="8" fill="#e6d7b8"/>
 
-    <!-- Head top feathers -->
-    <path d="M-2 -10 Q0 -16 3 -12" stroke="#a0522d" stroke-width="2" fill="none"/>
-    <path d="M2 -11 Q5 -17 7 -11" stroke="#a0522d" stroke-width="2" fill="none"/>
+    <!-- Big upper beak -->
+    <path d="M34,-122 C50,-136 78,-140 92,-132 C78,-124 52,-118 34,-118 Z" fill="#1b1b3a"/>
+    <!-- Lower beak -->
+    <path d="M34,-117 C52,-112 80,-124 90,-130 C76,-116 54,-110 34,-114 Z" fill="#2e2e4a"/>
 
-    <!-- Cheek feather detail -->
-    <path d="M-2 1 Q-4 3 -5 1" stroke="#c4a467" stroke-width="0.8" fill="none" opacity="0.5"/>
+    <!-- Nostril line -->
+    <path d="M52,-132 L60,-132" stroke="#000000" stroke-width="1.5"/>
 
-    <!-- Wing tip feather detail -->
-    <path d="M-28 18 L-33 15 M-26 22 L-32 21" stroke="#5a2d0c" stroke-width="0.8" opacity="0.6"/>
-  </g>
+    <!-- Legs (bent surfing stance) -->
+    <g stroke="#d9a441" stroke-width="7" stroke-linecap="round" fill="none">
+      <path d="M-12,-50 L-24,-22 L-34,-6"/>
+      <path d="M14,-48 L34,-30 L22,-10"/>
+    </g>
+    <g fill="#d9a441">
+      <ellipse cx="-40" cy="-2" rx="8" ry="4"/>
+      <ellipse cx="20" cy="-6" rx="8" ry="4"/>
+    </g>
 
-  <!-- Water surface details -->
-  <g stroke="#d0f4ff" stroke-width="1.5" opacity="0.4">
-    <path d="M50 480 Q100 470 150 475 Q200 480 250 472" fill="none"/>
-    <path d="M500 450 Q550 445 600 448 Q650 451 700 445" fill="none"/>
-    <path d="M100 510 Q160 500 220 505 Q280 510 340 502" fill="none"/>
-    <path d="M400 490 Q460 485 520 488" fill="none"/>
-  </g>
-
-  <!-- Foam trail behind board -->
-  <g fill="white" opacity="0.4">
-    <ellipse cx="420" cy="310" rx="20" ry="5"/>
-    <ellipse cx="390" cy="320" rx="15" ry="4"/>
-    <ellipse cx="365" cy="330" rx="12" ry="3"/>
-    <ellipse cx="345" cy="338" rx="10" ry="3"/>
-  </g>
-
-  <!-- More spray around board -->
-  <g fill="white" opacity="0.6">
-    <ellipse cx="440" cy="285" rx="4" ry="6"/>
-    <ellipse cx="455" cy="278" rx="3" ry="5"/>
-    <ellipse cx="500" cy="280" rx="3" ry="4"/>
-  </g>
-
-  <!-- Small water splash -->
-  <g fill="white" opacity="0.5">
-    <path d="M430 300 Q435 285 440 300" fill="none" stroke="white" stroke-width="2"/>
-    <path d="M445 305 Q450 290 455 305" fill="none" stroke="white" stroke-width="2"/>
-  </g>
-
-  <!-- Birds in distance -->
-  <g stroke="#2a5a8a" stroke-width="1.5" fill="none" opacity="0.5">
-    <path d="M120 150 Q125 145 130 150 Q135 145 140 150"/>
-    <path d="M100 170 Q104 166 108 170 Q112 166 116 170"/>
+    <!-- Motion lines behind -->
+    <g stroke="#ffffff" stroke-width="3" opacity="0.5" fill="none">
+      <path d="M-160,10 L-210,8"/>
+      <path d="M-155,24 L-225,22"/>
+    </g>
   </g>
 </svg>
