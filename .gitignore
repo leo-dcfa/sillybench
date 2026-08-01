@@ -1,1 +1,4 @@
 .DS_Store
+
+# override global ignore — track agent notes in this repo
+!AGENTS.md

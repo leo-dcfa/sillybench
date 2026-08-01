@@ -1,6 +1,6 @@
-# AI Playground
+# sillybench
 
-Silly benchmarks, weird experiments, and random AI playground stuff.
+Silly benchmarks to test models on.
 
 ## Layout
 
