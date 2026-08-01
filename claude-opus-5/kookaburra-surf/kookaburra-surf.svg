@@ -17,9 +17,9 @@
     </radialGradient>
 
     <linearGradient id="waveBody" x1="0.9" y1="0" x2="0.15" y2="1">
-      <stop offset="0%" stop-color="#54D8CD"/>
-      <stop offset="40%" stop-color="#2AAFB6"/>
-      <stop offset="100%" stop-color="#127C95"/>
+      <stop offset="0%" stop-color="#8FF0DC"/>
+      <stop offset="45%" stop-color="#4CCFCB"/>
+      <stop offset="100%" stop-color="#2AA7BE"/>
     </linearGradient>
 
     <linearGradient id="lipGrad" x1="1" y1="0" x2="0" y2="1">
@@ -63,6 +63,15 @@
     <ellipse cx="96" cy="168" rx="58" ry="8"/>
   </g>
 
+  <!-- distant headland -->
+  <g fill="#1B4A5E" opacity="0.85">
+    <path d="M 0,300 L 0,286 C 26,276 62,268 104,272 C 148,276 190,288 220,300 Z"/>
+    <path d="M 34,278 L 40,254 L 46,278 Z"/>
+    <path d="M 58,274 L 65,244 L 72,274 Z"/>
+    <path d="M 86,274 L 92,250 L 98,275 Z"/>
+    <path d="M 12,284 L 18,262 L 24,284 Z"/>
+  </g>
+
   <!-- ============ OPEN OCEAN BEHIND ============ -->
   <path d="M 0,300 L 800,300 L 800,600 L 0,600 Z" fill="#09415A"/>
   <g stroke="#3E93A6" stroke-width="3" stroke-linecap="round" opacity="0.5" fill="none">
@@ -81,6 +90,13 @@
            C 300,508 150,524 0,532 Z"
         fill="url(#waveBody)"/>
 
+  <!-- bright rim along the wave's shoulder so it reads against the open sea -->
+  <path d="M 800,140 C 750,150 706,190 672,248
+           C 645,296 620,350 596,398
+           C 560,430 480,460 400,482
+           C 300,508 150,524 0,532"
+        fill="none" stroke="#B6F5E7" stroke-width="7" stroke-linecap="round" opacity="0.85"/>
+
   <!-- sunlit translucent panel high on the face -->
   <path d="M 800,152 C 750,164 708,204 676,258
            C 650,304 626,354 604,400
@@ -88,10 +104,10 @@
            C 742,268 772,208 800,180 Z"
         fill="#8FF0DF" opacity="0.4"/>
 
-  <!-- cool shading low on the face, under the rider's line -->
-  <path d="M 0,532 C 150,524 300,508 400,482 C 480,460 560,430 596,398
-           C 572,442 516,482 428,514 C 318,552 150,572 0,578 Z"
-        fill="#0A5A72" opacity="0.45"/>
+  <!-- cool trough shading low on the face -->
+  <path d="M 0,566 C 160,562 320,542 440,506 C 520,482 566,452 596,420
+           C 578,466 512,506 424,536 C 312,574 152,588 0,592 Z"
+        fill="#0A5A72" opacity="0.35"/>
 
   <!-- ============ THE CURL ============ -->
   <!-- hollow of the barrel, in shadow under the throwing lip -->
@@ -168,6 +184,9 @@
     <path d="M -150,-28 C -150,-9 -150,9 -150,28 L -128,29 C -128,9 -128,-9 -128,-29 Z" fill="#E4572E"/>
     <path d="M -118,-29 C -118,-9 -118,9 -118,29 L -104,29 C -104,9 -104,-9 -104,-30 Z" fill="#2A9D8F"/>
     <path d="M 96,-27 C 96,-9 96,9 96,27 L 116,25 C 116,8 116,-8 116,-25 Z" fill="#E4572E" opacity="0.9"/>
+
+    <!-- contact shadow where the bird stands -->
+    <ellipse cx="30" cy="-20" rx="54" ry="10" fill="#8A6B45" opacity="0.3"/>
   </g>
 
   <!-- foam wash hugging the rail so the board bites the water -->
@@ -301,11 +320,15 @@
            C 124,566 62,580 0,570 Z"
         fill="#EAFBFF" opacity="0.95"/>
   <g fill="#FFFFFF" opacity="0.9">
-    <circle cx="70" cy="566" r="16"/><circle cx="148" cy="574" r="13"/>
-    <circle cx="232" cy="570" r="15"/><circle cx="330" cy="566" r="14"/>
-    <circle cx="424" cy="562" r="12"/><circle cx="520" cy="560" r="14"/>
-    <circle cx="618" cy="556" r="13"/><circle cx="714" cy="558" r="15"/>
-    <circle cx="782" cy="554" r="12"/>
+    <circle cx="46" cy="572" r="19"/><circle cx="84" cy="562" r="11"/>
+    <circle cx="126" cy="576" r="14"/><circle cx="168" cy="568" r="8"/>
+    <circle cx="214" cy="574" r="17"/><circle cx="256" cy="564" r="10"/>
+    <circle cx="308" cy="570" r="13"/><circle cx="352" cy="562" r="18"/>
+    <circle cx="398" cy="574" r="9"/><circle cx="446" cy="564" r="15"/>
+    <circle cx="498" cy="572" r="11"/><circle cx="544" cy="560" r="16"/>
+    <circle cx="596" cy="570" r="9"/><circle cx="644" cy="558" r="14"/>
+    <circle cx="692" cy="568" r="12"/><circle cx="742" cy="556" r="17"/>
+    <circle cx="788" cy="566" r="10"/>
   </g>
   <g fill="#BFE6EE" opacity="0.7">
     <ellipse cx="200" cy="590" rx="70" ry="7"/>
