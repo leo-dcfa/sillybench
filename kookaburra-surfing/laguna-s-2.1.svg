@@ -1,0 +1,22 @@
+<svg width="500" height="300" viewBox="0 0 500 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Longboard -->
+  <rect x="50" y="200" width="400" height="40" rx="20" ry="20" fill="#D2B48C"/>
+  <!-- Wheels -->
+  <circle cx="50" cy="200" r="10" fill="#000000"/>
+  <circle cx="450" cy="200" r="10" fill="#000000"/>
+  <circle cx="50" cy="240" r="10" fill="#000000"/>
+  <circle cx="450" cy="240" r="10" fill="#000000"/>
+  <!-- Kookaburra body -->
+  <ellipse cx="250" cy="170" rx="40" ry="20" fill="#000080"/>
+  <!-- Head -->
+  <circle cx="250" cy="140" r="15" fill="#8B4513"/>
+  <!-- Beak -->
+  <path d="M250 140 L265 150 L250 160 Z" fill="#8B4513"/>
+  <!-- Wings -->
+  <ellipse cx="200" cy="170" rx="20" ry="10" fill="#000080" transform="rotate(-30 200 170)"/>
+  <ellipse cx="300" cy="170" rx="20" ry="10" fill="#000080" transform="rotate(30 300 170)"/>
+  <!-- Tail -->
+  <path d="M210 185 L250 200 L290 185 Z" fill="#000080"/>
+  <!-- Eye -->
+  <circle cx="245" cy="135" r="3" fill="#000000"/>
+</svg>
