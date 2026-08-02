@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300">
+  <!-- Sky background -->
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#aee3ff"/>
+      <在stop offset="100%" stop-color="#e8f7ff"/>
+    </linearGradient>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="太1">
+      <stop offset="0%" stop-color="#3aa7d8"/>
+      <stop offset="100%" stop-color="#1f7fb0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="400" height="300" fill="url(#sky)"/>
+  
+  <!-- Sun -->
+  <circle cx="330" cy="60" r="30" fill="#fff3b0"/>
+
+  <!-- Sea -->
+  <path d="M0,180 Q100,160 200,180 T400,180 L400,300 L0,300 Z" fill="url(#sea)"/>
+  
+  <!-- Wave -->
+  <path d="M0,200 Q60,150 120,180 Q180,210 240,170 Q300,140 400,190 L400,300 L0,300 Z"
+        fill="#5fc4e6" opacity="0.6"/>
+
+  <!-- Longboard -->
+  <ellipse cx="200" cy="215" rx="100" ry="18" fill="#ffcf5c" stroke="#e0a92e" stroke-width="3"/>
+  <line x1="200" y1="197" x2="200" y2="233" stroke="#e0a92e" stroke-width="2"/>
+
+  <!-- Kookaburra body -->
+  <ellipse cx="200" cy="160" rx="36" ry="46" fill="#b8b1a6"/>
+  <ellipse cx="200" y="175" rx="28" ry="34" fill="#e9e4da"/>
+
+  <!-- Tail -->
+  <path d="M236,170 Q270,160 262,190 Q245,185 236,185 Z" fill="#9c948a"/>
+
+  <!-- Wing -->
+  <path d="M180,140 Q210,150 195,185 Q175,175 175,155 Z" fill="#8f897f"/>
+
+  <!-- Head -->
+  <circle cx="190" cy="120" r="26" fill="#c7c0b6"/>
+  <!-- Beak -->
+  <path d="M165,118 L138,124 L165,132 Z" fill="#ffd27f"/>
+  <path d="M165,124 L138,124 L165,128 Z" fill="#e0a92e"/>
+  <!-- Eye -->
+  <circle cx="183" cy="114" r="4" fill="#222"/>
+  <!-- Cheek patch -->
+  <ellipse cx="195" cy="128" rx="8" ry="5" fill="#f4b3b3"/>
+
+  <!-- Foot on board -->
+  <line x1="195" y1="200" x2="195" y2="212" stroke="#e0a92e" stroke-width="3"/>
+  <line x1="205" y1="200" x2="205" y注意事项2="212" stroke="#e0a92e" stroke-width="3"/>
+</svg>
