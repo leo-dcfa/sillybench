@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="500" height="500">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="skyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#87CEEB;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E0F7FA;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="waterGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#00BFFF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0077BE;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="boardGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#D2691E;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#CD853F;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#D2691E;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Sky Background -->
+  <rect width="500" height="500" fill="url(#skyGradient)" />
+  
+  <!-- Sun -->
+  <circle cx="420" cy="80" r="40" fill="#FFD700" opacity="0.8" />
+  
+  <!-- Back Wave (Darker) -->
+  <path d="M-50,400 Q150,300 300,380 T550,420 L550,550 L-50,550 Z" fill="#0077BE" />
+
+  <!-- The Surfer Group -->
+  <g transform="translate(0, 20)">
+    
+    <!-- Surfboard -->
+    <path d="M80,350 Q250,330 420,360 L410,385 Q250,360 90,385 Z" fill="url(#boardGradient)" stroke="#8B4513" stroke-width="2"/>
+    <path d="M100,367 Q250,360 400,367" fill="none" stroke="#8B4513" stroke-width="2" stroke-opacity="0.5"/>
+    <line x1="380" y1="360" x2="385" y2="383" stroke="#333" stroke-width="3" /> <!-- Fin hint -->
+
+    <!-- Kookaburra Feet -->
+    <path d="M230,355 L230,345 M235,355 L235,345" stroke="#111" stroke-width="3" stroke-linecap="round"/>
+    <path d="M270,355 L270,345 M275,355 L275,345" stroke="#111" stroke-width="3" stroke-linecap="round"/>
+
+    <!-- Kookaburra Body -->
+    <ellipse cx="250" cy="300" rx="50" ry="65" fill="#8B4513" /> <!-- Brown Back -->
+    <ellipse cx="250" cy="310" rx="40" ry="45" fill="#FDF5E6" /> <!-- Cream Belly -->
+
+    <!-- Wing -->
+    <path d="M220,280 Q180,310 200,340 Q240,350 250,320 Z" fill="#5C3317" stroke="#3E2723" stroke-width="1"/>
+    
+    <!-- Head Group -->
+    <g transform="translate(250, 230)">
+      <!-- Head Shape -->
+      <path d="M-30,-20 Q0,-35 30,-20 Q40,10 30,30 Q0,40 -30,30 Q-40,10 -30,-20 Z" fill="#FDF5E6" />
+      <!-- Crest/Back Head -->
+      <path d="M0,-30 Q10,-50 30,-40 L10,0" fill="#8B4513" />
+      <!-- Eye Stripe -->
+      <path d="M-35,5 Q0,5 35,5" stroke="#111" stroke-width="5" fill="none" opacity="0.2"/> <!-- Subtle shading -->
+      <!-- Eye -->
+      <circle cx="15" cy="5" r="6" fill="#000" />
+      <circle cx="17" cy="3" r="2" fill="#FFF" /> <!-- Eye Shine -->
+      <!-- Beak -->
+      <path d="M25,5 L70,15 L25,30 Z" fill="#111" /> <!-- Dark large beak -->
+    </g>
+  </g>
+
+  <!-- Front Wave (Foamy) -->
+  <path d="M-50,420 Q150,350 300,410 Q450,450 550,400 L550,550 L-50,550 Z" fill="url(#waterGradient)" opacity="0.9" />
+  <path d="M-50,420 Q150,350 300,410 Q450,450 550,400" fill="none" stroke="#FFF" stroke-width="5" stroke-opacity="0.6" stroke-linecap="round"/>
+
+  <!-- Splash Effects -->
+  <g fill="#FFF" opacity="0.8">
+    <circle cx="120" cy="380" r="5" />
+    <circle cx="130" cy="390" r="8" />
+    <circle cx="100" cy="400" r="4" />
+    <circle cx="400" cy="370" r="6" />
+    <circle cx="410" cy="385" r="3" />
+  </g>
+  
+  <!-- Motion Lines -->
+  <g stroke="#FFF" stroke-width="2" stroke-opacity="0.5" stroke-linecap="round">
+      <line x1="50" y1="200" x2="100" y2="200" />
+      <line x1="20" y1="250" x2="80" y2="250" />
+      <line x1="60" y1="150" x2="90" y2="150" />
+  </g>
+
+</svg>
