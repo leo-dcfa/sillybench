@@ -2,6 +2,10 @@
 
 Silly benchmarks to test models on.
 
+Every model release ships with a wall of impressive numbers. But everyone uses models so differently — different tasks, different prompts, different taste — that it's impossible to know whether a high score translates to anything in the real world. A model that tops a leaderboard can still be mediocre at *your* thing, and vice versa.
+
+sillybench leans into that. These experiments are not rigorous, not representative, and produce no scores — just small, personal, slightly silly tasks (draw a kookaburra surfing a longboard, rebuild a local website) with each model's raw output kept side by side. Look at the results and decide for yourself. That's the point: the only benchmark that transfers to the real world is running a model on the things you actually do.
+
 ## Layout
 
 Each **experiment** is a folder at the repo root:
