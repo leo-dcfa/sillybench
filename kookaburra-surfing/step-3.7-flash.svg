@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="auto">
+  <defs>
+    <!-- Gradients for natural scene -->
+    <linearGradient id="skyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#a3d5ff" />
+      <stop offset="100%" stop-color="#f7fff7" />
+    </linearGradient>
+    <linearGradient id="oceanGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#4ecdc4" />
+      <stop offset="100%" stop-color="#1a535c" />
+    </linearGradient>
+    <radialGradient id="sunGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ff9f1c" stop-opacity="1" />
+      <stop offset="100%" stop-color="#ff9f1c" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <!-- Sky background -->
+  <rect width="400" height="300" fill="url(#skyGradient)" />
+  
+  <!-- Sun -->
+  <circle cx="350" cy="40" r="30" fill="url(#sunGlow)" />
+  <circle cx="350" cy="40" r="20" fill="#ff9f1c" />
+
+  <!-- Clouds -->
+  <g fill="white" opacity="0.8">
+    <ellipse cx="60" cy="50" rx="25" ry="10" />
+    <ellipse cx="80" cy="45" rx="20" ry="8" />
+    <ellipse cx="160" cy="70" rx="30" ry="12" />
+    <ellipse cx="190" cy="65" rx="22" ry="9" />
+    <ellipse cx="290" cy="55" rx="28" ry="11" />
+    <ellipse cx="320" cy="50" rx="18" ry="7" />
+  </g>
+
+  <!-- Ocean base -->
+  <rect y="100" width="400" height="200" fill="url(#oceanGradient)" />
+
+  <!-- Wave shape -->
+  <path d="M0 120 Q100 90 200 110 T400 130 L400 300 L0 300 Z" fill="#2a7f7a" />
+  
+  <!-- Wave foam -->
+  <path d="M80 115 Q120 100 160 108 T240 118 Q200 125 160 122 T80 115" fill="white" opacity="0.9" />
+  <g stroke="white" stroke-width="2" opacity="0.7" stroke-linecap="round">
+    <line x1="100" y1="112" x2="95" y2="105" />
+    <line x1="140" y1="105" x2="138" y2="98" />
+    <line x1="180" y1="110" x2="185" y2="103" />
+    <line x1="220" y1="116" x2="225" y2="109" />
+  </g>
+
+  <!-- Longboard -->
+  <g id="longboard">
+    <!-- Board base -->
+    <path d="M120 180 Q140 170 280 165 Q290 170 285 182 Q200 188 120 180" fill="#ff9f1c" />
+    <!-- Board stripes -->
+    <path d="M140 178 L175 171" stroke="#2a9d8f" stroke-width="4" stroke-linecap="round" />
+    <path d="M190 176 L270 168" stroke="#2a9d8f" stroke-width="4" stroke-linecap="round" />
+    <!-- Board fin -->
+    <path d="M125 180 L115 195 L130 182" fill="#264653" />
+    <!-- Tiny palm tree logo -->
+    <g transform="translate(200, 173) scale(0.6)">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#264653" stroke-width="1.5" />
+      <path d="M-5 0 Q0 -5 5 0 Q0 -3 -5 0" fill="#2a9d8f" />
+      <path d="M-4 2 Q0 -2 4 2 Q0 0 -4 2" fill="#2a9d8f" />
+    </g>
+    <!-- Leash -->
+    <path d="M125 180 Q140 190 165 175" stroke="black" stroke-width="1.5" fill="none" />
+  </g>
+
+  <!-- Kookaburra -->
+  <g id="kookaburra">
+    <!-- Tail -->
+    <path d="M165 175 Q150 160 155 140 Q165 150 175 145 Q180 160 165 175" fill="#6b4c35" />
+    
+    <!-- Body -->
+    <ellipse cx="190" cy="145" rx="25" ry="18" fill="#6b4c35" />
+    <ellipse cx="190" cy="148" rx="20" ry="12" fill="#fff3db" /> <!-- White chest -->
+
+    <!-- Wings -->
+    <path d="M170 140 Q150 130 155 115 Q165 125 175 135" fill="#5a3e2b" /> <!-- Back wing -->
+    <path d="M210 140 Q230 125 225 110 Q215 125 205 135" fill="#6b4c35" /> <!-- Front wing -->
+
+    <!-- Head -->
+    <circle cx="200" cy="115" r="18" fill="#6b4c35" />
+    <circle cx="205" cy="112" r="8" fill="#fff3db" /> <!-- White cheek patch -->
+
+    <!-- Eye stripe -->
+    <path d="M188 108 Q200 105 212 108 Q205 112 188 108" fill="#264653" />
+
+    <!-- Eyes -->
+    <circle cx="195" cy="110" r="2" fill="black" />
+    <circle cx="196" cy="109" r="0.5" fill="white" /> <!-- Eye highlight -->
+
+    <!-- Sunglasses (surfer detail!) -->
+    <g fill="#1e6091" stroke="black" stroke-width="0.5">
+      <ellipse cx="192" cy="110" rx="4" ry="2.5" />
+      <ellipse cx="202" cy="110" rx="4" ry="2.5" />
+      <line x1="196" y1="110" x2="198" y2="110" stroke="black" stroke-width="0.8" />
+    </g>
+
+    <!-- Beak (open in a laugh!) -->
+    <path d="M212 115 L230 112 L212 118 Z" fill="#264653" />
+    <path d="M212 118 L228 121 L212 118" fill="#1a1a1a" /> <!-- Open mouth -->
+
+    <!-- Feet -->
+    <g fill="#ff9f1c">
+      <path d="M185 175 L180 182 L185 180 L190 182 Z" /> <!-- Back foot -->
+      <path d="M205 175 L200 182 L205 180 L210 182 Z" /> <!-- Front foot -->
+    </g>
+  </g>
+
+  <!-- Motion spray around board -->
+  <g fill="white" opacity="0.8">
+    <circle cx="280" cy="175" r="2" />
+    <circle cx="285" cy="170" r="1.5" />
+    <circle cx="275" cy="168" r="1" />
+    <circle cx="290" cy="178" r="1.8" />
+    <line x1="295" y1="172" x2="300" y2="168" stroke="white" stroke-width="1" stroke-linecap="round" />
+    <line x1="292" y1="180" x2="297" y2="184" stroke="white" stroke-width="1" stroke-linecap="round" />
+    <line x1="270" y1="182" x2="265" y2="186" stroke="white" stroke-width="1" stroke-linecap="round" />
+  </g>
+</svg>
