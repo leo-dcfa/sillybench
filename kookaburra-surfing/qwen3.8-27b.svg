@@ -1,0 +1,183 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-labelledby="title desc">
+  <title id="title">Kookaburra surfing a longboard</title>
+  <desc id="desc">A laughing kookaburra stands in a surfing stance on a yellow longboard, riding the face of a curling ocean wave under a sunny sky.</desc>
+
+  <defs>
+    <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#59b7e8"/>
+      <stop offset="1" stop-color="#d9f2fc"/>
+    </linearGradient>
+    <linearGradient id="waveGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#49a8d9"/>
+      <stop offset="0.55" stop-color="#2a7cb4"/>
+      <stop offset="1" stop-color="#17568a"/>
+    </linearGradient>
+    <linearGradient id="deckGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffd35c"/>
+      <stop offset="1" stop-color="#ff9a3a"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Sky -->
+  <rect x="0" y="0" width="800" height="380" fill="url(#skyGrad)"/>
+
+  <!-- Sun -->
+  <circle cx="96" cy="92" r="74" fill="#fff0b8" opacity="0.28"/>
+  <circle cx="96" cy="92" r="55" fill="#ffe58c" opacity="0.5"/>
+  <circle cx="96" cy="92" r="38" fill="#ffd85e"/>
+  <g stroke="#ffd85e" stroke-width="5" stroke-linecap="round" opacity="0.9">
+    <path d="M96 42 L96 26"/><path d="M96 142 L96 158"/>
+    <path d="M46 92 L30 92"/><path d="M146 92 L162 92"/>
+    <path d="M61 57 L50 46"/><path d="M131 57 L142 46"/>
+    <path d="M61 127 L50 138"/><path d="M131 127 L142 138"/>
+  </g>
+
+  <!-- Clouds -->
+  <g fill="#ffffff" opacity="0.92">
+    <ellipse cx="560" cy="95" rx="28" ry="16"/><ellipse cx="588" cy="84" rx="30" ry="18"/>
+    <ellipse cx="616" cy="95" rx="26" ry="14"/><ellipse cx="588" cy="101" rx="46" ry="13"/>
+  </g>
+  <g fill="#ffffff" opacity="0.8">
+    <ellipse cx="282" cy="146" rx="20" ry="12"/><ellipse cx="304" cy="137" rx="22" ry="14"/>
+    <ellipse cx="326" cy="146" rx="18" ry="11"/>
+  </g>
+  <g fill="#ffffff" opacity="0.65">
+    <ellipse cx="730" cy="160" rx="18" ry="10"/><ellipse cx="752" cy="153" rx="18" ry="11"/>
+  </g>
+
+  <!-- Gulls -->
+  <g stroke="#4e7391" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.8">
+    <path d="M596 178 Q604 171 612 178 Q620 171 628 178"/>
+    <path d="M652 156 Q658 151 664 156 Q670 151 676 156"/>
+  </g>
+
+  <!-- Distant sea -->
+  <rect x="0" y="378" width="800" height="222" fill="#7ec9ea"/>
+  <g stroke="#eaf8fd" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.7">
+    <path d="M540 402 q12 -6 24 0 q12 6 24 0"/>
+    <path d="M640 392 q12 -6 24 0 q12 6 24 0"/>
+    <path d="M720 408 q10 -5 20 0 q10 5 20 0"/>
+    <path d="M240 396 q12 -6 24 0 q12 6 24 0"/>
+  </g>
+  <g fill="#ffffff" opacity="0.8">
+    <circle cx="500" cy="392" r="2"/><circle cx="600" cy="386" r="2"/><circle cx="700" cy="398" r="2"/>
+  </g>
+
+  <!-- Main wave with curling crest -->
+  <path d="M0 368 C60 350 120 342 155 352 C195 364 212 398 205 430
+           C200 450 182 460 160 458 C180 466 225 452 268 438
+           C330 420 400 420 470 432 C580 448 700 458 800 456
+           L800 600 L0 600 Z"
+        fill="url(#waveGrad)" stroke="#8ed4f2" stroke-opacity="0.35" stroke-width="2"/>
+
+  <!-- Barrel shadow under the lip -->
+  <path d="M150 452 C174 446 190 430 195 408 C199 436 186 456 158 462 C150 462 146 456 150 452 Z"
+        fill="#123f68" opacity="0.5"/>
+
+  <!-- Foam on crest -->
+  <path d="M92 356 C130 344 168 350 190 376" fill="none" stroke="#ffffff" stroke-width="8" stroke-linecap="round" opacity="0.9"/>
+  <path d="M200 430 C198 446 186 456 168 458" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" opacity="0.8"/>
+  <g fill="#ffffff" opacity="0.9">
+    <circle cx="170" cy="452" r="6"/><circle cx="154" cy="458" r="5"/>
+    <circle cx="184" cy="442" r="4"/><circle cx="160" cy="444" r="3.5"/>
+  </g>
+
+  <!-- Face highlight -->
+  <path d="M250 446 C340 428 440 428 530 444" fill="none" stroke="#a5ddf5" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+
+  <!-- White water band under the board -->
+  <path d="M216 448 C296 424 386 418 466 432 C536 444 586 452 632 458
+           L632 470 C560 466 500 458 440 448 C360 436 300 444 240 464 Z"
+        fill="#ffffff" opacity="0.5"/>
+  <g fill="#ffffff" opacity="0.75">
+    <ellipse cx="300" cy="436" rx="14" ry="5"/><ellipse cx="360" cy="428" rx="16" ry="5.5"/>
+    <ellipse cx="430" cy="432" rx="15" ry="5"/><ellipse cx="480" cy="440" rx="12" ry="4.5"/>
+  </g>
+
+  <!-- Board shadow -->
+  <ellipse cx="390" cy="434" rx="125" ry="9" fill="#0d3f66" opacity="0.25"/>
+
+  <!-- ===== Longboard + Kookaburra ===== -->
+  <g transform="translate(400,412) rotate(-8)">
+    <!-- Leash -->
+    <path d="M-126 12 C-150 26 -158 52 -146 74" fill="none" stroke="#3c3c44" stroke-width="3" opacity="0.8"/>
+    <!-- Fin -->
+    <path d="M-122 9 C-132 20 -131 30 -119 33 C-114 24 -115 14 -122 9 Z" fill="#e8543f" stroke="#c23e2a" stroke-width="1"/>
+    <!-- Deck -->
+    <path d="M-132 0 C-132 -15 -60 -17 0 -17 C60 -17 132 -14 132 0
+             C132 14 60 17 0 17 C-60 17 -132 16 -132 0 Z"
+          fill="url(#deckGrad)" stroke="#e07b2a" stroke-width="2"/>
+    <!-- Tail block + stringer -->
+    <path d="M-95 -13.5 L-78 -15.8 L-74 15.8 L-91 13.4 Z" fill="#ff7a4d" opacity="0.9"/>
+    <path d="M-118 0 L118 0" stroke="#e8543f" stroke-width="3" opacity="0.9"/>
+    <!-- Decal -->
+    <circle cx="26" cy="-6" r="11" fill="none" stroke="#ffffff" stroke-width="2.5" opacity="0.5"/>
+    <circle cx="26" cy="-6" r="7.5" fill="#ffffff" opacity="0.95"/>
+    <circle cx="26" cy="-6" r="3" fill="#ff8a3d"/>
+
+    <!-- Kookaburra -->
+    <!-- Tail -->
+    <path d="M-30 -76 C-46 -84 -62 -82 -70 -70 C-62 -60 -46 -56 -32 -60 Z" fill="#587490"/>
+    <g stroke="#48627b" stroke-width="2" fill="none" stroke-linecap="round">
+      <path d="M-64 -72 C-54 -68 -46 -66 -38 -66"/><path d="M-66 -78 C-56 -76 -48 -74 -40 -74"/>
+    </g>
+    <!-- Legs and feet -->
+    <g stroke="#6b6154" stroke-width="6" stroke-linecap="round">
+      <path d="M-4 -34 L-16 -18"/><path d="M18 -34 L26 -18"/>
+    </g>
+    <g stroke="#7c7060" stroke-width="3" stroke-linecap="round">
+      <path d="M-16 -18 L-7 -14"/><path d="M-16 -18 L-12 -11"/><path d="M-16 -18 L-25 -13"/>
+      <path d="M26 -18 L37 -15"/><path d="M26 -18 L33 -11"/><path d="M26 -18 L19 -12"/>
+    </g>
+    <!-- Body: back + cream belly -->
+    <ellipse cx="4" cy="-64" rx="45" ry="36" fill="#7c95a8"/>
+    <ellipse cx="4" cy="-54" rx="39" ry="28" fill="#f5e6c4"/>
+    <!-- White neck collar -->
+    <ellipse cx="26" cy="-88" rx="17" ry="21" fill="#ffffff"/>
+    <!-- Wing raised for balance -->
+    <path d="M-4 -86 C-20 -96 -40 -108 -50 -126 C-53 -132 -60 -132 -62 -126
+             C-66 -114 -68 -102 -64 -92 C-56 -84 -48 -80 -42 -78
+             C-28 -72 -12 -72 -2 -78 Z" fill="#587490"/>
+    <g stroke="#48627b" stroke-width="2.5" fill="none" stroke-linecap="round">
+      <path d="M-58 -120 C-52 -108 -44 -98 -34 -90"/>
+      <path d="M-64 -108 C-58 -98 -50 -90 -40 -84"/>
+    </g>
+    <g fill="#cfe0ea">
+      <circle cx="-40" cy="-100" r="1.6"/><circle cx="-30" cy="-92" r="1.6"/>
+    </g>
+    <!-- Head -->
+    <circle cx="34" cy="-112" r="25" fill="#7c95a8"/>
+    <ellipse cx="34" cy="-123" rx="16" ry="9" fill="#9db2c0"/>
+    <ellipse cx="25" cy="-106" rx="8.5" ry="7.5" fill="#ffffff"/>
+    <!-- Eye -->
+    <circle cx="41" cy="-114" r="6" fill="#ffffff"/>
+    <circle cx="42.5" cy="-114" r="3.6" fill="#17202b"/>
+    <circle cx="44" cy="-115.5" r="1.4" fill="#ffffff"/>
+    <!-- Beak (slightly open, laughing) -->
+    <path d="M52 -119 C70 -121 86 -113 94 -101 C92 -98 90 -98 88 -99 C74 -105 62 -106 52 -105 Z" fill="#3a424d"/>
+    <path d="M53 -108 C66 -108 78 -104 85 -96 C86 -93 84 -91 81 -92 C70 -98 60 -102 52 -104 Z" fill="#6d8798"/>
+    <path d="M51 -122 C68 -124 84 -116 93 -103 C94 -101 92 -99 89 -100 C74 -107 60 -111 51 -112 Z" fill="#5e7790"/>
+    <path d="M60 -119 L68 -119.5" stroke="#3c4c5e" stroke-width="1.5" stroke-linecap="round"/>
+  </g>
+
+  <!-- Nose spray -->
+  <path d="M524 404 C536 396 548 397 557 405" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round" opacity="0.9"/>
+  <g fill="#ffffff" opacity="0.85">
+    <circle cx="545" cy="391" r="6.5"/><circle cx="556" cy="399" r="4.5"/>
+    <circle cx="542" cy="404" r="3.8"/><circle cx="561" cy="386" r="3.2"/><circle cx="534" cy="384" r="3"/>
+  </g>
+  <g fill="#ffffff" opacity="0.7">
+    <circle cx="575" cy="378" r="2.5"/><circle cx="640" cy="360" r="2.5"/><circle cx="596" cy="352" r="2"/>
+  </g>
+
+  <!-- Tail splash -->
+  <path d="M240 442 C258 433 278 434 296 442" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" opacity="0.85"/>
+  <g fill="#ffffff" opacity="0.8">
+    <circle cx="252" cy="434" r="5.5"/><circle cx="240" cy="443" r="4.5"/>
+    <circle cx="264" cy="446" r="4"/><circle cx="230" cy="450" r="3.5"/>
+  </g>
+  <g fill="#ffffff" opacity="0.8">
+    <circle cx="295" cy="442" r="3.5"/><circle cx="320" cy="430" r="3"/>
+    <circle cx="352" cy="425" r="3"/><circle cx="415" cy="430" r="3.5"/>
+  </g>
+</svg>
