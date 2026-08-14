@@ -1,0 +1,1379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Peregian Digital Hub — The digital home of Peregian Beach</title>
+<meta name="description" content="A members' workspace, studio and social club at the bottom of Ocean Beachway. Gigabit fibre, slower mornings, and a community that knows where to surf.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%2314201B'/><text x='50' y='72' font-size='64' text-anchor='middle' fill='%23FF5A36'>✳</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --paper:#F4EDE0; --paper-2:#ECE2CE; --card:#FBF6EB;
+  --ink:#14201B; --ink-soft:#4A5A52;
+  --teal:#0E5F52; --teal-deep:#0A3C34; --night:#0B1613;
+  --coral:#FF5A36; --coral-soft:#FF7A5C; --gold:#E9A13B; --mint:#46C6B4;
+  --line:rgba(20,32,27,.18); --line-strong:rgba(20,32,27,.45);
+  --line-inv:rgba(244,237,224,.18);
+  --fd:'Bricolage Grotesque',sans-serif; --fb:'Instrument Sans',sans-serif; --fm:'IBM Plex Mono',monospace;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--fb);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--coral);color:var(--paper)}
+img{display:block;max-width:100%}
+a{color:inherit}
+button{font:inherit;cursor:pointer;color:inherit;background:none;border:none}
+:focus-visible{outline:2px solid var(--coral);outline-offset:3px}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-track{background:var(--paper-2)}
+::-webkit-scrollbar-thumb{background:var(--ink);border:2px solid var(--paper-2)}
+
+.container{width:min(1240px,92%);margin-inline:auto}
+.mono{font-family:var(--fm)}
+.kick{display:flex;align-items:center;gap:14px;font-family:var(--fm);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft)}
+.kick b{color:var(--coral);font-weight:600}
+.kick .rule{height:1px;background:var(--line-strong);flex:1;transform:scaleX(0);transform-origin:left;transition:transform 1s var(--ease) .2s}
+.in .kick .rule{transform:scaleX(1)}
+h2{font-family:var(--fd);font-weight:700;letter-spacing:-.02em;font-size:clamp(2.2rem,4.6vw,3.7rem);line-height:1.02}
+.lm{display:block;overflow:hidden}
+.lm .lm-in{display:block;transform:translateY(112%);transition:transform 1s var(--ease)}
+.in .lm .lm-in{transform:none}
+
+/* reveals */
+[data-reveal]{opacity:0;transform:translateY(26px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0s)}
+[data-reveal].in{opacity:1;transform:none}
+
+/* grain */
+body::after{content:'';position:fixed;inset:0;z-index:3000;pointer-events:none;opacity:.05;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--fm);font-size:12.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  padding:15px 24px;border:1.5px solid var(--ink);background:var(--ink);color:var(--paper);text-decoration:none;
+  box-shadow:5px 5px 0 var(--coral);transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--coral)}
+.btn:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--coral)}
+.btn--ghost{background:transparent;color:var(--ink);box-shadow:5px 5px 0 var(--ink)}
+.btn--ghost:hover{box-shadow:8px 8px 0 var(--ink)}
+.btn--coral{background:var(--coral);color:var(--night);border-color:var(--ink)}
+.link-u{font-family:var(--fm);font-size:13px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;position:relative;padding-bottom:4px}
+.link-u::after{content:'';position:absolute;left:0;bottom:0;width:100%;height:1.5px;background:var(--coral);transform:scaleX(.35);transform-origin:left;transition:transform .4s var(--ease)}
+.link-u:hover::after{transform:scaleX(1)}
+
+/* ============ HEADER ============ */
+#prog{position:fixed;top:0;left:0;height:3px;background:var(--coral);width:0;z-index:1200}
+header{position:fixed;top:0;left:0;right:0;z-index:1000;padding:18px 0;transition:background .35s,padding .35s,border-color .35s;border-bottom:1px solid transparent}
+header.scrolled{background:rgba(244,237,224,.94);border-color:var(--line);padding:10px 0;backdrop-filter:blur(8px)}
+.hd{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo-mark{width:38px;height:38px;background:var(--ink);color:var(--paper);display:grid;place-items:center;font-size:20px;transition:transform .6s var(--ease)}
+.logo:hover .logo-mark{transform:rotate(180deg);background:var(--coral);color:var(--night)}
+.logo-word{font-family:var(--fd);font-weight:700;font-size:15px;letter-spacing:.02em;line-height:1.1}
+.logo-word small{display:block;font-family:var(--fm);font-weight:400;font-size:9.5px;letter-spacing:.24em;color:var(--ink-soft)}
+nav.main{display:flex;gap:30px}
+nav.main a{font-family:var(--fm);font-size:12px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;padding:6px 0;background:linear-gradient(var(--coral),var(--coral)) left bottom / 0 1.5px no-repeat;transition:background-size .35s var(--ease)}
+nav.main a:hover{background-size:100% 1.5px}
+.hd-right{display:flex;align-items:center;gap:18px}
+.hd-clock{font-family:var(--fm);font-size:12px;letter-spacing:.08em;color:var(--ink-soft)}
+.hd .btn{padding:11px 18px;font-size:11.5px}
+.nav-btn{display:none;width:44px;height:44px;border:1.5px solid var(--ink);flex-direction:column;justify-content:center;align-items:center;gap:5px;background:var(--paper)}
+.nav-btn span{width:20px;height:2px;background:var(--ink);transition:transform .3s,opacity .3s}
+header.m-open .nav-btn span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+header.m-open .nav-btn span:nth-child(2){opacity:0}
+header.m-open .nav-btn span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* ============ HERO ============ */
+.hero{padding:150px 0 0;position:relative}
+.hero-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:56px;align-items:start}
+.hero-loc{font-family:var(--fm);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);display:flex;align-items:center;gap:12px;margin-bottom:30px}
+.hero-loc::before{content:'';width:9px;height:9px;border-radius:50%;background:var(--coral);animation:pulse 2.2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,90,54,.55)}70%{box-shadow:0 0 0 11px rgba(255,90,54,0)}100%{box-shadow:0 0 0 0 rgba(255,90,54,0)}}
+h1{font-family:var(--fd);font-weight:750;font-size:clamp(2.9rem,7.4vw,6.2rem);line-height:.98;letter-spacing:-.025em;text-transform:uppercase}
+h1 .hl{display:block;overflow:hidden;padding-bottom:.06em}
+h1 .scr{display:inline-block;transform:translateY(112%);transition:transform 1.1s var(--ease)}
+h1 .accent{color:var(--coral)}
+.hero.in h1 .scr{transform:none}
+.hero-sub{max-width:46ch;margin:30px 0 36px;font-size:17.5px;color:var(--ink-soft)}
+.hero-cta{display:flex;align-items:center;gap:28px;flex-wrap:wrap}
+.hero-meta{display:flex;justify-content:space-between;align-items:center;margin-top:64px;padding-top:22px;border-top:1px solid var(--line);font-family:var(--fm);font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+.open-pill{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line-strong);padding:8px 14px}
+.open-pill .dot{width:8px;height:8px;border-radius:50%;background:var(--mint)}
+.open-pill.closed .dot{background:var(--coral);animation:pulse 2.2s infinite}
+.open-pill.closed{color:var(--coral)}
+.desk-live{color:var(--teal)}
+.desk-live b{color:var(--coral);font-weight:600}
+.scroll-hint{display:flex;align-items:center;gap:10px;color:var(--ink-soft)}
+.scroll-hint i{display:inline-block;width:1px;height:26px;background:var(--ink);position:relative;overflow:hidden}
+.scroll-hint i::after{content:'';position:absolute;left:0;top:-100%;width:100%;height:100%;background:var(--coral);animation:drip 1.8s infinite}
+@keyframes drip{to{top:100%}}
+.hero-side{position:absolute;right:-8px;top:170px;writing-mode:vertical-rl;font-family:var(--fm);font-size:10.5px;letter-spacing:.34em;color:var(--ink-soft);opacity:.7}
+
+/* hub board */
+.board{background:var(--night);color:var(--paper);border:1px solid rgba(244,237,224,.15);box-shadow:9px 9px 0 var(--coral);padding:26px 26px 20px;position:relative}
+.board-top{display:flex;justify-content:space-between;align-items:center;padding-bottom:16px;border-bottom:1px solid var(--line-inv);margin-bottom:6px}
+.board-title{font-family:var(--fd);font-weight:700;font-size:19px;letter-spacing:.04em;display:flex;align-items:center;gap:11px}
+.board-title .dot{width:9px;height:9px;border-radius:50%;background:var(--coral);animation:pulse 2s infinite}
+.board-live{font-family:var(--fm);font-size:10.5px;letter-spacing:.24em;color:var(--mint)}
+.brow{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:12px 0;border-bottom:1px dashed rgba(244,237,224,.18);font-family:var(--fm);font-size:12.5px}
+.brow:last-child{border-bottom:none}
+.brow .k{letter-spacing:.16em;text-transform:uppercase;color:rgba(244,237,224,.55);font-size:10.5px;white-space:nowrap}
+.brow .v{font-weight:500;letter-spacing:.04em;text-align:right}
+.brow .v.big{font-size:22px;font-weight:600;color:var(--mint)}
+.brow .v.coral{color:var(--coral-soft)}
+.brow .v.flash{animation:flash .7s}
+@keyframes flash{0%{color:var(--coral);transform:translateY(-3px)}100%{color:var(--mint)}}
+.board-foot{margin-top:14px;padding-top:14px;border-top:1px solid var(--line-inv);font-family:var(--fm);font-size:10.5px;letter-spacing:.14em;color:rgba(244,237,224,.5);display:flex;justify-content:space-between;gap:10px}
+.board-foot b{color:var(--gold);font-weight:500}
+
+/* hero media strip */
+.hero-media{margin-top:80px;position:relative;height:clamp(260px,42vh,440px);overflow:hidden;border-block:1px solid var(--ink)}
+.hero-media img{width:100%;height:100%;object-fit:cover}
+.kb img{animation:kb 18s ease-in-out infinite alternate}
+@keyframes kb{from{transform:scale(1) translateY(0)}to{transform:scale(1.09) translateY(-2%)}}
+.media-cap{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:space-between;gap:20px;padding:14px 22px;background:linear-gradient(transparent,rgba(11,22,19,.85));color:var(--paper);font-family:var(--fm);font-size:11px;letter-spacing:.16em;text-transform:uppercase}
+
+/* ============ MARQUEE ============ */
+.marquee{background:var(--ink);color:var(--paper);overflow:hidden;padding:15px 0;border-bottom:1px solid var(--ink)}
+.mq-track{display:flex;width:max-content;animation:marq 32s linear infinite}
+.marquee:hover .mq-track{animation-play-state:paused}
+.mq-group{display:flex;align-items:center;gap:44px;padding-right:44px}
+.mq-group span{font-family:var(--fm);font-size:13px;letter-spacing:.18em;white-space:nowrap;color:rgba(244,237,224,.85)}
+.mq-group .star{color:var(--coral);font-size:15px}
+@keyframes marq{to{transform:translateX(-50%)}}
+
+/* ============ SECTIONS ============ */
+section{scroll-margin-top:92px}
+.sect{padding:110px 0}
+.sect-head{display:grid;grid-template-columns:1fr minmax(240px,340px);gap:40px;align-items:end;margin-bottom:60px}
+.sect-head p{font-size:16.5px;color:var(--ink-soft)}
+.on-dark .kick{color:rgba(244,237,224,.6)}
+.on-dark .kick .rule{background:var(--line-inv)}
+
+/* sticky two-col */
+.hub-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:70px;align-items:start}
+.hub-sticky{position:sticky;top:110px}
+.hub-sticky p{margin:26px 0 34px;color:var(--ink-soft);max-width:40ch;font-size:17px}
+.hub-item{display:grid;grid-template-columns:86px 1fr;gap:24px;padding:44px 0;border-top:1px solid var(--line)}
+.hub-item:last-child{border-bottom:1px solid var(--line)}
+.hub-num{font-family:var(--fd);font-weight:750;font-size:2.4rem;color:var(--coral);line-height:1}
+.hub-item h3{font-family:var(--fd);font-weight:700;font-size:1.7rem;letter-spacing:-.01em;margin-bottom:10px}
+.hub-item p{color:var(--ink-soft);font-size:15.5px;max-width:52ch}
+.hub-img{margin-top:18px;border:1px solid var(--ink);overflow:hidden;max-width:420px}
+.hub-img img{aspect-ratio:16/10;object-fit:cover;width:100%;transition:transform 1.4s var(--ease)}
+.hub-item:hover .hub-img img{transform:scale(1.07)}
+.hub-tag{font-family:var(--fm);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);margin-bottom:8px;display:block}
+
+/* bento spaces */
+.bento{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
+.sp{border:1px solid var(--ink);background:var(--card);display:flex;flex-direction:column;min-height:340px;transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
+.sp:hover{transform:translate(-4px,-4px);box-shadow:8px 8px 0 var(--ink)}
+.s7{grid-column:span 7}.s5{grid-column:span 5}
+.sp-media{overflow:hidden;flex:0 0 auto;min-height:200px}
+.sp-media img{width:100%;height:100%;min-height:200px;object-fit:cover;transition:transform 1.6s var(--ease)}
+.sp:hover .sp-media img{transform:scale(1.1)}
+.sp-body{padding:22px 24px 26px;display:flex;flex-direction:column;gap:10px;flex:1}
+.sp-row{display:flex;justify-content:space-between;font-family:var(--fm);font-size:11px;letter-spacing:.18em;text-transform:uppercase}
+.sp-row .price{color:var(--coral);font-weight:600}
+.sp h3{font-family:var(--fd);font-weight:700;font-size:1.55rem;letter-spacing:-.01em}
+.sp p{color:var(--ink-soft);font-size:15px;flex:1}
+.sp-link{font-family:var(--fm);font-size:12px;letter-spacing:.14em;text-transform:uppercase;display:inline-flex;gap:8px;align-items:center;width:max-content}
+.sp-link i{transition:transform .3s var(--ease)}
+.sp:hover .sp-link i{transform:translateX(6px)}
+.sp--wide{flex-direction:row}
+.sp--wide .sp-media{width:42%;min-height:0}
+.sp--wide .sp-media img{min-height:0}
+
+/* ============ PASSES ============ */
+.plans-wrap{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;align-items:stretch}
+.plan{border:1.5px solid var(--ink);background:var(--card);padding:32px 30px;display:flex;flex-direction:column;gap:20px;position:relative;transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.plan:hover{transform:translateY(-6px);box-shadow:0 14px 0 -6px var(--line)}
+.plan--feat{background:var(--night);color:var(--paper);box-shadow:9px 9px 0 var(--coral)}
+.plan--feat p,.plan--feat li{color:rgba(244,237,224,.75)}
+.plan-tag{font-family:var(--fm);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--teal)}
+.plan--feat .plan-tag{color:var(--gold)}
+.plan-price{font-family:var(--fd);font-weight:750;font-size:3rem;line-height:1;letter-spacing:-.02em;display:flex;align-items:baseline;gap:8px}
+.plan-price sup{font-size:1.1rem;font-weight:600;color:var(--coral)}
+.plan--feat .plan-price sup{color:var(--coral-soft)}
+.plan-note{font-family:var(--fm);font-size:11px;letter-spacing:.1em;color:var(--ink-soft);margin-top:6px}
+.plan--feat .plan-note{color:rgba(244,237,224,.5)}
+.plan ul{list-style:none;display:flex;flex-direction:column;gap:11px;font-size:14.5px;flex:1}
+.plan li{display:flex;gap:10px}
+.plan li::before{content:'✳';color:var(--coral);font-size:12px;line-height:1.7}
+.plan .btn{justify-content:center}
+.plan-flag{position:absolute;top:-13px;left:30px;background:var(--coral);color:var(--night);font-family:var(--fm);font-size:10.5px;font-weight:600;letter-spacing:.2em;padding:6px 12px}
+.bill{display:inline-flex;border:1.5px solid var(--ink);padding:4px;gap:4px;background:var(--card)}
+.bbtn{font-family:var(--fm);font-size:12px;letter-spacing:.1em;text-transform:uppercase;padding:10px 18px;transition:background .25s,color .25s}
+.bbtn.on{background:var(--ink);color:var(--paper)}
+.price-num{display:inline-block;transition:opacity .18s,transform .18s}
+.price-num.swap{opacity:0;transform:translateY(-9px)}
+.pass-row{display:flex;justify-content:space-between;align-items:center;gap:30px;flex-wrap:wrap;margin-bottom:46px}
+.pass-row .save{font-family:var(--fm);font-size:11.5px;letter-spacing:.14em;color:var(--teal);text-transform:uppercase}
+.plan-price small{font-family:var(--fm);font-size:12px;font-weight:400;letter-spacing:.1em;color:inherit;opacity:.55}
+
+/* ============ EVENTS (dark board) ============ */
+.events{background:var(--night);color:var(--paper);border-block:1px solid var(--ink)}
+.events .sect-head p{color:rgba(244,237,224,.65)}
+.ev-filter{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:36px}
+.chip{font-family:var(--fm);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;border:1px solid var(--line-inv);padding:10px 18px;transition:all .25s;color:rgba(244,237,224,.75)}
+.chip:hover{border-color:var(--paper);color:var(--paper)}
+.chip.on{background:var(--paper);color:var(--night);border-color:var(--paper)}
+.ev-list{list-style:none}
+.ev{display:grid;grid-template-columns:96px 1fr 190px;gap:26px;align-items:center;padding:26px 18px;border-top:1px solid var(--line-inv);transition:background .3s}
+.ev:last-child{border-bottom:1px solid var(--line-inv)}
+.ev:hover{background:rgba(244,237,224,.05)}
+.ev.hide{display:none}
+.ev.pop{animation:pop .45s var(--ease)}
+@keyframes pop{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.ev-date{display:flex;flex-direction:column;align-items:center;text-align:center;border:1px solid var(--line-inv);padding:12px 8px}
+.ev-day{font-family:var(--fd);font-weight:750;font-size:2.1rem;line-height:1;color:var(--coral-soft)}
+.ev-mon{font-family:var(--fm);font-size:10.5px;letter-spacing:.26em;color:rgba(244,237,224,.55);margin-top:4px}
+.ev-date small{font-family:var(--fm);font-size:9px;letter-spacing:.14em;color:var(--mint);margin-top:7px;text-transform:uppercase}
+.ev h3{font-family:var(--fd);font-weight:700;font-size:1.45rem;letter-spacing:-.01em;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.tag{font-family:var(--fm);font-size:10px;letter-spacing:.18em;text-transform:uppercase;border:1px solid;padding:4px 10px}
+.tag.social{color:var(--mint);border-color:var(--mint)}
+.tag.workshop{color:var(--coral-soft);border-color:var(--coral-soft)}
+.tag.meetup{color:var(--gold);border-color:var(--gold)}
+.tag.market{color:rgba(244,237,224,.85);border-color:var(--line-inv)}
+.ev p{color:rgba(244,237,224,.62);font-size:14.5px;margin-top:8px;max-width:56ch}
+.ev-when{font-family:var(--fm);font-size:11px;letter-spacing:.16em;color:rgba(244,237,224,.5);margin-top:10px;text-transform:uppercase}
+.ev-side{display:flex;flex-direction:column;align-items:flex-end;gap:12px}
+.ev-going{font-family:var(--fm);font-size:11.5px;letter-spacing:.1em;color:rgba(244,237,224,.55)}
+.ev-going b{color:var(--paper);font-size:14px}
+.rsvp{font-family:var(--fm);font-size:11.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;border:1.5px solid var(--paper);padding:11px 20px;min-width:118px;transition:all .25s}
+.rsvp:hover{background:var(--paper);color:var(--night)}
+.rsvp.on{background:var(--coral);border-color:var(--coral);color:var(--night)}
+.ev-fee{font-family:var(--fm);font-size:11px;letter-spacing:.12em;color:var(--gold)}
+
+/* ============ COMMUNITY ============ */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border:1.5px solid var(--ink);background:var(--card);margin-bottom:70px}
+.stat{padding:32px 30px;border-left:1px solid var(--line)}
+.stat:first-child{border-left:none}
+.stat .num{font-family:var(--fd);font-weight:750;font-size:clamp(2rem,3.6vw,3rem);line-height:1;letter-spacing:-.02em}
+.stat .num em{font-style:normal;color:var(--coral)}
+.stat .lbl{font-family:var(--fm);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);margin-top:10px}
+.strip-ctl{display:flex;justify-content:flex-end;gap:10px;margin-bottom:22px}
+.arr{width:48px;height:48px;border:1.5px solid var(--ink);display:grid;place-items:center;font-size:18px;transition:all .25s;background:var(--card)}
+.arr:hover{background:var(--ink);color:var(--paper);transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--coral)}
+.strip{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;cursor:grab;padding:6px 4px 22px;scrollbar-width:thin}
+.strip::-webkit-scrollbar{height:8px}
+.strip::-webkit-scrollbar-thumb{background:var(--ink);border:2px solid var(--paper-2)}
+.strip.dragging{cursor:grabbing;scroll-snap-type:none}
+.mc{flex:0 0 266px;scroll-snap-align:start;border:1px solid var(--ink);background:var(--card);display:flex;flex-direction:column;transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.mc:hover{transform:translateY(-6px);box-shadow:7px 7px 0 var(--ink)}
+.mc-img{overflow:hidden;aspect-ratio:4/4.6}
+.mc-img img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease)}
+.mc:hover .mc-img img{transform:scale(1.08)}
+.mc-body{padding:18px 20px 22px;border-top:1px solid var(--line)}
+.mc-body h4{font-family:var(--fd);font-weight:700;font-size:1.15rem}
+.mc-body .role{font-family:var(--fm);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--coral);margin:5px 0 12px}
+.mc-body p{font-size:13.5px;font-style:italic;color:var(--ink-soft)}
+
+/* ============ POSTCARDS ============ */
+.around{background:var(--paper-2);border-block:1px solid var(--line);
+  background-image:radial-gradient(var(--line) 1px,transparent 1px);background-size:24px 24px}
+.pc-field{position:relative;height:620px}
+.card-p{position:absolute;width:250px;background:var(--card);border:1px solid var(--ink);padding:10px 10px 16px;box-shadow:5px 7px 0 rgba(20,32,27,.14);transition:transform .5s var(--ease),box-shadow .5s var(--ease),z-index 0s;cursor:pointer}
+.card-p::before{content:'';position:absolute;top:-11px;left:50%;transform:translateX(-50%) rotate(-3deg);width:92px;height:24px;background:rgba(233,161,59,.7);border:1px solid rgba(20,32,27,.15)}
+.card-p img{width:100%;height:170px;object-fit:cover}
+.card-p h4{font-family:var(--fd);font-weight:700;font-size:1.05rem;margin-top:13px}
+.card-p .walk{font-family:var(--fm);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--coral);margin-top:5px;display:block}
+.card-p .desc{font-size:13px;color:var(--ink-soft);margin-top:7px;line-height:1.45}
+.card-p:hover{transform:rotate(0deg) translateY(-12px) scale(1.04)!important;box-shadow:12px 16px 0 rgba(20,32,27,.18);z-index:10}
+.pc-1{left:1%;top:9%;transform:rotate(-5deg)}
+.pc-2{left:22%;top:37%;transform:rotate(3deg)}
+.pc-3{left:44%;top:5%;transform:rotate(-2deg)}
+.pc-4{left:63%;top:33%;transform:rotate(5deg)}
+.pc-5{left:80%;top:11%;transform:rotate(-4deg)}
+.pc-note{position:absolute;left:46%;top:56%;font-family:var(--fm);font-size:11px;letter-spacing:.2em;color:var(--ink-soft);text-transform:uppercase}
+
+/* ============ MANIFESTO ============ */
+.manifesto{background:var(--teal-deep);color:var(--paper);overflow:hidden}
+.mani-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:60px;align-items:center}
+.mani-grid h2{font-size:clamp(2.4rem,5vw,4.4rem);line-height:1.04;font-weight:650}
+.mani-grid .lm .lm-in{transition-duration:1.1s}
+.mani-grid .accent{color:var(--coral-soft)}
+.mani-img{border:1px solid rgba(244,237,224,.25);overflow:hidden;aspect-ratio:4/4.7}
+.mani-img img{width:100%;height:100%;object-fit:cover}
+.mani-sig{margin-top:34px;font-family:var(--fm);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:rgba(244,237,224,.55)}
+
+/* ============ FAQ ============ */
+.faq{max-width:820px}
+.faq-item{border-top:1px solid var(--line)}
+.faq-item:last-child{border-bottom:1px solid var(--line)}
+.faq-q{width:100%;display:flex;align-items:center;gap:22px;padding:26px 4px;text-align:left;font-family:var(--fd);font-weight:700;font-size:1.3rem;letter-spacing:-.01em;transition:color .25s}
+.faq-q:hover{color:var(--teal)}
+.faq-q .q-idx{font-family:var(--fm);font-size:11px;letter-spacing:.16em;color:var(--coral);flex:0 0 34px}
+.faq-q .plus{margin-left:auto;font-size:24px;font-weight:400;transition:transform .45s var(--ease);color:var(--coral);line-height:1}
+.faq-item.open .plus{transform:rotate(45deg)}
+.faq-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .55s var(--ease)}
+.faq-a>div{overflow:hidden}
+.faq-item.open .faq-a{grid-template-rows:1fr}
+.faq-a p{padding:0 4px 30px 58px;color:var(--ink-soft);max-width:60ch}
+
+/* ============ VISIT ============ */
+.visit{background:var(--paper-2);border-top:1px solid var(--line)}
+.visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.addr{font-family:var(--fd);font-weight:650;font-size:clamp(1.4rem,2.4vw,1.9rem);line-height:1.3;letter-spacing:-.01em}
+.addr small{display:block;font-family:var(--fm);font-weight:400;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);margin-top:10px}
+.mapbox{position:relative;border:1.5px solid var(--ink);background:var(--teal-deep);aspect-ratio:16/8.5;overflow:hidden;margin:34px 0;
+  background-image:linear-gradient(rgba(244,237,224,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(244,237,224,.07) 1px,transparent 1px);background-size:42px 42px}
+.xh{position:absolute;left:61%;top:36%}
+.xh::before,.xh::after{content:'';position:absolute;background:rgba(255,90,54,.8)}
+.xh::before{left:-70px;top:0;width:140px;height:1px}
+.xh::after{top:-50px;left:0;width:1px;height:100px}
+.xh-dot{position:absolute;width:13px;height:13px;border-radius:50%;background:var(--coral);animation:pulse 2s infinite;transform:translate(-50%,-50%)}
+.map-label{position:absolute;left:12px;bottom:12px;font-family:var(--fm);font-size:10.5px;letter-spacing:.18em;color:rgba(244,237,224,.75);border:1px solid var(--line-inv);padding:7px 11px;background:rgba(11,22,19,.6)}
+.map-pin{position:absolute;left:64%;top:20%;font-family:var(--fm);font-size:10px;letter-spacing:.2em;color:var(--coral-soft);text-transform:uppercase}
+.hrs{font-family:var(--fm);font-size:13.5px}
+.hrow{display:flex;align-items:baseline;gap:12px;padding:10px 2px;border-bottom:1px dotted var(--line-strong)}
+.hrow .leader{flex:1;border-bottom:1px dotted var(--line-strong);transform:translateY(-4px)}
+.hrow.today{color:var(--coral);font-weight:600}
+.hrow .today-tag{font-size:9.5px;letter-spacing:.2em;border:1px solid var(--coral);padding:2px 7px}
+.contact-lines{margin-top:30px;display:flex;flex-direction:column;gap:9px;font-family:var(--fm);font-size:13.5px}
+.contact-lines a{text-decoration:none}
+.contact-lines a:hover{color:var(--coral)}
+/* form */
+.vform{border:1.5px solid var(--ink);background:var(--card);padding:36px 34px;box-shadow:9px 9px 0 var(--ink)}
+.vform-top{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:26px;flex-wrap:wrap}
+.vform-top h3{font-family:var(--fd);font-weight:700;font-size:1.5rem}
+#planChip{font-family:var(--fm);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;background:var(--coral);color:var(--night);padding:6px 12px;display:none}
+.f-field{margin-bottom:20px}
+.f-field label{display:block;font-family:var(--fm);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:8px}
+.f-field input,.f-field select,.f-field textarea{width:100%;background:transparent;border:1px solid var(--ink);padding:13px 14px;font-family:var(--fb);font-size:15px;color:var(--ink);transition:box-shadow .2s,border-color .2s}
+.f-field textarea{resize:vertical;min-height:96px}
+.f-field input:focus,.f-field select:focus,.f-field textarea:focus{outline:none;border-color:var(--coral);box-shadow:4px 4px 0 var(--coral)}
+.f-field.err input,.f-field.err textarea{border-color:var(--coral);animation:shake .4s}
+@keyframes shake{0%,100%{transform:none}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.form-done{display:none;border:1.5px solid var(--ink);background:var(--card);padding:56px 40px;text-align:center;box-shadow:9px 9px 0 var(--ink)}
+.form-done .big{font-size:44px;color:var(--coral);display:block;margin-bottom:18px}
+.form-done h3{font-family:var(--fd);font-weight:700;font-size:1.7rem;margin-bottom:12px}
+.form-done p{color:var(--ink-soft);max-width:38ch;margin:0 auto}
+
+/* ============ FOOTER ============ */
+footer{background:var(--night);color:var(--paper);padding:70px 0 30px;overflow:hidden}
+.foot-mq{overflow:hidden;border-block:1px solid var(--line-inv);padding:22px 0;margin-bottom:60px}
+.foot-mq .mq-track{animation-duration:52s}
+.foot-mq span.big{font-family:var(--fd);font-weight:800;font-size:clamp(2.6rem,7vw,5.6rem);letter-spacing:.02em;text-transform:uppercase;color:transparent;-webkit-text-stroke:1px rgba(244,237,224,.4);white-space:nowrap}
+.foot-mq .star{color:var(--coral);font-size:2rem;margin:0 30px;opacity:.7}
+.foot-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1.4fr;gap:44px;margin-bottom:64px}
+.foot-grid h5{font-family:var(--fm);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--coral-soft);margin-bottom:18px}
+.foot-grid p,.foot-grid a{font-size:14.5px;color:rgba(244,237,224,.7);text-decoration:none;line-height:1.8}
+.foot-grid a{display:block;transition:color .2s,transform .2s}
+.foot-grid a:hover{color:var(--paper);transform:translateX(4px)}
+.nl{display:flex;border:1px solid var(--line-inv);margin-top:14px}
+.nl input{flex:1;background:transparent;border:none;color:var(--paper);padding:13px 15px;font-family:var(--fb);font-size:14px;min-width:0}
+.nl input:focus{outline:none}
+.nl button{background:var(--coral);color:var(--night);font-family:var(--fm);font-size:11px;font-weight:600;letter-spacing:.14em;padding:0 20px;transition:background .25s}
+.nl button:hover{background:var(--paper)}
+.foot-bottom{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;padding-top:26px;border-top:1px solid var(--line-inv);font-family:var(--fm);font-size:11px;letter-spacing:.16em;color:rgba(244,237,224,.45);text-transform:uppercase}
+#topBtn{width:52px;height:52px;border:1.5px solid var(--paper);display:grid;place-items:center;font-size:18px;transition:all .3s}
+#topBtn:hover{background:var(--coral);border-color:var(--coral);color:var(--night);transform:translateY(-4px)}
+
+/* toast */
+#toasts{position:fixed;left:20px;bottom:20px;z-index:4000;display:flex;flex-direction:column;gap:10px;max-width:min(360px,86vw)}
+.toast{background:var(--night);color:var(--paper);border:1px solid var(--line-inv);border-left:4px solid var(--coral);font-family:var(--fm);font-size:12.5px;letter-spacing:.04em;padding:14px 18px;animation:tin .45s var(--ease);box-shadow:6px 6px 0 rgba(0,0,0,.25)}
+.toast.out{opacity:0;transform:translateY(10px);transition:all .4s}
+@keyframes tin{from{opacity:0;transform:translateX(-24px)}to{opacity:1;transform:none}}
+
+/* back to top */
+#toTop{position:fixed;right:22px;bottom:22px;width:50px;height:50px;border:1.5px solid var(--ink);background:var(--ink);color:var(--paper);font-size:18px;z-index:900;opacity:0;pointer-events:none;transition:opacity .4s,transform .3s,background .3s}
+#toTop.show{opacity:1;pointer-events:auto}
+#toTop:hover{background:var(--coral);border-color:var(--coral);color:var(--night);transform:translateY(-5px)}
+
+/* ============ RESPONSIVE ============ */
+@media(max-width:1080px){.hero-side{display:none}}
+@media(max-width:1020px){
+  .hero-grid{grid-template-columns:1fr;gap:44px}
+  .board{max-width:560px}
+  .hub-grid{grid-template-columns:1fr;gap:30px}
+  .hub-sticky{position:static}
+  .mani-grid{grid-template-columns:1fr;gap:40px}
+  .mani-img{aspect-ratio:16/9;max-height:380px}
+  .visit-grid{grid-template-columns:1fr;gap:50px}
+}
+@media(max-width:980px){
+  nav.main{display:none}
+  header.m-open nav.main{display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:var(--paper);border-bottom:1px solid var(--ink);padding:26px 6%;gap:20px}
+  header.m-open nav.main a{font-size:15px}
+  .nav-btn{display:flex}
+  .hd-clock{display:none}
+  .s7,.s5{grid-column:span 12}
+  .sp--wide{flex-direction:column}
+  .sp--wide .sp-media{width:100%}
+  .plans-wrap{grid-template-columns:1fr;max-width:520px}
+  .plan--feat{order:-1}
+  .stats{grid-template-columns:1fr 1fr}
+  .stat{border-top:1px solid var(--line)}
+  .stat:nth-child(-n+2){border-top:none}
+  .stat:nth-child(odd){border-left:none}
+  .sect{padding:80px 0}
+  .sect-head{grid-template-columns:1fr;gap:18px}
+  .ev{grid-template-columns:74px 1fr;row-gap:14px}
+  .ev-side{grid-column:1/-1;flex-direction:row;justify-content:space-between;align-items:center}
+  .rsvp{min-width:110px}
+  .pc-field{height:auto;display:flex;gap:18px;overflow-x:auto;padding:14px 4px 24px;scroll-snap-type:x mandatory}
+  .card-p{position:static;transform:none!important;flex:0 0 240px;scroll-snap-align:start}
+  .pc-note{display:none}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  .hero{padding-top:130px}
+  .hero-meta{flex-direction:column;align-items:flex-start;gap:18px}
+  .hud{display:none}
+  .board{box-shadow:6px 6px 0 var(--coral)}
+  .vform{padding:26px 20px}
+  .foot-grid{grid-template-columns:1fr}
+  .stat{border-left:none!important}
+  .ev{grid-template-columns:1fr}
+  .ev-date{flex-direction:row;gap:10px;width:max-content;padding:8px 14px}
+}
+/* ============ REDUCED MOTION ============ */
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .mq-track,.foot-mq .mq-track{animation:none;width:auto}
+  .kb img{animation:none}
+  [data-reveal]{opacity:1;transform:none}
+  h1 .scr{transform:none}
+  .lm .lm-in{transform:none}
+}
+</style>
+</head>
+<body>
+
+<div id="prog" aria-hidden="true"></div>
+
+<!-- ============ HEADER ============ -->
+<header id="siteHead">
+  <div class="container hud">
+    <div class="hd">
+      <a class="logo" href="#top" aria-label="Peregian Digital Hub — home">
+        <span class="logo-mark" aria-hidden="true">✳</span>
+        <span class="logo-word">Peregian Digital Hub<small>Peregian Beach · QLD</small></span>
+      </a>
+      <nav class="main" id="navLinks" aria-label="Primary">
+        <a href="#hub">The Hub</a>
+        <a href="#spaces">Spaces</a>
+        <a href="#pass">Passes</a>
+        <a href="#events">Events</a>
+        <a href="#community">Community</a>
+        <a href="#visit">Visit</a>
+      </nav>
+      <div class="hd-right">
+        <span class="hd-clock mono" id="hdClock">--:--:-- AEST</span>
+        <a class="btn" href="#pass">Get a pass</a>
+        <button class="nav-btn" id="navBtn" aria-expanded="false" aria-controls="navLinks" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="hero">
+  <span class="hero-side" aria-hidden="true">EST. 2019 — OCEAN BEACHWAY — SUNSHINE COAST</span>
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <p class="hero-loc">Peregian Beach · QLD 4573 — 26.64°S / 153.10°E</p>
+        <h1 aria-label="Work at the pace of the tide.">
+          <span class="hl"><span class="scr" data-text="WORK AT">WORK AT</span></span>
+          <span class="hl"><span class="scr" data-text="THE PACE">THE PACE</span></span>
+          <span class="hl"><span class="scr accent" data-text="OF THE TIDE.">OF THE TIDE.</span></span>
+        </h1>
+        <p class="hero-sub">A members' workspace, studio and social club at the bottom of Ocean Beachway. Gigabit fibre, slower mornings, and a community that can tell you exactly where the morning session is best.</p>
+        <div class="hero-cta">
+          <a class="btn" href="#pass">See the passes</a>
+          <a class="link-u" href="#hub">Walk in today <i aria-hidden="true">→</i></a>
+        </div>
+        <div class="hero-meta">
+          <span class="open-pill" id="heroOpen"><span class="dot"></span><span id="heroOpenTxt">CHECKING…</span></span>
+          <span class="desk-live"><b id="heroDesks">—</b> seats free right now</span>
+          <span class="scroll-hint">Scroll <i aria-hidden="true"></i></span>
+        </div>
+      </div>
+
+      <!-- live hub board -->
+      <aside class="board" aria-label="Live hub board">
+        <div class="board-top">
+          <span class="board-title"><span class="dot" aria-hidden="true"></span>HUB BOARD</span>
+          <span class="board-live">● LIVE</span>
+        </div>
+        <div class="brow"><span class="k">Local time</span><span class="v" id="bClock">--:--:--</span></div>
+        <div class="brow"><span class="k">Status</span><span class="v" id="bStatus">—</span></div>
+        <div class="brow"><span class="k">Desks free</span><span class="v big" id="bDesks">—</span></div>
+        <div class="brow"><span class="k">Brew bar</span><span class="v">Flat white · $4.20</span></div>
+        <div class="brow"><span class="k">Tide today</span><span class="v" id="bTide">—</span></div>
+        <div class="brow"><span class="k">Next event</span><span class="v coral" id="bNext">—</span></div>
+        <div class="brow"><span class="k">Out the door</span><span class="v" id="bWx">—</span></div>
+        <div class="board-foot"><span>MEMBER OF THE DAY</span><b id="bMember">—</b></div>
+      </aside>
+    </div>
+  </div>
+
+  <figure class="hero-media kb">
+    <img src="https://picsum.photos/seed/peregian-beach-park-boardwalk/1600/700" alt="Peregian Beach Park — a long stretch of sand with people walking the boardwalk">
+    <figcaption class="media-cap">
+      <span>Peregian Beach Park — the back gate</span>
+      <span>Golden hour</span>
+      <span>26.6442°S / 153.0990°E</span>
+    </figcaption>
+  </figure>
+</section>
+
+<!-- ============ MARQUEE ============ -->
+<div class="marquee" aria-hidden="true">
+  <div class="mq-track">
+    <div class="mq-group">
+      <span>Anna K. — Brand Design</span><span class="star">✳</span><span>Tom R. — Surf + Sound</span><span class="star">✳</span><span>Luna &amp; Fig</span><span class="star">✳</span><span>Coastline Studio</span><span class="star">✳</span><span>Mei L. — Video</span><span class="star">✳</span><span>Peregian Creek Co.</span><span class="star">✳</span><span>Jules M. — Local Guides</span><span class="star">✳</span><span>The Peregian Roasters</span><span class="star">✳</span><span>Sam O. — Web</span><span class="star">✳</span><span>Priya D. — Physio</span><span class="star">✳</span>
+    </div>
+    <div class="mq-group">
+      <span>Anna K. — Brand Design</span><span class="star">✳</span><span>Tom R. — Surf + Sound</span><span class="star">✳</span><span>Luna &amp; Fig</span><span class="star">✳</span><span>Coastline Studio</span><span class="star">✳</span><span>Mei L. — Video</span><span class="star">✳</span><span>Peregian Creek Co.</span><span class="star">✳</span><span>Jules M. — Local Guides</span><span class="star">✳</span><span>The Peregian Roasters</span><span class="star">✳</span><span>Sam O. — Web</span><span class="star">✳</span><span>Priya D. — Physio</span><span class="star">✳</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============ THE HUB ============ -->
+<section class="sect" id="hub">
+  <div class="container">
+    <div class="hub-grid">
+      <div class="hub-sticky" data-reveal>
+        <p class="kick"><b>01</b> The Hub <i class="rule"></i></p>
+        <h2 class="lm"><span class="lm-in">Part studio.</span><span class="lm-in" style="transition-delay:.12s">Part club.</span><span class="lm-in" style="transition-delay:.24s">All community.</span></h2>
+        <p>One floor up from the beach, two floors from the highway. We built the room we wished existed on this coast — proper desks, honest coffee, a studio that works, and a door that stays open late. This is what it's for:</p>
+        <a class="btn btn--ghost" href="#visit">Come say hi</a>
+      </div>
+      <div>
+        <article class="hub-item" data-reveal>
+          <span class="hub-num" aria-hidden="true">01</span>
+          <div>
+            <span class="hub-tag">The Workroom</span>
+            <h3>48 desks, zero drama</h3>
+            <p>10G fibre, standing desks, a wall of light, and the quietest corner on the coast. Most members never leave before the tide does.</p>
+            <div class="hub-img kb"><img src="https://picsum.photos/seed/workroom-desks-window/840/540" alt="Rows of bright desks facing a large window"></div>
+          </div>
+        </article>
+        <article class="hub-item" data-reveal>
+          <span class="hub-num" aria-hidden="true">02</span>
+          <div>
+            <span class="hub-tag">Studio B</span>
+            <h3>Pods for sound &amp; screen</h3>
+            <p>Two treated pods — one video, one audio — with kit that's actually maintained. Podcasts, reels, client calls that need to sound like money.</p>
+            <div class="hub-img kb"><img src="https://picsum.photos/seed/video-studio-pod-microphone/840/540" alt="A small studio pod with a microphone and softbox"></div>
+          </div>
+        </article>
+        <article class="hub-item" data-reveal>
+          <span class="hub-num" aria-hidden="true">03</span>
+          <div>
+            <span class="hub-tag">Brew Hall</span>
+            <h3>Coffee before ambition</h3>
+            <p>The roaster upstairs, the bar downstairs, the queue at 8:05 sharp. Top-up credits, a proper kitchen, and toast that converts skeptics weekly.</p>
+            <div class="hub-img kb"><img src="https://picsum.photos/seed/community-brew-bar-coffee/840/540" alt="A coffee bar counter with cups and a grinder"></div>
+          </div>
+        </article>
+        <article class="hub-item" data-reveal>
+          <span class="hub-num" aria-hidden="true">04</span>
+          <div>
+            <span class="hub-tag">The Yard</span>
+            <h3>Where the week ends</h3>
+            <p>Shaded strings, long tables, a speaker that takes abuse. Suppers, markets, mixers and the odd wedding. Hires out from $350, rain plan included.</p>
+            <div class="hub-img kb"><img src="https://picsum.photos/seed/outdoor-event-yard-lights/840/540" alt="String lights over an outdoor event space at dusk"></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SPACES ============ -->
+<section class="sect" id="spaces" style="padding-top:40px">
+  <div class="container">
+    <div class="sect-head" data-reveal>
+      <div>
+        <p class="kick"><b>02</b> Spaces &amp; Rates <i class="rule"></i></p>
+        <h2 class="lm" style="margin-top:20px"><span class="lm-in">Book a corner of</span><span class="lm-in" style="transition-delay:.12s">the coast.</span></h2>
+      </div>
+      <p>Every space below is yours to hold — for a meeting, a shoot, a whole weekend. Members get first light and first dibs.</p>
+    </div>
+    <div class="bento">
+      <article class="sp s7" data-reveal>
+        <div class="sp-media kb"><img src="https://picsum.photos/seed/workroom-wide-lounge/1200/620" alt="The wide Workroom with desks and a lounge"></div>
+        <div class="sp-body">
+          <div class="sp-row"><span>The Workroom</span><span class="price">from $6 / hr seat</span></div>
+          <h3>Day desks &amp; hot desks</h3>
+          <p>Walk in, take a seat, plug in. Mon–Fri from $6 an hour, all-day for $28. Lockers, 220V everywhere, and the best afternoon light for video calls.</p>
+          <a class="sp-link" href="#" data-book="Workroom">Book a seat <i aria-hidden="true">→</i></a>
+        </div>
+      </article>
+      <article class="sp s5" data-reveal>
+        <div class="sp-media kb"><img src="https://picsum.photos/seed/meeting-room-table-10/700/620" alt="A meeting room with a long table"></div>
+        <div class="sp-body">
+          <div class="sp-row"><span>Meeting Room 10</span><span class="price">from $65 / hr</span></div>
+          <h3>Seats 10 + screen wall</h3>
+          <p>A 65" wall, video kit, whiteboard that erases and a kettle that doesn't. Good for boards, pitches and saying no to clients kindly.</p>
+          <a class="sp-link" href="#" data-book="Meeting Room 10">Book a room <i aria-hidden="true">→</i></a>
+        </div>
+      </article>
+      <article class="sp s5" data-reveal>
+        <div class="sp-media kb"><img src="https://picsum.photos/seed/photo-studio-cycle-softbox/700/620" alt="A photo studio with a cyclorama wall"></div>
+        <div class="sp-body">
+          <div class="sp-row"><span>Studio B</span><span class="price">$45 / hr</span></div>
+          <h3>Photo &amp; video pods</h3>
+          <p>White-cyc, softboxes, lighting and a treated audio pod. Half-day and full-day rates available with the crew kit package.</p>
+          <a class="sp-link" href="#" data-book="Studio B">Book the pod <i aria-hidden="true">→</i></a>
+        </div>
+      </article>
+      <article class="sp s7 sp--wide" data-reveal>
+        <div class="sp-media kb"><img src="https://picsum.photos/seed/outdoor-yard-dusk-tables/800/620" alt="The Yard at dusk with tables and string lights"></div>
+        <div class="sp-body">
+          <div class="sp-row"><span>The Yard</span><span class="price">from $350</span></div>
+          <h3>Events, suppers &amp; private hire</h3>
+          <p>Up to 90 for dinners, launches and market nights. Speaker, PA, bar hire, weather backup under the roof — and the beach two minutes on foot.</p>
+          <a class="sp-link" href="#" data-book="The Yard">Enquire <i aria-hidden="true">→</i></a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PASSES ============ -->
+<section class="sect" id="pass">
+  <div class="container">
+    <div class="sect-head" data-reveal>
+      <div>
+        <p class="kick"><b>03</b> Membership <i class="rule"></i></p>
+        <h2 class="lm" style="margin-top:20px"><span class="lm-in">Pick your</span><span class="lm-in" style="transition-delay:.12s">tide.</span></h2>
+      </div>
+      <div>
+        <p>Three simple passes, no lock-in, cancel any time. Annual pays 10 months.</p>
+        <p class="pass-save" style="margin:16px 0 20px">Save <b id="saveAmt">10%</b> on annual</p>
+        <div class="bill" role="group" aria-label="Billing period">
+          <button class="bbtn on" data-bill="monthly" aria-pressed="true">Monthly</button>
+          <button class="bbtn" data-bill="annual" aria-pressed="false">Annual</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="plans-wrap">
+      <div class="plan" data-price data-reveal>
+        <span class="plan-tag">Drop In</span>
+        <div>
+          <div class="plan-price"><sup>$</sup><span class="price-num" data-m="9" data-a="8">9</span><small data-unit>/ day</small></div>
+          <p class="plan-note" data-monthly="Day passes from $9" data-annual="Annual drop-in pack">Day passes from $9</p>
+        </div>
+        <ul>
+          <li>Day desk, 10G fibre</li>
+          <li>Brew hall all day</li>
+          <li>Bikes on the porch</li>
+          <li>Beach access, no charge</li>
+          <li>2 guest tokens / day</li>
+        </ul>
+        <a class="btn btn--ghost" href="#visit" data-plan="Drop In">Start a day</a>
+      </div>
+
+      <div class="plan plan--feat" data-price data-reveal style="--d:.1s">
+        <span class="plan-flag">MOST POPULAR</span>
+        <span class="plan-tag">Coast Pass</span>
+        <div>
+          <div class="plan-price"><sup>$</sup><span class="price-num" data-m="149" data-a="134">149</span><small data-unit>/ mo</small></div>
+          <p class="plan-note" data-monthly="Billed monthly · cancel anytime" data-annual="Annual — billed 10 months, 2 free">Billed monthly · cancel anytime</p>
+        </div>
+        <ul>
+          <li>Unlimited hot desks, 7 days</li>
+          <li>Unlimited brew + guest pass</li>
+          <li>All members' events</li>
+          <li>5 hrs studio / month</li>
+          <li>Lockers + bike bay</li>
+          <li>10% off private hire</li>
+        </ul>
+        <a class="btn" href="#visit" data-plan="Coast Pass">Get the Coast Pass</a>
+      </div>
+
+      <div class="plan" data-price data-reveal style="--d:.2s">
+        <span class="plan-tag">Anchored</span>
+        <div>
+          <div class="plan-price"><sup>$</sup><span class="price-num" data-m="249" data-a="224">249</span><small data-unit>/ mo</small></div>
+          <p class="plan-note" data-monthly="Billed monthly · cancel anytime" data-annual="Annual — billed 10 months, 2 free">Billed monthly · cancel anytime</p>
+        </div>
+        <ul>
+          <li>Reserved seat, your name</li>
+          <li>Studio 12 hrs / month</li>
+          <li>Meeting room, first dibs</li>
+          <li>Private box office</li>
+          <li>Unlimited guests</li>
+          <li>20% off events + hire</li>
+        </ul>
+        <a class="btn btn--ghost" href="#visit" data-plan="Anchored">Reserve your seat</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EVENTS ============ -->
+<section class="sect events on-dark" id="events">
+  <div class="container">
+    <div class="sect-head" data-reveal>
+      <div>
+        <p class="kick"><b>04</b> On the Board <i class="rule"></i></p>
+        <h2 class="lm" style="margin-top:20px"><span class="lm-in">What's on</span><span class="lm-in" style="transition-delay:.12s">this fortnight.</span></h2>
+      </div>
+      <p>Members' stuff, members' free. Tap RSVP and it lands on your board. Guest tickets at the door.</p>
+    </div>
+
+    <div class="ev-filter" role="group" aria-label="Filter events">
+      <button class="chip on" data-filter="all" aria-pressed="true">All</button>
+      <button class="chip" data-filter="social" aria-pressed="false">Socials</button>
+      <button class="chip" data-filter="workshop" aria-pressed="false">Workshops</button>
+      <button class="chip" data-filter="meetup" aria-pressed="false">Meetups</button>
+      <button class="chip" data-filter="market" aria-pressed="false">Market</button>
+    </div>
+
+    <ul class="ev-list">
+      <li class="ev" data-cat="social">
+        <div class="ev-date"><span class="ev-day">18</span><span class="ev-mon">JUN</span><small>Thu</small></div>
+        <div><h3>Peregian Sippers <span class="tag social">Social</span></h3><p>Cupping session with The Peregian Roasters — six lots, one honest verdict. Bring a notebook or just your tongue.</p><div class="ev-when">6:30pm · Brew Hall · Members $0 · Guest $10</div></div>
+        <div class="ev-side"><span class="ev-going"><b class="go" data-go="42">42</b> going</span><button class="rsvp">RSVP</button></div>
+      </li>
+      <li class="ev" data-cat="workshop">
+        <div class="ev-date"><span class="ev-day">21</span><span class="ev-mon">JUN</span><small>Sun</small></div>
+        <div><h3>Shot on the Beach <span class="tag workshop">Workshop</span></h3><p>Golden-hour photo walk along the creek with Sam O. — 48 spots, phones welcome, phones also fine.</p><div class="ev-when">5:15pm · Meet the porch · Members $0 · Guest $30</div></div>
+        <div class="ev-side"><span class="ev-going"><b class="go" data-go="31">31</b> going</span><button class="rsvp">RSVP</button></div>
+      </li>
+      <li class="ev" data-cat="meetup">
+        <div class="ev-date"><span class="ev-day">26</span><span class="ev-mon">JUN</span><small>Fri</small></div>
+        <div><h3>Tuesday's Wrong <span class="tag meetup">Meetup</span></h3><p>We're moving the monthly maker meetup to Friday because Friday. Demo your thing, 8 minutes, no slides.</p><div class="ev-when">7:00pm · The Workroom · Free</div></div>
+        <div class="ev-side"><span class="ev-going"><b class="go" data-go="58">58</b> going</span><button class="rsvp">RSVP</button></div>
+      </li>
+      <li class="ev" data-cat="workshop">
+        <div class="ev-date"><span class="ev-day">28</span><span class="ev-mon">JUN</span><small>Sun</small></div>
+        <div><h3>Sound of the Coast <span class="tag workshop">Workshop</span></h3><p>Podcast in a pod — script, sound-check and a 20-minute cut with Tom R. Kit provided, ego optional.</p><div class="ev-when">2:00pm · Studio B · Members $0 · Guest $40</div></div>
+        <div class="ev-side"><span class="ev-going"><b class="go" data-go="17">17</b> going</span><button class="rsvp">RSVP</button></div>
+      </li>
+      <li class="ev" data-cat="social">
+        <div class="ev-date"><span class="ev-day">04</span><span class="ev-mon">JUL</span><small>Sat</small></div>
+        <div><h3>Slow Sunday Supper <span class="tag social">Social</span></h3><p>Long table, shared plate, no phones on the table. Twelve of us cook, the rest of the coast can join for a plate.</p><div class="ev-when">7:30pm · The Yard · Members $12 · Guest $28</div></div>
+        <div class="ev-side"><span class="ev-going"><b class="go" data-go="64">64</b> going</span><button class="rsvp">RSVP</button></div>
+      </li>
+      <li class="ev" data-cat="market">
+        <div class="ev-date"><span class="ev-day">11</span><span class="ev-mon">JUL</span><small>Sat</small></div>
+        <div><h3>Creek Side Market <span class="tag market">Market</span></h3><p>Local makers, local makers' mates. Twenty stalls, a record crate, and a strong case for the umbrella shade.</p><div class="ev-when">9:00am–2:00pm · The Yard · Free entry · Stall $60</div></div>
+        <div class="ev-side"><span class="ev-going"><b class="go" data-go="203">203</b> going</span><button class="rsvp">RSVP</button></div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ COMMUNITY ============ -->
+<section class="sect" id="community">
+  <div class="container">
+    <div class="sect-head" data-reveal>
+      <div>
+        <p class="kick"><b>05</b> The People <i class="rule"></i></p>
+        <h2 class="lm" style="margin-top:20px"><span class="lm-in">Made of members</span><span class="lm-in" style="transition-delay:.12s">&amp; their ideas.</span></h2>
+      </div>
+      <p>Not a coworking space with a beach. A beach with a really good coworking space. Numbers keep climbing; so do the conversations.</p>
+    </div>
+
+    <div class="stats" data-reveal>
+      <div class="stat"><div class="num"><em data-count="128">0</em></div><div class="lbl">Active members</div></div>
+      <div class="stat"><div class="num"><span data-count="48">0</span></div><div class="lbl">Desks &amp; pods</div></div>
+      <div class="stat"><div class="num"><span data-count="36">0</span></div><div class="lbl">Events this year</div></div>
+      <div class="stat"><div class="num"><em data-count="98">0</em>%</div><div class="lbl">Would come back</div></div>
+    </div>
+
+    <div class="strip-ctl">
+      <button class="arr" data-dir="-1" aria-label="Scroll members back">←</button>
+      <button class="arr" data-dir="1" aria-label="Scroll members forward">→</button>
+    </div>
+
+    <div class="strip" id="memberStrip" data-reveal>
+      <article class="mc">
+        <div class="mc-img kb"><img src="https://picsum.photos/seed/member-anna-designer/520/620" alt="Portrait of Anna K."></div>
+        <div class="mc-body"><h4>Anna K.</h4><div class="role">Brand &amp; Design</div><p>"The only desk where I've ever left work feeling lighter. The yard at dusk is its own thing."</p></div>
+      </article>
+      <article class="mc">
+        <div class="mc-img kb"><img src="https://picsum.photos/seed/member-tom-surf-sound/520/620" alt="Portrait of Tom R."></div>
+        <div class="mc-body"><h4>Tom R.</h4><div class="role">Surf + Sound</div><p>"I edit at 7am before the swell, then the whole crew knows where I am by 9. Great signal, better people."</p></div>
+      </article>
+      <article class="mc">
+        <div class="mc-img kb"><img src="https://picsum.photos/seed/member-meil-video/520/620" alt="Portrait of Mei L."></div>
+        <div class="mc-body"><h4>Mei L.</h4><div class="role">Video</div><p>"Booked Studio B for a brand film and it paid for the year. Lighting that actually works — a rare thing."</p></div>
+      </article>
+      <article class="mc">
+        <div class="mc-img kb"><img src="https://picsum.photos/seed/member-sam-web/520/620" alt="Portrait of Sam O."></div>
+        <div class="mc-body"><h4>Sam O.</h4><div class="role">Web &amp; Motion</div><p>"Anchored seat by the window, ten gigabit of fibre and a kettle that's always working. No complaints."</p></div>
+      </article>
+      <article class="mc">
+        <div class="mc-img kb"><img src="https://picsum.photos/seed/member-priya-physio/520/620" alt="Portrait of Priya D."></div>
+        <div class="mc-body"><h4>Priya D.</h4><div class="role">Physio &amp; Founder</div><p>"Ran a client group off the meeting room and a client now books their physio here. The space sells for you."</p></div>
+      </article>
+      <article class="mc">
+        <div class="mc-img kb"><img src="https://picsum.photos/seed/member-jules-guides/520/620" alt="Portrait of Jules M."></div>
+        <div class="mc-body"><h4>Jules M.</h4><div class="role">Local Guides</div><p>"Half my team works here, half just come for the market. Everyone ends up at the same long table anyway."</p></div>
+      </article>
+      <article class="mc">
+        <div class="mc-img kb"><img src="https://picsum.photos/seed/member-coastline-studio/520/620" alt="Portrait of Coastline Studio"></div>
+        <div class="mc-body"><h4>Coastline Studio</h4><div class="role">Collective</div><p>"Four of us, one Coast Pass each, and the studio as our back office. Couldn't imagine doing it elsewhere."</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AROUND ============ -->
+<section class="sect around" id="around">
+  <div class="container">
+    <div class="sect-head" data-reveal>
+      <div>
+        <p class="kick"><b>06</b> Around the Hub <i class="rule"></i></p>
+        <h2 class="lm" style="margin-top:20px"><span class="lm-in">Two minutes</span><span class="lm-in" style="transition-delay:.12s">on foot.</span></h2>
+      </div>
+      <p>The postcode that works for us. Drag, scroll or just wander — every one of these is a lunch away.</p>
+    </div>
+
+    <div class="pc-field" data-reveal>
+      <article class="card-p pc-1"><img src="https://picsum.photos/seed/peregian-beach-park-dusk/500/340" alt="Peregian Beach Park"><h4>Peregian Beach Park</h4><span class="walk">2 min walk</span><p class="desc">The main stretch. Long boardwalk, the best light for a late lunch, and a beach bar that takes reservations now.</p></article>
+      <article class="card-p pc-2"><img src="https://picsum.photos/seed/coastal-creek-boardwalk/500/340" alt="Creek-side boardwalk"><h4>Creek Boardwalk</h4><span class="walk">5 min walk</span><p class="desc">Where the morning walkers and the paddle boardsers collide. Go early for the calm, stay late for the colour.</p></article>
+      <article class="card-p pc-3"><img src="https://picsum.photos/seed/fish-market-fresh/500/340" alt="The fish market"><h4>The Fish Market</h4><span class="walk">8 min walk</span><p class="desc">Saturday only. Catch of the day, a very opinionated fishmonger, and lunch that ends the debate.</p></article>
+      <article class="card-p pc-4"><img src="https://picsum.photos/seed/beach-bar-umbrellas/500/340" alt="The beach bar"><h4>Beach Bar</h4><span class="walk">3 min walk</span><p class="desc">Umbrellas, a strong cocktail list, and the best seat in town if you claim it by ten. We mean it.</p></article>
+      <article class="card-p pc-5"><img src="https://picsum.photos/seed/coastal-espresso-cafe/500/340" alt="Espresso on the coast"><h4>Espresso on the Coast</h4><span class="walk">4 min walk</span><p class="desc">Not our bar, but we say it with a straight face. The flat white here is a benchmark we still lose to.</p></article>
+      <p class="pc-note" aria-hidden="true">← drag to explore →</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MANIFESTO ============ -->
+<section class="sect manifesto on-dark">
+  <div class="container">
+    <div class="mani-grid">
+      <div data-reveal>
+        <p class="kick"><b>07</b> Why it exists <i class="rule"></i></p>
+        <h2 class="lm" style="margin-top:22px">
+          <span class="lm-in">We built a room</span>
+          <span class="lm-in" style="transition-delay:.09s">at the pace of</span>
+          <span class="lm-in" style="transition-delay:.18s">the tide — <span class="accent">not the</span></span>
+          <span class="lm-in" style="transition-delay:.27s">hourly rate.</span>
+        </h2>
+        <p class="mani-sig">— The founding crew, still arguing about the kettle</p>
+      </div>
+      <div class="mani-img kb" data-reveal style="--d:.15s">
+        <img src="https://picsum.photos/seed/peregian-dawn-mist-sunrise/700/820" alt="Sunrise mist rolling over Peregian Beach">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="sect" id="faq">
+  <div class="container">
+    <div class="sect-head" data-reveal>
+      <div>
+        <p class="kick"><b>08</b> Good to Know <i class="rule"></i></p>
+        <h2 class="lm" style="margin-top:20px"><span class="lm-in">The fine print,</span><span class="lm-in" style="transition-delay:.12s">minus the print.</span></h2>
+      </div>
+    </div>
+    <div class="faq">
+      <div class="faq-item" data-reveal>
+        <button class="faq-q" aria-expanded="false"><span class="q-idx">Q1</span>Do I need a pass to walk in?<span class="plus" aria-hidden="true">+</span></button>
+        <div class="faq-a"><div><p>No. The door is open 7am–7pm and a day desk is $9 with no commitment. Members get priority seating, free coffee and first pick of every event, but nobody ever turns you away for a lack of a card.</p></div></div>
+      </div>
+      <div class="faq-item" data-reveal>
+        <button class="faq-q" aria-expanded="false"><span class="q-idx">Q2</span>Where is the parking?<span class="plus" aria-hidden="true">+</span></button>
+        <div class="faq-a"><div><p>Two options: the free street parking along Ocean Beachway (fill up by 9 on weekends), and a $6 day-rate lot one minute away. The bike bay at the porch is free for everyone and the beach is two minutes on foot.</p></div></div>
+      </div>
+      <div class="faq-item" data-reveal>
+        <button class="faq-q" aria-expanded="false"><span class="q-idx">Q3</span>Is it quiet enough to work?<span class="plus" aria-hidden="true">+</span></button>
+        <div class="faq-a"><div><p>The Workroom runs a soft-sound rule and the desk wall is the quietest place in the postcode. If you need total silence or calls, the studio pods are members-only and bookable in one tap from your board.</p></div></div>
+      </div>
+      <div class="faq-item" data-reveal>
+        <button class="faq-q" aria-expanded="false"><span class="q-idx">Q4</span>What's the coffee situation?<span class="plus" aria-hidden="true">+</span></button>
+        <div class="faq-a"><div><p>Roasted upstairs at The Peregian Roasters, poured downstairs. Members get top-up credits on their pass; day visitors get a $4.20 flat white and a very strong opinion from the bar about your pour-over at home.</p></div></div>
+      </div>
+      <div class="faq-item" data-reveal>
+        <button class="faq-q" aria-expanded="false"><span class="q-idx">Q5</span>Can I bring my team or clients?<span class="plus" aria-hidden="true">+</span></button>
+        <div class="faq-a"><div><p>Please do. Coast Pass members get one guest pass a day, Anchored gets unlimited. For bigger groups, the Yard and Meeting Room 10 hire out from $65 an hour, and members get 10–20% off the rate.</p></div></div>
+      </div>
+      <div class="faq-item" data-reveal>
+        <button class="faq-q" aria-expanded="false"><span class="q-idx">Q6</span>Is it open on weekends?<span class="plus" aria-hidden="true">+</span></button>
+        <div class="faq-a"><div><p>Yes — Sat–Sun 9am–5pm, with the Yard open through market mornings. The brew bar is always the first thing on and the last thing off. Live hours sit on the hub board up top.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VISIT ============ -->
+<section class="sect visit" id="visit">
+  <div class="container">
+    <div class="sect-head" data-reveal>
+      <div>
+        <p class="kick"><b>09</b> Visit <i class="rule"></i></p>
+        <h2 class="lm" style="margin-top:20px"><span class="lm-in">Come find the</span><span class="lm-in" style="transition-delay:.12s">boardwalk door.</span></h2>
+      </div>
+    </div>
+
+    <div class="visit-grid">
+      <div data-reveal>
+        <p class="addr">Peregian Digital Hub<small>12 Ocean Beachway, Peregian Beach QLD 4573</small></p>
+        <div class="mapbox" aria-label="Schematic map to the Hub">
+          <div class="xh"></div>
+          <span class="map-pin" style="left:64%;top:22%">Peregian Beach</span>
+          <div class="xh-dot" style="left:61%;top:36%"></div>
+          <span class="map-label">SUNSHINE COAST HOSPITAL · 1.2km</span>
+        </div>
+        <div class="hrs" id="hrsList">
+          <div class="hrow"><span>Mon–Fri</span><span class="leader"></span><span>7:00am – 7:00pm</span></div>
+          <div class="hrow"><span>Saturday</span><span class="leader"></span><span>9:00am – 5:00pm</span></div>
+          <div class="hrow"><span>Sunday</span><span class="leader"></span><span>9:00am – 5:00pm</span></div>
+          <div class="hrow"><span>Brew bar</span><span class="leader"></span><span>First in, last out</span></div>
+        </div>
+        <div class="contact-lines">
+          <a href="tel:+61754441234">+61 7 5444 1234</a>
+          <a href="mailto:hello@peregianhub.com.au">hello@peregianhub.com.au</a>
+          <span>Aboriginal Land acknowledgement — the Gubbi Gubbi people.</span>
+        </div>
+      </div>
+
+      <div data-reveal style="--d:.1s">
+        <form class="vform" id="visitForm" novalidate>
+          <div class="vform-top">
+            <h3>Book a visit</h3>
+            <span id="planChip"></span>
+          </div>
+          <div class="f-field"><label for="fname">Name</label><input id="fname" name="name" type="text" autocomplete="name" placeholder="First and last"></div>
+          <div class="f-field"><label for="femail">Email</label><input id="femail" name="email" type="email" autocomplete="email" placeholder="you@somewhere.com"></div>
+          <div class="f-field"><label for="fplan">I'm interested in</label>
+            <select id="fplan" name="plan">
+              <option>Just a day pass</option>
+              <option>Drop In</option>
+              <option selected>Coast Pass</option>
+              <option>Anchored</option>
+              <option>Private hire</option>
+            </select>
+          </div>
+          <div class="f-field"><label for="fmsg">Anything else?</label><textarea id="fmsg" name="message" placeholder="Team size, dates, what you're making —"></textarea></div>
+          <button class="btn" type="submit" style="width:100%;justify-content:center">Send it over</button>
+        </form>
+        <div class="form-done" id="formDone" role="status">
+          <span class="big" aria-hidden="true">✳</span>
+          <h3>Thanks — you're on the board.</h3>
+          <p id="doneMsg">We'll be in touch within a day or two. Come see the view in the meantime.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="foot-mq" aria-hidden="true">
+    <div class="mq-track">
+      <div class="mq-group"><span class="big">Peregian Digital Hub</span><span class="star">✳</span><span class="big">Peregian Beach</span><span class="star">✳</span></div>
+      <div class="mq-group"><span class="big">Peregian Digital Hub</span><span class="star">✳</span><span class="big">Peregian Beach</span><span class="star">✳</span></div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <div class="logo" style="margin-bottom:18px">
+          <span class="logo-mark" style="background:var(--paper);color:var(--night)" aria-hidden="true">✳</span>
+          <span class="logo-word" style="color:var(--paper)">Peregian Digital Hub<small style="color:rgba(244,237,224,.5)">Peregian Beach · QLD</small></span>
+        </div>
+        <p>The digital home of Peregian Beach — a members' workspace, studio and social club on Ocean Beachway.</p>
+      </div>
+      <div>
+        <h5>Explore</h5>
+        <a href="#hub">The Hub</a><a href="#spaces">Spaces &amp; rates</a><a href="#pass">Passes</a><a href="#events">Events board</a><a href="#around">Around the hub</a>
+      </div>
+      <div>
+        <h5>Visit</h5>
+        <a href="#visit">12 Ocean Beachway</a><a href="tel:+61754441234">+61 7 5444 1234</a><a href="mailto:hello@peregianhub.com.au">hello@peregianhub.com.au</a><a href="#" onclick="return false">Instagram</a><a href="#" onclick="return false">Open in Maps</a>
+      </div>
+      <div>
+        <h5>Join the list</h5>
+        <p>One email a fortnight — what's on, who's new, and where the surf is.</p>
+        <form class="nl" id="nlForm">
+          <input type="email" id="nlEmail" aria-label="Email address" placeholder="your@email.com">
+          <button type="submit">Join</button>
+        </form>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span id="footYear">© 2025 Peregian Digital Hub</span>
+      <span>Made on the coast · ACN 614 373 892</span>
+      <button id="toTop" aria-label="Back to top">↑</button>
+    </div>
+  </div>
+</footer>
+
+<div id="toasts" aria-live="polite" aria-atomic="false"></div>
+<button id="toTopBtn" aria-hidden="true"></button>
+
+<script>
+(function(){
+  "use strict";
+  var REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- toast ---------- */
+  var toasts = document.getElementById('toasts');
+  function toast(msg){
+    var t = document.createElement('div');
+    t.className = 'toast'; t.textContent = msg;
+    toasts.appendChild(t);
+    setTimeout(function(){ t.classList.add('out'); }, 3200);
+    setTimeout(function(){ t.remove(); }, 3700);
+  }
+
+  /* ---------- AEST time ---------- */
+  function aestr(){
+    try{
+      return new Date().toLocaleTimeString('en-GB',{timeZone:'Australia/Brisbane',hour:'2-digit',minute:'2-digit',second:'2-digit'});
+    }catch(e){
+      var d=new Date(); return d.toTimeString().slice(0,8);
+    }
+  }
+  function aestrHM(){
+    try{
+      return new Date().toLocaleTimeString('en-GB',{timeZone:'Australia/Brisbane',hour:'2-digit',minute:'2-digit'});
+    }catch(e){ return new Date().toTimeString().slice(0,5); }
+  }
+  function aesH(){
+    try{ return new Date().toLocaleString('en-GB',{timeZone:'Australia/Brisbane',hour:'numeric'}); }catch(e){ return String(new Date().getHours()); }
+  }
+  var hdClock = document.getElementById('hdClock');
+  var bClock = document.getElementById('bClock');
+  function tickClock(){
+    var t = aestr();
+    if(hdClock) hdClock.textContent = t + ' AEST';
+    if(bClock) bClock.textContent = t;
+  }
+  tickClock(); setInterval(tickClock, 1000);
+
+  /* ---------- open / hours logic ---------- */
+  var HOURS = {0:[9,17],1:[7,19],2:[7,19],3:[7,19],4:[7,19],5:[7,19],6:[9,17]};
+  function statusParts(){
+    try{
+      var now = new Date(new Date().toLocaleString('en-GB',{timeZone:'Australia/Brisbane'}));
+      var day = now.getDay(), h = now.getHours(), [o,c] = HOURS[day];
+      var isOpen = h>=o && h<c;
+      var minsLeft = Math.max(0, c - h)*60 + (c===h?0:(c-h)*60);
+      if(isOpen){ minsLeft = (c - h)*60 + (c-h===0?0:(c-h)*60); }
+      // cleaner minute math
+      minsLeft = Math.round((c*60 + 0) - (h*60 + now.getMinutes()));
+      var dayName = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][day];
+      return {isOpen:isOpen, close:fmtTime(c), nextDay:dayName, mins:minsLeft};
+    }catch(e){ return {isOpen:true, close:'7:00pm', nextDay:'Monday', mins:120}; }
+  }
+  function fmtTime(h){
+    var ap = h>=12?'pm':'am'; var hr = h%12; if(hr===0) hr=12;
+    return hr + ':00' + ap;
+  }
+  var heroOpen = document.getElementById('heroOpen');
+  var heroOpenTxt = document.getElementById('heroOpenTxt');
+  var bStatus = document.getElementById('bStatus');
+  function applyStatus(){
+    var s = statusParts();
+    if(s.isOpen){
+      heroOpen.classList.remove('closed');
+      heroOpenTxt.textContent = 'Open · closes ' + s.close;
+      bStatus.textContent = 'Open · closes ' + s.close;
+    }else{
+      heroOpen.classList.add('closed');
+      heroOpenTxt.textContent = 'Closed · reopens ' + s.close;
+      bStatus.textContent = 'Closed · opens ' + s.close;
+    }
+  }
+  applyStatus(); setInterval(applyStatus, 30000);
+
+  // highlight today in hours list
+  (function(){
+    var day = new Date().getDay();
+    var rows = document.querySelectorAll('#hrsList .hrow');
+    var map = {0:2,6:1}; // Sun, Sat indices in list
+    var idx = (day===6)?1:(day===0)?2:-1;
+    if(idx>=0 && rows[idx]){
+      rows[idx].classList.add('today');
+      var tag = document.createElement('span'); tag.className='today-tag'; tag.textContent='TODAY';
+      rows[idx].appendChild(tag);
+    }
+  })();
+
+  /* ---------- desks free (live-ish) ---------- */
+  var desks = 13;
+  var heroDesks = document.getElementById('heroDesks');
+  var bDesks = document.getElementById('bDesks');
+  function setDesks(v){
+    desks = v;
+    if(heroDesks) heroDesks.textContent = v;
+    if(bDesks){ bDesks.textContent = v; bDesks.classList.remove('flash'); void bDesks.offsetWidth; bDesks.classList.add('flash'); }
+  }
+  setDesks(desks);
+  setInterval(function(){
+    var d = desks + (Math.random()>0.5?1:-1);
+    d = Math.max(5, Math.min(22, d));
+    setDesks(d);
+  }, 6000);
+
+  /* ---------- tide (sinusoidal fake) ---------- */
+  var bTide = document.getElementById('bTide');
+  function tide(){
+    var t = new Date().getTime()/1000;
+    var phase = (Math.sin(t/(43200)) + 1)/2;
+    var rising = Math.cos(t/(43200)) > 0;
+    bTide.textContent = (phase<0.5?'Low · ':(phase>0.8?'High · ':'Rising · ')) + (phase*1.2).toFixed(1) + ' m';
+  }
+  tide();
+
+  /* ---------- weather + member of day ---------- */
+  var bWx = document.getElementById('bWx');
+  fetch('https://api.open-meteo.com/v1/forecast?latitude=-26.6442&longitude=153.0990&current=temperature_2m,relative_humidity_2m&timezone=auto')
+    .then(function(r){ return r.json(); })
+    .then(function(j){
+      var c = j.current;
+      bWx.textContent = Math.round(c.temperature_2m) + '°C · ' + Math.round(c.relative_humidity_2m) + '% RH';
+    }).catch(function(){ bWx.textContent = '24°C · 62% RH'; });
+
+  var bMember = document.getElementById('bMember');
+  var NAMES = ['Mara V.','Declan P.','Aisha N.','Ben H.','Kai M.','Sofia R.','Jack T.'];
+  var idx = Math.floor(Math.abs(new Date().getTime()) / 86400000) % NAMES.length;
+  bMember.textContent = NAMES[idx];
+
+  /* ---------- next event on board ---------- */
+  var bNext = document.getElementById('bNext');
+  var evEls = Array.prototype.slice.call(document.querySelectorAll('.ev'));
+  function nextEv(){
+    var today = new Date(); today.setHours(0,0,0,0);
+    var best = null;
+    evEls.forEach(function(li){
+      var d = li.querySelector('.ev-date');
+      var day = parseInt(d.querySelector('.ev-day').textContent,10);
+      var mon = d.querySelector('.ev-mon').textContent;
+      var monIdx = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'].indexOf(mon);
+      var ev = new Date(today.getFullYear(), monIdx, day);
+      if(ev < today) ev.setFullYear(ev.getFullYear()+1);
+      if(!best || ev < best.date) best = {date:ev, title:li.querySelector('h3').textContent.replace(/\s+Social.*$/,'').replace(/\s+Workshop.*$/,'').replace(/\s+Meetup.*$/,'').replace(/\s+Market.*$/,'')};
+    });
+    if(bNext && best) bNext.textContent = best.title.split(' ').slice(0,3).join(' ') + ' · ' + best.date.toLocaleDateString('en-GB',{day:'2-digit',month:'short'}).toUpperCase();
+  }
+  nextEv();
+
+  /* ---------- scroll progress + header ---------- */
+  var prog = document.getElementById('prog');
+  var head = document.getElementById('siteHead');
+  var toTopBtn = document.getElementById('toTopBtn');
+  var toTop = document.getElementById('toTop');
+  function onScroll(){
+    var h = document.documentElement;
+    var scrolled = h.scrollTop - (h.clientTop||0);
+    var max = h.scrollHeight - h.clientHeight;
+    prog.style.width = (max>0 ? (scrolled/max*100) : 0) + '%';
+    head.classList.toggle('scrolled', scrolled > 40);
+    if(toTop) toTop.classList.toggle('show', scrolled > 700);
+  }
+  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+  if(toTop) toTop.addEventListener('click', function(){ window.scrollTo({top:0, behavior: REDUCED?'auto':'smooth'}); });
+
+  /* ---------- mobile nav ---------- */
+  var navBtn = document.getElementById('navBtn');
+  navBtn.addEventListener('click', function(){
+    var open = head.classList.toggle('m-open');
+    navBtn.setAttribute('aria-expanded', open);
+  });
+  document.getElementById('navLinks').addEventListener('click', function(e){
+    if(e.target.tagName==='A'){ head.classList.remove('m-open'); navBtn.setAttribute('aria-expanded','false'); }
+  });
+
+  /* ---------- reveals + line-mask ---------- */
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+    });
+  }, {threshold:0.15, rootMargin:'0px 0px -6% 0px'});
+  document.querySelectorAll('[data-reveal], .hero, h1, .hub-sticky').forEach(function(el){ io.observe(el); });
+
+  // hero line-mask timing
+  window.addEventListener('load', function(){
+    if(REDUCED) return;
+    var scrs = document.querySelectorAll('#hero .scr');
+    scrs.forEach(function(s,i){ s.style.transitionDelay = (0.15 + i*0.14) + 's'; });
+    requestAnimationFrame(function(){ document.getElementById('hero').classList.add('in'); });
+    // scramble board title
+    scramble(document.querySelector('.board-title'), 'HUB BOARD');
+  });
+
+  /* ---------- scramble decode ---------- */
+  function scramble(el, final){
+    if(!el || REDUCED) return;
+    var chars = 'ABCDEFGHKMNPRSTU0123456789#*<>/';
+    var frame = 0, speed = 1.4;
+    var id = setInterval(function(){
+      var out = '';
+      for(var i=0;i<final.length;i++){
+        if(final[i]===' '){ out+=' '; continue; }
+        out += (i < frame/speed) ? final[i] : chars[Math.floor(Math.random()*chars.length)];
+      }
+      el.textContent = out;
+      frame++;
+      if(frame/speed > final.length){ clearInterval(id); el.textContent = final; }
+    }, 45);
+  }
+
+  /* ---------- count up ---------- */
+  var countIO = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(!en.isIntersecting) return;
+      var el = en.target, target = parseInt(el.getAttribute('data-count'),10);
+      countIO.unobserve(el);
+      if(REDUCED){ el.textContent = target; return; }
+      var start = performance.now(), dur = 1500;
+      function step(t){
+        var p = Math.min(1,(t-start)/dur);
+        var e = 1 - Math.pow(1-p, 3);
+        el.textContent = Math.round(target*e);
+        if(p<1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    });
+  }, {threshold:0.4});
+  document.querySelectorAll('[data-count]').forEach(function(el){ countIO.observe(el); });
+
+  /* ---------- pricing toggle ---------- */
+  var bbtns = document.querySelectorAll('.bbtn');
+  bbtns.forEach(function(b){
+    b.addEventListener('click', function(){
+      var mode = b.getAttribute('data-bill');
+      bbtns.forEach(function(x){ x.classList.toggle('on', x===b); x.setAttribute('aria-pressed', x===b); });
+      document.querySelectorAll('.price-num').forEach(function(p){
+        var val = p.getAttribute('data-'+(mode==='monthly'?'m':'a'));
+        if(p.classList.contains('swap')){ setTimeout(function(){ p.textContent = val; p.classList.remove('swap'); }, 180); }
+        else { p.classList.add('swap'); setTimeout(function(){ p.textContent = val; p.classList.remove('swap'); }, 180); }
+      });
+      document.querySelectorAll('[data-monthly]').forEach(function(el){
+        el.textContent = mode==='monthly' ? el.getAttribute('data-monthly') : el.getAttribute('data-annual');
+      });
+      var amt = document.getElementById('saveAmt');
+      if(amt) amt.textContent = (mode==='annual' ? '2 free months' : '10%');
+    });
+  });
+
+  /* ---------- pass chips ---------- */
+  var planChip = document.getElementById('planChip');
+  var selPlan = document.getElementById('fplan');
+  function setPlan(p){
+    var opt = Array.prototype.find.call(selPlan.options, function(o){ return o.value===p || o.text===p; });
+    if(opt) selPlan.value = opt.value;
+    planChip.textContent = 'PLAN: ' + p.toUpperCase();
+    planChip.style.display = 'inline-block';
+  }
+  document.querySelectorAll('[data-plan]').forEach(function(b){
+    b.addEventListener('click', function(){
+      setPlan(b.getAttribute('data-plan'));
+    });
+  });
+
+  /* ---------- event filter + rsvp ---------- */
+  var chips = document.querySelectorAll('.chip');
+  chips.forEach(function(c){
+    c.addEventListener('click', function(){
+      chips.forEach(function(x){ x.classList.toggle('on', x===c); x.setAttribute('aria-pressed', x===c); });
+      var f = c.getAttribute('data-filter');
+      evEls.forEach(function(li){
+        var show = (f==='all' || li.getAttribute('data-cat')===f);
+        li.classList.toggle('hide', !show);
+        if(show && !REDUCED){ li.classList.remove('pop'); void li.offsetWidth; li.classList.add('pop'); }
+      });
+    });
+  });
+  document.querySelectorAll('.rsvp').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var go = btn.closest('.ev').querySelector('.go');
+      var on = btn.classList.toggle('on');
+      var base = parseInt(go.getAttribute('data-go'),10);
+      go.textContent = base + (on?1:0);
+      btn.textContent = on ? 'Going ✓' : 'RSVP';
+      if(on) toast('You\'re on the board — see you there. ✳');
+    });
+  });
+
+  /* ---------- member strip drag + arrows ---------- */
+  var strip = document.getElementById('memberStrip');
+  var isDown=false, startX, scrollStart;
+  strip.addEventListener('pointerdown', function(e){
+    if(REDUCED) return;
+    isDown=true; strip.classList.add('dragging'); startX=e.pageX; scrollStart=strip.scrollLeft;
+  });
+  window.addEventListener('pointerup', function(){ isDown=false; strip.classList.remove('dragging'); });
+  strip.addEventListener('pointermove', function(e){
+    if(!isDown) return; e.preventDefault();
+    strip.scrollLeft = scrollStart - (e.pageX - startX);
+  });
+  document.querySelectorAll('.arr').forEach(function(a){
+    a.addEventListener('click', function(){
+      strip.scrollBy({left: a.getAttribute('data-dir')*300, behavior: REDUCED?'auto':'smooth'});
+    });
+  });
+
+  /* ---------- faq ---------- */
+  document.querySelectorAll('.faq-q').forEach(function(q){
+    q.addEventListener('click', function(){
+      var item = q.closest('.faq-item');
+      var open = item.classList.toggle('open');
+      q.setAttribute('aria-expanded', open);
+      document.querySelectorAll('.faq-item').forEach(function(o){
+        if(o!==item){ o.classList.remove('open'); o.querySelector('.faq-q').setAttribute('aria-expanded','false'); }
+      });
+    });
+  });
+
+  /* ---------- space booking ---------- */
+  document.querySelectorAll('[data-book]').forEach(function(b){
+    b.addEventListener('click', function(e){
+      e.preventDefault();
+      toast('Note down: ' + b.getAttribute('data-book') + ' — we\'ll email you a hold. ✳');
+      document.getElementById('visit').scrollIntoView({behavior: REDUCED?'auto':'smooth'});
+    });
+  });
+
+  /* ---------- forms ---------- */
+  var form = document.getElementById('visitForm');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var ok = true;
+    var fields = [['fname',function(v){return v.trim().length>1;}],['femail',function(v){return /.+@.+\..+/.test(v);}]];
+    fields.forEach(function(f){
+      var el = document.getElementById(f[0]); var good = f[1](el.value);
+      el.closest('.f-field').classList.toggle('err', !good);
+      if(!good) ok=false;
+    });
+    if(!ok){ toast('A name and a working email, please.'); return; }
+    var name = document.getElementById('fname').value.trim().split(' ')[0];
+    var plan = selPlan.value;
+    document.getElementById('doneMsg').textContent = 'We\'ll be in touch about ' + plan + (name?', ' + name : '') + ', within a day or two. Come see the view in the meantime.';
+    form.style.display='none';
+    document.getElementById('formDone').style.display='block';
+    toast('Booked in — you\'re on the board. ✳');
+  });
+  document.querySelectorAll('#visitForm input, #visitForm textarea').forEach(function(el){
+    el.addEventListener('input', function(){ el.closest('.f-field').classList.remove('err'); });
+  });
+
+  document.getElementById('nlForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    var el = document.getElementById('nlEmail');
+    if(!/.+@.+\..+/.test(el.value)){ el.focus(); toast('That email looks off — one more try.'); return; }
+    el.value=''; toast('You\'re on the list — see you at the next one. ✳');
+  });
+
+  /* ---------- year ---------- */
+  document.getElementById('footYear').textContent = '© ' + new Date().getFullYear() + ' Peregian Digital Hub';
+
+})();
+</script>
+</body>
+</html>
