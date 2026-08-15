@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Peregian Digital Hub — Modern Workspace</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+  :root {
+    --bg: #080a12;
+    --surface: rgba(255,255,255,0.03);
+    --surface-border: rgba(255,255,255,0.07);
+    --text: #f0efeeb;
+    --text-dim: #a6a8b0;
+    --text-muted: #727586;
+    --accent: #4ecdc4;
+    --accent-2: #f5c842;
+    --radius: 28px;
+    --radius-sm: 14px;
+    --max: 1320px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection { background: rgba(78,205,196,0.2); color: #fff; }
+
+  /* Utilities */
+  .container { max-width: var(--max); margin: 0 auto; padding: 0 5vw; }
+
+  /* Typography */
+  h1, h2, h3, .font-display { font-family: 'Space Grotesk', system-ui, sans-serif; letter-spacing: -0.03em; line-height: 1.05; color: var(--text); }
+  h1 { font-weight: 700; }
+  h2 { font-weight: 600; font-size: clamp(2.4rem, 5vw, 3.8rem); }
+  h3 { font-weight: 600; font-size: 1.35rem; }
+
+  a { color: inherit; text-decoration: none; }
+
+  /* Nav */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 1000;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 5vw;
+    transition: background 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease;
+  }
+  nav.scrolled {
+    background: rgba(8,10,18,0.82);
+    backdrop-filter: saturate(140%) blur(20px);
+    -webkit-backdrop-filter: saturate(140%) blur(20px);
+    box-shadow: 0 1px 0 rgba(255,255,255,0.06);
+  }
+  .nav-brand {
+    font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+    font-size: 1.1rem; letter-spacing: -0.02em; color: var(--text);
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .nav-brand-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--accent); box-shadow: 0 0 10px rgba(78,205,196,0.5);
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; font-weight: 500; font-size: 0.85rem; letter-spacing: 0.02em; text-transform: uppercase; }
+  .nav-links a { color: var(--text-dim); transition: color 0.2s; position: relative; }
+  .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--accent); transition: width 0.3s ease; }
+  .nav-links a:hover { color: var(--text); }
+  .nav-links a:hover::after { width: 100%; }
+
+  .mobile-toggle { display: none; background: none; border: none; color: var(--text); font-size: 1.3rem; cursor: pointer; }
+
+  /* Hero */
+  .hero {
+    position: relative;
+    min-height: 100vh; display: flex; align-items: center;
+    padding: 10rem 5vw 8rem; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: -10%;
+    background: radial-gradient(circle at 70% 30%, rgba(78,205,196,0.18), transparent 60%),
+                radial-gradient(circle at 30% 70%, rgba(245,200,66,0.15), transparent 60%);
+    filter: blur(80px); z-index: 0; pointer-events: none;
+  }
+  .hero-content { position: relative; z-index: 2; max-width: 1000px; }
+  .label {
+    display: inline-flex; align-items: center; gap: 0.7rem;
+    text-transform: uppercase; font-weight: 600; font-size: 0.75rem; letter-spacing: 0.12em;
+    color: var(--accent); margin-bottom: 1.5rem;
+  }
+  .label-line { width: 2.5rem; height: 1px; background: var(--accent); opacity: 0.8; }
+  .hero h1 {
+    font-size: clamp(4rem, 12vw, 9rem); letter-spacing: -0.045em; line-height: 0.92;
+    margin-bottom: 1.5rem; color: #fdfcf8;
+  }
+  .hero-gradient-text { background: linear-gradient(135deg, #fdfcf5 30%, #a0f0e6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .hero-sub {
+    font-size: clamp(1.15rem, 2vw, 1.35rem); color: var(--text-dim); max-width: 46ch;
+    font-weight: 300; line-height: 1.6; margin-bottom: 3rem;
+  }
+  .cta-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    padding: 1rem 2.2rem; border-radius: 9999px;
+    font-family: 'Space Grotesk', sans-serif; font-weight: 600; letter-spacing: 0.01em; font-size: 0.95rem;
+    border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.04);
+    color: var(--text); transition: all 0.25s ease; cursor: pointer;
+  }
+  .btn:hover { background: var(--accent); border-color: var(--accent); color: #080a12; box-shadow: 0 10px 40px rgba(78,205,196,0.35); transform: translateY(-2px); }
+  .btn-secondary { background: transparent; border-color: rgba(255,255,255,0.1); }
+  .btn-secondary:hover { background: rgba(255,255,255,0.05); color: var(--text); border-color: rgba(255,255,255,0.3); box-shadow: none; }
+
+  /* Sections general */
+  section { padding: 8rem 5vw; position: relative; }
+  .section-header { margin-bottom: 4rem; }
+  .section-header h2 { margin-bottom: 0.75rem; }
+  .section-header p { color: var(--text-dim); max-width: 55ch; font-size: 1.05rem; }
+
+  /* About */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  .about-text p { color: var(--text-dim); font-size: 1.05rem; line-height: 1.75; margin-bottom: 1rem; }
+  .stats-row { display: flex; gap: 3rem; margin-top: 2.5rem; }
+  .stat { }
+  .stat-num { font-family: 'Space Grotesk', sans-serif; font-size: 2.2rem; font-weight: 700; color: var(--text); line-height: 1; }
+  .stat-label { font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.25rem; }
+
+  /* Features / Cards */
+  .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .feature-card {
+    background: var(--surface); border: 1px solid var(--surface-border); border-radius: var(--radius);
+    padding: 2.5rem; transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+  .feature-card:hover { transform: translateY(-6px); border-color: rgba(78,205,196,0.35); box-shadow: 0 30px 60px rgba(0,0,0,0.35); }
+  .feature-card .icon-wrap { width: 3.2rem; height: 3.2rem; border-radius: 14px; background: rgba(78,205,196,0.1); color: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; margin-bottom: 1.5rem; }
+  .feature-card h3 { font-size: 1.15rem; margin-bottom: 0.5rem; }
+  .feature-card p { color: var(--text-dim); font-size: 0.92rem; line-height: 1.6; }
+
+  /* Membership / Pricing */
+  .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; align-items: start; }
+  .pricing-card {
+    background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius);
+    padding: 2.5rem; position: relative; transition: transform 0.25s ease, border-color 0.25s ease;
+  }
+  .pricing-card.highlight { border-color: var(--accent); background: linear-gradient(180deg, rgba(78,205,196,0.06), rgba(78,205,196,0.01)); }
+  .pricing-card:hover { transform: translateY(-6px); border-color: rgba(78,205,196,0.5); }
+  .badge {
+    position: absolute; top: -12px; right: 1.5rem;
+    background: var(--accent); color: #080a12; padding: 0.35rem 0.9rem; border-radius: 999px;
+    font-weight: 700; font-family: 'Space Grotesk', sans-serif; font-size: 0.75rem; letter-spacing: 0.05em; text-transform: uppercase;
+  }
+  .pricing-card h3 { margin-bottom: 0.25rem; font-size: 1.2rem; }
+  .pricing-card .price { font-family: 'Space Grotesk', sans-serif; font-size: 2.4rem; font-weight: 700; letter-spacing: -0.03em; margin: 0.75rem 0; }
+  .pricing-card ul { list-style: none; color: var(--text-dim); font-size: 0.92rem; margin: 1.5rem 0; }
+  .pricing-card ul li { margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.6rem; }
+  .pricing-card ul li i { color: var(--accent); font-size: 0.8rem; }
+  .pricing-card .btn { width: 100%; justify-content: center; margin-top: 0.5rem; }
+
+  /* Visit / Map */
+  .visit { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: stretch; }
+  .visit-details h2 { margin-bottom: 1rem; }
+  .visit-details-row { display: flex; gap: 1rem; margin-bottom: 1.2rem; align-items: flex-start; }
+  .visit-details-row i { color: var(--accent); font-size: 1.1rem; margin-top: 0.2rem; width: 1.2rem; }
+  .visit-details h4 { font-family: 'Space Grotesk'; font-weight: 600; font-size: 1rem; margin-bottom: 0.15rem; }
+  .visit-details-row p, .visit-details-row a { color: var(--text-dim); font-size: 0.95rem; }
+  .visit-map { position: relative; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--surface-border); min-height: 420px; }
+  .visit-map-img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(0.3) contrast(1.1); opacity: 0.85; }
+  .map-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(8,10,18,0.7), transparent 60%); display: flex; align-items: flex-end; padding: 2rem; }
+  .map-pin { background: rgba(255,255,255,0.08); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 1.25rem 1.5rem; }
+  .map-pin h4 { font-size: 1.1rem; margin-bottom: 0.2rem; }
+  .map-pin p { font-size: 0.85rem; color: var(--text-dim); }
+
+  /* Contact / Footer */
+  .contact-block { background: linear-gradient(135deg, #0a0e22 0%, #060814 100%); border-top: 1px solid rgba(255,255,255,0.06); }
+  .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+  .contact-form label { display: block; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 0.5rem; }
+  .contact-form input, .contact-form textarea {
+    width: 100%; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 0.9rem 1rem; color: var(--text); font-family: inherit; font-size: 0.95rem; outline: none; transition: border-color 0.2s;
+  }
+  .contact-form input:focus, .contact-form textarea:focus { border-color: var(--accent); }
+  .contact-form textarea { min-height: 120px; resize: vertical; margin-bottom: 1rem; }
+  .contact-form button { width: 100%; padding: 1rem; border-radius: 9999px; border: none; background: var(--accent); color: #080a12; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1rem; cursor: pointer; transition: transform 0.2s; }
+  .contact-form button:hover { transform: translateY(-3px); }
+
+  footer { background: #05070e; border-top: 1px solid rgba(255,255,255,0.05); padding: 3rem 5vw; }
+  .footer-inner { max-width: var(--max); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 2rem; flex-wrap: wrap; }
+  .footer-brand { font-family: 'Space Grotesk'; font-weight: 700; font-size: 1.1rem; letter-spacing: -0.02em; }
+  .footer-links { display: flex; gap: 2rem; font-size: 0.85rem; color: var(--text-muted); }
+  .footer-links a:hover { color: var(--text); }
+
+  /* Reveal animations */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 1024px) {
+    .about-grid, .visit { grid-template-columns: 1fr; }
+    .features-grid { grid-template-columns: 1fr 1fr; }
+    .pricing-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+    .contact-inner { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 768px) {
+    .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: rgba(8,10,18,0.98); backdrop-filter: blur(20px); flex-direction: column; padding: 2rem; gap: 1rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .nav-links.open { display: flex; }
+    .mobile-toggle { display: block; }
+    .features-grid { grid-template-columns: 1fr; }
+    .hero { padding-top: 8rem; }
+    .visit-map-img { min-height: 320px; }
+    section { padding: 5rem 5vw; }
+    .stats-row { gap: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav id="nav" aria-label="Primary">
+    <a href="#" class="nav-brand" aria-label="Peregian Digital Hub home">
+      <span class="nav-brand-dot" aria-hidden="true"></span>
+      Peregian Digital Hub
+    </a>
+    <button class="mobile-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
+      <i class="fa-solid fa-bars-staggered"></i>
+    </button>
+    <ul id="navLinks" class="nav-links" role="menubar">
+      <li><a href="#about" role="menuitem">About</a></li>
+      <li><a href="#services" role="menuitem">Services</a></li>
+      <li><a href="#membership" role="menuitem">Membership</a></li>
+      <li><a href="#visit" role="menuitem">Visit</a></li>
+      <li><a href="#contact" role="menuitem">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero" aria-label="Introduction">
+      <div class="hero-content">
+        <div class="label reveal>
+          <span class="label-line" aria-hidden="true"></span>
+          <span>Peregian Beach • Sunshine Coast</span>
+        </div>
+        <h1 class="reveal" style="transition-delay:0.1s">
+          The Digital<br>
+          <span class="hero-gradient-text">Hub.</span>
+        </h1>
+        <p class="hero-sub reveal" style="transition-delay:0.2s">
+          A modern workspace and community gathering place where the coast meets connectivity. Work, meet, and create in the heart of Peregian Beach.
+        </p>
+        <div class="cta-row reveal" style="transition-delay:0.3s">
+          <a href="#visit" class="btn">Plan a visit <i class="fa-solid fa-arrow-right-long" aria-hidden="true"></i></a>
+          <a href="#membership" class="btn btn-secondary">View memberships</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" aria-labelledby="about-heading">
+      <div class="container">
+        <div class="about-grid reveal">
+          <div>
+            <h2 id="about-heading" class="reveal">Built for the <br>coast, not the office.</h2>
+            <div class="about-text reveal">
+              <p>
+                The Peregian Digital Hub is a community-focused workspace designed for locals, remote workers, and visitors who need more than just an internet connection. Located in Peregian Beach on Queensland’s Sunshine Coast, we blend professional amenities with a welcoming, modern environment.
+              </p>
+              <p>
+                Whether you need a quiet desk for an afternoon, a meeting room for your team, or a space to host an event, the Hub offers reliable technology and comfortable surroundings.
+              </p>
+            </div>
+            <div class="stats-row reveal">
+              <div class="stat"><div class="stat-num">50+</div><div class="stat-label">Daily users</div></div>
+              <div class="stat"><div class="stat-num">12</div><div class="stat-label">Meeting rooms</div></div>
+              <div class="stat"><div class="stat-num">24/7</div><div class="stat-label">Access option</div></div>
+            </div>
+          </div>
+          <figure aria-label="Workspace interior" class="reveal" style="border-radius:var(--radius); overflow:hidden; border:1px solid var(--surface-border);">
+            <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b?auto=format&fit=crop&w=1200&q=80" alt="Modern workspace interior with large windows" style="width:100%; height:auto; display:block; object-fit:cover; filter:brightness(0.95) contrast(1.05);" loading="lazy">
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" aria-labelledby="services-heading" class="container" style="max-width:1400px;">
+      <div class="section-header reveal">
+        <h2 id="services-heading">Services designed for everyday work</h2>
+        <p>Everything you need to stay productive, from high-speed connectivity to professional meeting spaces.</p>
+      </div>
+
+      <div class="features-grid">
+        <article class="feature-card reveal">
+          <div class="icon-wrap"><i class="fa-solid fa-wifi" aria-hidden="true"></i></div>
+          <h3>High-Speed WiFi</h3>
+          <p>Business-grade fibre connection across the entire premises with dedicated workstations and private booths.</p>
+        </article>
+
+        <article class="feature-card reveal">
+          <div class="icon-wrap"><i class="fa-solid fa-people-group" aria-hidden="true"></i></div>
+          <h3>Meeting & Event Rooms</h3>
+          <p>Bookable spaces with AV, video conferencing, and flexible seating for 2 to 40 people.</p>
+        </article>
+
+        <article class="feature-card reveal">
+          <div class="icon-wrap"><i class="fa-solid fa-print" aria-hidden="true"></i></div>
+          <h3>Printing & Scanning</h3>
+          <p>Full colour and black-and-white printing, scanning, and photocopying facilities available to members.</p>
+        </article>
+
+        <article class="feature-card reveal">
+          <div class="icon-wrap"><i class="fa-solid fa-headset" aria-hidden="true"></i></div>
+          <h3>Tech Support</h3>
+          <p>On-site assistance for connectivity, device setup, and basic troubleshooting.</p>
+        </article>
+
+        <article class="feature-card reveal">
+          <div class="icon-wrap"><i class="fa-solid fa-laptop-code" aria-hidden="true"></i></div>
+          <h3>Coworking Spaces</h3>
+          <p>Open-plan desks, quiet zones, and collaborative lounges available on flexible passes.</p>
+        </article>
+
+        <article class="feature-card reveal">
+          <div class="icon-wrap"><i class="fa-solid fa-calendar-check" aria-hidden="true"></i></div>
+          <h3>Community Events</h3>
+          <p>Regular workshops, local meetups, and networking events open to the public and members.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Membership -->
+    <section id="membership" aria-labelledby="membership-heading" class="container">
+      <div class="section-header reveal">
+        <h2 id="membership-heading">Membership options</h2>
+        <p>Flexible pricing for drop-ins, regular users, and year-round members.</p>
+      </div>
+
+      <div class="pricing-grid">
+        <article class="pricing-card reveal">
+          <h3>Drop-In</h3>
+          <p style="color: var(--text-muted); font-size:0.9rem;">Perfect for a single session or short visit.</p>
+          <div class="price">$15 <span style="font-weight:400;color:var(--text-muted);font-size:1rem;">/ day</span></div>
+          <ul>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Full workspace access</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> WiFi & printing</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> 3-hour desk booking</li>
+          </ul>
+          <a href="#contact" class="btn">Book a day</a>
+        </article>
+
+        <article class="pricing-card highlight reveal">
+          <span class="badge">Most popular</span>
+          <h3>Monthly</h3>
+          <p style="color: var(--text-muted); font-size:0.9rem;">Ideal for regular remote workers.</p>
+          <div class="price">$75 <span style="font-weight:400;color:var(--text-muted);font-size:1rem;">/ month</span></div>
+          <ul>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Unlimited coworking</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> 5 meeting hours / mo</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Print credit included</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Priority event tickets</li>
+          </ul>
+          <a href="#contact" class="btn">Join monthly</a>
+        </article>
+
+        <article class="pricing-card reveal">
+          <h3>Annual Community</h3>
+          <p style="color: var(--text-muted); font-size:0.9rem;">Best value for committed members.</p>
+          <div class="price">$650 <span style="font-weight:400;color:var(--text-muted);font-size:1rem;">/ year</span></div>
+          <ul>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Everything in Monthly</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> 15 meeting hours / mo</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Event hosting discounts</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Member-only networking</li>
+          </ul>
+          <a href="#contact" class="btn">Go annual</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- Visit / Map -->
+    <section id="visit" aria-labelledby="visit-heading">
+      <div class="visit container" style="max-width:1400px;">
+        <div class="visit-details reveal">
+          <h2 id="visit-heading">Visit the Hub</h2>
+          <p style="color: var(--text-dim); mb:1.5rem;">We are located in the heart of Peregian Beach, right off the David Low Way.</p>
+
+          <div class="visit-details-row">
+            <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+            <div>
+              <h4>Address</h4>
+              <p>14 David Low Way, Peregian Beach<br>QLD 4573, Australia</p>
+            </div>
+          </div>
+
+          <div class="visit-details-row">
+            <i class="fa-regular fa-clock" aria-hidden="true"></i>
+            <div>
+              <h4>Hours</h4>
+              <p>Mon – Fri: 8am – 6pm<br>Sat – Sun: 9am – 4pm</p>
+            </div>
+          </div>
+
+          <div class="visit-details-row">
+            <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+            <div>
+              <h4>Email</h4>
+              <p><a href="mailto:hello@peregianhub.com.au" style="color:var(--accent);">hello@peregianhub.com.au</a></p>
+            </div>
+          </div>
+        </div>
+
+        <figure class="visit-map reveal" aria-label="Map showing Peregian Beach location">
+          <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=1600&q=80" alt="Aerial view of Peregian Beach area" class="visit-map-img" style="width:100%;height:100%;object-fit:cover;filter:grayscale(0.3) contrast(1.1);opacity:0.9;min-height:420px;display:block;" loading="lazy">
+          <figcaption class="map-overlay">
+            <div class="map-pin">
+              <h4>Peregian Digital Hub</h4>
+              <p>14 David Low Way • Peregian Beach</p>
+            </div>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="contact-block" aria-labelledby="contact-heading">
+      <div class="contact-inner container">
+        <div class="reveal">
+          <h2 id="contact-heading" style="font-size:clamp(2rem,4vw,3rem); margin-bottom:0.5rem;">Get in touch</h2>
+          <p style="color: var(--text-dim); max-width: 40ch; font-size:1.05rem;">Have a question about memberships, events, or meeting room bookings? Send a message and we’ll reply quickly.</p>
+
+          <div style="margin-top:2rem;">
+            <p><strong style="color:var(--text);">Phone</strong> <a href="tel:+61754322000" style="color:var(--text-dim);">+61 7 5432 2000</a></p>
+            <p><strong style="color:var(--text);">Email</strong> <a href="mailto:hello@peregianhub.com.au" style="color:var(--text-dim);">hello@peregianhub.com.au</a></p>
+          </div>
+        </div>
+
+        <form class="contact-form reveal" onsubmit="event.preventDefault(); this.innerHTML='<h3 style=\'font-family:Space Grotesk; color:var(--accent);\'>Thanks — we will be in touch.</h3>';">
+          <div style="display:grid; gap:1rem; grid-template-columns:1fr 1fr;">
+            <div>
+              <label for="name">Name</label>
+              <input type="text" id="name" placeholder="Your name" required>
+            </div>
+            <div>
+              <label for="email">Email</label>
+              <input type="email" id="email" placeholder="you@email.com" required>
+            </div>
+          </div>
+          <div>
+            <label for="message">Message</label>
+            <textarea id="message" placeholder="What can we help with?" required></textarea>
+          </div>
+          <button type="submit">Send message</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner container">
+      <div>
+        <div class="footer-brand">Peregian Digital Hub</div>
+        <div style="font-size:0.8rem; color:var(--text-muted); margin-top:0.3rem;">Modern workspace • Sunshine Coast, QLD</div>
+      </div>
+      <div class="footer-links">
+        <a href="#about">About</a>
+        <a href="https://www.peregianhub.com.au" target="_blank" rel="noopener">Original site</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Sticky nav style
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Simple reveal on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

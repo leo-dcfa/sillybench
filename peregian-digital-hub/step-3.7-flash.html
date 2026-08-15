@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Peregian Digital Hub | Where Innovation Meets Creativity</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #0a0a0f;
+    color: #e8e8f0;
+    overflow-x: hidden;
+  }
+
+  /* Gradient Background */
+  .gradient-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: 
+      radial-gradient(ellipse at 20% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 50%, rgba(6, 182, 212, 0.12) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 80%, rgba(168, 85, 247, 0.1) 0%, transparent 50%),
+      #0a0a0f;
+  }
+
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.5;
+    animation: float 20s ease-in-out infinite;
+  }
+
+  .blob-1 {
+    width: 400px;
+    height: 400px;
+    background: linear-gradient(135deg, #6366f1, #a855f7);
+    top: 10%;
+    left: 10%;
+  }
+
+  .blob-2 {
+    width: 350px;
+    height: 350px;
+    background: linear-gradient(135deg, #06b6d4, #6366f1);
+    top: 50%;
+    right: 10%;
+    animation-delay: -7s;
+  }
+
+  .blob-3 {
+    width: 300px;
+    height: 300px;
+    background: linear-gradient(135deg, #a855f7, #ec4899);
+    bottom: 20%;
+    left: 30%;
+    animation-delay: -14s;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    25% { transform: translate(30px, -30px) scale(1.05); }
+    50% { transform: translate(-20px, 20px) scale(0.95); }
+    75% { transform: translate(20px, 10px) scale(1.02); }
+  }
+
+  /* Navigation */
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 1.25rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(20px);
+    background: rgba(10, 10, 15, 0.6);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+  }
+
+  nav.scrolled {
+    padding: 1rem 3rem;
+    background: rgba(10, 10, 15, 0.85);
+  }
+
+  .logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #a855f7, #06b6d4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .logo-icon {
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, #a855f7, #06b6d4);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    color: white;
+    font-weight: bold;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: #b4b4c4;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    position: relative;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #a855f7, #06b6d4);
+    transition: width 0.3s ease;
+  }
+
+  .nav-links a:hover {
+    color: #fff;
+  }
+
+  .nav-links a:hover::after {
+    width: 100%;
+  }
+
+  .nav-cta {
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(135deg, #a855f7, #6366f1);
+    border: none;
+    border-radius: 100px;
+    color: white;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+  }
+
+  .nav-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(168, 85, 247, 0.4);
+  }
+
+  /* Hero Section */
+  .hero {
+    min-height: 100vh;
+    padding: 8rem 3rem 4rem;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-content {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1.25rem;
+    background: rgba(99, 102, 241, 0.15);
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    border-radius: 100px;
+    font-size: 0.85rem;
+    color: #a5b4fc;
+    margin-bottom: 2rem;
+    backdrop-filter: blur(10px);
+    animation: fadeInUp 0.8s ease forwards;
+  }
+
+  .badge-dot {
+    width: 6px;
+    height: 6px;
+    background: #06b6d4;
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.2); }
+  }
+
+  .hero h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    animation: fadeInUp 0.8s ease 0.2s forwards;
+    opacity: 0;
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #a855f7 0%, #06b6d4 50%, #a855f7 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientShift 8s ease infinite;
+  }
+
+  @keyframes gradientShift {
+    0% { background-position: 0% center; }
+    50% { background-position: 100% center; }
+    100% { background-position: 0% center; }
+  }
+
+  .hero p {
+    font-size: 1.25rem;
+    color: #b0b0c8;
+    line-height: 1.6;
+    max-width: 700px;
+    margin: 0 auto 3rem;
+    animation: fadeInUp 0.8s ease 0.4s forwards;
+    opacity: 0;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: fadeInUp 0.8s ease 0.6s forwards;
+    opacity: 0;
+  }
+
+  .btn {
+    padding: 1rem 2rem;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, #a855f7, #6366f1);
+    color: white;
+    border: none;
+    box-shadow: 0 10px 40px rgba(168, 85, 247, 0.3);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 50px rgba(168, 85, 247, 0.5);
+  }
+
+  .btn-secondary {
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+  }
+
+  .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Stats */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    padding: 4rem 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .stat-card {
+    text-align: center;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    transition: all 0.4s ease;
+  }
+
+  .stat-card:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(168, 85, 247, 0.3);
+    transform: translateY(-5px);
+  }
+
+  .stat-number {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #a855f7, #06b6d4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    color: #b0b0c8;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  /* Section Styles */
+  section {
+    padding: 6rem 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .section-tag {
+    display: inline-block;
+    padding: 0.4rem 1rem;
+    background: rgba(168, 85, 247, 0.15);
+    border: 1px solid rgba(168, 85, 247, 0.3);
+    border-radius: 100px;
+    font-size: 0.85rem;
+    color: #c084fc;
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+
+  .section-header h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .section-header p {
+    font-size: 1.1rem;
+    color: #b0b0c8;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* Features Grid */
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+  }
+
+  .feature-card {
+    padding: 2.5rem 2rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    cursor: pointer;
+  }
+
+  .feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #a855f7, #06b6d4, transparent);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-8px);
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(168, 85, 247, 0.4);
+    box-shadow: 0 20px 50px rgba(168, 85, 247, 0.2);
+  }
+
+  .feature-card:hover::before {
+    opacity: 1;
+  }
+
+  .feature-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(6, 182, 212, 0.2));
+    border: 1px solid rgba(168, 85, 247, 0.3);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .feature-card h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+    color: #fff;
+  }
+
+  .feature-card p {
+    color: #b0b0c8;
+    line-height: 1.6;
+    font-size: 0.95rem;
+  }
+
+  /* Showcase */
+  .showcase-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 300px 300px;
+    gap: 1.5rem;
+  }
+
+  .showcase-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.4s ease;
+  }
+
+  .showcase-card:hover {
+    transform: scale(1.02);
+    border-color: rgba(168, 85, 247, 0.4);
+  }
+
+  .showcase-large {
+    grid-row: span 2;
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(6, 182, 212, 0.1));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .showcase-content {
+    padding: 2rem;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+  }
+
+  .showcase-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #a855f7, #6366f1);
+    opacity: 0.9;
+  }
+
+  /* Events Section */
+  .events-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .event-card {
+    display: flex;
+    gap: 2rem;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .event-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateX(10px);
+    border-color: rgba(168, 85, 247, 0.4);
+  }
+
+  .event-date {
+    min-width: 80px;
+    text-align: center;
+    padding: 1rem;
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(6, 182, 212, 0.1));
+    border-radius: 16px;
+    border: 1px solid rgba(168, 85, 247, 0.3);
+  }
+
+  .event-date .day {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+  }
+
+  .event-date .month {
+    font-size: 0.85rem;
+    color: #c084fc;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .event-info h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    color: #fff;
+  }
+
+  .event-info p {
+    color: #b0b0c8;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .event-meta {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+    color: #888;
+  }
+
+  /* Testimonial */
+  .testimonial {
+    padding: 3rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    text-align: center;
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .testimonial::before {
+    content: '"';
+    position: absolute;
+    top: -20px;
+    left: 30px;
+    font-size: 8rem;
+    font-family: 'Space Grotesk', sans-serif;
+    background: linear-gradient(135deg, #a855f7, #06b6d4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1;
+  }
+
+  .testimonial p {
+    font-size: 1.25rem;
+    color: #e0e0f0;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    font-style: italic;
+  }
+
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .author-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #a855f7, #06b6d4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+  }
+
+  .author-name {
+    font-weight: 600;
+    color: #fff;
+  }
+
+  .author-title {
+    font-size: 0.85rem;
+    color: #b0b0c8;
+  }
+
+  /* CTA Section */
+  .cta {
+    padding: 6rem 3rem;
+    max-width: 1000px;
+    margin: 4rem auto;
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.15), rgba(6, 182, 212, 0.1));
+    border-radius: 32px;
+    border: 1px solid rgba(168, 85, 247, 0.3);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.3), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .cta:hover::before {
+    opacity: 1;
+  }
+
+  .cta-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .cta h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 1rem;
+    color: #fff;
+  }
+
+  .cta p {
+    font-size: 1.15rem;
+    color: #c0c0d8;
+    margin-bottom: 2rem;
+  }
+
+  /* Footer */
+  footer {
+    padding: 4rem 3rem 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+
+  .footer-brand h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #a855f7, #06b6d4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .footer-brand p {
+    color: #888;
+    line-height: 1.6;
+    font-size: 0.9rem;
+  }
+
+  .footer-col h4 {
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #fff;
+    font-size: 0.95rem;
+  }
+
+  .footer-col a {
+    display: block;
+    color: #888;
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    transition: color 0.3s ease;
+  }
+
+  .footer-col a:hover {
+    color: #c084fc;
+  }
+
+  .footer-bottom {
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    justify-content: space-between;
+    color: #666;
+    font-size: 0.85rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  /* Mobile Menu */
+  .mobile-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    nav {
+      padding: 1rem 1.5rem;
+    }
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      background: rgba(10, 10, 15, 0.95);
+      padding: 2rem;
+      gap: 1.5rem;
+      backdrop-filter: blur(20px);
+    }
+    .nav-links.active {
+      display: flex;
+    }
+    .mobile-toggle {
+      display: block;
+    }
+    .hero {
+      padding: 6rem 1.5rem 3rem;
+    }
+    section {
+      padding: 3rem 1.5rem;
+    }
+    .features-grid {
+      grid-template-columns: 1fr;
+    }
+    .showcase-grid {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto;
+    }
+    .showcase-large {
+      grid-row: span 1;
+    }
+    .event-card {
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .footer-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    .stats {
+      grid-template-columns: repeat(2, 1fr);
+      padding: 3rem 1.5rem;
+    }
+  }
+
+  /* Animations */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<div class="gradient-bg">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+</div>
+
+<nav id="navbar">
+  <div class="logo">
+    <div class="logo-icon">Δ</div>
+    Peregian Hub
+  </div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#community">Community</a></li>
+    <li><a href="#events">Events</a></li>
+    <li><a href="#events">Events</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Join Now</a>
+  <button class="mobile-toggle" onclick="toggleMenu()">☰</button>
+</nav>
+
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="badge">
+      <span class="badge-dot"></span>
+      Now Open on the Sunshine Coast
+    </div>
+    <h1>
+      Where Innovation<br>
+      Meets <span class="gradient-text">Creativity</span>
+    </h1>
+    <p>
+      Peregian Digital Hub is the premier co-working and innovation space bringing together 
+      digital entrepreneurs, creative professionals, and forward-thinking businesses on 
+      the beautiful Sunshine Coast.
+    </p>
+    <div class="hero-buttons">
+      <a href="#features" class="btn btn-primary">Explore the Hub →</a>
+      <a href="#contact" class="btn btn-secondary">Book a Tour</a>
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="stat-card fade-in">
+    <div class="stat-number" data-target="150">0</div>
+    <div class="stat-label">Active Members</div>
+  </div>
+  <div class="stat-card fade-in">
+    <div class="stat-number" data-target="45">0</div>
+    <div class="stat-label">Events This Year</div>
+  </div>
+  <div class="stat-card fade-in">
+    <div class="stat-number" data-target="12">0</div>
+    <div class="stat-label">Speaker Series</div>
+  </div>
+  <div class="stat-card fade-in">
+    <div class="stat-number" data-target="5000">0</div>
+    <div class="stat-label">Sq. Feet of Space</div>
+  </div>
+</section>
+
+<section id="features">
+  <div class="section-header fade-in">
+    <div class="section-tag">Features</div>
+    <h2>Everything You Need to <span class="gradient-text">Thrive</span></h2>
+    <p>Purpose-built spaces designed for modern digital professionals</p>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card fade-in">
+      <div class="feature-icon">💻</div>
+      <h3>Co-Working Spaces</h3>
+      <p>Premium hot desks, dedicated workstations, and private offices with high-speed fibre connectivity in every corner.</p>
+    </div>
+    <div class="feature-card fade-in">
+      <div class="feature-icon">🎙️</div>
+      <h3>Recording Studio</h3>
+      <p>Professional podcast and video production studio complete with broadcast-quality equipment and sound isolation.</p>
+    </div>
+    <div class="feature-card fade-in">
+      <div class="feature-icon">🚀</div>
+      <h3>Innovation Lab</h3>
+      <p>An incubator space for startups and creative projects with 3D printing, laser cutting, and prototyping tools.</p>
+    </div>
+    <div class="feature-card fade-in">
+      <div class="feature-icon">☕</div>
+      <h3>Café & Communal Area</h3>
+      <p>Relax and connect in our spacious café with locally roasted coffee, healthy snacks, and comfortable breakout zones.</p>
+    </div>
+    <div class="feature-card fade-in">
+      <div class="feature-icon">🎓</div>
+      <h3>Training Rooms</h3>
+      <p>State-of-the-art training facilities for workshops, bootcamps, and professional development sessions.</p>
+    </div>
+    <div class="feature-card fade-in">
+      <div class="feature-icon">🌴</div>
+      <h3>Sunshine Coast Location</h3>
+      <p>Perfect balance of work and lifestyle with stunning coastal views just minutes from Noosa and Maroochydore.</p>
+    </div>
+  </div>
+</section>
+
+<section id="community">
+  <div class="section-header fade-in">
+    <div class="section-tag">Showcase</div>
+    <h2>A <span class="gradient-text">Space That Inspires</span></h2>
+    <p>From open collaboration zones to private focus areas</p>
+  </div>
+  <div class="showcase-grid">
+    <div class="showcase-card showcase-large fade-in">
+      <div class="showcase-overlay"></div>
+      <div class="showcase-content">
+        <h2 style="font-family:'Space Grotesk',sans-serif;font-size:2.5rem;color:white;margin-bottom:1rem;">Premium Co-Working</h2>
+        <p style="color:rgba(255,255,255,0.8);max-width:400px;">Ergonomic workstations, dual monitors, and ultra-fast connectivity in a beautifully designed environment.</p>
+      </div>
+    </div>
+    <div class="showcase-card fade-in">
+      <div class="showcase-content">
+        <h3 style="font-family:'Space Grotesk',sans-serif;font-size:1.5rem;color:#fff;margin-bottom:0.5rem;">Podcast Studio</h3>
+        <p style="color:#b0b0c8;font-size:0.9rem;">Broadcast-ready facilities</p>
+      </div>
+    </div>
+    <div class="showcase-card fade-in">
+      <div class="showcase-content">
+        <h3 style="font-family:'Space Grotesk',sans-serif;font-size:1.5rem;color:#fff;margin-bottom:0.5rem;">Event Space</h3>
+        <p style="color:#b0b0c8;font-size:0.9rem;">Host 100+ guests</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="events">
+  <div class="section-header fade-in">
+    <div class="section-tag">Events</div>
+    <h2>Upcoming <span class="gradient-text">Events</span></h2>
+    <p>Join our vibrant community of digital creators and innovators</p>
+  </div>
+  <div class="events-list">
+    <div class="event-card fade-in">
+      <div class="event-date">
+        <div class="day">15</div>
+        <div class="month">Nov</div>
+      </div>
+      <div class="event-info">
+        <h3>AI & The Future of Work</h3>
+        <p>Exploring how artificial intelligence is shaping the digital workplace. A panel discussion with local tech leaders.</p>
+        <div class="event-meta">
+          <span>⏰ 6:00 PM - 8:30 PM</span>
+          <span>📍 Main Hall</span>
+          <span>👥 50 seats</span>
+        </div>
+      </div>
+    </div>
+    <div class="event-card fade-in">
+      <div class="event-date">
+        <div class="day">22</div>
+        <div class="month">Nov</div>
+      </div>
+      <div class="event-info">
+        <h3>Startup Pitch Night</h3>
+        <p>Watch 5 local startups pitch their ideas to a panel of investors. Network with founders after the presentations.</p>
+        <div class="event-meta">
+          <span>⏰ 5:30 PM - 9:00 PM</span>
+          <span>📍 Innovation Lab</span>
+          <span>👥 Open event</span>
+        </div>
+      </div>
+    </div>
+    <div class="event-card fade-in">
+      <div class="event-date">
+        <div class="day">05</div>
+        <div class="month">Dec</div>
+      </div>
+      <div class="event-info">
+        <h3>Creator Masterclass: Content Strategy</h3>
+        <p>Learn from award-winning content creators how to build a personal brand and grow your digital audience.</p>
+        <div class="event-meta">
+          <span>⏰ 10:00 AM - 4:00 PM</span>
+          <span>📍 Training Room</span>
+          <span>👥 30 seats</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonial fade-in">
+  <p>Peregian Digital Hub transformed how our team works. The energy of the community, combined with world-class facilities, has accelerated our growth exponentially.</p>
+  <div class="testimonial-author">
+    <div class="author-avatar">SJ</div>
+    <div>
+      <div class="author-name">Sarah Johnson</div>
+      <div class="author-title">Founder, Brightside Digital</div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="cta fade-in">
+  <div class="cta-content">
+    <h2>Ready to Join the <span class="gradient-text">Community</span>?</h2>
+    <p>Book a tour of Peregian Digital Hub and discover your new creative workspace on the Sunshine Coast.</p>
+    <div class="hero-buttons">
+      <a href="#" class="btn btn-primary">Schedule a Tour →</a>
+      <a href="#" class="btn btn-secondary">View Membership</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <h3>Δ Peregian Hub</h3>
+      <p>Where innovation meets creativity. Sunshine Coast's premier digital hub for entrepreneurs, creators, and digital professionals.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <a href="#home">Home</a>
+      <a href="#features">Features</a>
+      <a href="#community">Community</a>
+      <a href="#events">Events</a>
+    </div>
+    <div class="footer-col">
+      <h4>Membership</h4>
+      <a href="#">Hot Desk</a>
+      <a href="#">Dedicated Desk</a>
+      <a href="#">Private Office</a>
+      <a href="#">Day Pass</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="#">hello@peregianhub.com.au</a>
+      <a href="#">(07) 1234 5678</a>
+      <a href="#">Peregian Beach, QLD</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>© 2024 Peregian Digital Hub. All rights reserved.</div>
+    <div>Designed with ✦ on the Sunshine Coast</div>
+  </div>
+</footer>
+
+<script>
+  // Navbar scroll effect
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('navbar');
+    nav.classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  // Mobile menu
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('active');
+  }
+
+  // Fade-in animations on scroll
+  const fadeEls = document.querySelectorAll('.fade-in');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  fadeEls.forEach(el => observer.observe(el));
+
+  // Counter animation
+  const counters = document.querySelectorAll('.stat-number');
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const target = parseInt(entry.target.getAttribute('data-target'));
+        let current = 0;
+        const increment = target / 60;
+        const timer = setInterval(() => {
+          current += increment;
+          if (current >= target) {
+            entry.target.textContent = target + '+';
+            clearInterval(timer);
+          } else {
+            entry.target.textContent = Math.floor(current);
+          }
+        }, 30);
+        counterObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  counters.forEach(counter => counterObserver.observe(counter));
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
