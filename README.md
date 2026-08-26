@@ -20,9 +20,16 @@ kookaburra-surfing/          <- experiment folder
 peregian-digital-hub/
   prompt.md
   deepseek-v4-flash-0731.html
+
+littlecove/
+  prompt.md
+  little-cove.jpg            <- reference photo the prompt points at
+  photo-credit.md            <- where that photo came from, and its licence
+  qwen3.8-27b.html
 ```
 
 - `prompt.md` records the original prompt (the model implied by the output filename).
+- An experiment may hand the model a **reference asset** (e.g. a photo) in the same folder; `prompt.md` points at it by filename. Only models that can see images can run those.
 - Each model's output is a **single file or folder named after that model** inside the experiment folder. Use a folder instead of a single file when the output is multi-part.
 
 ## How to run an experiment
