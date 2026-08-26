@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Little Cove, Noosa — gentle waves for longboarders</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    background: #062a40;
+    font-family: Georgia, 'Times New Roman', serif;
+  }
+  .scene {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    min-height: 520px;
+  }
+  .scene svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  /* ---------- sky ---------- */
+  .sky-grad {
+    animation: skyshift 40s ease-in-out infinite alternate;
+  }
+  @keyframes skyshift {
+    from { filter: brightness(1); }
+    to   { filter: brightness(1.07); }
+  }
+
+  /* ---------- sun glow ---------- */
+  .sun-glow {
+    animation: glow 8s ease-in-out infinite alternate;
+    transform-origin: 640px 150px;
+  }
+  @keyframes glow {
+    from { opacity: 0.55; }
+    to   { opacity: 0.85; }
+  }
+
+  /* ---------- drifting clouds ---------- */
+  .cloud-a { animation: drift-a 70s linear infinite; }
+  .cloud-b { animation: drift-b 95s linear infinite; }
+  .cloud-c { animation: drift-a 120s linear infinite; }
+  @keyframes drift-a {
+    from { transform: translateX(-220px); }
+    to   { transform: translateX(1400px); }
+  }
+  @keyframes drift-b {
+    from { transform: translateX(1400px); }
+    to   { transform: translateX(-260px); }
+  }
+
+  /* ---------- ocean: long, easy swells ---------- */
+  .wave-back  { animation: swell-a 11s ease-in-out infinite; }
+  .wave-mid   { animation: swell-b 8.5s ease-in-out infinite; }
+  .wave-front { animation: swell-c 6.5s ease-in-out infinite; }
+  @keyframes swell-a {
+    0%, 100% { transform: translate(0, 0); }
+    50%      { transform: translate(-60px, 5px); }
+  }
+  @keyframes swell-b {
+    0%, 100% { transform: translate(0, 0); }
+    50%      { transform: translate(50px, 4px); }
+  }
+  @keyframes swell-c {
+    0%, 100% { transform: translate(0, 0); }
+    50%      { transform: translate(-38px, 3px); }
+  }
+
+  /* shimmering water light */
+  .sparkle {
+    animation: sparkle 4s ease-in-out infinite;
+  }
+  .sparkle.d2 { animation-delay: 1.3s; }
+  .sparkle.d3 { animation-delay: 2.6s; }
+  @keyframes sparkle {
+    0%, 100% { opacity: 0.05; }
+    50%      { opacity: 0.55; }
+  }
+
+  /* ---------- longboarder gliding with the swell ---------- */
+  .rider {
+    animation: ride 16s linear infinite;
+  }
+  @keyframes ride {
+    0%   { transform: translate(-160px, 0); }
+    50%  { transform: translate(880px, -6px); }
+    100% { transform: translate(1560px, 0); }
+  }
+  .rider-body {
+    animation: bob 3.2s ease-in-out infinite;
+    transform-origin: center;
+  }
+  @keyframes bob {
+    0%, 100% { transform: rotate(-1.5deg); }
+    50%      { transform: rotate(1.5deg); }
+  }
+  .wake {
+    animation: wakelength 16s linear infinite;
+  }
+  @keyframes wakelength {
+    0%   { opacity: 0; }
+    12%  { opacity: 0.7; }
+    88%  { opacity: 0.7; }
+    100% { opacity: 0; }
+  }
+
+  /* ---------- seagulls ---------- */
+  .gull { animation: gullbob 6s ease-in-out infinite; }
+  .gull.g2 { animation-duration: 7.5s; animation-delay: 1s; }
+  .gull.g3 { animation-duration: 5.2s; animation-delay: 2.2s; }
+  @keyframes gullbob {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-9px); }
+  }
+
+  /* ---------- palms sway ---------- */
+  .fronds {
+    transform-origin: 96px 300px;
+    animation: sway 7s ease-in-out infinite alternate;
+  }
+  .fronds.f2 {
+    transform-origin: 46px 336px;
+    animation-duration: 8.5s;
+  }
+  @keyframes sway {
+    from { transform: rotate(-1.6deg); }
+    to   { transform: rotate(2.2deg); }
+  }
+
+  /* ---------- title ---------- */
+  .title {
+    position: absolute;
+    top: 5.5vh;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: #fff;
+    text-shadow: 0 2px 18px rgba(0, 40, 60, 0.55);
+    pointer-events: none;
+    z-index: 5;
+  }
+  .title h1 {
+    margin: 0;
+    font-size: clamp(30px, 5vw, 54px);
+    font-weight: 500;
+    letter-spacing: 0.14em;
+  }
+  .title p {
+    margin: 8px 0 0;
+    font-size: clamp(13px, 1.6vw, 18px);
+    font-style: italic;
+    opacity: 0.92;
+    letter-spacing: 0.05em;
+  }
+</style>
+</head>
+<body>
+<div class="scene">
+  <svg viewBox="0 0 1200 675" preserveAspectRatio="xMidYMid slice" aria-label="Little Cove, Noosa — a calm ocean with easy rolling waves and a longboarder">
+
+    <defs>
+      <!-- sky -->
+      <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%"  stop-color="#7ec8e3"/>
+        <stop offset="45%" stop-color="#a8dcec"/>
+        <stop offset="100%" stop-color="#e8f6f0"/>
+      </linearGradient>
+      <!-- ocean -->
+      <linearGradient id="seaGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%"   stop-color="#1f8fb2"/>
+        <stop offset="55%"  stop-color="#37b3c9"/>
+        <stop offset="100%" stop-color="#7fd8d2"/>
+      </linearGradient>
+      <linearGradient id="waveGradBack" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#2a9fbf"/>
+        <stop offset="100%" stop-color="#47b8cc"/>
+      </linearGradient>
+      <linearGradient id="waveGradMid" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#33a9c4"/>
+        <stop offset="100%" stop-color="#62c9d0"/>
+      </linearGradient>
+      <linearGradient id="waveGradFront" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#45bcc4"/>
+        <stop offset="100%" stop-color="#8fe0d6"/>
+      </linearGradient>
+      <!-- sand -->
+      <linearGradient id="sandGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#f3e3bd"/>
+        <stop offset="100%" stop-color="#eed9a6"/>
+      </linearGradient>
+      <!-- wet sand -->
+      <linearGradient id="wetGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#d9c48f"/>
+        <stop offset="100%" stop-color="#e9d9ae"/>
+      </linearGradient>
+      <!-- sun -->
+      <radialGradient id="sunGrad" cx="50%" cy="50%" r="50%">
+        <stop offset="0%"  stop-color="#fff9e3"/>
+        <stop offset="60%" stop-color="#ffe9a8"/>
+        <stop offset="100%" stop-color="#ffd76e" stop-opacity="0"/>
+      </radialGradient>
+      <!-- headland -->
+      <linearGradient id="capeGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#5b8a72"/>
+        <stop offset="100%" stop-color="#3e6b55"/>
+      </linearGradient>
+      <linearGradient id="capeFar" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#89ab9a"/>
+        <stop offset="100%" stop-color="#6b947f"/>
+      </linearGradient>
+    </defs>
+
+    <!-- ================= SKY ================= -->
+    <rect class="sky-grad" x="0" y="0" width="1200" height="400" fill="url(#skyGrad)"/>
+
+    <!-- sun with soft glow -->
+    <circle class="sun-glow" cx="640" cy="150" r="90" fill="url(#sunGrad)"/>
+    <circle cx="640" cy="150" r="34" fill="#fff4cf"/>
+
+    <!-- clouds -->
+    <g class="cloud-a" opacity="0.85" fill="#ffffff">
+      <ellipse cx="180" cy="92" rx="58" ry="16"/>
+      <ellipse cx="150" cy="82" rx="34" ry="13"/>
+      <ellipse cx="215" cy="84" rx="30" ry="11"/>
+    </g>
+    <g class="cloud-b" opacity="0.7" fill="#ffffff">
+      <ellipse cx="880" cy="60" rx="66" ry="15"/>
+      <ellipse cx="845" cy="50" rx="34" ry="11"/>
+      <ellipse cx="915" cy="52" rx="30" ry="10"/>
+    </g>
+    <g class="cloud-c" opacity="0.6" fill="#ffffff">
+      <ellipse cx="430" cy="130" rx="44" ry="11"/>
+      <ellipse cx="460" cy="123" rx="24" ry="9"/>
+    </g>
+
+    <!-- seagulls -->
+    <g stroke="#4a6a78" stroke-width="2.4" fill="none" stroke-linecap="round">
+      <path class="gull"    d="M300 170 q10 -9 20 0 q10 -9 20 0"/>
+      <path class="gull g2" d="M760 120 q8 -7 16 0 q8 -7 16 0"/>
+      <path class="gull g3" d="M520 90  q7 -6 14 0 q7 -6 14 0"/>
+    </g>
+
+    <!-- ================= HEADLANDS (Noosa's capes) ================= -->
+    <!-- far cape, right -->
+    <path d="M760 400 L880 322 L1000 356 L1120 318 L1200 352 L1200 400 Z" fill="url(#capeFar)" opacity="0.9"/>
+    <!-- near cape, left -->
+    <path d="M0 400 L0 340 L90 366 L210 330 L330 368 L430 352 L430 400 Z" fill="url(#capeGrad)"/>
+    <!-- tree scrub on near cape -->
+    <g fill="#2f5c46" opacity="0.9">
+      <ellipse cx="60"  cy="352" rx="30" ry="14"/>
+      <ellipse cx="150" cy="356" rx="34" ry="15"/>
+      <ellipse cx="255" cy="352" rx="36" ry="15"/>
+      <ellipse cx="350" cy="362" rx="30" ry="12"/>
+    </g>
+
+    <!-- ================= OCEAN ================= -->
+    <rect x="0" y="398" width="1200" height="180" fill="url(#seaGrad)"/>
+
+    <!-- horizon shimmer -->
+    <rect x="0" y="396" width="1200" height="4" fill="#dff3ec" opacity="0.55"/>
+
+    <!-- back swell: long, rounded, no lip -->
+    <path class="wave-back" fill="url(#waveGradBack)" opacity="0.95"
+      d="M-100 448
+         Q 50 432, 200 448
+         Q 350 464, 500 448
+         Q 650 432, 800 448
+         Q 950 464, 1100 448
+         Q 1250 432, 1400 448
+         L 1400 675 L -100 675 Z"/>
+
+    <!-- mid swell -->
+    <path class="wave-mid" fill="url(#waveGradMid)"
+      d="M-100 486
+         Q 75 470, 250 486
+         Q 425 502, 600 486
+         Q 775 470, 950 486
+         Q 1125 502, 1300 486
+         L 1400 486 L 1400 675 L -100 675 Z"/>
+
+    <!-- longboarder gliding on the mid swell -->
+    <g class="rider">
+      <!-- wake trailing the board -->
+      <path class="wake" d="M0 512 L -150 514 Q -80 508 0 508 Z" fill="#eafcf6" opacity="0.7"/>
+      <g class="rider-body">
+        <!-- board: long, rounded nose -->
+        <path d="M-34 514 Q -44 511 -40 507 Q -20 501 26 503 Q 40 504 38 509 Q 30 516 -34 514 Z" fill="#f4f1e8"/>
+        <path d="M-34 514 Q -44 511 -40 507 Q -20 501 26 503 Q 40 504 38 509 Q 30 516 -34 514 Z" fill="none" stroke="#c9c2ac" stroke-width="1"/>
+        <!-- feet -->
+        <rect x="-14" y="498" width="6" height="8" rx="2.5" fill="#20303a"/>
+        <rect x="14"  y="497" width="6" height="8" rx="2.5" fill="#20303a"/>
+        <!-- torso, slightly crouched -->
+        <path d="M-8 500 Q -2 478 6 476 Q 12 475 12 482 L 10 499 L -8 499 Z" fill="#d9534a"/>
+        <!-- head -->
+        <circle cx="9" cy="470" r="6" fill="#e8b48c"/>
+        <!-- arm back for balance -->
+        <path d="M2 480 Q -14 484 -20 492" stroke="#d9534a" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+        <!-- arm forward -->
+        <path d="M11 480 Q 22 482 27 488" stroke="#d9534a" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+      </g>
+    </g>
+
+    <!-- front swell: biggest, softest face, whitewater line -->
+    <path class="wave-front" fill="url(#waveGradFront)"
+      d="M-100 540
+         Q 100 520, 300 540
+         Q 500 560, 700 540
+         Q 900 520, 1100 540
+         Q 1250 552, 1400 540
+         L 1400 675 L -100 675 Z"/>
+
+    <!-- whitewater curling in behind the front swell -->
+    <path class="wave-front" fill="#f2fdf9" opacity="0.85"
+      d="M-100 540
+         Q 100 520, 300 540
+         Q 500 560, 700 540
+         Q 900 520, 1100 540
+         Q 1250 552, 1400 540
+         L 1400 552
+         Q 1250 564, 1100 552
+         Q 900 532, 700 552
+         Q 500 572, 300 552
+         Q 100 532, -100 552 Z"/>
+
+    <!-- sparkling light on the water -->
+    <g stroke="#ffffff" stroke-linecap="round">
+      <line class="sparkle"    x1="220"  y1="470" x2="260"  y2="470" stroke-width="3"/>
+      <line class="sparkle d2" x1="540"  y1="505" x2="590"  y2="505" stroke-width="3"/>
+      <line class="sparkle d3" x1="860"  y1="468" x2="900"  y2="468" stroke-width="3"/>
+      <line class="sparkle"    x1="1020" y1="500" x2="1065" y2="500" stroke-width="3"/>
+      <line class="sparkle d2" x1="380"  y1="522" x2="420"  y2="522" stroke-width="2.5"/>
+      <line class="sparkle d3" x1="700"  y1="488" x2="745"  y2="488" stroke-width="2.5"/>
+    </g>
+
+    <!-- ================= SHORE ================= -->
+    <!-- shallow water lapping -->
+    <path class="wave-back" fill="#9fe3d8" opacity="0.8"
+      d="M-100 606
+         Q 150 596, 400 606
+         Q 650 616, 900 606
+         Q 1100 598, 1400 606
+         L 1400 640 L -100 640 Z"/>
+
+    <!-- wet sand -->
+    <path d="M-100 630
+             Q 200 618, 500 628
+             Q 800 638, 1400 624
+             L 1400 675 L -100 675 Z" fill="url(#wetGrad)"/>
+
+    <!-- dry sand -->
+    <path d="M-100 652
+             Q 300 642, 700 650
+             Q 1000 656, 1400 648
+             L 1400 675 L -100 675 Z" fill="url(#sandGrad)"/>
+
+    <!-- foam line where the shallow water meets the sand -->
+    <path class="wave-mid" fill="#ffffff" opacity="0.75"
+      d="M-100 630
+         Q 200 618, 500 628
+         Q 800 638, 1400 624
+         L 1400 632
+         Q 800 646, 500 636
+         Q 200 626, -100 638 Z"/>
+
+    <!-- ================= PALMS ================= -->
+    <!-- left palm -->
+    <g>
+      <path d="M96 486 Q 104 380 92 300 Q 90 288 96 284" stroke="#7a5a3a" stroke-width="13" fill="none" stroke-linecap="round"/>
+      <path d="M96 486 Q 104 380 92 300" stroke="#8f6c46" stroke-width="7" fill="none" stroke-linecap="round"/>
+      <g class="fronds" fill="#2e7d54">
+        <path d="M92 296 Q 40 270 14 288 Q 44 258 96 282 Z"/>
+        <path d="M92 296 Q 140 262 172 276 Q 146 244 90 278 Z"/>
+        <path d="M92 294 Q 60 240 24 238 Q 58 214 96 276 Z"/>
+        <path d="M92 294 Q 118 236 152 232 Q 132 208 88 272 Z"/>
+        <path d="M92 292 Q 86 232 62 216 Q 96 200 100 276 Z"/>
+        <circle cx="90" cy="292" r="6" fill="#4a3820"/>
+        <circle cx="99" cy="297" r="5.5" fill="#4a3820"/>
+      </g>
+    </g>
+
+    <!-- smaller right palm -->
+    <g>
+      <path d="M46 500 Q 52 420 44 336" stroke="#7a5a3a" stroke-width="10" fill="none" stroke-linecap="round"/>
+      <g class="fronds f2" fill="#358a5e">
+        <path d="M44 336 Q 4 316 -16 330 Q 10 306 46 326 Z"/>
+        <path d="M44 336 Q 84 312 104 324 Q 82 300 42 324 Z"/>
+        <path d="M44 334 Q 26 292 2 288 Q 30 272 48 322 Z"/>
+        <path d="M44 334 Q 62 290 86 286 Q 68 266 42 320 Z"/>
+        <circle cx="44" cy="334" r="5" fill="#4a3820"/>
+      </g>
+    </g>
+
+  </svg>
+
+  <div class="title">
+    <h1>LITTLE COVE, NOOSA</h1>
+    <p>soft, shoulder-high rollers · a warm morning · perfect for a longboard</p>
+  </div>
+</div>
+</body>
+</html>
