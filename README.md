@@ -23,13 +23,13 @@ peregian-digital-hub/
 
 littlecove/
   prompt.md
-  little-cove.jpg            <- reference photo the prompt points at
+  little-cove.jpg            <- the real place, for comparing outputs against
   photo-credit.md            <- where that photo came from, and its licence
   qwen3.8-27b.html
 ```
 
 - `prompt.md` records the original prompt (the model implied by the output filename).
-- An experiment may hand the model a **reference asset** (e.g. a photo) in the same folder; `prompt.md` points at it by filename. Only models that can see images can run those.
+- An experiment folder may also hold a **reference asset** (e.g. a photo of the real place) to compare outputs against. It is not part of the prompt unless `prompt.md` says so.
 - Each model's output is a **single file or folder named after that model** inside the experiment folder. Use a folder instead of a single file when the output is multi-part.
 
 ## How to run an experiment

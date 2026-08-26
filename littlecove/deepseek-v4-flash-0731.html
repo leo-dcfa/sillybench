@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Little Cove, Noosa Heads — the perfect longboard wave</title>
+<style>
+  html, body {
+    margin: 0;
+    height: 100%;
+    background: #2b5f6b;
+    overflow: hidden;
+    font-family: Georgia, "Times New Roman", serif;
+  }
+  #scene {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    display: block;
+  }
+  #scene g, #scene path, #scene ellipse, #scene circle, #scene line, #scene polyline {
+    vector-effect: non-scaling-stroke;
+  }
+
+  /* ---- drifting morning clouds ---- */
+  @keyframes drift {
+    0%   { transform: translateX(-60px); }
+    100% { transform: translateX(90px); }
+  }
+  .cloud { animation: drift 90s linear infinite; }
+
+  /* ---- swell marching in, lines stacking to the horizon ---- */
+  @keyframes march {
+    0%   { transform: translate(0,0); opacity: 0; }
+    10%  { opacity: 1; }
+    90%  { opacity: .9; }
+    100% { transform: translate(-46px, 8px); opacity: 0; }
+  }
+  .swell { animation: march 9s linear infinite; }
+
+  /* ---- the long peel: breaking section runs down the point ---- */
+  @keyframes peel {
+    0%   { transform: translate(0, 0); }
+    100% { transform: translate(-560px, 26px); }
+  }
+  .peelwrap { animation: peel 14s linear infinite; }
+
+  /* ---- rider on the shoulder, cross-stepping to the nose, hang five ---- */
+  @keyframes step {
+    0%, 100% { transform: translate(-8px, 0) rotate(-2deg); }
+    50%      { transform: translate(-34px, -3px) rotate(-6deg); }
+  }
+  .surf { animation: step 4.2s ease-in-out infinite; }
+
+  /* ---- gentle riding bob for the distant riders ---- */
+  @keyframes bob {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50%      { transform: translateY(-5px) rotate(2deg); }
+  }
+  .bob { animation: bob 2.6s ease-in-out infinite; }
+
+  /* ---- board rises and falls with each passing swell ---- */
+  @keyframes rise {
+    0%, 100% { transform: translateY(2px); }
+    50%      { transform: translateY(-4px); }
+  }
+  .rise { animation: rise 6.5s ease-in-out infinite; }
+
+  /* ---- foam running up the sand and draining back ---- */
+  @keyframes swash {
+    0%, 100% { transform: translateY(26px); opacity: .85; }
+    50%      { transform: translateY(2px);  opacity: 1; }
+  }
+  .swash { animation: swash 7.5s ease-in-out infinite; }
+
+  @keyframes drain {
+    0%, 100% { transform: translateY(-30px); opacity: .5; }
+    55%      { transform: translateY(-2px);  opacity: .95; }
+  }
+  .drain { animation: drain 7.5s ease-in-out infinite; }
+
+  /* ---- spray mist on the peeling wave ---- */
+  @keyframes mist {
+    0%, 100% { opacity: .25; transform: scale(1); }
+    50%      { opacity: .8;  transform: scale(1.25); }
+  }
+  .mist { animation: mist 2.2s ease-in-out infinite; }
+
+  /* ---- sun sparkle on the water ---- */
+  @keyframes sparkle {
+    0%, 100% { opacity: 0; }
+    50%      { opacity: .9; }
+  }
+  .sparkle { animation: sparkle 3.4s ease-in-out infinite; }
+
+  /* ---- reflected morning sun shimmer column ---- */
+  @keyframes shimmer {
+    0%, 100% { opacity: .25; transform: translateY(0); }
+    50%      { opacity: .65; transform: translateY(10px); }
+  }
+  .shimmer { animation: shimmer 6s ease-in-out infinite; }
+
+  /* ---- hoop pines and pandanus swaying in the offshore ---- */
+  @keyframes sway {
+    0%, 100% { transform: rotate(0deg); transform-origin: 50% 92%; }
+    50%      { transform: rotate(1.6deg); transform-origin: 50% 92%; }
+  }
+  .sway { animation: sway 7s ease-in-out infinite; }
+
+  /* ---- gulls gliding ---- */
+  @keyframes glide {
+    0%   { transform: translate(0,0); }
+    50%  { transform: translate(130px, 22px); }
+    100% { transform: translate(0,0); }
+  }
+  .glide { animation: glide 26s ease-in-out infinite; }
+
+  /* ---- caption, small and unobtrusive ---- */
+  #caption {
+    position: fixed;
+    left: 18px;
+    bottom: 14px;
+    color: rgba(255,250,235,0.85);
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-shadow: 0 1px 3px rgba(20,40,40,0.5);
+    z-index: 5;
+  }
+  #caption strong { font-weight: normal; font-size: 16px; font-style: italic; letter-spacing: 0; }
+</style>
+</head>
+<body>
+
+<svg id="scene" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+
+  <defs>
+    <!-- morning sky -->
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#9cc4da"/>
+      <stop offset="0.45" stop-color="#cfe0ea"/>
+      <stop offset="0.72" stop-color="#f3d9a8"/>
+      <stop offset="1" stop-color="#fdf0d0"/>
+    </linearGradient>
+
+    <!-- turquoise water over pale sand -->
+    <linearGradient id="water" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2c7d91"/>
+      <stop offset="0.35" stop-color="#3fa8ad"/>
+      <stop offset="0.7" stop-color="#7ecbbf"/>
+      <stop offset="1" stop-color="#b7e6d5"/>
+    </linearGradient>
+
+    <!-- deep trough of the face of the peeling wave -->
+    <linearGradient id="face" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2f8996"/>
+      <stop offset="1" stop-color="#6cc5bb"/>
+    </linearGradient>
+
+    <linearGradient id="sand" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f4e5c6"/>
+      <stop offset="1" stop-color="#dbc093"/>
+    </linearGradient>
+
+    <radialGradient id="sun" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#fff7d8" stop-opacity="0.95"/>
+      <stop offset="0.6" stop-color="#ffe9a8" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#ffe9a8" stop-opacity="0"/>
+    </radialGradient>
+
+    <linearGradient id="headland" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5f7a54"/>
+      <stop offset="0.55" stop-color="#7a8f63"/>
+      <stop offset="1" stop-color="#8a7f6f"/>
+    </linearGradient>
+
+    <linearGradient id="rock" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#9c8d7c"/>
+      <stop offset="1" stop-color="#6f645a"/>
+    </linearGradient>
+
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6"/>
+    </filter>
+    <filter id="soft2" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="14"/>
+    </filter>
+
+    <!-- ===== the longboard rider, nose pointing left (down the board's run) ===== -->
+    <g id="rider">
+      <!-- board -->
+      <g class="board">
+        <path d="M -88 0 C -88 -7, -42 -9, 0 -9 L 18 -9 C 56 -9, 66 -4, 66 0 C 66 5, 54 10, -20 10 L -72 9 C -87 9, -88 4, -88 0 Z"
+              fill="#f6efe0" stroke="#c3b691" stroke-width="1.2"/>
+        <path d="M 42 9 L 35 16 L 50 15 Z" fill="#8b7355"/>
+      </g>
+      <!-- surfer, cross-stepping to the nose -->
+      <g class="surf">
+        <!-- back leg -->
+        <path d="M -6 1 L -17 7 L -22 10" stroke="#222" stroke-width="6" fill="none" stroke-linecap="round"/>
+        <!-- front leg -->
+        <path d="M 0 1 L 12 8" stroke="#222" stroke-width="6" fill="none" stroke-linecap="round"/>
+        <!-- torso -->
+        <path d="M -12 -6 C -14 -19, -9 -25, -4 -31 C 0 -37, 7 -39, 9 -32 L 9 -22 C 7 -18, 2 -12, -12 -6 Z" fill="#1f5d7a"/>
+        <!-- leading arm raised for balance / nose-ride -->
+        <path d="M 8 -30 C 16 -36, 22 -38, 28 -43" stroke="#e6b185" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <!-- head -->
+        <circle cx="2" cy="-41" r="6.2" fill="#e9b289"/>
+        <path d="M -4 -46 A 6 6 0 0 1 7 -44 L 6 -38 L -4 -36 Z" fill="#2a2430"/>
+      </g>
+    </g>
+  </defs>
+
+  <!-- ===================== SKY ===================== -->
+  <rect x="0" y="0" width="1600" height="900" fill="url(#sky)"/>
+
+  <!-- distant hazy morning cumulus -->
+  <g filter="url(#soft)">
+    <ellipse class="cloud" cx="320" cy="150" rx="150" ry="34" fill="#fdf6e6" opacity="0.7"/>
+    <ellipse class="cloud" cx="1190" cy="120" rx="180" ry="30" fill="#fdf6e6" opacity="0.6"/>
+    <ellipse class="cloud" cx="900" cy="230" rx="120" ry="22" fill="#fdf4de" opacity="0.5"/>
+  </g>
+
+  <!-- low morning sun over the water -->
+  <circle cx="1150" cy="330" r="180" fill="url(#sun)"/>
+  <circle cx="1150" cy="330" r="58" fill="#fff6d0" opacity="0.95"/>
+
+  <!-- ===================== HORIZON RIDGE (far national park) ===================== -->
+  <g filter="url(#soft2)" opacity="0.55">
+    <path d="M 0 470 C 300 448, 700 436, 1120 452 C 1360 460, 1500 440, 1600 452 L 1600 475 L 0 475 Z" fill="#86a482"/>
+  </g>
+
+  <!-- ===================== OCEAN ===================== -->
+  <rect x="0" y="462" width="1600" height="438" fill="url(#water)"/>
+
+  <!-- sun shimmer column on the water -->
+  <g class="shimmer" filter="url(#soft)">
+    <path d="M 1080 620 L 1220 620 L 1190 900 L 1110 900 Z" fill="#ffe9a8" opacity="0.35"/>
+  </g>
+
+  <!-- clean lines of swell stacking out to the horizon -->
+  <g opacity="0.5">
+    <path class="swell" d="M 60 485 Q 260 478 470 486 T 900 487 Q 1200 486 1540 485" stroke="#cdeee6" stroke-width="2.4" fill="none" style="animation-delay:0s"/>
+    <path class="swell" d="M 40 512 Q 260 504 490 513 T 940 514 Q 1230 512 1560 510" stroke="#bfe9e0" stroke-width="2.8" fill="none" style="animation-delay:1.2s"/>
+    <path class="swell" d="M 20 544 Q 280 534 520 545 T 1000 546 Q 1270 543 1580 540" stroke="#b4e4da" stroke-width="3.2" fill="none" style="animation-delay:2.4s"/>
+    <path class="swell" d="M 0 578 Q 300 566 560 579 T 1060 580 Q 1320 576 1600 572" stroke="#abdfd3" stroke-width="3.6" fill="none" style="animation-delay:3.6s"/>
+    <path class="swell" d="M 0 612 Q 320 598 600 614 T 1120 615 Q 1380 610 1600 606" stroke="#a2d9cc" stroke-width="4" fill="none" style="animation-delay:4.8s"/>
+  </g>
+
+  <!-- water sparkles -->
+  <g id="sparkles"></g>
+
+  <!-- ===================== RIGHT POINT (low rock shelf running out to sea) ===================== -->
+  <g>
+    <path d="M 1600 540 L 1430 596 C 1335 630, 1250 668, 1200 718 C 1188 762, 1198 806, 1215 838 L 1215 900 L 1600 900 Z" fill="url(#rock)"/>
+    <!-- rock texture on the point -->
+    <g opacity="0.5">
+      <path d="M 1290 640 C 1310 640, 1330 648, 1345 662" stroke="#584e45" stroke-width="4" fill="none"/>
+      <path d="M 1245 700 C 1270 692, 1300 700, 1322 716" stroke="#584e45" stroke-width="4" fill="none"/>
+      <path d="M 1380 610 C 1410 606, 1440 612, 1465 626" stroke="#584e45" stroke-width="4" fill="none"/>
+      <circle cx="1235" cy="660" r="14" fill="#4f453d" opacity="0.5"/>
+      <circle cx="1278" cy="730" r="11" fill="#4f453d" opacity="0.5"/>
+    </g>
+    <!-- a couple of seal-ish rounded boulders at the point tip -->
+    <ellipse cx="1218" cy="726" rx="16" ry="10" fill="#756a5f"/>
+    <ellipse cx="1252" cy="700" rx="13" ry="9" fill="#83776b"/>
+  </g>
+
+  <!-- ===================== THE PEELING WAVE ===================== -->
+  <g class="peelwrap">
+    <!-- unbroken shoulder the rider trims on -->
+    <path d="M 700 760 C 830 742, 950 722, 1060 716 C 1180 708, 1240 700, 1220 690 L 1200 800 C 1120 800, 1000 806, 880 812 C 800 816, 730 818, 700 818 Z" fill="url(#face)" opacity="0.9"/>
+    <!-- the breaking lip / curl, peeling leftward -->
+    <g>
+      <path class="mist" d="M 1210 618 C 1170 640, 1150 668, 1160 700 C 1172 736, 1210 726, 1240 706 C 1268 688, 1268 648, 1210 618 Z" fill="#ffffff" opacity="0.8"/>
+      <g class="mist" stroke="#ffffff" fill="none" stroke-width="6" stroke-linecap="round" opacity="0.7">
+        <line x1="1218" y1="626" x2="1218" y2="640"/>
+        <line x1="1244" y1="644" x2="1244" y2="660"/>
+        <line x1="1210" y1="668" x2="1210" y2="682"/>
+        <line x1="1240" y1="686" x2="1240" y2="700"/>
+      </g>
+      <!-- long foam trail behind the rider in the wave's wake -->
+      <path d="M 1140 712 C 1120 714, 1060 716, 1010 718 C 970 719, 940 720, 900 722 C 860 724, 820 726, 800 726" stroke="#ffffff" stroke-width="7" fill="none" stroke-linecap="round" opacity="0.55"/>
+    </g>
+    <!-- rider peeling down the point -->
+    <use href="#rider" transform="translate(1000,688) scale(1.35) rotate(6)"/>
+  </g>
+
+  <!-- distant rider trimming on an outside swell -->
+  <g class="bob" transform="translate(760,650) scale(0.8) rotate(2)">
+    <use href="#rider"/>
+  </g>
+  <!-- another longboarder way out, just catching the glass -->
+  <g class="bob rise" transform="translate(1350,612) scale(0.55) rotate(-4)">
+    <use href="#rider"/>
+  </g>
+
+  <!-- ===================== LEFT HEADLAND (Noosa National Park) ===================== -->
+  <g>
+    <!-- headland mass, scrub and rock -->
+    <path d="M 0 0 L 640 0 C 610 130, 546 268, 472 462 C 434 552, 382 636, 300 704 C 232 760, 150 792, 70 812 L 0 822 Z" fill="url(#headland)"/>
+    <!-- darker scrub pockets -->
+    <g opacity="0.4">
+      <path d="M 40 40 C 160 30, 300 60, 420 130 C 500 175, 470 250, 420 290" stroke="#3c5436" stroke-width="10" fill="none"/>
+      <ellipse cx="300" cy="330" rx="120" ry="46" fill="#3c5436"/>
+      <ellipse cx="180" cy="470" rx="90" ry="40" fill="#3c5436"/>
+      <ellipse cx="120" cy="620" rx="80" ry="34" fill="#3c5436"/>
+      <ellipse cx="360" cy="470" rx="80" ry="30" fill="#3c5436"/>
+    </g>
+    <!-- ragged rock face at the foot of the headland -->
+    <path d="M 470 462 C 452 520, 420 580, 372 640 C 340 676, 300 706, 300 706 L 320 720 L 360 700 L 392 716 L 430 690 L 458 712 L 500 676 L 520 700 L 546 668 L 560 690 L 560 640 Z" fill="url(#rock)"/>
+    <!-- timber staircase dropping through the scrub onto the sand -->
+    <g stroke="#7a5b38" fill="none" stroke-width="10" stroke-linecap="round">
+      <path d="M 470 470 L 452 500 L 452 500"/>
+      <path d="M 452 500 L 434 530"/>
+      <path d="M 434 530 L 416 560"/>
+      <path d="M 416 560 L 398 590"/>
+      <path d="M 398 590 L 378 620"/>
+      <path d="M 378 620 L 358 650"/>
+    </g>
+    <g stroke="#a5845a" stroke-width="3" fill="none" opacity="0.8">
+      <path d="M 470 470 L 452 500 M 452 500 L 434 530 M 434 530 L 416 560 M 416 560 L 398 590 M 398 590 L 378 620 M 378 620 L 358 650"/>
+    </g>
+    <!-- little rail posts -->
+    <g stroke="#8a6a42" stroke-width="2.5" opacity="0.85">
+      <line x1="478" y1="475" x2="478" y2="494"/>
+      <line x1="462" y1="504" x2="462" y2="524"/>
+      <line x1="444" y1="534" x2="444" y2="554"/>
+      <line x1="426" y1="564" x2="426" y2="584"/>
+      <line x1="407" y1="594" x2="407" y2="614"/>
+      <line x1="387" y1="624" x2="387" y2="644"/>
+    </g>
+    <!-- lean to hoop pine on the headland -->
+    <g class="sway">
+      <path d="M 505 250 C 492 190, 480 140, 465 90" stroke="#4a3b2a" stroke-width="9" fill="none" stroke-linecap="round"/>
+      <path d="M 465 40 C 445 50, 470 80, 448 96 C 474 96, 492 78, 498 66 C 500 96, 500 120, 470 122 C 452 120, 455 96, 465 76" fill="#2f4a33"/>
+    </g>
+    <!-- pandanus leaning out over the beach -->
+    <g class="sway">
+      <path d="M 300 640 C 288 600, 292 566, 312 538" stroke="#67533a" stroke-width="8" fill="none" stroke-linecap="round"/>
+      <path d="M 312 538 L 292 512 M 312 538 L 324 512 C 316 534, 318 536, 314 540 Z" stroke="#3d6b3d" stroke-width="5" fill="none"/>
+      <path d="M 300 528 C 278 528, 270 512, 274 498 C 290 496, 296 508, 300 528 Z" fill="#3d6b3d"/>
+      <path d="M 322 528 C 342 528, 350 512, 346 498 C 330 496, 324 508, 322 528 Z" fill="#4a7a44"/>
+    </g>
+  </g>
+
+  <!-- ===================== RIGHT COBBLE APRON (rounded rocks) ===================== -->
+  <g>
+    <ellipse cx="1160" cy="824" rx="26" ry="16" fill="#9c8d7c"/>
+    <ellipse cx="1122" cy="842" rx="20" ry="13" fill="#a89a89"/>
+    <ellipse cx="1100" cy="862" rx="24" ry="14" fill="#928376"/>
+    <ellipse cx="1055" cy="854" rx="18" ry="12" fill="#9c8d7c"/>
+    <ellipse cx="1015" cy="872" rx="22" ry="13" fill="#a89a89"/>
+  </g>
+
+  <!-- ===================== BEACH ===================== -->
+  <!-- story of the cove: a soft arc of sand snuggled under the headland -->
+  <path d="M 66 812 C 150 788, 236 746, 300 706 C 360 668, 470 660, 640 668 C 820 676, 960 706, 1080 750 C 1140 770, 1176 790, 1200 820 L 1600 900 L 66 900 Z" fill="url(#sand)"/>
+  <!-- wet sand near the waterline -->
+  <path d="M 300 706 C 360 668, 470 660, 640 668 C 820 676, 960 706, 1080 750 C 1120 763, 1150 776, 1172 792 C 1080 740, 940 708, 820 692 C 700 676, 560 678, 480 692 C 380 710, 330 720, 300 706 Z" fill="#d8cdab" opacity="0.55"/>
+
+  <!-- foam running up the sand and draining back -->
+  <g class="swash">
+    <path d="M 320 730 C 420 692, 560 678, 700 680 C 860 682, 1000 706, 1120 742 C 980 700, 840 686, 700 690 C 560 694, 440 706, 360 732 Z" fill="#ffffff" opacity="0.55"/>
+    <g stroke="#ffffff" stroke-width="4" stroke-linecap="round" fill="none" opacity="0.5">
+      <line x1="420" y1="712" x2="430" y2="728"/>
+      <line x1="560" y1="696" x2="568" y2="710"/>
+      <line x1="700" y1="690" x2="706" y2="704"/>
+      <line x1="860" y1="702" x2="866" y2="716"/>
+      <line x1="1000" y1="726" x2="1006" y2="740"/>
+    </g>
+  </g>
+  <!-- receding drain trickles -->
+  <g class="drain" stroke="#ffffff" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.5">
+    <path d="M 500 720 C 505 738, 510 752, 515 764"/>
+    <path d="M 600 706 C 603 722, 605 732, 606 740"/>
+    <path d="M 740 700 C 744 716, 748 728, 752 738"/>
+    <path d="M 900 716 C 903 730, 906 742, 909 752"/>
+  </g>
+
+  <!-- scattered rounded cobbles at the headland end of the beach -->
+  <g>
+    <ellipse cx="300" cy="820" rx="20" ry="13" fill="#a89a89"/>
+    <ellipse cx="338" cy="838" rx="24" ry="14" fill="#928376"/>
+    <ellipse cx="370" cy="862" rx="19" ry="12" fill="#9c8d7c"/>
+    <ellipse cx="262" cy="846" rx="16" ry="11" fill="#a89a89"/>
+    <ellipse cx="408" cy="880" rx="22" ry="13" fill="#8f8173"/>
+  </g>
+
+  <!-- gulls gliding on the offshore -->
+  <g class="glide" fill="none" stroke="#3a3a3a" stroke-width="2.6" stroke-linecap="round">
+    <path d="M 900 350 C 908 345, 912 345, 920 350 C 928 345, 932 345, 940 350"/>
+    <path d="M 940 335 C 947 331, 950 331, 957 335 C 964 331, 967 331, 974 335"/>
+  </g>
+
+</svg>
+
+<div id="caption"><strong>Little Cove</strong><br>Noosa Heads — a slow right-hander from the point, all day</div>
+
+<script>
+  // Morning sun sparkles on the water — little white glints riding the swell.
+  (function () {
+    var g = document.getElementById('sparkles');
+    var colors = ['#ffffff', '#fff8dc', '#eafff5'];
+    for (var i = 0; i < 34; i++) {
+      var c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      var x = 40 + Math.random() * 1520;
+      var y = 500 + Math.random() * 360;
+      var r = 1.2 + Math.random() * 2.2;
+      c.setAttribute('cx', x);
+      c.setAttribute('cy', y);
+      c.setAttribute('r', r);
+      c.setAttribute('fill', colors[i % colors.length]);
+      c.setAttribute('opacity', '0');
+      c.setAttribute('style', 'animation-delay:' + (Math.random() * 3.4).toFixed(2) + 's;');
+      c.classList.add('sparkle');
+      g.appendChild(c);
+    }
+  })();
+</script>
+
+</body>
+</html>
