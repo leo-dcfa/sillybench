@@ -5,5 +5,6 @@
 - Each experiment folder must contain a `prompt.md` recording the exact prompt.
 - A model performs the prompt in `prompt.md` and writes its output as a **single file or folder named after that model** inside the experiment folder (e.g. `kookaburra-surfing/claude-opus-5.svg`). Use a folder instead of a single file when the output is multi-part.
 - Default language: Python; env/package management: `uv`.
+- HTML outputs can be screenshotted with `uv run tools/render.py <experiment-folder>`; PNGs land in `<experiment-folder>/renders/`.
 - No other commands exist to document yet; if they appear, add them here.
 - Models may NOT look inside other folders. Each model may only read `AGENTS.md` and `README`.
