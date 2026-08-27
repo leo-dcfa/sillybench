@@ -2,3 +2,6 @@
 
 # override global ignore — track agent notes in this repo
 !AGENTS.md
+
+# harness run transcripts / raw SSE streams
+harness/logs/

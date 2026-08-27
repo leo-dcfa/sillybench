@@ -1,163 +1,248 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Peregian Digital Hub | Empowering Digital Transformation</title>
+    <title>Peregian Digital Hub | Bring your ideas to life with AI</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Plus+Jakarta Sans:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; }
-        .glass {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .gradient-text {
-            background: linear-gradient(90deg, #60a5fa, #a78bfa);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .hero-glow {
-            position: absolute;
-            top: -10%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(96, 165, 250, 0.15) 0%, rgba(0,0,0,0) 70%);
-            z-index: -1;
-        }
+        h1, h2, h3 { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .gradient-text { background: linear-gradient(90deg, #60a5fa, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero-bg { background: radial-gradient(circle at top right, #1e1b4b, #020617); }
+        .card-hover:hover { transform: translateY(-5px); transition: all 0.3s ease; }
     </style>
 </head>
-<body class="bg-[#0f172a] text-slate-200 overflow-x-hidden">
-
-    <!-- Background Decorative Element -->
-    <div class="hero-glow"></div>
+<body class="bg-slate-950 text-slate-200 selection:bg-blue-500/30">
 
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 glass border-b border-white/10">
+    <nav class="fixed w-full z-50 glass border-b border-slate-800">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="text-2xl font-bold tracking-tighter text-white">
-                PEREGIAN<span class="text-blue-400">HUB</span>
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center font-bold text-white">P</div>
+                <span class="font-bold text-xl tracking-tight text-white">PEREGIAN <span class="text-blue-400">DIGITAL HUB</span></span>
             </div>
-            <div class="hidden md:flex space-x-8 text-sm font-medium text-slate-400">
-                <a href="#about" class="hover:text-white transition-colors">About</a>
-                <a href="#services" class="hover:text-white transition-colors">Services</a>
-                <a href="#solutions" class="hover:text-white transition-colors">Solutions</a>
-                <a href="#contact" class="hover:text-white transition-colors">Contact</a>
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
+                <a href="#programs" class="hover:text-blue-400 transition-colors">Programs</a>
+                <a href="#facilities" class="hover:text-blue-400 transition-colors">Facilities</a>
+                <a href="#tokenizer" class="hover:text-blue-400 transition-colors">Tokenizer</a>
+                <a href="#connect" class="hover:text-blue-400 transition-colors">Connect</a>
+                <a href="https://www.peregianhub.com.au/book" class="bg-blue-600 text-white px-5 py-2.5 rounded-full hover:bg-blue-500 transition-all">Book a Space</a>
             </div>
-            <a href="#contact" class="bg-blue-600 hover:bg-blue-500 text-white px-5 py-2.5 rounded-full text-sm font-semibold transition-all">
-                Get Started
-            </a>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="pt-32 pb-20 px-6">
-        <div class="max-w-5xl mx-auto text-center">
-            <span class="px-4 py-1.5 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-400 text-xs font-semibold tracking-widest uppercase">
-                Future-Proof Your Business
-            </span>
-            <h1 class="mt-8 text-5xl md:text-7xl font-bold text-white leading-tight">
-                Accelerating <span class="gradient-text">Digital Evolution</span>
+    <section class="relative pt-32 pb-20 md:pt-48 md:pb-32 hero-bg overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full opacity-20 pointer-events-none">
+            <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-600 rounded-full blur-[120px]"></div>
+            <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-purple-600 rounded-full blur-[120px]"></div>
+        </div>
+        <div class="max-w-5xl mx-auto px-6 text-center relative z-10">
+            <h1 class="text-5xl md:text-7xl font-bold text-white leading-tight mb-6">
+                Bring your ideas to life <br><span class="gradient-text">with AI.</span>
             </h1>
-            <p class="mt-6 text-lg md:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed">
-                We bridge the gap between complex technology and business outcomes through strategic digital transformation and expert consulting.
+            <p class="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+                A world-class environment for digital talent in a beautiful beachside village. Learn, build, and create with the next generation of technology.
             </p>
-            <div class="mt-10 flex flex-col sm:flex-row justify-center gap-4">
-                <a href="#services" class="bg-white text-slate-900 px-8 py-4 rounded-xl font-bold hover:bg-slate-200 transition-all">
-                    Explore Services
-                </a>
-                <a href="#contact" class="glass px-8 py-4 rounded-xl font-bold hover:bg-white/10 transition-all">
-                    Book a Consultation
-                </a>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#programs" class="bg-white text-slate-950 px-8 py-4 rounded-full font-semibold hover:bg-blue-50 transition-all text-center">Explore Programs</a>
+                <a href="https://www.peregianhub.com.au/tokenizer" class="glass text-white px-8 py-4 rounded-full font-semibold hover:bg-white/10 transition-all text-center">Discover Tokenizer</a>
             </div>
         </div>
     </section>
 
-    <!-- Services Grid -->
-    <section id="services" class="py-24 px-6 bg-slate-900/50">
+    <!-- Core Pillars -->
+    <section id="programs" class="py-24 px-6">
         <div class="max-w-7xl mx-auto">
-            <div class="mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-white">Our Expertise</h2>
-                <p class="text-slate-400 mt-4">Tailored digital solutions designed for the modern enterprise.</p>
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Grow your potential</h2>
+                <p class="text-slate-400">Tailored pathways for every stage of your journey.</p>
             </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Card 1 -->
-                <div class="glass p-8 rounded-3xl hover:border-blue-500/50 transition-all group">
-                    <div class="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center text-blue-400 mb-6 group-hover:scale-110 transition-transform">
-                        <i data-lucide="layers"></i>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Knowledge -->
+                <div class="glass p-8 rounded-3xl card-hover">
+                    <div class="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center mb-6 text-blue-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.263 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.737 18 7.5 18s3.331.477 4.5 1.253m0-13C13.168 5.477 14.737 5 16.5 5c1.763 0 3.332.477 4.5 1.253v13C19.832 18.477 18.263 18 16.5 18c-1.768 0-3.337.477-4.5 1.253" /></svg>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-3">Digital Strategy</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">
-                        Defining the roadmap for your digital journey, ensuring technology aligns perfectly with your long-term business goals.
-                    </p>
+                    <h3 class="text-xl font-bold text-white mb-3">Knowledge</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">Get your hands on the tools and learn what AI can do through practical sessions.</p>
+                    <a href="#" class="text-blue-400 text-sm font-semibold hover:underline">Explore programs →</a>
                 </div>
-
-                <!-- Card 2 -->
-                <div class="glass p-8 rounded-3xl hover:border-purple-500/50 transition-all group">
-                    <div class="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center text-purple-400 mb-6 group-hover:scale-110 transition-transform">
-                        <i data-lucide="cpu"></i>
+                <!-- Business -->
+                <div class="glass p-8 rounded-3xl card-hover">
+                    <div class="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center mb-6 text-purple-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-3">Cloud Solutions</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">
-                        Seamless migration and management of scalable cloud infrastructures to power your remote and hybrid workforces.
-                    </p>
+                    <h3 class="text-xl font-bold text-white mb-3">Business</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">Use your business insights to find practical ways AI can improve your operations.</p>
+                    <a href="https://www.peregianhub.com.au/uplift" class="text-blue-400 text-sm font-semibold hover:underline">Explore Uplift →</a>
                 </div>
-
-                <!-- Card 3 -->
-                <div class="glass p-8 rounded-3xl hover:border-cyan-500/50 transition-all group">
-                    <div class="w-12 h-12 bg-cyan-500/20 rounded-lg flex items-center justify-center text-cyan-400 mb-6 group-hover:scale-110 transition-transform">
-                        <i data-lucide="shield-check"></i>
+                <!-- Audience -->
+                <div class="glass p-8 rounded-3xl card-hover">
+                    <div class="w-12 h-12 bg-emerald-500/20 rounded-xl flex items-center justify-center mb-6 text-emerald-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-3">Cyber Security</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">
-                        Protecting your digital assets with robust, modern security frameworks and proactive threat mitigation strategies.
-                    </p>
+                    <h3 class="text-xl font-bold text-white mb-3">Audience</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">Record, film, and present in equipped spaces made for sharing your work.</p>
+                    <a href="#facilities" class="text-blue-400 text-sm font-semibold hover:underline">Explore studios →</a>
+                </div>
+                <!-- Venture -->
+                <div class="glass p-8 rounded-3xl card-hover">
+                    <div class="w-12 h-12 bg-orange-500/20 rounded-xl flex items-center justify-center mb-6 text-orange-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Venture</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">Apply your experience to a problem and create a useful new tool or product.</p>
+                    <a href="#" class="text-blue-400 text-sm font-semibold hover:underline">Explore membership →</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section id="contact" class="py-24 px-6">
-        <div class="max-w-5xl mx-auto glass rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden">
-            <div class="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 blur-[100px]"></div>
-            <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Ready to transform?</h2>
-            <p class="text-slate-400 text-lg mb-10 max-w-lg mx-auto">
-                Connect with our specialists today to discuss your digital ecosystem and how we can optimize it.
-            </p>
-            <form class="max-w-md mx-auto flex flex-col gap-4">
-                <input type="email" placeholder="Enter your email" class="bg-white/5 border border-white/10 px-6 py-4 rounded-xl focus:outline-none focus:border-blue-500 text-white">
-                <button class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 rounded-xl transition-all">
-                    Contact Us
-                </button>
-            </form>
+    <!-- Tokenizer Highlight -->
+    <section id="tokenizer" class="py-24 px-6 bg-slate-900/50">
+        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16">
+            <div class="lg:w-1/2">
+                <span class="text-blue-400 font-semibold tracking-widest uppercase text-sm">Tokenizer Initiative</span>
+                <h2 class="text-4xl md:text-5xl font-bold text-white mt-4 mb-6 leading-tight">Surfing the AI wave on the Sunshine Coast</h2>
+                <p class="text-slate-400 text-lg mb-8 leading-relaxed">
+                    Tokenizer is a multi-year program to help the Noosa region thrive in the AI era. From weekly workshops to dedicated SME mentoring, we are building a thriving AI talent base.
+                </p>
+                <ul class="space-y-4 mb-10 text-slate-300">
+                    <li class="flex items-center gap-3">
+                        <span class="w-5 h-5 bg-blue-500/20 text-blue-400 rounded-full flex items-center justify-center text-xs">✓</span>
+                        AI Training for SMB Leaders (Uplift)
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <span class="w-5 h-5 bg-blue-500/20 text-blue-400 rounded-full flex items-center justify-center text-xs">✓</span>
+                        Vibecamp: Hackathons & Campouts
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <span class="w-5 h-5 bg-blue-500/20 text-blue-400 rounded-full flex items-center justify-center text-xs">✓</span>
+                        AI Cadetships for students
+                    </li>
+                </ul>
+                <a href="https://www.peregianhub.com.au/tokenizer" class="inline-block bg-blue-600 text-white px-8 py-4 rounded-full font-bold hover:bg-blue-500 transition-all">Express Your Interest</a>
+            </div>
+            <div class="lg:w-1/2 w-full">
+                <div class="glass p-2 rounded-[2rem] rotate-2 hover:rotate-0 transition-transform duration-500">
+                    <div class="bg-slate-800 rounded-[1.8rem] p-8 text-center">
+                        <h4 class="text-2xl font-bold text-white mb-4">Join the Ecosystem</h4>
+                        <p class="text-slate-400 mb-8">Whether you're a technologist, storyteller, or founder, there's a place for you at the Hub.</p>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="p-4 bg-slate-700/30 rounded-2xl">
+                                <div class="text-blue-400 font-bold text-xl">Members</div>
+                                <div class="text-xs text-slate-500 uppercase">Weekly Workshops</div>
+                            </div>
+                            <div class="p-4 bg-slate-700/30 rounded-2xl">
+                                <div class="text-purple-400 font-bold text-xl">Founders</div>
+                                <div class="text-xs text-slate-500 uppercase">Curated Networks</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Facilities Section -->
+    <section id="facilities" class="py-24 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">World-class Facilities</h2>
+                <p class="text-slate-400">Professional spaces designed for deep work and creative production.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="group">
+                    <div class="relative h-64 rounded-3xl overflow-hidden mb-6">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 to-transparent z-10"></div>
+                        <div class="w-full h-full bg-blue-900 flex items-center justify-center text-blue-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m3-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
+                        </div>
+                        <div class="absolute bottom-6 left-6 z-20">
+                            <h3 class="text-xl font-bold text-white">The Hub Facility</h3>
+                            <p class="text-sm text-slate-300">Coworking & AI Lab</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="group">
+                    <div class="relative h-64 rounded-3xl overflow-hidden mb-6">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 to-transparent z-10"></div>
+                        <div class="w-full h-full bg-purple-900 flex items-center justify-center text-purple-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586l-7-7A1.994 1.994 0 012 12V6a2 2 0 012-2h2a2 2 0 012 2v6h2V4a2 2 0 012-2h2a2 2 0 012 2v4h2a2 2 0 012 2v6a2 2 0 01-2 2h-2" /></svg>
+                        </div>
+                        <div class="absolute bottom-6 left-6 z-20">
+                            <h3 class="text-xl font-bold text-white">Wonder Pod</h3>
+                            <p class="text-sm text-slate-300">Meeting & Workshop Space</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="group">
+                    <div class="relative h-64 rounded-3xl overflow-hidden mb-6">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 to-transparent z-10"></div>
+                        <div class="w-full h-full bg-emerald-900 flex items-center justify-center text-emerald-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7 7 7 0 01-7-7m14 0a7 7 0 00-7-7m7 7v4m0 0h-4m4 0h4m-4-8a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                        </div>
+                        <div class="absolute bottom-6 left-6 z-20">
+                            <h3 class="text-xl font-bold text-white">Sound Pod</h3>
+                            <p class="text-sm text-slate-300">Podcast & Recording Studio</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="py-12 px-6 border-t border-white/5">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-            <div class="text-xl font-bold text-white">
-                PEREGIAN<span class="text-blue-400">HUB</span>
+    <footer id="connect" class="bg-slate-950 border-t border-slate-800 pt-20 pb-10 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-12 mb-16">
+                <div class="col-span-2">
+                    <div class="flex items-center gap-2 mb-6">
+                        <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center font-bold text-white">P</div>
+                        <span class="font-bold text-xl tracking-tight text-white">PEREGIAN <span class="text-blue-400">DIGITAL HUB</span></span>
+                    </div>
+                    <p class="text-slate-400 max-w-md mb-6">
+                        A world-class environment for digital talent in a beautiful beachside village. Owned and operated by Noosa Shire Council.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 glass rounded-full flex items-center justify-center hover:text-blue-400 transition-colors">LI</a>
+                        <a href="#" class="w-10 h-10 glass rounded-full flex items-center justify-center hover:text-blue-400 transition-colors">YT</a>
+                        <a href="#" class="w-10 h-10 glass rounded-full flex items-center justify-center hover:text-blue-400 transition-colors">FB</a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-6 uppercase text-sm tracking-widest">Networks</h4>
+                    <ul class="space-y-4 text-slate-400 text-sm">
+                        <li><a href="#" class="hover:text-white transition-colors">Digital Marketers</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Technologists</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Screen Professionals</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Tech Founders</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-6 uppercase text-sm tracking-widest">Contact</h4>
+                    <ul class="space-y-4 text-slate-400 text-sm">
+                        <li>253-255 David Low Way</li>
+                        <li>Peregian Beach QLD 4573</li>
+                        <li><a href="#" class="text-blue-400 hover:underline">Chat with us</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="text-slate-500 text-sm">
-                &copy; 2023 Peregian Digital Hub. All rights reserved.
-            </div>
-            <div class="flex space-x-6 text-slate-400">
-                <a href="#" class="hover:text-white"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
-                <a href="#" class="hover:text-white"><i data-lucide="twitter" class="w-5 h-5"></i></a>
+            <div class="pt-10 border-t border-slate-900 flex flex-col md:flex-row justify-between items-center gap-4 text-slate-500 text-xs">
+                <p>© Noosa Shire Council. All rights reserved.</p>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-white">Terms of Use</a>
+                    <a href="#" class="hover:text-white">Privacy Policy</a>
+                </div>
             </div>
         </div>
     </footer>
 
-    <script>
-        // Initialize Lucide Icons
-        lucide.createIcons();
-    </script>
 </body>
 </html>

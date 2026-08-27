@@ -1,927 +1,630 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-AU">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Peregian Digital Hub — Work at sea level</title>
-<meta name="description" content="Peregian Digital Hub — a coworking and innovation community in a converted church, 400m from Peregian Beach.">
+<title>Peregian Digital Hub — Bring your ideas to life with AI</title>
+<meta name="description" content="Peregian Digital Hub: a world-class environment for digital talent in a beautiful beachside village on the Sunshine Coast. AI programs, coworking, studios and events. Owned by Noosa Council since 2018.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-/* ============ Tokens ============ */
 :root{
-  --paper:#F1ECE2;
-  --paper-2:#E7E0D0;
-  --paper-3:#DFD6C2;
-  --ink:#1B1712;
-  --ink-2:#57503F;
-  --sun:#E8490F;
-  --sun-deep:#C93A08;
-  --line:rgba(27,23,18,.16);
-  --line-strong:rgba(27,23,18,.55);
-  --f-display:"Fraunces",serif;
-  --f-body:"Instrument Sans",sans-serif;
-  --f-mono:"Space Mono",monospace;
-  --pad:clamp(20px,4.5vw,56px);
-  --ease:cubic-bezier(.22,1,.36,1);
+  --bg:#070d12;
+  --bg2:#0b141c;
+  --panel:#0f1a23;
+  --panel2:#12202b;
+  --line:rgba(255,255,255,.08);
+  --line2:rgba(255,255,255,.14);
+  --txt:#eaf2f6;
+  --muted:#9db1bd;
+  --dim:#6f8593;
+  --acc:#35e0c2;
+  --acc2:#4ea8ff;
+  --sun:#ffb36b;
+  --radius:18px;
+  --font-d:'Space Grotesk',sans-serif;
+  --font-b:'Inter',sans-serif;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:92px}
-body{
-  font-family:var(--f-body);
-  background:var(--paper);
-  color:var(--ink);
-  line-height:1.6;
-  -webkit-font-smoothing:antialiased;
-  overflow-x:hidden;
-}
-::selection{background:var(--sun);color:var(--paper)}
-img{display:block;max-width:100%}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:var(--font-b);line-height:1.6;overflow-x:hidden}
+::selection{background:var(--acc);color:#04241d}
+img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
-button{font-family:inherit;cursor:pointer;background:none;border:none;color:inherit}
-:focus-visible{outline:2px solid var(--sun);outline-offset:3px;border-radius:2px}
-svg.ic{width:1em;height:1em;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;vertical-align:-.12em}
-
-/* ============ Grain ============ */
-#grain{position:fixed;inset:-50%;width:200%;height:200%;pointer-events:none;z-index:2000;opacity:.055;mix-blend-mode:multiply;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");}
-
-/* ============ Cursor follower ============ */
-#follower{position:fixed;top:0;left:0;width:10px;height:10px;border-radius:50%;background:var(--sun);pointer-events:none;z-index:3000;
-  display:flex;align-items:center;justify-content:center;opacity:0;
-  transition:width .3s var(--ease),height .3s var(--ease),opacity .3s}
-#follower.on{opacity:1}
-#follower.grow{width:34px;height:34px}
-#follower.label{width:58px;height:58px;background:var(--sun);color:var(--paper)}
-#follower span{font:700 9px/1 var(--f-mono);letter-spacing:.1em;opacity:0;transition:opacity .2s}
-#follower.label span{opacity:1}
-@media (pointer:coarse){#follower{display:none}}
-
-/* ============ Type helpers ============ */
-.kicker{font:400 11px/1 var(--f-mono);letter-spacing:.22em;text-transform:uppercase;color:var(--ink-2);display:flex;align-items:center;gap:14px}
-.kicker::before{content:"";width:34px;height:1px;background:var(--sun)}
-.kicker b{color:var(--sun);font-weight:400}
-.mono{font-family:var(--f-mono)}
-
-/* ============ Buttons ============ */
-.btn{display:inline-flex;align-items:center;gap:10px;font:600 14px/1 var(--f-body);letter-spacing:.02em;
-  padding:16px 26px;border-radius:999px;background:var(--ink);color:var(--paper);border:1px solid var(--ink);
-  transition:background .35s var(--ease),color .35s var(--ease),transform .35s var(--ease),border-color .35s}
-.btn:hover{background:var(--sun);border-color:var(--sun);color:var(--ink);transform:translateY(-2px)}
-.btn.ghost{background:transparent;color:var(--ink)}
-.btn.ghost:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
-.btn.sun{background:var(--sun);border-color:var(--sun);color:var(--ink)}
-.btn.sun:hover{background:var(--paper);border-color:var(--paper)}
-.btn.small{padding:11px 20px;font-size:13px}
-
-/* ============ Header ============ */
-#hd{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;
-  padding:22px var(--pad);transition:padding .4s var(--ease),background .4s,border-color .4s;border-bottom:1px solid transparent}
-#hd.scrolled{padding:14px var(--pad);background:rgba(241,236,226,.86);backdrop-filter:blur(12px);border-color:var(--line)}
-.logo{display:flex;align-items:center;gap:11px;font:600 17px/1 var(--f-display);letter-spacing:-.01em}
-.logo .mark{width:34px;height:34px;border-radius:50%;background:var(--sun);display:grid;place-items:center;color:var(--paper);flex:none;transition:transform .5s var(--ease)}
-.logo:hover .mark{transform:rotate(120deg)}
-.logo em{font-style:italic;font-weight:400}
-#hd nav{display:flex;gap:34px}
-#hd nav a{font:500 13.5px/1 var(--f-body);position:relative;padding:6px 0;color:var(--ink-2);transition:color .3s}
-#hd nav a::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--sun);transition:width .35s var(--ease)}
-#hd nav a:hover,#hd nav a.on{color:var(--ink)}
-#hd nav a.on::after{width:100%}
-#hd .btn{padding:12px 22px;font-size:13px}
-#menu-btn{display:none;width:44px;height:44px;flex-direction:column;align-items:center;justify-content:center;gap:7px}
-#menu-btn i{display:block;width:26px;height:2px;background:var(--ink);transition:transform .4s var(--ease),opacity .3s}
-#menu-btn.open i:nth-child(1){transform:translateY(4.5px) rotate(45deg)}
-#menu-btn.open i:nth-child(2){transform:translateY(-4.5px) rotate(-45deg)}
-
-/* Mobile menu overlay */
-#menu{position:fixed;inset:0;background:var(--ink);color:var(--paper);z-index:900;display:flex;flex-direction:column;justify-content:center;
-  padding:0 var(--pad);transform:translateY(-100%);transition:transform .6s var(--ease);visibility:hidden}
-#menu.open{transform:translateY(0);visibility:visible}
-#menu a{font:300 clamp(2.4rem,9vw,4.2rem)/1.25 var(--f-display);border-bottom:1px solid rgba(241,236,226,.14);padding:10px 0;display:flex;justify-content:space-between;align-items:center;transition:color .3s,padding-left .3s var(--ease)}
-#menu a:hover{color:var(--sun);padding-left:14px}
-#menu .mono{font-size:11px;letter-spacing:.2em;color:rgba(241,236,226,.5);margin-top:34px}
-
-/* ============ Hero ============ */
-#top{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:center;overflow:hidden;padding:120px var(--pad) 0}
-.hero-copy{position:relative;z-index:2;max-width:1100px}
-.hero-kicker{font:400 12px/1 var(--f-mono);letter-spacing:.24em;text-transform:uppercase;color:var(--ink-2);display:flex;align-items:center;gap:14px;margin-bottom:clamp(20px,3vh,36px)}
-.hero-kicker::before{content:"";width:44px;height:1px;background:var(--sun)}
-h1{font:300 clamp(3.6rem,11.5vw,10.5rem)/.98 var(--f-display);letter-spacing:-.03em}
-h1 .it{font-style:italic;font-weight:340}
-.line{display:block;overflow:hidden}
-.line-in{display:block;transform:translateY(112%);transition:transform 1.1s var(--ease)}
-body.loaded .line:nth-child(1) .line-in{transform:translateY(0);transition-delay:.15s}
-body.loaded .line:nth-child(2) .line-in{transform:translateY(0);transition-delay:.28s}
-.hero-sub{max-width:440px;margin-top:clamp(26px,4vh,44px);font-size:17px;color:var(--ink-2);
-  opacity:0;transform:translateY(20px);transition:opacity .9s var(--ease) .55s,transform .9s var(--ease) .55s}
-.hero-cta{display:flex;flex-wrap:wrap;gap:16px;margin-top:30px;opacity:0;transform:translateY(20px);transition:opacity .9s var(--ease) .7s,transform .9s var(--ease) .7s}
-body.loaded .hero-sub,body.loaded .hero-cta{opacity:1;transform:none}
-
-/* the sun */
-.sun-wrap{position:absolute;z-index:1;right:7vw;top:14vh;width:min(36vw,470px);aspect-ratio:1;
-  transform:translateY(120%);transition:transform 1.6s var(--ease) .35s}
-body.loaded .sun-wrap{transform:translateY(0)}
-.sun-float{width:100%;height:100%;animation:bob 7s ease-in-out infinite}
-@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-#sun{width:100%;height:100%;border-radius:50%;background:var(--sun);will-change:transform;box-shadow:0 0 0 0 rgba(232,73,15,0)}
-
-.horizon{position:relative;z-index:2;margin-top:auto;border-top:1px solid var(--line-strong);background:var(--paper-2);
-  margin-inline:calc(var(--pad) * -1);padding:0 var(--pad)}
-.horizon-in{display:flex;justify-content:space-between;align-items:center;height:74px;max-width:1400px;margin:0 auto;
-  font:400 11px/1.5 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
-.horizon-in .cue{display:flex;align-items:center;gap:9px}
-.horizon-in .cue svg{animation:dip 2s ease-in-out infinite}
-@keyframes dip{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
-.horizon-in a:hover{color:var(--sun)}
-@media(max-width:700px){.horizon-in .hide-m{display:none}}
-
-/* ============ Marquee bands ============ */
-.band{overflow:hidden;border-block:1px solid var(--line);padding:0;background:var(--paper)}
-.band .track{display:flex;width:max-content;animation:slide 28s linear infinite}
-.band:hover .track{animation-play-state:paused}
-.band .track > div{display:flex;align-items:center;flex:none}
-.band .item{display:flex;align-items:center;gap:26px;padding:16px 26px 16px 0;font:400 13px/1 var(--f-mono);letter-spacing:.2em;white-space:nowrap;color:var(--ink-2)}
-.band .item svg{color:var(--sun);font-size:15px}
-@keyframes slide{to{transform:translateX(-50%)}}
-.band.sunband{background:var(--sun);border-color:var(--sun)}
-.band.sunband .item{color:var(--ink);font:italic 400 clamp(1.5rem,3.4vw,2.4rem)/1 var(--f-display);letter-spacing:0;padding:20px 30px 20px 0}
-.band.sunband .item svg{color:var(--ink);font-size:20px}
-.band.sunband .track{animation-duration:36s}
-
-/* ============ Sections ============ */
-section{padding:clamp(5rem,10vw,9rem) var(--pad)}
-.wrap{max-width:1280px;margin:0 auto}
-.sec-head{display:flex;flex-direction:column;gap:20px;margin-bottom:clamp(2.6rem,6vw,4.6rem)}
-h2{font:300 clamp(2.5rem,5.6vw,4.8rem)/1.04 var(--f-display);letter-spacing:-.02em;max-width:16ch}
-h2 .it{font-style:italic;font-weight:340;color:var(--sun)}
-
-/* --- The Hub --- */
-.hub-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(2.5rem,6vw,6rem);align-items:start}
-.hub-photo{position:sticky;top:110px}
-.hub-photo img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:4px;
-  filter:grayscale(1) sepia(.14) contrast(1.02);transition:filter .6s var(--ease)}
-.hub-photo:hover img{filter:grayscale(0) sepia(0)}
-.hub-photo figcaption{display:flex;justify-content:space-between;font:400 11px/1 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);padding-top:12px}
-.statement{font:300 clamp(1.9rem,3.6vw,3rem)/1.15 var(--f-display);letter-spacing:-.01em;margin-bottom:34px}
-.statement .it{font-style:italic;color:var(--sun)}
-.hub-copy p{color:var(--ink-2);max-width:56ch;margin-bottom:1.2em;font-size:16.5px}
-.stats{margin-top:clamp(2rem,4vw,3.2rem);border-top:1px solid var(--line-strong)}
-.stats div{display:grid;grid-template-columns:150px 1fr;gap:20px;align-items:baseline;padding:16px 0;border-bottom:1px solid var(--line)}
-.stats dt{font:400 11px/1.4 var(--f-mono);letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)}
-.stats dd{font:300 clamp(1.4rem,2.4vw,1.9rem)/1.2 var(--f-display)}
-.stats dd small{font:400 13px var(--f-body);color:var(--ink-2);margin-left:10px}
-@media(max-width:900px){.hub-grid{grid-template-columns:1fr}.hub-photo{position:static}}
-
-/* --- Spaces accordion --- */
-.space{border-top:1px solid var(--line-strong)}
-.space:last-child{border-bottom:1px solid var(--line-strong)}
-.space-head{width:100%;display:grid;grid-template-columns:64px 1fr auto 52px;gap:20px;align-items:center;
-  padding:clamp(20px,3vw,30px) 0;text-align:left;transition:padding-left .4s var(--ease)}
-.space-head:hover{padding-left:14px}
-.s-no{font:400 13px var(--f-mono);color:var(--sun)}
-.s-name{font:300 clamp(1.7rem,4.2vw,3.1rem)/1.05 var(--f-display);letter-spacing:-.02em;transition:font-style .2s}
-.space:hover .s-name,.space.open .s-name{font-style:italic}
-.s-tag{font:400 11px/1 var(--f-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2)}
-.s-ico{width:46px;height:46px;border:1px solid var(--line-strong);border-radius:50%;display:grid;place-items:center;
-  font-size:17px;transition:transform .45s var(--ease),background .35s,color .35s;justify-self:end}
-.space-head:hover .s-ico{background:var(--ink);color:var(--paper)}
-.space.open .s-ico{transform:rotate(45deg);background:var(--sun);border-color:var(--sun);color:var(--ink)}
-.space-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .6s var(--ease)}
-.space.open .space-body{grid-template-rows:1fr}
-.space-inner{min-height:0;overflow:hidden}
-.space-flex{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1fr);gap:clamp(1.6rem,4vw,3.4rem);padding:6px 0 clamp(26px,4vw,44px) 84px}
-.space-flex img{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:4px;filter:grayscale(1) sepia(.14);transition:filter .6s var(--ease)}
-.space-flex:hover img{filter:grayscale(0) sepia(0)}
-.space-flex p{color:var(--ink-2);max-width:52ch;font-size:16px}
-.s-meta{font:400 12px/1.7 var(--f-mono);letter-spacing:.08em;color:var(--ink);margin-top:16px}
-.link-enquire{display:inline-flex;align-items:center;gap:8px;margin-top:20px;font:600 14px var(--f-body);border-bottom:2px solid var(--sun);padding-bottom:3px;transition:color .3s,gap .3s var(--ease)}
-.link-enquire:hover{color:var(--sun);gap:13px}
-@media(max-width:800px){.space-head{grid-template-columns:40px 1fr 46px}.s-tag{display:none}.space-flex{grid-template-columns:1fr;padding-left:0}}
-
-/* --- Membership --- */
-.mem-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:26px}
-.seg{display:inline-flex;border:1px solid var(--line-strong);border-radius:999px;padding:5px;gap:4px}
-.seg button{padding:11px 22px;border-radius:999px;font:600 13.5px var(--f-body);color:var(--ink-2);transition:background .3s,color .3s;display:flex;gap:9px;align-items:center}
-.seg button em{font:400 10px var(--f-mono);font-style:normal;background:var(--sun);color:var(--ink);padding:3px 8px;border-radius:999px;letter-spacing:.06em}
-.seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
-.bill-note{font:400 11px var(--f-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2);text-align:right;margin:14px 0 8px}
-.plan{display:grid;grid-template-columns:minmax(180px,.9fr) minmax(0,1.4fr) auto auto;gap:clamp(1.4rem,3vw,3rem);align-items:center;
-  padding:clamp(24px,3.4vw,38px) clamp(16px,2.4vw,32px);border-top:1px solid var(--line-strong);border-radius:2px;transition:background .35s}
-.plan:last-of-type{border-bottom:1px solid var(--line-strong)}
-.plan:hover{background:var(--paper-2)}
-.plan h3{font:300 clamp(1.6rem,3vw,2.4rem)/1.1 var(--f-display);letter-spacing:-.01em}
-.plan .pl-sub{font:400 13px var(--f-body);color:var(--ink-2);margin-top:6px}
-.pl-feat{list-style:none;display:flex;flex-wrap:wrap;gap:8px 0;color:var(--ink-2);font-size:14.5px}
-.pl-feat li{display:flex;align-items:center;gap:9px;width:50%}
-.pl-feat li svg{color:var(--sun);font-size:14px;flex:none}
-.pl-price{text-align:right;min-width:130px}
-.p-val{display:inline-block;font:300 clamp(1.9rem,3.4vw,2.7rem)/1 var(--f-display);transition:transform .18s var(--ease),opacity .18s}
-.p-val.flip{transform:rotateX(90deg);opacity:0}
-.p-per{font:400 12px var(--f-mono);letter-spacing:.1em;color:var(--ink-2)}
-.plan.resident{background:var(--ink);color:var(--paper);position:relative}
-.plan.resident:hover{background:var(--ink)}
-.plan.resident .pl-sub,.plan.resident .pl-feat,.plan.resident .p-per{color:rgba(241,236,226,.62)}
-.plan.resident .p-val{color:var(--sun)}
-.plan.resident .btn{background:var(--sun);border-color:var(--sun);color:var(--ink)}
-.plan.resident .btn:hover{background:var(--paper);border-color:var(--paper)}
-.pop-tag{position:absolute;top:-13px;left:clamp(16px,2.4vw,32px);font:700 10px/1 var(--f-mono);letter-spacing:.18em;background:var(--sun);color:var(--ink);padding:7px 13px;border-radius:999px}
-@media(max-width:1000px){.plan{grid-template-columns:1fr 1fr}.pl-feat{grid-column:1/-1}.pl-feat li{width:auto;padding-right:22px}.pl-price{text-align:left}}
-@media(max-width:560px){.plan{grid-template-columns:1fr}.pl-price{min-width:0}}
-
-/* --- What's on --- */
-.ev{display:grid;grid-template-columns:150px 1fr auto auto;gap:24px;align-items:center;padding:22px 14px;border-top:1px solid var(--line);transition:background .3s}
-.ev:last-child{border-bottom:1px solid var(--line)}
-.ev:hover{background:var(--paper-2)}
-.ev-date{font:400 12px/1.5 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--sun)}
-.ev h3{font:300 clamp(1.25rem,2.4vw,1.8rem)/1.2 var(--f-display);transition:transform .35s var(--ease)}
-.ev:hover h3{transform:translateX(8px);font-style:italic}
-.ev-place{font:400 12px var(--f-mono);letter-spacing:.08em;color:var(--ink-2);text-align:right}
-.ev-tag{font:700 10px/1 var(--f-mono);letter-spacing:.16em;border:1px solid var(--line-strong);padding:7px 12px;border-radius:999px;white-space:nowrap}
-@media(max-width:800px){.ev{grid-template-columns:86px 1fr;gap:10px 16px}.ev-place{grid-column:2;text-align:left}}
-
-/* --- Location --- */
-.loc-grid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:clamp(2rem,5vw,5rem);align-items:start}
-.map-fig{border:1px solid var(--line-strong);border-radius:6px;overflow:hidden;background:var(--paper)}
-.map-fig svg{display:block;width:100%;height:auto}
-.map-fig .land{fill:var(--paper-2)}
-.map-fig text{font-family:var(--f-mono);fill:var(--ink)}
-.pulse{transform-box:fill-box;transform-origin:center;animation:ping 2.6s ease-out infinite}
-@keyframes ping{0%{transform:scale(1);opacity:.55}80%,100%{transform:scale(3.1);opacity:0}}
-.facts{border-top:1px solid var(--line-strong)}
-.facts div{padding:18px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:20px;align-items:baseline}
-.facts dt{font:400 11px/1.5 var(--f-mono);letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)}
-.facts dd{font:300 clamp(1.05rem,1.6vw,1.35rem)/1.3 var(--f-display);text-align:right}
-.facts dd small{display:block;font:400 12px var(--f-body);color:var(--ink-2)}
-@media(max-width:900px){.loc-grid{grid-template-columns:1fr}}
-
-/* --- CTA --- */
-.cta{text-align:center;border-top:1px solid var(--line-strong)}
-.cta .sun-badge{width:58px;height:58px;border-radius:50%;background:var(--sun);display:inline-grid;place-items:center;color:var(--paper);font-size:24px;margin-bottom:26px;animation:bob 6s ease-in-out infinite}
-.cta h2{margin:0 auto;max-width:14ch}
-.cta p{color:var(--ink-2);max-width:46ch;margin:22px auto 34px}
-.cta .row{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
-
-/* ============ Footer ============ */
-footer{background:var(--ink);color:var(--paper);padding:clamp(3.4rem,7vw,6rem) var(--pad) 34px}
-.ft-giant{font:300 clamp(3rem,10.5vw,9.5rem)/1 var(--f-display);letter-spacing:-.03em;display:flex;align-items:center;gap:.18em;flex-wrap:wrap;border-bottom:1px solid rgba(241,236,226,.16);padding-bottom:clamp(2rem,4vw,3.4rem)}
-.ft-giant .it{font-style:italic;color:var(--sun)}
-.ft-giant svg{color:var(--sun);font-size:.5em;animation:spin 14s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-.ft-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:34px;padding:clamp(2rem,4vw,3.2rem) 0}
-.ft-cols h4{font:400 11px/1 var(--f-mono);letter-spacing:.22em;text-transform:uppercase;color:rgba(241,236,226,.5);margin-bottom:18px}
-.ft-cols a,.ft-cols p{display:block;font-size:15px;color:rgba(241,236,226,.85);padding:4px 0;transition:color .3s}
-.ft-cols a:hover{color:var(--sun)}
-.ft-cols .soc{display:flex;gap:10px;margin-top:14px}
-.ft-cols .soc a{width:40px;height:40px;border:1px solid rgba(241,236,226,.25);border-radius:50%;display:grid;place-items:center;font-size:15px;transition:all .3s}
-.ft-cols .soc a:hover{background:var(--sun);border-color:var(--sun);color:var(--ink)}
-.ft-bar{display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px;border-top:1px solid rgba(241,236,226,.16);padding-top:24px;font:400 11px/1.7 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:rgba(241,236,226,.45)}
-.ft-bar button{color:rgba(241,236,226,.45);letter-spacing:inherit;font:inherit;text-transform:uppercase;transition:color .3s}
-.ft-bar button:hover{color:var(--sun)}
-#clock{color:var(--sun)}
-
-/* ============ Dialog ============ */
-dialog{border:none;padding:0;background:var(--paper);color:var(--ink);width:min(560px,calc(100vw - 32px));border-radius:8px;
-  margin:auto;box-shadow:0 30px 80px rgba(27,23,18,.35)}
-dialog::backdrop{background:rgba(27,23,18,.55);backdrop-filter:blur(4px)}
-.dlg-head{display:flex;justify-content:space-between;align-items:center;padding:22px 28px;border-bottom:1px solid var(--line)}
-.dlg-head h3{font:300 1.7rem var(--f-display);letter-spacing:-.01em}
-.dlg-head button{width:38px;height:38px;border:1px solid var(--line-strong);border-radius:50%;display:grid;place-items:center;transition:all .3s}
-.dlg-head button:hover{background:var(--sun);border-color:var(--sun)}
-form{padding:26px 28px 30px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.field{display:flex;flex-direction:column;gap:7px}
-.field.full{grid-column:1/-1}
-.field label{font:400 10.5px var(--f-mono);letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2)}
-.field input,.field select,.field textarea{font:400 15px var(--f-body);background:transparent;border:none;border-bottom:1px solid var(--line-strong);padding:9px 2px;color:var(--ink);border-radius:0}
-.field textarea{resize:vertical;min-height:64px}
-.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--sun)}
-form .btn{grid-column:1/-1;justify-content:center;margin-top:8px}
-@media(max-width:520px){form{grid-template-columns:1fr}}
-
-/* ============ Toast ============ */
-#toast{position:fixed;left:50%;bottom:30px;transform:translate(-50%,130%);z-index:4000;display:flex;align-items:center;gap:12px;
-  background:var(--ink);color:var(--paper);padding:16px 24px;border-radius:999px;font-size:14.5px;box-shadow:0 16px 40px rgba(27,23,18,.3);
-  transition:transform .55s var(--ease);max-width:calc(100vw - 40px)}
-#toast.show{transform:translate(-50%,0)}
-#toast svg{color:var(--sun);font-size:18px;flex:none}
-
-/* ============ Reveal on scroll ============ */
-.rv{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0s)}
-.rv.in{opacity:1;transform:none}
-
-/* ============ Reduced motion ============ */
-@media (prefers-reduced-motion:reduce){
-  html{scroll-behavior:auto}
-  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
-  .line-in,.hero-sub,.hero-cta,.sun-wrap,.rv{transform:none!important;opacity:1!important}
+h1,h2,h3,h4{font-family:var(--font-d);line-height:1.12;letter-spacing:-.02em}
+.wrap{width:min(1180px,92%);margin:0 auto}
+.eyebrow{display:inline-flex;align-items:center;gap:.55rem;font-size:.78rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);margin-bottom:1.1rem}
+.eyebrow::before{content:"";width:26px;height:1px;background:var(--acc)}
+.section{padding:clamp(4.5rem,9vw,7.5rem) 0}
+.sec-head{max-width:720px;margin-bottom:3rem}
+.sec-head h2{font-size:clamp(1.9rem,4.4vw,3rem);margin-bottom:.9rem}
+.sec-head p{color:var(--muted);font-size:1.06rem}
+.gr{background:linear-gradient(92deg,var(--acc) 10%,var(--acc2) 60%,var(--sun) 105%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.btn{display:inline-flex;align-items:center;gap:.55rem;font-family:var(--font-d);font-weight:600;font-size:.95rem;padding:.85rem 1.6rem;border-radius:999px;border:1px solid transparent;cursor:pointer;transition:.25s}
+.btn-p{background:linear-gradient(92deg,var(--acc),var(--acc2));color:#04241d}
+.btn-p:hover{transform:translateY(-2px);box-shadow:0 12px 30px -10px rgba(53,224,194,.45)}
+.btn-g{border-color:var(--line2);color:var(--txt);background:rgba(255,255,255,.03)}
+.btn-g:hover{border-color:var(--acc);color:var(--acc)}
+/* ---------- NAV ---------- */
+header{position:fixed;top:0;left:0;right:0;z-index:100;transition:.3s}
+header.scrolled{background:rgba(7,13,18,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:74px}
+.logo{display:flex;align-items:center;gap:.7rem;font-family:var(--font-d);font-weight:700;font-size:1.02rem;letter-spacing:.01em}
+.logo-mark{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--acc),var(--acc2));display:grid;place-items:center;font-weight:700;color:#04241d;font-size:1rem;flex-shrink:0}
+.logo span small{display:block;font-size:.62rem;font-weight:500;letter-spacing:.22em;color:var(--muted);text-transform:uppercase}
+.nav-links{display:flex;align-items:center;gap:1.9rem;list-style:none}
+.nav-links a{font-size:.92rem;color:var(--muted);font-weight:500;transition:.2s}
+.nav-links a:hover{color:var(--acc)}
+.nav-cta{padding:.6rem 1.25rem;font-size:.88rem}
+.burger{display:none;background:none;border:0;cursor:pointer;width:40px;height:40px;position:relative;z-index:110}
+.burger span{position:absolute;left:8px;right:8px;height:2px;background:var(--txt);transition:.3s}
+.burger span:nth-child(1){top:13px}.burger span:nth-child(2){top:20px}.burger span:nth-child(3){top:27px}
+.burger.open span:nth-child(1){top:20px;transform:rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){top:20px;transform:rotate(-45deg)}
+/* ---------- HERO ---------- */
+.hero{position:relative;min-height:100svh;display:flex;align-items:center;padding:9rem 0 4rem;overflow:hidden}
+.hero-bg{position:absolute;inset:0;pointer-events:none}
+.hero-bg::before{content:"";position:absolute;top:-20%;left:50%;transform:translateX(-50%);width:900px;height:900px;background:radial-gradient(circle,rgba(53,224,194,.14),transparent 62%);filter:blur(10px)}
+.hero-bg::after{content:"";position:absolute;bottom:-30%;right:-10%;width:700px;height:700px;background:radial-gradient(circle,rgba(78,168,255,.12),transparent 62%)}
+.grid-lines{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse 80% 70% at 50% 40%,#000,transparent)}
+.hero-inner{position:relative;z-index:2;max-width:900px}
+.hero h1{font-size:clamp(2.7rem,7.2vw,5.4rem);font-weight:700;margin:0 0 1.4rem}
+.hero p.lead{font-size:clamp(1.05rem,2vw,1.3rem);color:var(--muted);max-width:600px;margin-bottom:2.4rem}
+.hero-ctas{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:3.6rem}
+.badge-pill{display:inline-flex;align-items:center;gap:.6rem;padding:.45rem 1rem;border:1px solid var(--line2);border-radius:999px;font-size:.8rem;color:var(--muted);margin-bottom:1.6rem;background:rgba(255,255,255,.03)}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--acc);box-shadow:0 0 12px var(--acc);animation:pulse 2s infinite}
+@keyframes pulse{50%{opacity:.4}}
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;max-width:860px}
+.hero-stats div{background:rgba(10,18,25,.75);backdrop-filter:blur(8px);padding:1.15rem 1.3rem}
+.hero-stats b{display:block;font-family:var(--font-d);font-size:1.35rem;color:var(--txt)}
+.hero-stats span{font-size:.78rem;color:var(--dim);letter-spacing:.04em}
+/* ---------- MARQUEE ---------- */
+.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:1.1rem 0;overflow:hidden;background:var(--bg2)}
+.mq-track{display:flex;gap:3.2rem;width:max-content;animation:mq 30s linear infinite;font-family:var(--font-d);font-size:.85rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);white-space:nowrap}
+.mq-track span{display:flex;align-items:center;gap:3.2rem}
+.mq-track i{color:var(--acc);font-style:normal}
+@keyframes mq{to{transform:translateX(-50%)}}
+/* ---------- GROW CARDS ---------- */
+.grow-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem}
+.grow{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:1.9rem 1.6rem;transition:.3s;overflow:hidden}
+.grow:hover{transform:translateY(-6px);border-color:rgba(53,224,194,.4);background:var(--panel2)}
+.grow .num{font-family:var(--font-d);font-size:.78rem;color:var(--dim);letter-spacing:.12em;display:block;margin-bottom:2.6rem}
+.grow h3{font-size:1.25rem;margin-bottom:.5rem}
+.grow p{color:var(--muted);font-size:.92rem;margin-bottom:1.6rem}
+.grow a{font-family:var(--font-d);font-size:.88rem;font-weight:600;color:var(--acc);display:inline-flex;align-items:center;gap:.4rem}
+.grow a:hover{gap:.7rem}
+/* ---------- PROGRAMS ---------- */
+.prog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.prog{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:1.9rem;display:flex;flex-direction:column;transition:.3s;position:relative}
+.prog:hover{border-color:var(--line2);transform:translateY(-4px)}
+.prog .tag{align-self:flex-start;font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:.32rem .75rem;border-radius:999px;border:1px solid var(--line2);color:var(--muted);margin-bottom:1.3rem}
+.prog .tag.hot{border-color:transparent;background:linear-gradient(92deg,var(--acc),var(--acc2));color:#04241d}
+.prog h3{font-size:1.3rem;margin-bottom:.55rem}
+.prog p{color:var(--muted);font-size:.93rem;flex:1}
+.prog .meta{margin-top:1.4rem;padding-top:1.1rem;border-top:1px solid var(--line);font-size:.82rem;color:var(--dim);display:flex;flex-direction:column;gap:.3rem}
+.prog .meta b{color:var(--txt);font-weight:600}
+/* ---------- FACILITIES ---------- */
+.fac-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:1.2rem}
+.fac{background:linear-gradient(160deg,var(--panel),var(--bg2));border:1px solid var(--line);border-radius:var(--radius);padding:2rem;transition:.3s;position:relative;overflow:hidden}
+.fac:hover{border-color:rgba(78,168,255,.35)}
+.fac::after{content:"";position:absolute;top:-40px;right:-40px;width:140px;height:140px;border-radius:50%;background:radial-gradient(circle,rgba(53,224,194,.12),transparent 70%)}
+.fac-l{grid-column:span 5}
+.fac-m{grid-column:span 7}
+.fac-s{grid-column:span 4}
+.fac h3{font-size:1.35rem;margin-bottom:.5rem}
+.fac>p{color:var(--muted);font-size:.93rem;margin-bottom:1.2rem}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;list-style:none}
+.chips li{font-size:.78rem;color:var(--muted);border:1px solid var(--line2);padding:.34rem .8rem;border-radius:999px;background:rgba(255,255,255,.02)}
+.fac ul.feat{list-style:none;display:flex;flex-wrap:wrap;gap:.6rem 1.6rem;margin-top:.2rem}
+.fac ul.feat li{font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:.55rem}
+.fac ul.feat li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--acc);flex-shrink:0}
+.fac .big{font-family:var(--font-d);font-size:2.6rem;font-weight:700;background:linear-gradient(92deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1;margin-bottom:.3rem}
+.fac .lbl{font-size:.8rem;color:var(--dim);letter-spacing:.08em;text-transform:uppercase}
+/* ---------- MEMBERSHIP ---------- */
+.mem-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.4rem;max-width:900px;margin:0 auto}
+.plan{background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:2.4rem;position:relative;transition:.3s;display:flex;flex-direction:column}
+.plan:hover{transform:translateY(-5px)}
+.plan.featured{border-color:rgba(53,224,194,.5);background:linear-gradient(170deg,rgba(53,224,194,.07),var(--panel) 55%)}
+.plan .pop{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:linear-gradient(92deg,var(--acc),var(--acc2));color:#04241d;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.35rem 1rem;border-radius:999px;white-space:nowrap}
+.plan h3{font-size:1.35rem}
+.plan .sub{color:var(--dim);font-size:.88rem;margin:.3rem 0 1.4rem}
+.price{font-family:var(--font-d);font-size:2.9rem;font-weight:700;line-height:1}
+.price small{font-size:.95rem;color:var(--dim);font-weight:500}
+.plan ul{list-style:none;margin:1.6rem 0 2rem;flex:1;display:flex;flex-direction:column;gap:.65rem}
+.plan ul li{font-size:.92rem;color:var(--muted);display:flex;gap:.6rem;align-items:flex-start}
+.plan ul li::before{content:"✓";color:var(--acc);font-weight:700}
+.mem-note{text-align:center;color:var(--dim);font-size:.86rem;margin-top:1.6rem;max-width:640px;margin-left:auto;margin-right:auto}
+/* ---------- PEOPLE ---------- */
+.people-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem}
+.person{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:1.7rem;transition:.3s}
+.person:hover{border-color:var(--line2)}
+.person .init{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;font-family:var(--font-d);font-weight:700;font-size:1.05rem;color:#04241d;margin-bottom:1.1rem}
+.person h4{font-size:1.05rem}
+.person .role{font-size:.78rem;color:var(--acc);letter-spacing:.06em;text-transform:uppercase;margin:.25rem 0 .7rem}
+.person p{font-size:.86rem;color:var(--muted)}
+/* ---------- TIMELINE ---------- */
+.timeline{position:relative;max-width:760px;margin:0 auto;padding-left:2.2rem;border-left:1px solid var(--line2)}
+.tl{position:relative;padding-bottom:2.4rem}
+.tl:last-child{padding-bottom:0}
+.tl::before{content:"";position:absolute;left:-2.2rem;top:.35rem;width:11px;height:11px;border-radius:50%;background:var(--bg);border:2px solid var(--acc);box-shadow:0 0 0 4px rgba(53,224,194,.12)}
+.tl .yr{font-family:var(--font-d);font-weight:700;color:var(--acc);font-size:.95rem;letter-spacing:.08em}
+.tl h4{font-size:1.12rem;margin:.25rem 0 .4rem}
+.tl p{color:var(--muted);font-size:.93rem;max-width:600px}
+/* ---------- LOCATION ---------- */
+.loc{display:grid;grid-template-columns:1.1fr .9fr;gap:3.5rem;align-items:center}
+.loc-list{list-style:none;display:flex;flex-direction:column;gap:1rem;margin-top:1.8rem}
+.loc-list li{display:flex;gap:1rem;align-items:flex-start;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:1rem 1.2rem}
+.loc-list .ic{width:38px;height:38px;border-radius:10px;background:rgba(53,224,194,.1);display:grid;place-items:center;flex-shrink:0;color:var(--acc)}
+.loc-list b{display:block;font-family:var(--font-d);font-size:.98rem}
+.loc-list span{font-size:.86rem;color:var(--muted)}
+.map-card{background:linear-gradient(160deg,var(--panel2),var(--bg2));border:1px solid var(--line);border-radius:var(--radius);padding:2.2rem;position:relative;overflow:hidden}
+.map-card::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:28px 28px}
+.pin{position:relative;z-index:2;display:flex;align-items:center;gap:1rem;margin-bottom:1.8rem}
+.pin .p-dot{width:16px;height:16px;border-radius:50%;background:var(--acc);box-shadow:0 0 0 8px rgba(53,224,194,.15),0 0 24px var(--acc)}
+.map-rows{position:relative;z-index:2;display:flex;flex-direction:column;gap:.9rem}
+.map-rows div{display:flex;justify-content:space-between;border-bottom:1px dashed var(--line2);padding-bottom:.7rem;font-size:.9rem}
+.map-rows span{color:var(--muted)}
+.map-rows b{font-family:var(--font-d);font-weight:600}
+/* ---------- CTA ---------- */
+.cta-band{position:relative;border-radius:26px;overflow:hidden;padding:clamp(3rem,6vw,5rem) clamp(1.6rem,5vw,4.5rem);background:linear-gradient(120deg,#0c2b28,#0a1a2c 60%,#123);border:1px solid var(--line2)}
+.cta-band::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 85% 20%,rgba(255,179,107,.18),transparent 45%),radial-gradient(circle at 15% 90%,rgba(53,224,194,.2),transparent 45%)}
+.cta-band>*{position:relative}
+.cta-band h2{font-size:clamp(1.8rem,4vw,2.7rem);max-width:640px;margin-bottom:.9rem}
+.cta-band p{color:var(--muted);max-width:560px;margin-bottom:2rem}
+/* ---------- FOOTER ---------- */
+footer{border-top:1px solid var(--line);background:var(--bg2);padding:4rem 0 2.2rem}
+.f-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:2.5rem;margin-bottom:3rem}
+.f-grid h5{font-family:var(--font-d);font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin-bottom:1.1rem}
+.f-grid ul{list-style:none;display:flex;flex-direction:column;gap:.55rem}
+.f-grid ul a{font-size:.9rem;color:var(--muted);transition:.2s}
+.f-grid ul a:hover{color:var(--acc)}
+.f-about p{color:var(--muted);font-size:.9rem;margin-top:1rem;max-width:280px}
+.f-bottom{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;padding-top:1.6rem;border-top:1px solid var(--line);font-size:.82rem;color:var(--dim)}
+.socials{display:flex;gap:.7rem}
+.socials a{width:38px;height:38px;border-radius:10px;border:1px solid var(--line2);display:grid;place-items:center;color:var(--muted);transition:.25s}
+.socials a:hover{color:#04241d;background:var(--acc);border-color:var(--acc)}
+/* ---------- REVEAL ---------- */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:1000px){
+  .grow-grid{grid-template-columns:repeat(2,1fr)}
+  .prog-grid{grid-template-columns:repeat(2,1fr)}
+  .fac-l,.fac-m,.fac-s{grid-column:span 6}
+  .people-grid{grid-template-columns:repeat(2,1fr)}
+  .loc{grid-template-columns:1fr;gap:2.2rem}
+  .f-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:760px){
+  .nav-links{position:fixed;inset:0;background:rgba(7,13,18,.97);backdrop-filter:blur(16px);flex-direction:column;justify-content:center;gap:1.8rem;transform:translateX(100%);transition:.35s;z-index:105}
+  .nav-links.open{transform:none}
+  .nav-links a{font-size:1.25rem;font-family:var(--font-d)}
+  .nav-links .nav-cta{font-size:1rem}
+  .burger{display:block}
+  .hero-stats{grid-template-columns:repeat(2,1fr)}
+  .grow-grid,.prog-grid,.people-grid,.mem-grid{grid-template-columns:1fr}
+  .fac-l,.fac-m,.fac-s{grid-column:span 12}
+  .f-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
 <body>
 
-<!-- Inline icon sprite -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <symbol id="i-arrow-ur" viewBox="0 0 24 24"><path d="M7 17L17 7M8 7h9v9"/></symbol>
-  <symbol id="i-arrow-d" viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></symbol>
-  <symbol id="i-arrow-u" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></symbol>
-  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
-  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
-  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0z"/><circle cx="12" cy="10" r="3"/></symbol>
-  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
-  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
-  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.4 2.1L8 9.6a16 16 0 0 0 6.3 6.3l1.2-1.2a2 2 0 0 1 2.1-.4c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.8 2z"/></symbol>
-  <symbol id="i-ig" viewBox="0 0 24 24"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="0.6" fill="currentColor"/></symbol>
-  <symbol id="i-li" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></symbol>
-  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
-  <symbol id="i-check" viewBox="0 0 24 24"><path d="M4 12l5 5L20 7"/></symbol>
-</svg>
-
-<div id="grain" aria-hidden="true"></div>
-<div id="follower" aria-hidden="true"><span></span></div>
-
-<!-- ============ Header ============ -->
-<header id="hd">
-  <a class="logo" href="#top">
-    <span class="mark"><svg class="ic"><use href="#i-sun"/></svg></span>
-    Peregian <em>Digital Hub</em>
-  </a>
-  <nav aria-label="Primary">
-    <a href="#hub">The Hub</a>
-    <a href="#spaces">Spaces</a>
-    <a href="#membership">Membership</a>
-    <a href="#whats-on">What's On</a>
-    <a href="#visit">Visit</a>
-  </nav>
-  <button class="btn small" data-open data-plan="Just a look around">Book a tour</button>
-  <button id="menu-btn" aria-label="Menu" aria-expanded="false"><i></i><i></i></button>
+<!-- ============ NAV ============ -->
+<header id="header">
+  <div class="wrap nav">
+    <a href="#top" class="logo">
+      <div class="logo-mark">◈</div>
+      <span>Peregian<br><small>Digital Hub</small></span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#programs">Programs</a></li>
+      <li><a href="#facilities">Facilities</a></li>
+      <li><a href="#membership">Membership</a></li>
+      <li><a href="#story">Our Story</a></li>
+      <li><a href="#visit">Visit</a></li>
+      <li><a href="#contact" class="btn btn-p nav-cta">Chat with us</a></li>
+    </ul>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
 </header>
 
-<!-- Mobile menu -->
-<div id="menu">
-  <a href="#hub">The Hub <svg class="ic"><use href="#i-arrow-ur"/></svg></a>
-  <a href="#spaces">Spaces <svg class="ic"><use href="#i-arrow-ur"/></svg></a>
-  <a href="#membership">Membership <svg class="ic"><use href="#i-arrow-ur"/></svg></a>
-  <a href="#whats-on">What's On <svg class="ic"><use href="#i-arrow-ur"/></svg></a>
-  <a href="#visit">Visit <svg class="ic"><use href="#i-arrow-ur"/></svg></a>
-  <p class="mono">HELLO@PEREGIANHUB.COM.AU · 26.4633° S, 153.1022° E</p>
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="hero-bg"><div class="grid-lines"></div></div>
+  <div class="wrap hero-inner">
+    <div class="badge-pill"><span class="dot"></span> Owned by Noosa Council &middot; Serving the region from Peregian Beach since 2018</div>
+    <h1>Bring your ideas to life <span class="gr">with AI</span>.</h1>
+    <p class="lead">The place, people and programs to help you learn to use AI well, put it to work in your business, or create a tool of your own — 50&nbsp;metres from one of Australia's best beaches.</p>
+    <div class="hero-ctas">
+      <a href="#programs" class="btn btn-p">Explore programs →</a>
+      <a href="#membership" class="btn btn-g">Membership</a>
+    </div>
+    <div class="hero-stats">
+      <div><b>2018</b><span>Opened by Noosa Council</span></div>
+      <div><b>50m</b><span>To Peregian Beach surf</span></div>
+      <div><b>80</b><span>Seats in the Wonder Pod</span></div>
+      <div><b>200+</b><span>Students in AI cadetships</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MARQUEE ============ -->
+<div class="marquee" aria-hidden="true">
+  <div class="mq-track">
+    <span>Build <i>◆</i> Connect <i>◆</i> Learn <i>◆</i> Tokenizer <i>◆</i> Uplift <i>◆</i> Vibecamp <i>◆</i> AI Lab <i>◆</i> Wonder Pod <i>◆</i> Sound Pod <i>◆</i> Coding from Beach <i>◆</i></span>
+    <span>Build <i>◆</i> Connect <i>◆</i> Learn <i>◆</i> Tokenizer <i>◆</i> Uplift <i>◆</i> Vibecamp <i>◆</i> AI Lab <i>◆</i> Wonder Pod <i>◆</i> Sound Pod <i>◆</i> Coding from Beach <i>◆</i></span>
+  </div>
 </div>
 
-<main>
-  <!-- ============ Hero ============ -->
-  <section id="top">
-    <div class="sun-wrap" aria-hidden="true">
-      <div class="sun-float"><div id="sun"></div></div>
+<!-- ============ GROW ============ -->
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Start here</div>
+      <h2>Start with what you want to <span class="gr">grow</span>.</h2>
+      <p>AI is reducing the time, cost and specialist expertise needed to create with technology. The Hub exists to help local people and businesses take part.</p>
     </div>
-    <div class="hero-copy">
-      <p class="hero-kicker">Peregian Digital Hub · Sunshine Coast, Australia</p>
-      <h1>
-        <span class="line"><span class="line-in">Work at</span></span>
-        <span class="line"><span class="line-in"><span class="it">sea level.</span></span></span>
-      </h1>
-      <p class="hero-sub">A coworking and innovation community for digital professionals — housed in a converted church, four hundred metres from the sand.</p>
-      <div class="hero-cta">
-        <button class="btn" data-open data-plan="Just a look around">Book a tour <svg class="ic"><use href="#i-arrow-ur"/></svg></button>
-        <a class="btn ghost" href="#spaces">Explore the spaces <svg class="ic"><use href="#i-arrow-d"/></svg></a>
+    <div class="grow-grid">
+      <div class="grow reveal">
+        <span class="num">01</span>
+        <h3>Grow your knowledge.</h3>
+        <p>Get your hands on the tools and learn what AI can do through practical sessions at the Hub.</p>
+        <a href="#programs">Explore programs →</a>
       </div>
-    </div>
-    <div class="horizon">
-      <div class="horizon-in">
-        <span>26.4633° S, 153.1022° E</span>
-        <a class="cue" href="#hub">Scroll <svg class="ic"><use href="#i-arrow-d"/></svg></a>
-        <span class="hide-m">Est. 2017 · Members 24/7</span>
+      <div class="grow reveal" style="transition-delay:.08s">
+        <span class="num">02</span>
+        <h3>Grow your business.</h3>
+        <p>Use what you know about your business to find practical ways AI can improve it.</p>
+        <a href="#programs">Explore Uplift →</a>
       </div>
-    </div>
-  </section>
-
-  <!-- ticker -->
-  <div class="band" aria-hidden="true">
-    <div class="track" id="tick1"></div>
-  </div>
-
-  <!-- ============ 01 The Hub ============ -->
-  <section id="hub">
-    <div class="wrap">
-      <div class="sec-head rv">
-        <p class="kicker"><b>01</b> The Hub</p>
+      <div class="grow reveal" style="transition-delay:.16s">
+        <span class="num">03</span>
+        <h3>Grow your audience.</h3>
+        <p>Record, film and present in equipped spaces made for sharing your work.</p>
+        <a href="#facilities">Explore the studios →</a>
       </div>
-      <div class="hub-grid">
-        <figure class="hub-photo rv">
-          <img src="https://picsum.photos/seed/peregian-hall/840/1050.jpg" alt="Interior of the converted church that houses the hub" loading="lazy">
-          <figcaption style="display:flex;justify-content:space-between;padding-top:12px;font:400 11px var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)">
-            <span>The old church, David Low Way</span><span>Fig. 01</span>
-          </figcaption>
-        </figure>
-        <div class="hub-copy">
-          <p class="statement rv">We took out the pews <span class="it">and put in fibre.</span></p>
-          <p class="rv" style="--d:.1s">Peregian Digital Hub has called the old church on David Low Way home since 2017 — long timber tables where the pews used to be, leadlight windows, and a courtyard for the long lunches. Designers, developers, founders and remote teams all work under one set of rafters.</p>
-          <p class="rv" style="--d:.15s">The dress code is barefoot-optional, the coffee is serious, and when you need to think, the ocean is a two-minute walk. The Hub is also part of the Peregian "smart town" story — free gigabit Wi-Fi across the whole village, a first for Australia.</p>
-          <dl class="stats rv" style="--d:.2s">
-            <div><dt>Founded</dt><dd>2017<small>in the old church</small></dd></div>
-            <div><dt>Community</dt><dd>80+<small>members &amp; resident teams</small></dd></div>
-            <div><dt>Connectivity</dt><dd>1 Gbps<small>symmetric fibre + free village Wi-Fi</small></dd></div>
-            <div><dt>Beach</dt><dd>400 m<small>to the sand at Peregian</small></dd></div>
-          </dl>
-        </div>
+      <div class="grow reveal" style="transition-delay:.24s">
+        <span class="num">04</span>
+        <h3>Grow a new venture.</h3>
+        <p>Apply your experience or insight to a problem and create a useful new tool.</p>
+        <a href="#membership">Explore membership →</a>
       </div>
-    </div>
-  </section>
-
-  <!-- resident names band -->
-  <div class="band sunband" aria-hidden="true">
-    <div class="track" id="tick2"></div>
-  </div>
-
-  <!-- ============ 02 Spaces ============ -->
-  <section id="spaces">
-    <div class="wrap">
-      <div class="sec-head rv">
-        <p class="kicker"><b>02</b> Spaces</p>
-        <h2>Six rooms, one <span class="it">congregation.</span></h2>
-      </div>
-
-      <div class="rv">
-        <div class="space open">
-          <button class="space-head" aria-expanded="true" data-cursor="OPEN">
-            <span class="s-no">01</span><h3 class="s-name">The Church Floor</h3>
-            <span class="s-tag">Open coworking</span><span class="s-ico"><svg class="ic"><use href="#i-plus"/></svg></span>
-          </button>
-          <div class="space-body"><div class="space-inner"><div class="space-flex">
-            <img src="https://picsum.photos/seed/pdh-nave/900/560.jpg" alt="Open coworking floor" loading="lazy">
-            <div><p>Thirty-odd desks in the old nave, right where the pews used to sit. Long communal tables, morning sun through the leadlight, and the strongest opinions on coffee in the postcode.</p>
-            <p class="s-meta">30 desks · hot desk or dedicated · from $220/mo</p>
-            <a class="link-enquire" href="#" data-open data-plan="The Church Floor">Enquire <svg class="ic"><use href="#i-arrow-ur"/></svg></a></div>
-          </div></div></div>
-        </div>
-
-        <div class="space">
-          <button class="space-head" aria-expanded="false" data-cursor="OPEN">
-            <span class="s-no">02</span><h3 class="s-name">Dedicated Desks</h3>
-            <span class="s-tag">Your own patch</span><span class="s-ico"><svg class="ic"><use href="#i-plus"/></svg></span>
-          </button>
-          <div class="space-body"><div class="space-inner"><div class="space-flex">
-            <img src="https://picsum.photos/seed/pdh-desks/900/560.jpg" alt="Dedicated desks" loading="lazy">
-            <div><p>Your own patch of timber with your name on it — leave the monitor plugged in and the mug guarded. Priority access to the meeting rooms and the good couches.</p>
-            <p class="s-meta">20 desks · 24/7 access · from $320/mo</p>
-            <a class="link-enquire" href="#" data-open data-plan="Dedicated Desks">Enquire <svg class="ic"><use href="#i-arrow-ur"/></svg></a></div>
-          </div></div></div>
-        </div>
-
-        <div class="space">
-          <button class="space-head" aria-expanded="false" data-cursor="OPEN">
-            <span class="s-no">03</span><h3 class="s-name">Private Studios</h3>
-            <span class="s-tag">Teams of 2–10</span><span class="s-ico"><svg class="ic"><use href="#i-plus"/></svg></span>
-          </button>
-          <div class="space-body"><div class="space-inner"><div class="space-flex">
-            <img src="https://picsum.photos/seed/pdh-studio/900/560.jpg" alt="Private studio offices" loading="lazy">
-            <div><p>Glass-fronted, lockable studios along the northern wall for teams of two to ten. Come with your own signage; leave with your own folklore.</p>
-            <p class="s-meta">Teams of 2–10 · terms from 3 months · from $600/mo</p>
-            <a class="link-enquire" href="#" data-open data-plan="Private Studios">Enquire <svg class="ic"><use href="#i-arrow-ur"/></svg></a></div>
-          </div></div></div>
-        </div>
-
-        <div class="space">
-          <button class="space-head" aria-expanded="false" data-cursor="OPEN">
-            <span class="s-no">04</span><h3 class="s-name">The Vestry</h3>
-            <span class="s-tag">Boardroom · 8 seats</span><span class="s-ico"><svg class="ic"><use href="#i-plus"/></svg></span>
-          </button>
-          <div class="space-body"><div class="space-inner"><div class="space-flex">
-            <img src="https://picsum.photos/seed/pdh-vestry/900/560.jpg" alt="The Vestry boardroom" loading="lazy">
-            <div><p>The small quiet room off the main hall. Eight seats, a 65-inch screen, whiteboard walls and the acoustics of serious decisions.</p>
-            <p class="s-meta">8 seats · 65″ display · whiteboard walls · $40/hr</p>
-            <a class="link-enquire" href="#" data-open data-plan="The Vestry">Enquire <svg class="ic"><use href="#i-arrow-ur"/></svg></a></div>
-          </div></div></div>
-        </div>
-
-        <div class="space">
-          <button class="space-head" aria-expanded="false" data-cursor="OPEN">
-            <span class="s-no">05</span><h3 class="s-name">The Sanctuary</h3>
-            <span class="s-tag">Events · 60 seated</span><span class="s-ico"><svg class="ic"><use href="#i-plus"/></svg></span>
-          </button>
-          <div class="space-body"><div class="space-inner"><div class="space-flex">
-            <img src="https://picsum.photos/seed/pdh-sanctuary/900/560.jpg" alt="The Sanctuary event space" loading="lazy">
-            <div><p>Talks, launches, workshops and the occasional wedding proposal (true story). Sixty seats, full AV, and a courtyard for the speeches afterwards.</p>
-            <p class="s-meta">60 seated · AV included · courtyard access · POA</p>
-            <a class="link-enquire" href="#" data-open data-plan="The Sanctuary">Enquire <svg class="ic"><use href="#i-arrow-ur"/></svg></a></div>
-          </div></div></div>
-        </div>
-
-        <div class="space">
-          <button class="space-head" aria-expanded="false" data-cursor="OPEN">
-            <span class="s-no">06</span><h3 class="s-name">The Booth</h3>
-            <span class="s-tag">Podcast room</span><span class="s-ico"><svg class="ic"><use href="#i-plus"/></svg></span>
-          </button>
-          <div class="space-body"><div class="space-inner"><div class="space-flex">
-            <img src="https://picsum.photos/seed/pdh-booth/900/560.jpg" alt="The Booth podcast room" loading="lazy">
-            <div><p>A padded room where you're finally allowed to talk to yourself. Microphones, mixer and headphones on standby — go record the podcast you keep mentioning.</p>
-            <p class="s-meta">Acoustic · mixer &amp; mics · $25/hr</p>
-            <a class="link-enquire" href="#" data-open data-plan="The Booth">Enquire <svg class="ic"><use href="#i-arrow-ur"/></svg></a></div>
-          </div></div></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ 03 Membership ============ -->
-  <section id="membership">
-    <div class="wrap">
-      <div class="sec-head rv">
-        <p class="kicker"><b>03</b> Membership</p>
-        <div class="mem-head">
-          <h2>Pay for a desk. <span class="it">Stay for the people.</span></h2>
-          <div class="seg" role="group" aria-label="Billing period">
-            <button data-bill="monthly" aria-pressed="true">Monthly</button>
-            <button data-bill="yearly" aria-pressed="false">Yearly <em>−2 months</em></button>
-          </div>
-        </div>
-      </div>
-
-      <div class="rv">
-        <div class="plan">
-          <div><h3>Day Pass</h3><p class="pl-sub">Drop in, plug in, done.</p></div>
-          <ul class="pl-feat">
-            <li><svg class="ic"><use href="#i-check"/></svg>Any free desk for the day</li>
-            <li><svg class="ic"><use href="#i-check"/></svg>Fibre Wi-Fi + bottomless coffee</li>
-            <li><svg class="ic"><use href="#i-check"/></svg>Beach at lunch, obviously</li>
-          </ul>
-          <div class="pl-price"><span class="p-val" data-m="$35">$35</span> <span class="p-per">/ day</span></div>
-          <button class="btn small ghost" data-open data-plan="Day Pass">Buy a day</button>
-        </div>
-
-        <div class="plan">
-          <div><h3>Flex</h3><p class="pl-sub">Ten days a month, any desk.</p></div>
-          <ul class="pl-feat">
-            <li><svg class="ic"><use href="#i-check"/></svg>10 days / month on the Church Floor</li>
-            <li><svg class="ic"><use href="#i-check"/></svg>Member events &amp; Slack</li>
-            <li><svg class="ic"><use href="#i-check"/></svg>Vestry at member rates</li>
-          </ul>
-          <div class="pl-price"><span class="p-val" data-m="$220" data-y="$183">$220</span> <span class="p-per">/ mo</span></div>
-          <button class="btn small ghost" data-open data-plan="Flex">Start Flex</button>
-        </div>
-
-        <div class="plan resident">
-          <span class="pop-tag">MOST POPULAR</span>
-          <div><h3>Resident</h3><p class="pl-sub">A desk of your own, always.</p></div>
-          <ul class="pl-feat">
-            <li><svg class="ic"><use href="#i-check"/></svg>Dedicated desk, keys 24/7</li>
-            <li><svg class="ic"><use href="#i-check"/></svg>Lockable storage</li>
-            <li><svg class="ic"><use href="#i-check"/></svg>4 hrs meeting rooms / month</li>
-          </ul>
-          <div class="pl-price"><span class="p-val" data-m="$440" data-y="$367">$440</span> <span class="p-per">/ mo</span></div>
-          <button class="btn small" data-open data-plan="Resident">Join up</button>
-        </div>
-
-        <div class="plan">
-          <div><h3>Studio</h3><p class="pl-sub">A private room for the whole team.</p></div>
-          <ul class="pl-feat">
-            <li><svg class="ic"><use href="#i-check"/></svg>Lockable glass studio</li>
-            <li><svg class="ic"><use href="#i-check"/></svg>Your own signage &amp; network</li>
-            <li><svg class="ic"><use href="#i-check"/></svg>Terms from 3 months</li>
-          </ul>
-          <div class="pl-price"><span class="p-val" data-m="from $600" data-y="from $500">from $600</span> <span class="p-per">/ mo</span></div>
-          <button class="btn small ghost" data-open data-plan="Studio">Enquire</button>
-        </div>
-        <p class="bill-note" id="bill-note">Billed monthly · cancel any time</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ 04 What's On ============ -->
-  <section id="whats-on">
-    <div class="wrap">
-      <div class="sec-head rv">
-        <p class="kicker"><b>04</b> What's On</p>
-        <h2>A week <span class="it">at the Hub.</span></h2>
-      </div>
-      <div class="rv">
-        <div class="ev">
-          <span class="ev-date">Mon · 06:30</span>
-          <h3>Sunrise Founders</h3>
-          <span class="ev-place">Peregian Beach, north corner</span>
-          <span class="ev-tag">Members</span>
-        </div>
-        <div class="ev">
-          <span class="ev-date">Wed · 17:30</span>
-          <h3>Design &amp; Dev Night</h3>
-          <span class="ev-place">The Sanctuary</span>
-          <span class="ev-tag">Public · Free</span>
-        </div>
-        <div class="ev">
-          <span class="ev-date">Thu · 12:00</span>
-          <h3>Founders Lunch</h3>
-          <span class="ev-place">The Church Floor</span>
-          <span class="ev-tag">Members</span>
-        </div>
-        <div class="ev">
-          <span class="ev-date">1st Fri · 16:00</span>
-          <h3>Member Demos &amp; Drinks</h3>
-          <span class="ev-place">The Sanctuary + courtyard</span>
-          <span class="ev-tag">Public</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ 05 Visit ============ -->
-  <section id="visit">
-    <div class="wrap">
-      <div class="sec-head rv">
-        <p class="kicker"><b>05</b> Visit</p>
-        <h2>Between the river <span class="it">and the point.</span></h2>
-      </div>
-      <div class="loc-grid">
-        <figure class="map-fig rv">
-          <svg viewBox="0 0 1000 430" role="img" aria-label="Stylised map of the Sunshine Coast showing Peregian Beach between Noosa and Coolum">
-            <path class="land" d="M-10 300 C 160 270, 320 235, 450 195 C 580 155, 720 130, 1010 95 L1010 -10 L-10 -10 Z"/>
-            <path d="M-10 300 C 160 270, 320 235, 450 195 C 580 155, 720 130, 1010 95" fill="none" stroke="var(--ink)" stroke-width="1.6"/>
-            <path d="M-10 240 C 160 212, 320 180, 450 148 C 580 118, 720 92, 1010 55" fill="none" stroke="var(--ink)" stroke-width="1" stroke-dasharray="3 7" opacity=".35"/>
-            <text x="62" y="222" font-size="10" opacity=".45" letter-spacing="2">DAVID LOW WAY</text>
-            <!-- ocean lines -->
-            <path d="M-10 345 C 160 315, 320 280, 450 240 C 580 200, 720 175, 1010 140" fill="none" stroke="var(--ink)" stroke-dasharray="2 8" opacity=".16"/>
-            <path d="M-10 390 C 160 360, 320 325, 450 285 C 580 245, 720 220, 1010 185" fill="none" stroke="var(--ink)" stroke-dasharray="2 8" opacity=".16"/>
-            <path d="M-10 435 C 160 405, 320 370, 450 330 C 580 290, 720 265, 1010 230" fill="none" stroke="var(--ink)" stroke-dasharray="2 8" opacity=".16"/>
-            <text x="150" y="395" font-size="13" font-style="italic" letter-spacing="6" opacity=".5" font-family="Fraunces,serif">CORAL SEA</text>
-            <!-- towns -->
-            <circle cx="170" cy="230" r="4.5" fill="var(--ink)"/>
-            <text x="170" y="214" font-size="11" text-anchor="middle" letter-spacing="2">NOOSA HEADS</text>
-            <circle cx="330" cy="240" r="4.5" fill="var(--ink)"/>
-            <text x="330" y="224" font-size="11" text-anchor="middle" letter-spacing="2">SUNSHINE BEACH</text>
-            <!-- Peregian -->
-            <circle class="pulse" cx="520" cy="168" r="9" fill="var(--sun)"/>
-            <circle cx="520" cy="168" r="9" fill="var(--sun)" stroke="var(--paper)" stroke-width="2.5"/>
-            <text x="520" y="212" font-size="12" font-weight="700" text-anchor="middle" letter-spacing="3">PEREGIAN BEACH</text>
-            <text x="520" y="232" font-size="11" font-style="italic" text-anchor="middle" fill="var(--sun)" font-family="Fraunces,serif" font-size="14">— you, soon. —</text>
-            <!-- Coolum -->
-            <circle cx="705" cy="126" r="4.5" fill="var(--ink)"/>
-            <text x="705" y="110" font-size="11" text-anchor="middle" letter-spacing="2">COOLUM BEACH</text>
-            <path d="M755 96 l9 -16 l9 16 z" fill="var(--ink)"/>
-            <text x="764" y="76" font-size="10" text-anchor="middle" letter-spacing="1.5" opacity=".6">MT COOLUM</text>
-            <!-- compass + scale -->
-            <g transform="translate(940,60)" stroke="var(--ink)" opacity=".6">
-              <line x1="0" y1="14" x2="0" y2="-14" stroke-width="1.4"/><path d="M0 -14 l-5 9 h10 z" fill="var(--ink)" stroke="none"/>
-              <text x="0" y="30" font-size="10" text-anchor="middle" stroke="none" fill="var(--ink)">N</text>
-            </g>
-            <line x1="60" y1="405" x2="160" y2="405" stroke="var(--ink)" stroke-width="1.4"/>
-            <text x="170" y="409" font-size="10" letter-spacing="2">2 KM</text>
-          </svg>
-        </figure>
-        <dl class="facts rv" style="--d:.12s">
-          <div><dt>Address</dt><dd>Shop 2, David Low Way<small>Peregian Beach QLD 4573</small></dd></div>
-          <div><dt>Airport</dt><dd>20 min<small>Sunshine Coast (MCY)</small></dd></div>
-          <div><dt>Brisbane</dt><dd>90 min<small>down the M1</small></dd></div>
-          <div><dt>Village</dt><dd>2 min walk<small>coffee, bakery, cinema</small></dd></div>
-          <div><dt>Local time</dt><dd><span id="clock">—</span></dd></div>
-        </dl>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ CTA ============ -->
-  <section class="cta">
-    <div class="wrap rv">
-      <span class="sun-badge"><svg class="ic"><use href="#i-sun"/></svg></span>
-      <h2>Come say <span class="it">g'day.</span></h2>
-      <p>Tours run Tuesdays and Thursdays, 10am-ish. Or email us and we'll put the kettle on.</p>
-      <div class="row">
-        <button class="btn" data-open data-plan="Just a look around">Book a tour <svg class="ic"><use href="#i-arrow-ur"/></svg></button>
-        <a class="btn ghost" href="mailto:hello@peregianhub.com.au">hello@peregianhub.com.au</a>
-      </div>
-    </div>
-  </section>
-</main>
-
-<!-- ============ Footer ============ -->
-<footer>
-  <div class="ft-giant">Peregian <svg class="ic"><use href="#i-sun"/></svg> <span class="it">Digital Hub</span></div>
-  <div class="ft-cols">
-    <div>
-      <h4>Visit</h4>
-      <p>Shop 2, David Low Way</p>
-      <p>Peregian Beach QLD 4573</p>
-      <p>Mon–Fri · 8:30–17:30</p>
-      <p>Members · 24/7</p>
-    </div>
-    <div>
-      <h4>Contact</h4>
-      <a href="mailto:hello@peregianhub.com.au">hello@peregianhub.com.au</a>
-      <a href="tel:+61754000000">(07) 5400 0000</a>
-      <div class="soc">
-        <a href="#" aria-label="Instagram"><svg class="ic"><use href="#i-ig"/></svg></a>
-        <a href="#" aria-label="LinkedIn"><svg class="ic"><use href="#i-li"/></svg></a>
-        <a href="mailto:hello@peregianhub.com.au" aria-label="Email"><svg class="ic"><use href="#i-mail"/></svg></a>
-      </div>
-    </div>
-    <div>
-      <h4>Site</h4>
-      <a href="#hub">The Hub</a>
-      <a href="#spaces">Spaces</a>
-      <a href="#membership">Membership</a>
-      <a href="#whats-on">What's On</a>
-      <a href="#visit">Visit</a>
     </div>
   </div>
-  <div class="ft-bar">
-    <span>© <span id="yr"></span> Peregian Digital Hub</span>
-    <span>26.4633° S, 153.1022° E</span>
-    <button id="to-top">Back to top <svg class="ic"><use href="#i-arrow-u"/></svg></button>
+</section>
+
+<!-- ============ PROGRAMS ============ -->
+<section class="section" id="programs" style="background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Build · Connect · Learn</div>
+      <h2>Programs for every stage of the journey.</h2>
+      <p>From after-school inventors to enterprise leaders — hands-on learning, world-class mentors and a community that builds together.</p>
+    </div>
+    <div class="prog-grid">
+      <div class="prog reveal">
+        <span class="tag hot">Flagship</span>
+        <h3>Tokenizer</h3>
+        <p>Our multi-year AI training program helping the region build the skills, knowledge and practical experience to thrive in the AI era — workshops, talks, buildathons, mentoring and an online academy.</p>
+        <div class="meta"><span>For <b>everyone from beginners to technologists</b></span><span>Many activities <b>free or subsidised</b></span></div>
+      </div>
+      <div class="prog reveal" style="transition-delay:.08s">
+        <span class="tag">For business</span>
+        <h3>Uplift</h3>
+        <p>A four-week AI adoption program for Sunshine Coast business owners and senior leaders. Put AI to work in day-to-day operations, products and services — with subsidised mentoring and proof-of-concept support.</p>
+        <div class="meta"><span>Cohort 3 starts <b>8 Oct 2026</b></span><span><b>$293 per business</b> · up to 3 participants</span></div>
+      </div>
+      <div class="prog reveal" style="transition-delay:.16s">
+        <span class="tag">Event</span>
+        <h3>Vibecamp</h3>
+        <p>An AI hackathon meets campout. A weekend of camping, vibe-coding and creating with AI under the stars at Habitat Noosa Everglades Eco Camp — where anyone can bring an idea to life.</p>
+        <div class="meta"><span><b>21–23 August 2026</b></span><span>Part of the <b>Tokenizer</b> program</span></div>
+      </div>
+      <div class="prog reveal">
+        <span class="tag">For kids &amp; teens</span>
+        <h3>Holiday Program &amp; Inventors Club</h3>
+        <p>School-holiday workshops plus a weekly Hub Inventors Club for kids aged 10–15 — inventing and building with AI, 3D design and printing, coding and robotics.</p>
+        <div class="meta"><span>After-school &amp; <b>school holidays</b></span><span>Ages <b>10–15</b></span></div>
+      </div>
+      <div class="prog reveal" style="transition-delay:.08s">
+        <span class="tag">Paid work experience</span>
+        <h3>Cadetships</h3>
+        <p>Our AI Cadetship program for promising grade 9–11 students — launched back in 2019, well before the ChatGPT moment — and now engaging over 200 students with hands-on AI fundamentals.</p>
+        <div class="meta"><span>Grade <b>9–11 students</b></span><span>Runs in <b>term 3</b></span></div>
+      </div>
+      <div class="prog reveal" style="transition-delay:.16s">
+        <span class="tag">For creatives</span>
+        <h3>Residencies</h3>
+        <p>A creative residency program for screen professionals, storytellers and technologists exploring what AI makes possible — delivered with the Sunshine Coast Screen Collective.</p>
+        <div class="meta"><span>Open to <b>creatives &amp; technologists</b></span><span>Hosted at <b>the Hub</b></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FACILITIES ============ -->
+<section class="section" id="facilities">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">The spaces</div>
+      <h2>A world-class facility in a beachside village.</h2>
+      <p>Four offices, flexible workspaces, bookable meeting rooms and a state-of-the-art AI Lab — designed for collaboration and momentum.</p>
+    </div>
+    <div class="fac-grid">
+      <div class="fac fac-l reveal">
+        <span class="lbl">The Hub Facility</span>
+        <div class="big">4+5+2</div>
+        <h3>Coworking &amp; AI Lab</h3>
+        <p>Four fully serviced offices, fixed desks and hotdesks in the flex area, five bookable meeting rooms, two video call booths, an outdoor deck and the barception area.</p>
+        <ul class="feat">
+          <li>Gigabit fibre</li>
+          <li>24/7 secure access</li>
+          <li>100-seat auditorium</li>
+          <li>Parking &amp; bike racks</li>
+        </ul>
+      </div>
+      <div class="fac fac-m reveal" style="transition-delay:.08s">
+        <span class="lbl">Wonder Pod</span>
+        <div class="big">80 seats</div>
+        <h3>Meetings, events &amp; production</h3>
+        <p>A multi-use venue with a 7m × 3m LED wall, retractable seating, 3 × 4K PTZ cameras, in-ceiling AI-enabled mics and Dolby sound. Configure it as an auditorium, classroom, theatre, LED volume, film studio or workshop space — built for hybrid events with integrated recording, livestreaming and remote participation.</p>
+        <ul class="feat">
+          <li>Multi-camera production</li>
+          <li>Presenter autotracking</li>
+          <li>Livestreams &amp; webcasts</li>
+          <li>Hub media team support</li>
+        </ul>
+      </div>
+      <div class="fac fac-s reveal">
+        <span class="lbl">Sound Pod</span>
+        <div class="big">4-person</div>
+        <h3>Podcast &amp; recording studio</h3>
+        <p>Sound-proofed studio with Rode hardware — Rodecaster Pro II, four Podmics, boom arms and ethernet for remote guests — plus an edit suite with Descript and DaVinci Resolve.</p>
+      </div>
+      <div class="fac fac-s reveal" style="transition-delay:.08s">
+        <span class="lbl">AI Lab</span>
+        <div class="big">2023</div>
+        <h3>Built for the AI era</h3>
+        <p>Added as part of the Hub's stage 2 development and officially opened in July 2023 — home to weekly workshops, tech meetups, hackathons and industry events.</p>
+      </div>
+      <div class="fac fac-s reveal" style="transition-delay:.16s">
+        <span class="lbl">Book a space</span>
+        <h3>Host your next session here</h3>
+        <p>Gather people in the Wonder Pod, record in the Sound Pod, or run your workshop in the AI Lab. AV-equipped rooms are available to book.</p>
+        <ul class="feat" style="margin-top:1rem"><li>Media team on hand</li><li>Production support</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MEMBERSHIP ============ -->
+<section class="section" id="membership" style="background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head reveal" style="margin-left:auto;margin-right:auto;text-align:center">
+      <div class="eyebrow" style="justify-content:center">Membership</div>
+      <h2>More than just a desk.</h2>
+      <p>A limited number of full-time and part-time memberships for people building technology businesses — with weekly AI workshops, monthly tech meetups and world-class mentors.</p>
+    </div>
+    <div class="mem-grid">
+      <div class="plan reveal">
+        <h3>Flex</h3>
+        <p class="sub">Part-time hot desk for hybrid work</p>
+        <div class="price">$293 <small>/ month</small></div>
+        <ul>
+          <li>Hot desk (any available)</li>
+          <li>7 days access per month</li>
+          <li>24/7 access on those days</li>
+          <li>Gigabit internet</li>
+          <li>All programs &amp; mentoring</li>
+        </ul>
+        <a href="https://www.peregianhub.com.au/build" class="btn btn-g" style="justify-content:center">Apply for Membership</a>
+      </div>
+      <div class="plan featured reveal" style="transition-delay:.1s">
+        <span class="pop">Most Popular</span>
+        <h3>Bootstrapper</h3>
+        <p class="sub">Full-time dedicated desk for founders</p>
+        <div class="price">$479 <small>/ month</small></div>
+        <ul>
+          <li>Dedicated sit-stand desk</li>
+          <li>Unlimited 24/7 access</li>
+          <li>Gigabit internet</li>
+          <li>Meeting room access</li>
+          <li>All programs &amp; mentoring</li>
+        </ul>
+        <a href="https://www.peregianhub.com.au/build" class="btn btn-p" style="justify-content:center">Apply for Membership</a>
+      </div>
+    </div>
+    <p class="mem-note reveal">Simple monthly plans, no lock-in contracts. Bootstrapper suits tech teams of up to 4 with multi-seat discounts. Membership is curated for people building tech and AI — applications are assessed on fit and contribution to the community.</p>
+  </div>
+</section>
+
+<!-- ============ PEOPLE ============ -->
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">The people</div>
+      <h2>Learn from people who've been there and done it.</h2>
+      <p>The Hub's programs draw on the talents of AI experts in its network, alongside mentors from startups, venture capital and enterprise.</p>
+    </div>
+    <div class="people-grid">
+      <div class="person reveal">
+        <div class="init" style="background:linear-gradient(135deg,#35e0c2,#4ea8ff)">CB</div>
+        <h4>Chris Boden</h4>
+        <div class="role">Director, Peregian Digital Hub</div>
+        <p>Has led the Hub since it opened in 2018, after an international startup and innovation career spanning San Francisco, Beijing, Singapore and Melbourne.</p>
+      </div>
+      <div class="person reveal" style="transition-delay:.07s">
+        <div class="init" style="background:linear-gradient(135deg,#ffb36b,#ff7eb3)">ST</div>
+        <h4>Steve Telburn</h4>
+        <div class="role">Tokenizer Uplift Stream Lead</div>
+        <p>Technology executive and business advisor with expertise across venture capital, enterprise consulting and startup leadership — currently at Antler's pre-seed VC fund.</p>
+      </div>
+      <div class="person reveal" style="transition-delay:.14s">
+        <div class="init" style="background:linear-gradient(135deg,#4ea8ff,#8f6bff)">IH</div>
+        <h4>Ian Hansel</h4>
+        <div class="role">Technical Lead</div>
+        <p>Data scientist, AI engineer and Director at Verge Labs, helping businesses create capacity by making their proprietary data and know-how legible for AI agents.</p>
+      </div>
+      <div class="person reveal" style="transition-delay:.21s">
+        <div class="init" style="background:linear-gradient(135deg,#35e0c2,#ffb36b)">RS</div>
+        <h4>Ryan Smith</h4>
+        <div class="role">Technical Mentor</div>
+        <p>Seasoned IT leader with deep expertise in Microsoft technologies, cloud and cybersecurity — helping SMEs turn technology into business advantage.</p>
+      </div>
+    </div>
+    <div class="sec-head reveal" style="margin-top:4.5rem;margin-bottom:1.6rem">
+      <div class="eyebrow">The ecosystem</div>
+      <h2 style="font-size:clamp(1.4rem,3vw,1.9rem)">A hotbed of AI activity — and home to a thriving network.</h2>
+      <p>AI startups incubated at the Hub include Springboards.ai, Nextplay, Telescope.co and Workr Labs. Networks include technologists, digital marketers, screen professionals, tech founders, angel investors and manufacturers — with meetups including Coding from Beach and Reboot Noosa. Tokenizer is supported by the Queensland Government via Advance Queensland's Regional Enabler Program, Regional Development Australia, and Noosa Shire Council.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STORY ============ -->
+<section class="section" id="story" style="background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Our story</div>
+      <h2>From a bowls club to a hub for AI builders.</h2>
+    </div>
+    <div class="timeline reveal">
+      <div class="tl">
+        <span class="yr">2013</span>
+        <h4>The idea takes root</h4>
+        <p>Noosa's economic strategy identifies an over-reliance on tourism and a youth brain drain, while a small digital community forms around Peregian Beach. When the Peregian Beach Bowls Club goes into receivership, Council acquires the land and decides to create a knowledge campus on a third of the site.</p>
+      </div>
+      <div class="tl">
+        <span class="yr">2017–2018</span>
+        <h4>The Hub opens</h4>
+        <p>Construction begins in January 2017 — a $3 million build funded by ratepayers and a $1m state government grant. The Hub commences operations on 7 July 2018 with an initial cohort of 20 full-time members.</p>
+      </div>
+      <div class="tl">
+        <span class="yr">2019–2020</span>
+        <h4>Firetech &amp; resilience</h4>
+        <p>After the bushfires that threatened Peregian Beach, the Hub launches Firetech Connect to accelerate bushfire-resilience technologies — and even becomes a PPE manufacturing facility during the pandemic.</p>
+      </div>
+      <div class="tl">
+        <span class="yr">2023</span>
+        <h4>The AI Lab</h4>
+        <p>A renovation and new build — delivered with federal bushfire recovery and Building Better Regions funding — adds a world-class AI Lab, officially opened in July 2023.</p>
+      </div>
+      <div class="tl">
+        <span class="yr">Today</span>
+        <h4>A vibrant AI ecosystem</h4>
+        <p>AI cadetships, residencies, hackathons, meetups, incubated startups and Uplift cohorts of local business leaders — a culture of learning, sharing, building and experimenting with AI.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LOCATION ============ -->
+<section class="section" id="visit">
+  <div class="wrap loc">
+    <div>
+      <div class="sec-head reveal" style="margin-bottom:0">
+        <div class="eyebrow">Location</div>
+        <h2>Magnificent Peregian Beach.</h2>
+        <p>Moments from the surf, minutes from great coffee, and a short drive from Sunshine Coast Airport. The Hub sits on David Low Way beside a bustling village with everything teams need day-to-day.</p>
+      </div>
+      <ul class="loc-list reveal">
+        <li><span class="ic">☕</span><div><b>Great coffee</b><span>Cafés and bakeries a short stroll away</span></div></li>
+        <li><span class="ic">🌊</span><div><b>Stunning surf</b><span>Lifeguarded beach 50m away with year-round waves</span></div></li>
+        <li><span class="ic">🍜</span><div><b>Top restaurants</b><span>10+ eateries — sushi, Thai, Mexican, French — within 400m</span></div></li>
+        <li><span class="ic">✈️</span><div><b>20 mins to airport</b><span>Daily flights to Sydney and Melbourne</span></div></li>
+      </ul>
+    </div>
+    <div class="map-card reveal">
+      <div class="pin"><span class="p-dot"></span><div><b style="font-family:var(--font-d)">Peregian Digital Hub</b><br><span style="color:var(--muted);font-size:.85rem">Sunshine Coast, QLD</span></div></div>
+      <div class="map-rows">
+        <div><span>Address</span><b>253–255 David Low Way</b></div>
+        <div><span>Suburb</span><b>Peregian Beach QLD 4573</b></div>
+        <div><span>To the beach</span><b>50 metres</b></div>
+        <div><span>To Noosa</span><b>~15 min drive</b></div>
+        <div><span>To airport</span><b>20 min drive</b></div>
+        <div><span>Transit</span><b>Bus stop at front door</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="cta-band reveal">
+      <div class="eyebrow">Get involved</div>
+      <h2>Bring your idea to the Hub.</h2>
+      <p>Or start with a question or problem you understand well. Join a program, apply for membership, or book a space — the community is waiting.</p>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap">
+        <a href="#programs" class="btn btn-p">Explore programs</a>
+        <a href="#membership" class="btn btn-g">Membership</a>
+        <a href="https://www.peregianhub.com.au" class="btn btn-g">Ask the Hub ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer id="contact">
+  <div class="wrap">
+    <div class="f-grid">
+      <div class="f-about">
+        <a href="#top" class="logo"><div class="logo-mark">◈</div><span>Peregian<br><small>Digital Hub</small></span></a>
+        <p>A world-class environment for digital talent in a beautiful beachside village. An initiative of Noosa Shire Council.</p>
+      </div>
+      <div>
+        <h5>The Hub</h5>
+        <ul>
+          <li><a href="#membership">Membership</a></li>
+          <li><a href="#facilities">The Facility</a></li>
+          <li><a href="#facilities">Wonder Pod</a></li>
+          <li><a href="#facilities">Sound Pod</a></li>
+          <li><a href="#visit">Peregian Beach</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Programs</h5>
+        <ul>
+          <li><a href="#programs">Tokenizer</a></li>
+          <li><a href="#programs">Uplift</a></li>
+          <li><a href="#programs">Vibecamp</a></li>
+          <li><a href="#programs">Cadetships</a></li>
+          <li><a href="#programs">Residencies</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="https://maps.google.com/?q=253-255+David+Low+Way+Peregian+Beach+QLD+4573">253–255 David Low Way,<br>Peregian Beach QLD 4573</a></li>
+          <li><a href="https://www.linkedin.com/company/peregianhub">LinkedIn</a></li>
+          <li><a href="https://www.facebook.com/peregianhub">Facebook</a></li>
+          <li><a href="https://www.youtube.com/channel/UC564UAR3gHxEP6sE6HJ2KFw">YouTube</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="f-bottom">
+      <span>© Noosa Shire Council. All rights reserved. The Hub is owned and operated by Noosa Council.</span>
+      <div class="socials">
+        <a href="https://www.linkedin.com/company/peregianhub" aria-label="LinkedIn">in</a>
+        <a href="https://www.facebook.com/peregianhub" aria-label="Facebook">f</a>
+        <a href="https://www.youtube.com/channel/UC564UAR3gHxEP6sE6HJ2KFw" aria-label="YouTube">▶</a>
+      </div>
+    </div>
   </div>
 </footer>
 
-<!-- ============ Tour modal ============ -->
-<dialog id="tour">
-  <div class="dlg-head">
-    <h3>Book a tour</h3>
-    <button id="dlg-close" aria-label="Close"><svg class="ic"><use href="#i-x"/></svg></button>
-  </div>
-  <form id="tour-form">
-    <div class="field"><label for="f-name">Name *</label><input id="f-name" name="name" type="text" required autocomplete="name"></div>
-    <div class="field"><label for="f-email">Email *</label><input id="f-email" name="email" type="email" required autocomplete="email"></div>
-    <div class="field"><label for="f-co">Company</label><input id="f-co" name="company" type="text" autocomplete="organization"></div>
-    <div class="field"><label for="f-int">Interested in</label>
-      <select id="f-int" name="interest">
-        <option>Just a look around</option>
-        <option>The Church Floor</option>
-        <option>Dedicated Desks</option>
-        <option>Private Studios</option>
-        <option>The Vestry</option>
-        <option>The Sanctuary</option>
-        <option>The Booth</option>
-        <option>Day Pass</option>
-        <option>Flex</option>
-        <option>Resident</option>
-        <option>Studio</option>
-      </select>
-    </div>
-    <div class="field full"><label for="f-msg">Anything we should know?</label><textarea id="f-msg" name="message"></textarea></div>
-    <button class="btn" type="submit">Request a tour <svg class="ic"><use href="#i-arrow-ur"/></svg></button>
-  </form>
-</dialog>
-
-<div id="toast" role="status"><svg class="ic"><use href="#i-check"/></svg><span id="toast-msg"></span></div>
-
 <script>
-(function(){
-  "use strict";
-  const $  = s => document.querySelector(s);
-  const $$ = s => [...document.querySelectorAll(s)];
-  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const finePointer = matchMedia('(pointer: fine)').matches;
+const header=document.getElementById('header');
+window.addEventListener('scroll',()=>{header.classList.toggle('scrolled',window.scrollY>30)});
 
-  /* ---------- Load-in ---------- */
-  setTimeout(() => document.body.classList.add('loaded'), 60);
+const burger=document.getElementById('burger'),navLinks=document.getElementById('navLinks');
+burger.addEventListener('click',()=>{burger.classList.toggle('open');navLinks.classList.toggle('open')});
+navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{burger.classList.remove('open');navLinks.classList.remove('open')}));
 
-  /* ---------- Marquees (built once, duplicated for a seamless loop) ---------- */
-  function fillMarquee(el, items, glyph){
-    const chunk = items.map(t => `<span class="item"><svg class="ic"><use href="#${glyph}"/></svg>${t}</span>`).join('');
-    el.innerHTML = `<div>${chunk}</div><div>${chunk}</div>`;
-  }
-  fillMarquee($('#tick1'), ['Coworking','Private Studios','Boardroom','Event Space','Podcast Booth','1 Gbps Fibre','400 m to the Beach','Free Village Wi-Fi'], 'i-sun');
-  fillMarquee($('#tick2'), ['Tide &amp; Timber','Saltline Studio','Halyard Digital','Northbeam','Driftwood Labs','Paper &amp; Pixel','Fieldnote','Southpaw'], 'i-sun');
-
-  /* ---------- Header + hero sun parallax ---------- */
-  const hd = $('#hd'), sun = $('#sun'), hero = $('#top');
-  let mx = 0, my = 0, ticking = false;
-  function onScroll(){
-    hd.classList.toggle('scrolled', scrollY > 40);
-    if (sun && !reduced){
-      const y = scrollY, h = hero.offsetHeight;
-      if (y < h * 1.3) sun.style.transform = `translate3d(${mx*18}px, ${y*0.38 + my*10}px, 0)`;
-    }
-    ticking = false;
-  }
-  addEventListener('scroll', () => { if(!ticking){ requestAnimationFrame(onScroll); ticking = true; } }, {passive:true});
-  onScroll();
-
-  if (finePointer && !reduced){
-    addEventListener('mousemove', e => {
-      mx = (e.clientX / innerWidth  - 0.5) * 2;
-      my = (e.clientY / innerHeight - 0.5) * 2;
-    });
-  }
-
-  /* ---------- Cursor follower ---------- */
-  if (finePointer && !reduced){
-    const f = $('#follower'), lab = f.querySelector('span');
-    let fx = 0, fy = 0, px = 0, py = 0, seen = false;
-    addEventListener('mousemove', e => {
-      px = e.clientX; py = e.clientY;
-      if(!seen){ fx = px; fy = py; seen = true; f.classList.add('on'); }
-    });
-    (function loop(){
-      fx += (px - fx) * 0.18; fy += (py - fy) * 0.18;
-      f.style.transform = `translate(${fx}px,${fy}px) translate(-50%,-50%)`;
-      requestAnimationFrame(loop);
-    })();
-    document.addEventListener('mouseover', e => {
-      const labEl = e.target.closest('[data-cursor]');
-      const actEl = e.target.closest('a,button,select,input,textarea,.ev');
-      if (labEl){ lab.textContent = labEl.dataset.cursor; f.classList.add('label'); f.classList.remove('grow'); }
-      else if (actEl){ f.classList.add('grow'); f.classList.remove('label'); }
-      else { f.classList.remove('grow','label'); }
-    });
-  }
-
-  /* ---------- Scroll reveals ---------- */
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(en => { if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
-  }, {threshold:.12});
-  $$('.rv').forEach(el => io.observe(el));
-
-  /* ---------- Nav active highlight ---------- */
-  const navLinks = $$('#hd nav a');
-  const secIO = new IntersectionObserver(entries => {
-    entries.forEach(en => {
-      if(en.isIntersecting){
-        navLinks.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + en.target.id));
-      }
-    });
-  }, {rootMargin:'-40% 0px -55% 0px'});
-  ['hub','spaces','membership','whats-on','visit'].forEach(id => { const s = document.getElementById(id); if(s) secIO.observe(s); });
-
-  /* ---------- Mobile menu ---------- */
-  const menuBtn = $('#menu-btn'), menu = $('#menu');
-  menuBtn.addEventListener('click', () => {
-    const open = menu.classList.toggle('open');
-    menuBtn.classList.toggle('open', open);
-    menuBtn.setAttribute('aria-expanded', open);
-    document.body.style.overflow = open ? 'hidden' : '';
-  });
-  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menuBtn.click()));
-
-  /* ---------- Spaces accordion (one open at a time) ---------- */
-  $$('.space-head').forEach(head => {
-    head.addEventListener('click', () => {
-      const sp = head.closest('.space');
-      const wasOpen = sp.classList.contains('open');
-      $$('.space.open').forEach(o => {
-        o.classList.remove('open');
-        o.querySelector('.space-head').setAttribute('aria-expanded','false');
-        o.querySelector('.space-head').dataset.cursor = 'OPEN';
-      });
-      if(!wasOpen){
-        sp.classList.add('open');
-        head.setAttribute('aria-expanded','true');
-        head.dataset.cursor = 'CLOSE';
-      }
-    });
-  });
-
-  /* ---------- Billing toggle ---------- */
-  const note = $('#bill-note');
-  let bill = 'monthly';
-  $$('.seg button').forEach(b => b.addEventListener('click', () => {
-    if(b.dataset.bill === bill) return;
-    bill = b.dataset.bill;
-    $$('.seg button').forEach(x => x.setAttribute('aria-pressed', x === b ? 'true' : 'false'));
-    note.textContent = bill === 'yearly' ? 'Billed yearly — 2 months free' : 'Billed monthly · cancel any time';
-    $$('.p-val').forEach(v => {
-      const target = v.dataset[bill];
-      if(!target) return;
-      v.classList.add('flip');
-      setTimeout(() => { v.textContent = target; v.classList.remove('flip'); }, 180);
-    });
-  }));
-
-  /* ---------- Tour modal ---------- */
-  const dlg = $('#tour'), form = $('#tour-form'), interest = $('#f-int');
-  document.addEventListener('click', e => {
-    const t = e.target.closest('[data-open]');
-    if(t){
-      e.preventDefault();
-      interest.value = t.dataset.plan || 'Just a look around';
-      dlg.showModal();
-    }
-  });
-  $('#dlg-close').addEventListener('click', () => dlg.close());
-  dlg.addEventListener('click', e => { if(e.target === dlg) dlg.close(); });
-
-  /* ---------- Form submit -> toast ---------- */
-  const toast = $('#toast'); let toastTimer;
-  function showToast(msg){
-    $('#toast-msg').textContent = msg;
-    toast.classList.add('show');
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => toast.classList.remove('show'), 4200);
-  }
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    if(!form.checkValidity()){ form.reportValidity(); return; }
-    const name = $('#f-name').value.trim().split(' ')[0];
-    form.reset();
-    dlg.close();
-    showToast(`Ta, ${name} — request received. We'll be in touch within one business day.`);
-  });
-
-  /* ---------- Live clock (QLD, no DST) + year + top ---------- */
-  const clock = $('#clock');
-  function tick(){
-    clock.textContent = new Intl.DateTimeFormat('en-AU',
-      {timeZone:'Australia/Brisbane', hour:'2-digit', minute:'2-digit', second:'2-digit', hour12:false}
-    ).format(new Date()) + ' · AEST';
-  }
-  tick(); setInterval(tick, 1000);
-  $('#yr').textContent = new Date().getFullYear();
-  $('#to-top').addEventListener('click', () => scrollTo({top:0, behavior: reduced ? 'auto' : 'smooth'}));
-})();
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 </script>
 </body>
 </html>

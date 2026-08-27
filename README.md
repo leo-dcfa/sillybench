@@ -34,4 +34,10 @@ littlecove/
 
 ## How to run an experiment
 
-Point a model at the experiment's `prompt.md` and have it perform the work. It should write its output under that experiment's folder as a file/folder named after the model.
+```sh
+uv run harness/run.py <experiment> <model>    # e.g. uv run harness/run.py peregian-digital-hub glm-5.3-flash
+```
+
+The harness sends the experiment's `prompt.md` to the model (via the homelab LiteLLM proxy) as a single user message, with **tool calling enabled**: the model gets `web_fetch` and `web_search` tools so it can read real websites and check facts instead of inventing content. The harness runs the tool loop, extracts the final html/svg, and writes it to `<experiment>/<model>.<ext>`. Sampling knobs (`--temperature`, `--top-p`, `--max-tokens`) are passed per vendor spec — see `.claude/skills/run-experiment/SKILL.md`.
+
+Equivalently, point any model at `prompt.md` by hand and save its output under the experiment folder, named after the model.
