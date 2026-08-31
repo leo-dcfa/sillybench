@@ -1,0 +1,172 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <!-- Sky gradient background -->
+  <defs>
+    <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#87CEEB"/>
+      <stop offset="70%" stop-color="#B0E0E6"/>
+      <stop offset="100%" stop-color="#FFE4B5"/>
+    </linearGradient>
+    <linearGradient id="oceanGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1E90FF"/>
+      <stop offset="100%" stop-color="#006994"/>
+    </linearGradient>
+    <radialGradient id="sunGrad" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0%" stop-color="#FFF8DC"/>
+      <stop offset="60%" stop-color="#FFD700"/>
+      <stop offset="100%" stop-color="#FFA500" stop-opacity="0.3"/>
+    </radialGradient>
+    <linearGradient id="boardGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#FF6347"/>
+      <stop offset="50%" stop-color="#FF4500"/>
+      <stop offset="100%" stop-color="#FF6347"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Sky -->
+  <rect width="800" height="400" fill="url(#skyGrad)"/>
+
+  <!-- Sun -->
+  <circle cx="650" cy="100" r="60" fill="url(#sunGrad)"/>
+
+  <!-- Clouds -->
+  <g fill="white" opacity="0.8">
+    <ellipse cx="150" cy="80" rx="60" ry="25"/>
+    <ellipse cx="190" cy="70" rx="40" ry="20"/>
+    <ellipse cx="120" cy="75" rx="35" ry="18"/>
+    
+    <ellipse cx="500" cy="130" rx="50" ry="20"/>
+    <ellipse cx="540" cy="120" rx="35" ry="15"/>
+  </g>
+
+  <!-- Distant birds -->
+  <g stroke="#333" stroke-width="1.5" fill="none" opacity="0.5">
+    <path d="M200,150 Q210,140 220,150 Q230,140 240,150"/>
+    <path d="M260,130 Q268,122 276,130 Q284,122 292,130"/>
+  </g>
+
+  <!-- Ocean -->
+  <rect x="0" y="350" width="800" height="250" fill="url(#oceanGrad)"/>
+
+  <!-- Waves in background -->
+  <path d="M0,370 Q50,360 100,370 Q150,380 200,370 Q250,360 300,370 Q350,380 400,370 Q450,360 500,370 Q550,380 600,370 Q650,360 700,370 Q750,380 800,370 L800,600 L0,600 Z" fill="#2E8B57" opacity="0.3"/>
+
+  <!-- Wave foam -->
+  <path d="M0,380 Q40,375 80,382 Q120,389 160,380 Q200,371 240,380 Q280,389 320,380 Q360,371 400,380 Q440,389 480,380 Q520,371 560,380 Q600,389 640,380 Q680,371 720,380 Q760,389 800,380" fill="none" stroke="white" stroke-width="3" opacity="0.6"/>
+
+  <path d="M0,400 Q50,393 100,400 Q150,407 200,400 Q250,393 300,400 Q350,407 400,400 Q450,393 500,400 Q550,407 600,400 Q650,393 700,400 Q750,407 800,400" fill="none" stroke="white" stroke-width="2" opacity="0.4"/>
+
+  <!-- Main wave being surfed -->
+  <path d="M100,420 Q200,380 300,400 Q400,420 500,390 Q600,360 700,400 Q750,420 800,410 L800,600 L100,600 Z" fill="#1a6b8a" opacity="0.7"/>
+  <path d="M100,420 Q200,380 300,400 Q400,420 500,390 Q600,360 700,400 Q750,420 800,410" fill="none" stroke="white" stroke-width="4" opacity="0.8"/>
+
+  <!-- Spray/foam around board -->
+  <g fill="white" opacity="0.6">
+    <ellipse cx="250" cy="405" rx="30" ry="8"/>
+    <ellipse cx="500" cy="395" rx="25" ry="6"/>
+    <ellipse cx="350" cy="410" rx="40" ry="10"/>
+  </g>
+
+  <!-- Longboard -->
+  <g transform="translate(350, 385) rotate(-8)">
+    <!-- Board shadow on water -->
+    <ellipse cx="0" cy="15" rx="130" ry="12" fill="#003355" opacity="0.3"/>
+    
+    <!-- Board body -->
+    <ellipse cx="0" cy="0" rx="130" ry="14" fill="url(#boardGrad)"/>
+    <!-- Board outline -->
+    <ellipse cx="0" cy="0" rx="130" ry="14" fill="none" stroke="#CC3333" stroke-width="2"/>
+    <!-- Board stripe -->
+    <rect x="-120" y="-2" width="240" height="4" fill="#FFD700" opacity="0.7" rx="2"/>
+    <!-- Board tip design -->
+    <ellipse cx="115" cy="0" rx="10" ry="10" fill="#FFD700" opacity="0.5"/>
+  </g>
+
+  <!-- Kookaburra body -->
+  <g transform="translate(350, 340)">
+    <!-- Tail feathers -->
+    <g fill="#8B4513" stroke="#5C3317" stroke-width="1">
+      <path d="M-30,20 L-65,50 L-50,52 L-25,25 Z"/>
+      <path d="M-25,22 L-60,58 L-45,58 L-20,27 Z"/>
+      <path d="M-20,25 L-55,65 L-40,63 L-15,30 Z"/>
+    </g>
+    
+    <!-- Body -->
+    <ellipse cx="0" cy="10" rx="35" ry="28" fill="#C19A6B"/>
+    <ellipse cx="0" cy="10" rx="30" ry="25" fill="#D2B48C"/>
+    
+    <!-- Belly -->
+    <ellipse cx="2" cy="18" rx="20" ry="15" fill="#F5DEB3"/>
+    
+    <!-- Wing -->
+    <g transform="rotate(-15, -20, 5)">
+      <ellipse cx="-15" cy="5" rx="25" ry="18" fill="#8B6914"/>
+      <ellipse cx="-12" cy="3" rx="22" ry="15" fill="#A0822D"/>
+      <!-- Wing feathers detail -->
+      <path d="M-30,10 L-25,20 L-15,18 L-20,8 Z" fill="#6B4F0A"/>
+      <path d="M-20,8 L-15,18 L-5,15 L-10,5 Z" fill="#6B4F0A"/>
+    </g>
+    
+    <!-- Surfing stance - legs -->
+    <!-- Back leg -->
+    <path d="M-15,30 L-25,45 L-20,50" stroke="#C19A6B" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <!-- Back foot -->
+    <ellipse cx="-18" cy="52" rx="8" ry="4" fill="#8B6914"/>
+    
+    <!-- Front leg -->
+    <path d="M15,32 L25,45 L20,50" stroke="#C19A6B" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <!-- Front foot -->
+    <ellipse cx="18" cy="52" rx="8" ry="4" fill="#8B6914"/>
+
+    <!-- Head -->
+    <g transform="translate(25, -20)">
+      <!-- Neck -->
+      <path d="M-5,15 L-8,30 L8,30 L5,15 Z" fill="#D2B48C"/>
+      
+      <!-- Head shape -->
+      <ellipse cx="0" cy="0" rx="22" ry="20" fill="#D2B48C"/>
+      
+      <!-- Crown/crest -->
+      <path d="M-10,-15 L-5,-25 L0,-18 L5,-25 L10,-15" fill="#8B6914" stroke="#6B4F0A" stroke-width="1"/>
+      <path d="M-8,-16 L-3,-26 L2,-19 L7,-26 L12,-16" fill="#A0822D" opacity="0.5"/>
+      
+      <!-- Eye stripe -->
+      <path d="M-20,-2 L-5,-5 L5,-3 L20,0" stroke="#5C3317" stroke-width="3" fill="none"/>
+      
+      <!-- Eye -->
+      <circle cx="8" cy="-4" r="5" fill="white"/>
+      <circle cx="9" cy="-4" r="3" fill="#1a1a1a"/>
+      <circle cx="10" cy="-5" r="1.5" fill="white"/>
+      
+      <!-- Beak (large kookaburra beak) -->
+      <path d="M18,-2 L45,2 L42,8 L18,4 Z" fill="#4A4A4A" stroke="#333" stroke-width="0.5"/>
+      <path d="M18,1 L43,3 L42,6 L18,3 Z" fill="#666" opacity="0.5"/>
+      <!-- Beak lower -->
+      <path d="M18,4 L42,8 L38,10 L18,6 Z" fill="#555"/>
+      
+      <!-- Cheek patch -->
+      <ellipse cx="2" cy="6" rx="8" ry="6" fill="#F5DEB3" opacity="0.5"/>
+    </g>
+  </g>
+
+  <!-- Additional wave details -->
+  <g fill="white" opacity="0.4">
+    <ellipse cx="600" cy="430" rx="40" ry="5"/>
+    <ellipse cx="150" cy="450" rx="30" ry="4"/>
+    <ellipse cx="680" cy="470" rx="25" ry="3"/>
+  </g>
+
+  <!-- Foam trail behind board -->
+  <g fill="white" opacity="0.5">
+    <ellipse cx="200" cy="400" rx="15" ry="5"/>
+    <ellipse cx="170" cy="405" rx="10" ry="3"/>
+    <ellipse cx="145" cy="408" rx="8" ry="2"/>
+  </g>
+
+  <!-- Bubbles -->
+  <g fill="none" stroke="white" stroke-width="1" opacity="0.4">
+    <circle cx="500" cy="410" r="4"/>
+    <circle cx="515" cy="415" r="3"/>
+    <circle cx="490" cy="418" r="2"/>
+    <circle cx="530" cy="408" r="2.5"/>
+  </g>
+</svg>

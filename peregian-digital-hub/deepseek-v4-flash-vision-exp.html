@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Peregian Digital Hub · modern sleek</title>
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f6f9fc;
+      color: #032b3a;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    /* sleek gradient + glassmorphism touches */
+    :root {
+      --deep: #063a4e;
+      --accent: #02b3b3;
+      --accent-soft: #7fd9d9;
+      --light-surface: rgba(255, 255, 255, 0.75);
+      --card-shadow: 0 20px 40px -15px rgba(0, 80, 100, 0.15);
+      --border-glow: rgba(2, 179, 179, 0.2);
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* NAVIGATION — modern glass */
+    nav {
+      backdrop-filter: blur(14px);
+      background: rgba(255, 255, 255, 0.6);
+      border-bottom: 1px solid rgba(2, 179, 179, 0.15);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 5px 25px rgba(0, 40, 60, 0.03);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.9rem 2rem;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 600;
+      font-size: 1.45rem;
+      letter-spacing: -0.5px;
+      color: var(--deep);
+    }
+
+    .logo i {
+      font-size: 1.9rem;
+      color: var(--accent);
+      filter: drop-shadow(0 4px 6px rgba(2,179,179,0.2));
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.4rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 540;
+      color: #0d4f62;
+      font-size: 0.95rem;
+      transition: 0.2s ease;
+      letter-spacing: 0.2px;
+      border-bottom: 2px solid transparent;
+      padding-bottom: 4px;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    .cta-btn {
+      background: var(--deep);
+      color: white !important;
+      padding: 0.5rem 1.3rem;
+      border-radius: 60px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      border: none;
+      transition: all 0.2s;
+      box-shadow: 0 8px 18px -6px rgba(6, 58, 78, 0.25);
+    }
+
+    .cta-btn:hover {
+      background: #0a5a72;
+      transform: translateY(-2px);
+      border-bottom: 2px solid transparent !important;
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(145deg, #ffffff 0%, #eef9f9 100%);
+      padding: 4.5rem 0 6rem;
+      position: relative;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(2, 179, 179, 0.08);
+      color: var(--accent);
+      font-weight: 500;
+      padding: 0.3rem 1.1rem;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      margin-bottom: 1.2rem;
+      letter-spacing: 0.5px;
+      border: 1px solid rgba(2,179,179,0.25);
+      backdrop-filter: blur(5px);
+    }
+
+    .hero h1 {
+      font-size: 3.8rem;
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -1px;
+      color: #032b3a;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero h1 span {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .hero p {
+      font-size: 1.18rem;
+      max-width: 520px;
+      color: #38505d;
+      margin-bottom: 2.2rem;
+      font-weight: 400;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #012b33;
+      padding: 0.9rem 2rem;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 1rem;
+      border: none;
+      transition: 0.2s;
+      box-shadow: 0 10px 16px -8px rgba(2, 179, 179, 0.4);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover {
+      background: #00a0a0;
+      transform: translateY(-3px);
+    }
+
+    .btn-ghost {
+      background: white;
+      color: var(--deep);
+      padding: 0.9rem 1.8rem;
+      border-radius: 60px;
+      font-weight: 500;
+      border: 1px solid #cbe7e7;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      backdrop-filter: blur(5px);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      background: #faffff;
+    }
+
+    .hero-visual {
+      background: rgba(255,255,255,0.5);
+      backdrop-filter: blur(12px);
+      border-radius: 35px;
+      padding: 1.5rem;
+      border: 1px solid rgba(255,255,255,0.7);
+      box-shadow: var(--card-shadow);
+    }
+
+    .visual-card {
+      background: rgba(6, 58, 78, 0.04);
+      border-radius: 26px;
+      padding: 1.8rem 1.6rem;
+      border: 1px solid var(--border-glow);
+    }
+
+    .visual-stats {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-item .stat-num {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--deep);
+      letter-spacing: -1px;
+    }
+
+    .stat-item p {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      color: #2a6274;
+    }
+
+    .progress-block {
+      background: white;
+      border-radius: 50px;
+      height: 10px;
+      margin: 1rem 0;
+      overflow: hidden;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+    }
+
+    .progress-fill {
+      width: 78%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), #2fccb0);
+      border-radius: 50px;
+    }
+
+    .mini-list i {
+      color: var(--accent);
+      margin-right: 0.6rem;
+      width: 20px;
+    }
+
+    .mini-list div {
+      display: flex;
+      align-items: center;
+      font-size: 0.95rem;
+      padding: 0.35rem 0;
+      color: #1b5367;
+    }
+
+    /* FEATURE CARDS */
+    .features {
+      padding: 5rem 0 4rem;
+      background: #ffffff;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2.8rem;
+    }
+
+    .section-head h2 {
+      font-size: 2.2rem;
+      font-weight: 650;
+      letter-spacing: -0.5px;
+    }
+
+    .section-head p {
+      color: #416e7e;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(6px);
+      border: 1px solid #d9f0f0;
+      border-radius: 28px;
+      padding: 2rem 1.8rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px -6px rgba(0,0,0,0.02);
+    }
+
+    .card:hover {
+      border-color: var(--accent);
+      transform: translateY(-8px);
+      box-shadow: 0 24px 35px -18px rgba(2, 179, 179, 0.25);
+    }
+
+    .card-icon {
+      background: var(--accent-soft);
+      width: 55px;
+      height: 55px;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #032b3a;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      backdrop-filter: blur(10px);
+      background: rgba(2, 179, 179, 0.2);
+      border: 1px solid rgba(2,179,179,0.4);
+    }
+
+    .card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 0.8rem;
+      font-weight: 600;
+    }
+
+    .card p {
+      color: #345f6f;
+      font-size: 0.95rem;
+    }
+
+    /* SHOWCASE / ABOUT */
+    .about {
+      background: #f0f8fa;
+      padding: 5rem 0;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-badge {
+      color: var(--accent);
+      background: rgba(2,179,179,0.1);
+      padding: 0.3rem 1rem;
+      display: inline-block;
+      border-radius: 60px;
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+    }
+
+    .about-text h2 {
+      font-size: 2.4rem;
+      line-height: 1.2;
+      font-weight: 650;
+      margin-bottom: 1.2rem;
+    }
+
+    .about-text p {
+      color: #2a5e70;
+      margin-bottom: 2rem;
+      font-size: 1.05rem;
+    }
+
+    .checks {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8rem 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .check-item {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      background: rgba(255,255,255,0.6);
+      padding: 0.6rem 1rem;
+      border-radius: 50px;
+      font-size: 0.92rem;
+      font-weight: 500;
+      border: 1px solid white;
+    }
+
+    .check-item i {
+      color: var(--accent);
+    }
+
+    .about-image {
+      background: linear-gradient(45deg, #d2f1f1, #ffffff);
+      border-radius: 40px;
+      padding: 2.5rem 2rem;
+      border: 1px solid rgba(255,255,255,0.9);
+      box-shadow: var(--card-shadow);
+    }
+
+    .about-image .testimonial {
+      background: rgba(255,255,255,0.7);
+      padding: 1.8rem;
+      border-radius: 24px;
+      backdrop-filter: blur(4px);
+      font-size: 1.1rem;
+      font-style: italic;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+    }
+
+    .about-image i.fas {
+      font-size: 2.5rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #032b3a;
+      color: #c0dde5;
+      padding: 2.5rem 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.2rem;
+    }
+
+    .footer-logo {
+      display: flex;
+      gap: 0.5rem;
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: white;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2.5rem;
+    }
+
+    .footer-links a {
+      color: #a3c8d3;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .footer-links a:hover {
+      color: white;
+    }
+
+    .socials i {
+      font-size: 1.3rem;
+      margin: 0 0.5rem;
+      color: #a3c8d3;
+      transition: 0.2s;
+    }
+
+    .socials i:hover {
+      color: var(--accent);
+    }
+
+    .copyright {
+      font-size: 0.8rem;
+      margin-top: 0.5rem;
+      opacity: 0.7;
+    }
+
+    /* responsive */
+    @media (max-width: 900px) {
+      .hero-grid, .about-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .nav-links {
+        display: none;
+      }
+      .hero h1 {
+        font-size: 2.8rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 0 1.5rem;
+      }
+      .checks {
+        grid-template-columns: 1fr;
+      }
+      .hero h1 {
+        font-size: 2.3rem;
+      }
+      .btn-primary,.btn-ghost {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-inner">
+      <div class="logo">
+        <i class="fas fa-network-wired"></i>
+        <span>Peregian<span style="color: var(--accent);">hub</span></span>
+      </div>
+      <div class="nav-links">
+        <a href="#">Home</a>
+        <a href="#features">Solutions</a>
+        <a href="#about">About</a>
+        <a href="#">Insights</a>
+        <a href="#" class="cta-btn">Get access <i class="fas fa-arrow-right" style="margin-left: 5px; font-size: 0.8rem;"></i></a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO section -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <span class="hero-badge"><i class="fas fa-bolt" style="margin-right: 6px;"></i> DIGITAL INFRASTRUCTURE</span>
+        <h1>Future-proof <span>digital hub</span> for ambitious communities.</h1>
+        <p>Centralise connectivity, smart services and data — a refined platform built for Peregian's next era.</p>
+        <div class="hero-actions">
+          <button class="btn-primary"><i class="fas fa-rocket"></i> Explore hub</button>
+          <button class="btn-ghost"><i class="fas fa-play-circle"></i> Watch overview</button>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="visual-card">
+          <div class="visual-stats">
+            <div class="stat-item">
+              <div class="stat-num">98%</div>
+              <p>uptime</p>
+            </div>
+            <div class="stat-item">
+              <div class="stat-num">24/7</div>
+              <p>monitor</p>
+            </div>
+            <div class="stat-item">
+              <div class="stat-num">18+</div>
+              <p>services</p>
+            </div>
+          </div>
+          <div style="margin: 1rem 0 0.4rem; font-weight: 500; color:#083c4d;">Network health</div>
+          <div class="progress-block">
+            <div class="progress-fill"></div>
+          </div>
+          <div class="mini-list" style="margin-top: 1.5rem;">
+            <div><i class="fas fa-check-circle"></i> Secure cloud relay</div>
+            <div><i class="fas fa-check-circle"></i> Local fibre backbone</div>
+            <div><i class="fas fa-check-circle"></i> IoT ready</div>
+            <div><i class="fas fa-check-circle"></i> Edge analytics</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features cards -->
+  <section class="features" id="features">
+    <div class="container">
+      <div class="section-head">
+        <h2>Everything you need</h2>
+        <p><i class="fas fa-arrow-right" style="margin-right: 7px;"></i>Modular, secure, built for scale</p>
+      </div>
+      <div class="feature-grid">
+        <div class="card">
+          <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+          <h3>Smart analytics</h3>
+          <p>Real-time dashboards and predictive insights derived from unified data streams.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
+          <h3>Zero-trust security</h3>
+          <p>End-to-end encryption, automated threat detection and granular access control.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+          <h3>Edge cloud</h3>
+          <p>Distributed cloud nodes ensure minimal latency and resilience.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon"><i class="fas fa-code-branch"></i></div>
+          <h3>API-first</h3>
+          <p>Open, documented APIs to connect your existing ecosystem seamlessly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About / sleek split -->
+  <section id="about" class="about">
+    <div class="container about-grid">
+      <div class="about-text">
+        <span class="about-badge"><i class="fas fa-heart" style="margin-right: 5px;"></i> community first</span>
+        <h2>Designed with Peregian's future in mind.</h2>
+        <p>We blend modern digital infrastructure with a human touch. Developed in collaboration with community leaders, businesses and tech pioneers.</p>
+        <div class="checks">
+          <div class="check-item"><i class="fas fa-check-circle"></i> Open data platform</div>
+          <div class="check-item"><i class="fas fa-check-circle"></i> Smart parking & utilities</div>
+          <div class="check-item"><i class="fas fa-check-circle"></i> High-speed local Wi-Fi</div>
+          <div class="check-item"><i class="fas fa-check-circle"></i> Sustainability metrics</div>
+        </div>
+        <button class="btn-primary" style="box-shadow: 0 8px 20px -10px rgba(2,179,179,0.5);"><i class="fas fa-arrow-right"></i> About the hub</button>
+      </div>
+      <div class="about-image">
+        <div style="display: flex; gap: 20px; align-items:flex-start;">
+          <i class="fas fa-quote-left"></i>
+          <div class="testimonial">
+            “This hub has transformed how our community interacts with digital services. It's intuitive, fast and truly modern.”
+          </div>
+        </div>
+        <div style="display:flex; justify-content:space-between; margin-top:1.3rem;">
+          <div style="display:flex; flex-direction:column;">
+            <span style="font-weight: 600; color: #032b3a;">Peregian Digital</span>
+            <span style="font-size:0.8rem; color:#2a6274;">innovation board</span>
+          </div>
+          <span><i class="fas fa-calendar-alt" style="color: var(--accent);"></i> 2025 rollout</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="footer-logo">
+        <i class="fas fa-network-wired"></i> Peregian<span>hub</span>
+      </div>
+      <div class="footer-links">
+        <a href="#">Platform</a>
+        <a href="#">Network</a>
+        <a href="#">Solutions</a>
+        <a href="#">Contact</a>
+      </div>
+      <div class="socials">
+        <a href="#"><i class="fab fa-linkedin"></i></a>
+        <a href="#"><i class="fab fa-x-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-github"></i></a>
+      </div>
+      <div class="copyright">
+        © 2025 Peregian Digital Hub — modern concept interface.
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
