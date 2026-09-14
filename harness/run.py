@@ -175,15 +175,25 @@ def run_tool(name: str, args: dict) -> str:
 # ---------------------------------------------------------------- model I/O
 
 def get_api_key() -> str:
-    out = subprocess.run(
-        ["jq", "-r", ".provider.homelab.options.apiKey",
-         str(Path.home() / ".config/opencode/opencode.json")],
-        capture_output=True, text=True,
-    )
-    key = out.stdout.strip()
-    if not key or key == "null":
-        sys.exit("could not read homelab api key from ~/.config/opencode/opencode.json")
-    return key
+    """Read the homelab bearer token out of the OpenCode config.
+
+    OpenCode v2 renamed the provider block: `provider.<name>.options` became
+    `providers.<name>.settings` (and `npm` became `package`). Try the v2 shape
+    first, fall back to v1, so this works either side of that migration.
+    """
+    cfg = Path.home() / ".config/opencode/opencode.json"
+    for path in (".providers.homelab.settings.apiKey",   # OpenCode v2
+                 ".provider.homelab.options.apiKey"):    # OpenCode v1
+        out = subprocess.run(
+            ["jq", "-r", path, str(cfg)],
+            capture_output=True, text=True,
+        )
+        key = out.stdout.strip()
+        if key and key != "null":
+            return key
+    sys.exit(f"could not read homelab api key from {cfg} "
+             "(tried providers.homelab.settings.apiKey and "
+             "provider.homelab.options.apiKey)")
 
 
 def stream_round(base_url: str, key: str, payload: dict, log: io.TextIOBase,
