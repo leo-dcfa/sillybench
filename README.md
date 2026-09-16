@@ -41,3 +41,44 @@ uv run harness/run.py <experiment> <model>    # e.g. uv run harness/run.py pereg
 The harness sends the experiment's `prompt.md` to the model (via the homelab LiteLLM proxy) as a single user message, with **tool calling enabled**: the model gets `web_fetch` and `web_search` tools so it can read real websites and check facts instead of inventing content. The harness runs the tool loop, extracts the final html/svg, and writes it to `<experiment>/<model>.<ext>`. Sampling knobs (`--temperature`, `--top-p`, `--max-tokens`) are passed per vendor spec — see `.claude/skills/run-experiment/SKILL.md`.
 
 Equivalently, point any model at `prompt.md` by hand and save its output under the experiment folder, named after the model.
+
+---
+
+## Gallery: Kookaburra Surfing a Longboard
+
+> Prompt: *"Generate an SVG of a kookaburra surfing a longboard"*
+>
+> Text-based models wrote SVG code directly. Image-generation models produced raster images (PNG).
+
+<table>
+<tr>
+<td align="center" width="33%"><img src="kookaburra-surfing/claude-fable-5.svg" width="280"><br><strong>Claude Fable 5</strong></td>
+<td align="center" width="33%"><img src="kookaburra-surfing/claude-opus-5.svg" width="280"><br><strong>Claude Opus 5</strong></td>
+<td align="center" width="33%"><img src="kookaburra-surfing/deepseek-v4.1-flash-exl3.svg" width="280"><br><strong>DeepSeek V4.1 Flash (EXL3)</strong></td>
+</tr>
+<tr>
+<td align="center"><img src="kookaburra-surfing/deepseek-v4-flash-0731.svg" width="280"><br><strong>DeepSeek V4 Flash (0731)</strong></td>
+<td align="center"><img src="kookaburra-surfing/deepseek-v4-flash-vision-exp.svg" width="280"><br><strong>DeepSeek V4 Flash Vision Exp</strong></td>
+<td align="center"><img src="kookaburra-surfing/gemma-4-e4b.svg" width="280"><br><strong>Gemma 4 E4B</strong></td>
+</tr>
+<tr>
+<td align="center"><img src="kookaburra-surfing/glm-5.3-flash.svg" width="280"><br><strong>GLM 5.3 Flash</strong></td>
+<td align="center"><img src="kookaburra-surfing/hy3-295b.svg" width="280"><br><strong>HY3 295B</strong></td>
+<td align="center"><img src="kookaburra-surfing/inkling-small.svg" width="280"><br><strong>Inkling Small</strong></td>
+</tr>
+<tr>
+<td align="center"><img src="kookaburra-surfing/laguna-s-2.1.svg" width="280"><br><strong>Laguna S 2.1</strong></td>
+<td align="center"><img src="kookaburra-surfing/mimo-v2.5.svg" width="280"><br><strong>MIMO V2.5</strong></td>
+<td align="center"><img src="kookaburra-surfing/minimax-m2.7.svg" width="280"><br><strong>MiniMax M2.7</strong></td>
+</tr>
+<tr>
+<td align="center"><img src="kookaburra-surfing/ms-copilot.png" width="280"><br><strong>Microsoft Copilot</strong></td>
+<td align="center"><img src="kookaburra-surfing/qwen3.6-27b.svg" width="280"><br><strong>Qwen 3.6 27B</strong></td>
+<td align="center"><img src="kookaburra-surfing/qwen3.8-125b.png" width="280"><br><strong>Qwen 3.8 125B</strong><br><em>32GB Mac Mini, ~4 tok/s</em></td>
+</tr>
+<tr>
+<td align="center"><img src="kookaburra-surfing/qwen3.8-27b.svg" width="280"><br><strong>Qwen 3.8 27B</strong></td>
+<td align="center"><img src="kookaburra-surfing/step-3.7-flash.svg" width="280"><br><strong>Step 3.7 Flash</strong></td>
+<td></td>
+</tr>
+</table>
