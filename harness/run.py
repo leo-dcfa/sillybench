@@ -6,7 +6,8 @@
 
 Sends the experiment's prompt.md to the LiteLLM proxy as a single user
 message, with client-side tools enabled (web_fetch, web_search) so the
-model can read real websites and check facts. Streams the response,
+model can read real websites and check facts. The proxy URL and bearer
+token come from an OpenCode provider (`--provider`, default homelab). Streams the response,
 executes tool calls in a loop, extracts the final artifact (html/svg),
 and writes it to <experiment>/<model>.<ext>.
 
@@ -174,26 +175,29 @@ def run_tool(name: str, args: dict) -> str:
 
 # ---------------------------------------------------------------- model I/O
 
-def get_api_key() -> str:
-    """Read the homelab bearer token out of the OpenCode config.
+def get_provider(name: str) -> tuple[str, str]:
+    """Read a provider's base URL and bearer token out of the OpenCode config.
 
     OpenCode v2 renamed the provider block: `provider.<name>.options` became
     `providers.<name>.settings` (and `npm` became `package`). Try the v2 shape
     first, fall back to v1, so this works either side of that migration.
+    Returns (base_url, api_key); base_url is "" if the config has none.
     """
     cfg = Path.home() / ".config/opencode/opencode.json"
-    for path in (".providers.homelab.settings.apiKey",   # OpenCode v2
-                 ".provider.homelab.options.apiKey"):    # OpenCode v1
+    for block in (f".providers.{name}.settings",   # OpenCode v2
+                  f".provider.{name}.options"):    # OpenCode v1
         out = subprocess.run(
-            ["jq", "-r", path, str(cfg)],
+            ["jq", "-r", f"{block} | [.apiKey, .baseURL] | @tsv", str(cfg)],
             capture_output=True, text=True,
         )
-        key = out.stdout.strip()
+        parts = (out.stdout.strip() + "\t").split("\t")
+        key, base = parts[0], parts[1]
         if key and key != "null":
-            return key
-    sys.exit(f"could not read homelab api key from {cfg} "
-             "(tried providers.homelab.settings.apiKey and "
-             "provider.homelab.options.apiKey)")
+            base = "" if base == "null" else re.sub(r"/v1/?$", "", base)
+            return base, key
+    sys.exit(f"could not read provider {name!r} api key from {cfg} "
+             f"(tried providers.{name}.settings.apiKey and "
+             f"provider.{name}.options.apiKey)")
 
 
 def stream_round(base_url: str, key: str, payload: dict, log: io.TextIOBase,
@@ -302,7 +306,10 @@ def main() -> None:
     ap.add_argument("--no-tools", action="store_true", help="disable web_fetch/web_search")
     ap.add_argument("--max-rounds", type=int, default=24,
                     help="max model turns (tool rounds + final answer)")
-    ap.add_argument("--base-url", default=DEFAULT_BASE_URL)
+    ap.add_argument("--provider", default="homelab",
+                    help="OpenCode provider whose apiKey/baseURL to use (default: homelab)")
+    ap.add_argument("--base-url", default=None,
+                    help="override the provider's baseURL")
     ap.add_argument("--out", default=None, help="override output path")
     args = ap.parse_args()
 
@@ -319,7 +326,8 @@ def main() -> None:
     ext = {"html": "html", "svg": "svg", "text": "md"}[kind]
     out_path = Path(args.out) if args.out else exp_dir / f"{args.model}.{ext}"
 
-    key = get_api_key()
+    provider_base, key = get_provider(args.provider)
+    base_url = args.base_url or provider_base or DEFAULT_BASE_URL
     logs = REPO / "harness" / "logs"
     logs.mkdir(exist_ok=True)
     stamp = time.strftime("%Y%m%d-%H%M%S")
@@ -342,18 +350,32 @@ def main() -> None:
         payload_base["tools"] = TOOLS
 
     print(f"experiment={args.experiment} model={args.model} kind={kind} "
+          f"provider={args.provider} base_url={base_url} "
           f"tools={'off' if args.no_tools else 'web_fetch+web_search'}", flush=True)
 
-    final_content, total_usage, nudges = "", [], 0
+    final_content, total_usage, nudges, errors = "", [], 0, 0
     t0 = time.time()
-    for rnd in range(1, args.max_rounds + 1):
+    rnd = 0
+    while rnd < args.max_rounds:
+        rnd += 1
         print(f"[round {rnd}] requesting…", flush=True)
         content, reasoning, calls, finish, usage = stream_round(
-            args.base_url, key, {**payload_base, "messages": messages}, sse_log)
+            base_url, key, {**payload_base, "messages": messages}, sse_log)
         if usage:
             total_usage.append(usage)
         print(f"[round {rnd}] finish={finish} reasoning={len(reasoning)}ch "
               f"content={len(content)}ch tool_calls={len(calls)}", flush=True)
+        if finish == "error":
+            # server aborted the stream mid-answer (e.g. a stall watchdog);
+            # whatever arrived is partial, so redo the round instead of keeping it
+            errors += 1
+            if errors > 2:
+                sys.exit(f"server aborted the stream {errors} times; giving up "
+                         f"(partial output not written)")
+            print(f"  ! server aborted the stream; retrying round in 30s", flush=True)
+            rnd -= 1
+            time.sleep(30)
+            continue
         if finish == "tool_calls" and calls:
             messages.append({"role": "assistant", "content": content or None,
                              "tool_calls": calls})
