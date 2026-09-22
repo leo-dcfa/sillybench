@@ -301,6 +301,9 @@ def main() -> None:
     ap.add_argument("--max-tokens", type=int, default=60000)
     ap.add_argument("--temperature", type=float, default=None)
     ap.add_argument("--top-p", type=float, default=None)
+    ap.add_argument("--reasoning-effort", default=None,
+                    help="thinking level sent as reasoning_effort; the proxy maps it to the lane's own dialect "
+                         "(e.g. high -> enable_thinking on a lane that serves thinking off)")
     ap.add_argument("--kind", choices=["html", "svg", "text"], default=None,
                     help="artifact type; default: inferred from prompt.md")
     ap.add_argument("--no-tools", action="store_true", help="disable web_fetch/web_search")
@@ -346,6 +349,8 @@ def main() -> None:
         payload_base["temperature"] = args.temperature
     if args.top_p is not None:
         payload_base["top_p"] = args.top_p
+    if args.reasoning_effort is not None:
+        payload_base["reasoning_effort"] = args.reasoning_effort
     if not args.no_tools:
         payload_base["tools"] = TOOLS
 

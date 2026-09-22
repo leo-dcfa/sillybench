@@ -1,0 +1,255 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-labelledby="t d">
+  <title id="t">Kookaburra surfing a longboard</title>
+  <desc id="d">A laughing kookaburra rides a long wooden longboard down the face of a curling ocean wave under a bright sky.</desc>
+
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0"    stop-color="#5db8ea"/>
+      <stop offset="0.55" stop-color="#b6e4f7"/>
+      <stop offset="1"    stop-color="#f2fbe8"/>
+    </linearGradient>
+    <radialGradient id="glow">
+      <stop offset="0"   stop-color="#fff6c4" stop-opacity="0.95"/>
+      <stop offset="0.5" stop-color="#ffe89a" stop-opacity="0.45"/>
+      <stop offset="1"   stop-color="#ffe89a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="deepSea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2a9cc0"/>
+      <stop offset="1" stop-color="#0d5876"/>
+    </linearGradient>
+    <linearGradient id="faceWater" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0"    stop-color="#1ba0c4"/>
+      <stop offset="0.45" stop-color="#0f7597"/>
+      <stop offset="1"    stop-color="#06344c"/>
+    </linearGradient>
+    <linearGradient id="deck" x1="0" y1="-40" x2="0" y2="40" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fdf1d8"/>
+      <stop offset="1" stop-color="#e8cd9c"/>
+    </linearGradient>
+    <linearGradient id="breast" x1="-40" y1="-110" x2="40" y2="-30" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fffaf0"/>
+      <stop offset="1" stop-color="#e9dcc0"/>
+    </linearGradient>
+    <linearGradient id="wingG" x1="-10" y1="-115" x2="60" y2="-35" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#a4713f"/>
+      <stop offset="1" stop-color="#6f4526"/>
+    </linearGradient>
+    <linearGradient id="capG" x1="-90" y1="-185" x2="0" y2="-130" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#8d5b31"/>
+      <stop offset="1" stop-color="#6d4325"/>
+    </linearGradient>
+    <linearGradient id="billG" x1="-80" y1="-160" x2="-150" y2="-120" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#4a545d"/>
+      <stop offset="1" stop-color="#2c3238"/>
+    </linearGradient>
+  </defs>
+
+  <!-- SKY -->
+  <rect x="0" y="0" width="800" height="600" fill="url(#sky)"/>
+  <circle cx="655" cy="112" r="150" fill="url(#glow)"/>
+  <circle cx="655" cy="112" r="52" fill="#fff4bd"/>
+  <circle cx="655" cy="112" r="52" fill="none" stroke="#fffbe6" stroke-width="6" opacity="0.7"/>
+
+  <!-- soft clouds -->
+  <g fill="#ffffff" opacity="0.75">
+    <ellipse cx="150" cy="95"  rx="58" ry="20"/>
+    <ellipse cx="185" cy="82"  rx="40" ry="17"/>
+    <ellipse cx="110" cy="86"  rx="34" ry="15"/>
+    <ellipse cx="470" cy="60"  rx="46" ry="15"/>
+    <ellipse cx="500" cy="52"  rx="30" ry="12"/>
+    <ellipse cx="330" cy="165" rx="52" ry="14" opacity="0.6"/>
+    <ellipse cx="360" cy="157" rx="32" ry="11" opacity="0.6"/>
+  </g>
+
+  <!-- distant birds -->
+  <g fill="none" stroke="#41636f" stroke-width="3" stroke-linecap="round" opacity="0.75">
+    <path d="M120,196 q10,-9 19,0 q9,-9 19,0"/>
+    <path d="M175,232 q7,-6 14,0 q7,-6 14,0"/>
+    <path d="M240,205 q6,-5 12,0 q6,-5 12,0"/>
+  </g>
+
+  <!-- HORIZON / DISTANT SEA -->
+  <rect x="0" y="352" width="800" height="248" fill="url(#deepSea)"/>
+  <g stroke="#7fd4e6" stroke-linecap="round" opacity="0.55">
+    <path d="M40,378 h60" stroke-width="3"/>
+    <path d="M150,392 h90" stroke-width="3"/>
+    <path d="M300,376 h70" stroke-width="3"/>
+    <path d="M470,388 h80" stroke-width="3"/>
+    <path d="M620,372 h70" stroke-width="3"/>
+    <path d="M710,400 h60" stroke-width="3"/>
+  </g>
+
+  <!-- RISING SWELL BEHIND THE SURFER -->
+  <path d="M0,470 L0,432 C150,416 300,410 430,400 C560,390 640,360 700,330 C740,311 780,317 800,330 L800,600 L0,600 Z"
+        fill="url(#deepSea)"/>
+  <path d="M0,432 C150,416 300,410 430,400 C560,390 640,360 700,330 C740,311 780,317 800,330"
+        fill="none" stroke="#ffffff" stroke-width="7" stroke-linecap="round" opacity="0.9"/>
+
+  <!-- curling lip -->
+  <path d="M690,336 C654,320 648,282 682,267 C717,252 752,277 747,314 C738,291 714,281 696,295 C683,305 685,323 701,331 Z"
+        fill="#ffffff"/>
+  <path d="M694,332 C672,320 668,294 690,283 C714,272 738,290 735,313 C726,299 708,296 697,306 Z"
+        fill="#9fe4f0" opacity="0.75"/>
+  <g fill="#ffffff" opacity="0.9">
+    <circle cx="668" cy="262" r="9"/>
+    <circle cx="700" cy="250" r="7"/>
+    <circle cx="736" cy="258" r="6"/>
+    <circle cx="648" cy="284" r="6"/>
+    <circle cx="758" cy="286" r="5"/>
+  </g>
+
+  <!-- ================= LONGBOARD ================= -->
+  <g transform="translate(400,455) rotate(14)">
+    <ellipse cx="6" cy="48" rx="200" ry="15" fill="#03354a" opacity="0.35"/>
+    <path d="M -215,0 C -215,-30 -172,-38 -112,-38 L 128,-38 C 186,-38 215,-25 215,0
+             C 215,25 186,38 128,38 L -112,38 C -172,38 -215,30 -215,0 Z"
+          fill="url(#deck)" stroke="#c99a58" stroke-width="4"/>
+    <path d="M -198,0 L 198,0" stroke="#b8873f" stroke-width="3"/>
+    <path d="M -178,-15 L 178,-15" stroke="#df7c4b" stroke-width="4" opacity="0.85"/>
+    <path d="M -178,15 L 178,15" stroke="#df7c4b" stroke-width="4" opacity="0.85"/>
+    <path d="M -150,-24 C -60,-32 60,-32 150,-24" fill="none" stroke="#d9b071" stroke-width="3" opacity="0.7"/>
+    <circle cx="-196" cy="0" r="6" fill="#8d6a3a"/>
+    <!-- board fin -->
+    <path d="M 120,34 C 132,54 150,58 158,50 C 150,42 142,36 138,30 Z" fill="#c2643c"/>
+
+    <!-- ================= KOOKABURRA ================= -->
+    <g transform="translate(-40,-38) rotate(-5)">
+      <ellipse cx="6" cy="-3" rx="66" ry="11" fill="#000000" opacity="0.15"/>
+
+      <!-- tail -->
+      <path d="M 40,-74 L 152,-44 L 158,-22 L 46,-52 Z" fill="#79482a"/>
+      <path d="M 40,-74 L 152,-44 L 158,-22 L 46,-52 Z" fill="none" stroke="#5e361f" stroke-width="3"/>
+      <path d="M 78,-64 L 86,-40" stroke="#5e361f" stroke-width="5"/>
+      <path d="M 116,-54 L 124,-30" stroke="#5e361f" stroke-width="5"/>
+
+      <!-- legs -->
+      <g stroke="#4a3524" stroke-width="9" stroke-linecap="round" fill="none">
+        <path d="M -16,-42 L -21,-11"/>
+        <path d="M 20,-44 L 25,-11"/>
+      </g>
+      <g stroke="#4a3524" stroke-width="7" stroke-linecap="round" fill="none">
+        <path d="M -34,-9 Q -21,-16 -8,-9"/>
+        <path d="M -34,-9 L -44,-3"/>
+        <path d="M 8,-9 Q 21,-16 34,-9"/>
+        <path d="M 8,-9 L -2,-3"/>
+      </g>
+
+      <!-- body -->
+      <ellipse cx="6" cy="-78" rx="60" ry="46" fill="url(#breast)"/>
+      <g stroke="#cdb894" stroke-width="3" fill="none" opacity="0.75" stroke-linecap="round">
+        <path d="M -34,-72 q 14,7 27,3"/>
+        <path d="M -26,-58 q 15,7 29,3"/>
+        <path d="M -12,-46 q 14,6 27,2"/>
+        <path d="M 34,-84 q 14,7 27,3"/>
+      </g>
+
+      <!-- wing -->
+      <path d="M -20,-112 C 12,-126 50,-110 63,-84 C 72,-60 58,-36 30,-32 C 2,-28 -16,-52 -22,-80 Z"
+            fill="url(#wingG)" stroke="#5f3a21" stroke-width="3"/>
+      <g fill="none" stroke="#5f3a21" stroke-width="3" opacity="0.85">
+        <path d="M 6,-104 C 30,-104 48,-92 56,-74"/>
+        <path d="M 2,-84 C 26,-84 46,-72 54,-54"/>
+        <path d="M 0,-64 C 22,-64 40,-54 47,-40"/>
+      </g>
+      <!-- blue wing patch -->
+      <path d="M 6,-104 C 31,-108 52,-96 60,-77 C 47,-68 24,-72 8,-85 Z" fill="#4fa6d6"/>
+      <path d="M 12,-98 C 32,-101 48,-92 55,-79" fill="none" stroke="#8ed0ee" stroke-width="4"/>
+
+      <!-- head -->
+      <circle cx="-40" cy="-138" r="46" fill="#f4ead6"/>
+      <!-- cap -->
+      <path d="M -85,-141 C -88,-171 -70,-187 -45,-187 C -21,-187 -4,-171 -2,-144
+               C -20,-167 -60,-170 -85,-141 Z" fill="url(#capG)"/>
+      <!-- crest -->
+      <g fill="#7b4f2b">
+        <path d="M -67,-179 L -61,-199 L -52,-184 Z"/>
+        <path d="M -50,-187 L -42,-206 L -34,-188 Z"/>
+        <path d="M -33,-185 L -25,-201 L -18,-181 Z"/>
+        <path d="M -20,-176 L -13,-190 L -8,-170 Z"/>
+      </g>
+
+      <!-- eye stripe -->
+      <path d="M -84,-147 L -77,-132 L -6,-124 L -4,-141 L -74,-159 Z" fill="#6b4326"/>
+
+      <!-- open, laughing bill -->
+      <path d="M -76,-137 L -152,-137 L -148,-127 L -76,-129 Z" fill="#7d3a34"/>
+      <path d="M -77,-159 C -110,-155 -139,-146 -155,-138 L -150,-132 L -77,-137 Z" fill="url(#billG)"/>
+      <path d="M -77,-129 C -105,-127 -132,-131 -150,-131 L -153,-125 C -128,-119 -101,-117 -77,-118 Z" fill="#3a4147"/>
+      <path d="M -77,-159 C -110,-155 -139,-146 -155,-138" fill="none" stroke="#6b757e" stroke-width="3"/>
+      <circle cx="-104" cy="-146" r="3" fill="#20262b"/>
+
+      <!-- eye -->
+      <circle cx="-62" cy="-137" r="8" fill="#17130f"/>
+      <circle cx="-64.5" cy="-139.5" r="2.6" fill="#ffffff"/>
+
+      <!-- cheek feather tufts -->
+      <g stroke="#e0d1b4" stroke-width="3" fill="none" stroke-linecap="round">
+        <path d="M -14,-150 q 10,-4 18,2"/>
+        <path d="M -10,-138 q 11,-4 19,2"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- ================= WAVE FACE (foreground water) ================= -->
+  <path d="M0,458
+           q 40,-18 80,-6
+           q 45,14 90,10
+           q 50,-6 95,4
+           q 45,10 95,4
+           q 50,-8 100,-2
+           q 50,6 100,-2
+           q 50,-8 100,-6
+           q 45,2 90,-4
+           q 30,-2 50,-6
+           L 800,600 L 0,600 Z"
+        fill="url(#faceWater)"/>
+
+  <path d="M0,458
+           q 40,-18 80,-6
+           q 45,14 90,10
+           q 50,-6 95,4
+           q 45,10 95,4
+           q 50,-8 100,-2
+           q 50,6 100,-2
+           q 50,-8 100,-6
+           q 45,2 90,-4
+           q 30,-2 50,-6"
+        fill="none" stroke="#ffffff" stroke-width="10" stroke-linecap="round"/>
+  <path d="M0,466
+           q 40,-18 80,-6
+           q 45,14 90,10
+           q 50,-6 95,4
+           q 45,10 95,4
+           q 50,-8 100,-2
+           q 50,6 100,-2
+           q 50,-8 100,-6
+           q 45,2 90,-4
+           q 30,-2 50,-6"
+        fill="none" stroke="#bdeef8" stroke-width="5" stroke-linecap="round" opacity="0.8"/>
+
+  <!-- water texture -->
+  <g fill="none" stroke="#54c3dc" stroke-width="4" stroke-linecap="round" opacity="0.45">
+    <path d="M60,520 q50,-16 100,0"/>
+    <path d="M230,548 q60,-18 118,0"/>
+    <path d="M430,516 q55,-16 108,0"/>
+    <path d="M560,566 q60,-16 118,0"/>
+    <path d="M120,578 q55,-14 108,0"/>
+    <path d="M640,524 q50,-14 98,0"/>
+  </g>
+
+  <!-- spray off the nose -->
+  <g fill="#ffffff">
+    <path d="M150,436 C168,414 196,410 214,424 C196,430 178,442 172,456 C160,452 152,446 150,436 Z" opacity="0.95"/>
+    <circle cx="132" cy="418" r="9" opacity="0.9"/>
+    <circle cx="112" cy="404" r="6" opacity="0.8"/>
+    <circle cx="96"  cy="430" r="5" opacity="0.7"/>
+    <circle cx="214" cy="404" r="6" opacity="0.75"/>
+    <circle cx="176" cy="392" r="5" opacity="0.6"/>
+    <!-- foam at the tail -->
+    <path d="M600,504 C624,486 654,488 668,504 C650,510 636,520 630,534 C614,528 602,518 600,504 Z" opacity="0.9"/>
+    <circle cx="676" cy="520" r="8" opacity="0.8"/>
+    <circle cx="700" cy="536" r="6" opacity="0.7"/>
+    <circle cx="586" cy="540" r="7" opacity="0.7"/>
+    <circle cx="720" cy="512" r="5" opacity="0.6"/>
+  </g>
+</svg>

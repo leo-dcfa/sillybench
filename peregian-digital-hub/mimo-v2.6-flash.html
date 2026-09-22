@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Peregian Digital Hub — AI Lab &amp; Builder Community</title>
+<meta name="description" content="A world-class AI Lab and builder community in beautiful Peregian Beach, Sunshine Coast. Coworking, programs, events and facilities for founders, technologists and creatives.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#070b14;
+    --bg-2:#0b1120;
+    --panel:rgba(255,255,255,.04);
+    --panel-2:rgba(255,255,255,.07);
+    --border:rgba(255,255,255,.10);
+    --txt:#e8edf7;
+    --muted:#9aa6bd;
+    --accent:#38e1c4;
+    --accent-2:#7c8cff;
+    --accent-3:#ffb86b;
+    --radius:20px;
+    --maxw:1180px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',system-ui,sans-serif;
+    background:var(--bg);
+    color:var(--txt);
+    line-height:1.6;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:-2;
+    background:
+      radial-gradient(900px 600px at 85% -5%, rgba(124,140,255,.20), transparent 60%),
+      radial-gradient(800px 620px at 5% 12%, rgba(56,225,196,.16), transparent 60%),
+      radial-gradient(1100px 800px at 50% 110%, rgba(255,184,107,.10), transparent 60%);
+  }
+  body::after{
+    content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.35;
+    background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
+                     linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+    background-size:64px 64px;
+    mask-image:radial-gradient(ellipse at 50% 0%, black, transparent 80%);
+  }
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .mono{font-family:'JetBrains Mono',monospace}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    backdrop-filter:blur(16px);
+    background:rgba(7,11,20,.72);
+    border-bottom:1px solid var(--border);
+  }
+  nav{display:flex;align-items:center;gap:28px;height:70px}
+  .logo{display:flex;align-items:center;gap:11px;font-weight:800;letter-spacing:-.02em;font-size:15px;line-height:1.1}
+  .logo .mark{
+    width:34px;height:34px;border-radius:10px;flex:none;
+    background:linear-gradient(135deg,var(--accent),var(--accent-2));
+    display:grid;place-items:center;color:#05202a;font-weight:800;font-size:14px;
+    box-shadow:0 6px 22px rgba(56,225,196,.35);
+  }
+  .logo span.sub{display:block;font-weight:500;font-size:10.5px;color:var(--muted);letter-spacing:.16em;text-transform:uppercase}
+  .links{display:flex;gap:26px;margin-left:auto;font-size:14px}
+  .links a{color:var(--muted);font-weight:500;transition:color .2s;position:relative}
+  .links a::after{content:"";position:absolute;left:0;bottom:-6px;height:2px;width:0;background:var(--accent);transition:width .25s}
+  .links a:hover{color:var(--txt)}
+  .links a:hover::after{width:100%}
+  .btn{
+    display:inline-flex;align-items:center;gap:9px;justify-content:center;
+    padding:13px 26px;border-radius:999px;font-weight:600;font-size:14.5px;
+    transition:transform .18s, box-shadow .18s, background .18s, border-color .18s;
+    border:1px solid transparent;cursor:pointer;white-space:nowrap;
+  }
+  .btn-primary{background:linear-gradient(135deg,var(--accent),#38b6e1);color:#04211d;box-shadow:0 10px 30px rgba(56,225,196,.28)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 40px rgba(56,225,196,.40)}
+  .btn-ghost{border-color:var(--border);background:var(--panel);color:var(--txt)}
+  .btn-ghost:hover{background:var(--panel-2);border-color:rgba(255,255,255,.28);transform:translateY(-2px)}
+  .burger{display:none;background:none;border:1px solid var(--border);border-radius:10px;color:var(--txt);font-size:18px;padding:6px 12px;cursor:pointer}
+
+  /* ---------- HERO ---------- */
+  .hero{padding:96px 0 70px;position:relative}
+  .pill{
+    display:inline-flex;align-items:center;gap:9px;font-size:12.5px;font-weight:600;
+    padding:7px 16px;border-radius:999px;border:1px solid var(--border);
+    background:var(--panel);color:var(--muted);letter-spacing:.04em;
+  }
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent);animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+  h1{
+    font-size:clamp(2.6rem,6.4vw,4.7rem);line-height:1.03;font-weight:800;
+    letter-spacing:-.035em;margin:26px 0 22px;max-width:15ch;
+  }
+  h1 .grad{background:linear-gradient(100deg,var(--accent),var(--accent-2) 55%,var(--accent-3));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .lede{font-size:clamp(1.02rem,1.6vw,1.2rem);color:var(--muted);max-width:58ch;margin-bottom:34px}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+  .caret{display:inline-block;width:9px;height:1.1em;background:var(--accent);margin-left:3px;vertical-align:-2px;animation:blink 1s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
+
+  /* stats */
+  .stats{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+    background:var(--border);border:1px solid var(--border);
+    border-radius:var(--radius);overflow:hidden;margin-top:64px;
+  }
+  .stat{background:rgba(9,14,26,.75);padding:26px 24px;text-align:center}
+  .stat b{display:block;font-size:clamp(1.7rem,3vw,2.4rem);font-weight:800;letter-spacing:-.03em;
+    background:linear-gradient(120deg,#fff,var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .stat span{font-size:12.5px;color:var(--muted);letter-spacing:.09em;text-transform:uppercase}
+
+  /* ---------- SECTIONS ---------- */
+  section{padding:88px 0}
+  .eyebrow{font-size:12px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+  h2{font-size:clamp(1.9rem,3.6vw,2.9rem);font-weight:800;letter-spacing:-.03em;line-height:1.1}
+  .sec-head{max-width:62ch;margin-bottom:46px}
+  .sec-head p{color:var(--muted);margin-top:16px;font-size:1.03rem}
+  .split{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+
+  .card{
+    background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);
+    padding:30px;transition:transform .25s, border-color .25s, background .25s;
+    position:relative;overflow:hidden;
+  }
+  .card:hover{transform:translateY(-5px);border-color:rgba(56,225,196,.4);background:var(--panel-2)}
+  .card h3{font-size:1.2rem;font-weight:700;letter-spacing:-.015em;margin-bottom:9px}
+  .card p{color:var(--muted);font-size:.95rem}
+  .icon{
+    width:46px;height:46px;border-radius:13px;display:grid;place-items:center;font-size:21px;
+    background:linear-gradient(135deg,rgba(56,225,196,.20),rgba(124,140,255,.20));
+    border:1px solid rgba(56,225,196,.32);margin-bottom:18px;
+  }
+
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+  .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+
+  /* marquee-ish logos */
+  .marq{
+    border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+    padding:22px 0;display:flex;gap:44px;overflow:hidden;
+    mask-image:linear-gradient(90deg,transparent,black 8%,black 92%,transparent);
+  }
+  .marq ul{display:flex;gap:44px;list-style:none;animation:scroll 34s linear infinite;flex:none}
+  .marq li{font-weight:700;font-size:15px;color:rgba(232,237,247,.55);letter-spacing:.04em;white-space:nowrap}
+  @keyframes scroll{to{transform:translateX(-100%)}}
+
+  /* networks */
+  .net{
+    display:flex;align-items:center;justify-content:space-between;gap:18px;
+    padding:24px 28px;border:1px solid var(--border);border-radius:16px;
+    background:rgba(255,255,255,.03);transition:.25s;
+  }
+  .net:hover{border-color:rgba(124,140,255,.5);background:rgba(124,140,255,.08);transform:translateX(6px)}
+  .net h4{font-size:1.03rem;font-weight:700}
+  .net small{color:var(--muted);font-size:.86rem}
+  .net .arrow{color:var(--accent);font-size:1.3rem;transition:transform .25s}
+  .net:hover .arrow{transform:translateX(6px)}
+
+  /* pricing */
+  .price{
+    background:var(--panel);border:1px solid var(--border);border-radius:24px;padding:34px;position:relative;
+    transition:.25s;
+  }
+  .price.pop{border-color:rgba(56,225,196,.45);background:linear-gradient(180deg,rgba(56,225,196,.10),rgba(255,255,255,.03))}
+  .price.pop:hover{box-shadow:0 24px 60px rgba(56,225,196,.15)}
+  .badge{
+    position:absolute;top:-13px;right:26px;background:linear-gradient(135deg,var(--accent),var(--accent-2));
+    color:#05202a;font-size:11.5px;font-weight:800;padding:5px 14px;border-radius:999px;letter-spacing:.08em;
+  }
+  .amount{font-size:3.1rem;font-weight:800;letter-spacing:-.04em;margin:14px 0 4px}
+  .amount span{font-size:1rem;font-weight:500;color:var(--muted)}
+  .price ul{list-style:none;margin:22px 0 26px;display:grid;gap:11px}
+  .price li{font-size:.94rem;color:var(--muted);display:flex;gap:10px}
+  .price li::before{content:"✓";color:var(--accent);font-weight:700}
+
+  /* programs */
+  .prog{
+    border:1px solid var(--border);border-radius:var(--radius);padding:30px;
+    background:linear-gradient(160deg,rgba(255,255,255,.055),rgba(255,255,255,.02));
+    transition:.25s;display:flex;flex-direction:column;gap:12px;
+  }
+  .prog:hover{transform:translateY(-5px);border-color:rgba(255,184,107,.45)}
+  .tag{font-size:11.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-3)}
+  .prog h3{font-size:1.3rem;letter-spacing:-.02em}
+  .prog p{color:var(--muted);font-size:.95rem;flex:1}
+  .link{color:var(--accent);font-weight:600;font-size:.9rem;display:inline-flex;gap:7px;align-items:center}
+  .link:hover span{transform:translateX(5px)}
+  .link span{transition:.2s}
+
+  /* facility highlight */
+  .facility{
+    border:1px solid var(--border);border-radius:24px;overflow:hidden;
+    background:rgba(255,255,255,.03);transition:.25s;
+  }
+  .facility:hover{border-color:rgba(56,225,196,.45);transform:translateY(-5px)}
+  .facility .art{
+    height:170px;position:relative;display:grid;place-items:center;font-size:44px;
+    background:linear-gradient(135deg,rgba(56,225,196,.18),rgba(124,140,255,.18));
+    border-bottom:1px solid var(--border);
+  }
+  .facility .art.w{background:linear-gradient(135deg,rgba(124,140,255,.24),rgba(255,184,107,.18))}
+  .facility .art.s{background:linear-gradient(135deg,rgba(255,184,107,.22),rgba(56,225,196,.16))}
+  .facility .body{padding:26px}
+  .facility h3{font-size:1.22rem;margin-bottom:8px;letter-spacing:-.02em}
+  .facility p{color:var(--muted);font-size:.94rem;margin-bottom:16px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:11.5px;padding:5px 12px;border-radius:999px;background:rgba(255,255,255,.06);
+    border:1px solid var(--border);color:var(--muted);font-family:'JetBrains Mono',monospace}
+
+  /* quote */
+  .quote{
+    border-left:3px solid var(--accent);padding:6px 0 6px 24px;
+  }
+  .quote p{font-size:1.08rem;font-style:italic;color:var(--txt);line-height:1.65}
+  .quote cite{display:block;margin-top:14px;font-style:normal;font-size:.87rem;color:var(--muted)}
+
+  /* blog */
+  .post{border:1px solid var(--border);border-radius:18px;padding:26px;background:rgba(255,255,255,.03);transition:.25s;display:flex;flex-direction:column;gap:10px}
+  .post:hover{transform:translateY(-5px);border-color:rgba(124,140,255,.5);background:rgba(124,140,255,.07)}
+  .date{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-2);font-family:'JetBrains Mono',monospace}
+  .post h3{font-size:1.08rem;letter-spacing:-.015em}
+  .post p{color:var(--muted);font-size:.93rem}
+
+  /* people */
+  .person{text-align:center;padding:26px 18px;border:1px solid var(--border);border-radius:18px;background:rgba(255,255,255,.03);transition:.25s}
+  .person:hover{transform:translateY(-5px);border-color:rgba(56,225,196,.4)}
+  .avatar{width:72px;height:72px;border-radius:50%;margin:0 auto 16px;display:grid;place-items:center;
+    font-weight:800;font-size:22px;color:#04211d;background:linear-gradient(135deg,var(--accent),var(--accent-2))}
+  .person h4{font-size:1.02rem}
+  .person small{color:var(--accent);font-size:.8rem;letter-spacing:.06em;text-transform:uppercase}
+  .person p{color:var(--muted);font-size:.88rem;margin-top:11px}
+
+  /* map / contact */
+  .contact{
+    border:1px solid var(--border);border-radius:26px;overflow:hidden;
+    display:grid;grid-template-columns:1.1fr .9fr;background:rgba(255,255,255,.03);
+  }
+  .contact .info{padding:44px}
+  .contact .info h2{margin-bottom:16px}
+  .info-list{display:grid;gap:16px;margin-top:26px}
+  .info-row{display:flex;gap:14px;align-items:flex-start}
+  .info-row .ic{width:40px;height:40px;flex:none;border-radius:11px;background:rgba(56,225,196,.14);
+    border:1px solid rgba(56,225,196,.3);display:grid;place-items:center;font-size:17px}
+  .info-row b{display:block;font-size:.94rem}
+  .info-row span{color:var(--muted);font-size:.92rem}
+  .map{background:
+      linear-gradient(rgba(7,11,20,.45),rgba(7,11,20,.45)),
+      repeating-linear-gradient(45deg,rgba(124,140,255,.16) 0 2px,transparent 2px 26px),
+      linear-gradient(135deg,#0e1730,#132447);
+    min-height:340px;display:grid;place-items:center;text-align:center;padding:30px;
+    border-left:1px solid var(--border);
+  }
+  .pin{font-size:36px;margin-bottom:12px;filter:drop-shadow(0 0 16px var(--accent))}
+
+  /* footer */
+  footer{border-top:1px solid var(--border);padding:64px 0 34px;background:rgba(5,8,16,.7)}
+  .fgrid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:36px}
+  .fcol h5{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
+  .fcol a{display:block;color:var(--muted);font-size:.92rem;padding:5px 0;transition:.2s}
+  .fcol a:hover{color:var(--txt);transform:translateX(4px)}
+  .fbot{margin-top:46px;padding-top:22px;border-top:1px solid var(--border);
+    display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;color:var(--muted);font-size:.85rem}
+
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease, transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  @media(max-width:960px){
+    .grid-3,.grid-4,.stats{grid-template-columns:repeat(2,1fr)}
+    .grid-2{grid-template-columns:1fr}
+    .contact{grid-template-columns:1fr}
+    .map{border-left:none;border-top:1px solid var(--border)}
+    .fgrid{grid-template-columns:1fr 1fr}
+    .links{display:none;position:absolute;top:70px;left:0;right:0;flex-direction:column;gap:0;
+      background:rgba(7,11,20,.97);border-bottom:1px solid var(--border);padding:10px 24px 20px}
+    .links.open{display:flex}
+    .links a{padding:13px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:15px}
+    .burger{display:block;margin-left:auto}
+    .nav-cta{display:none}
+  }
+  @media(max-width:560px){
+    .grid-3,.grid-4,.stats{grid-template-columns:1fr}
+    .fgrid{grid-template-columns:1fr}
+    section{padding:64px 0}
+    .hero{padding:64px 0 40px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <nav>
+      <a class="logo" href="#top">
+        <span class="mark">PH</span>
+        <span>Peregian<br>Digital Hub<span class="sub">AI Lab · Sunshine Coast</span></span>
+      </a>
+      <div class="links" id="menu">
+        <a href="#build">Build</a>
+        <a href="#connect">Connect</a>
+        <a href="#learn">Learn</a>
+        <a href="#facilities">Facilities</a>
+        <a href="#tokenizer">Tokenizer</a>
+        <a href="#happenings">Happenings</a>
+        <a href="#visit">Visit</a>
+      </div>
+      <a class="btn btn-primary nav-cta" href="#build">Apply for Membership</a>
+      <button class="burger" id="burger" aria-label="Menu">☰</button>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <span class="pill"><span class="dot"></span> 253–255 David Low Way, Peregian Beach QLD</span>
+      <h1>You're surfing at the <span class="grad">right beach.</span><i class="caret"></i></h1>
+      <p class="lede">Join other curious people building with AI — agents, prototypes, products, side projects — at our world-class AI Lab across from Peregian Beach. Show &amp; tell sessions, hands-on workshops, and peers who care about your project.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#build">Start building with us →</a>
+        <a class="btn btn-ghost" href="#facilities">Explore the facility</a>
+      </div>
+
+      <div class="stats reveal">
+        <div class="stat"><b>100+</b><span>Members</span></div>
+        <div class="stat"><b>30+</b><span>Startups</span></div>
+        <div class="stat"><b>120</b><span>People capacity</span></div>
+        <div class="stat"><b>8</b><span>Years on the Coast</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marq" aria-hidden="true">
+    <ul>
+      <li>REBOOT NOOSA</li><li>CODING FROM BEACH</li><li>SUNSHINE COAST SCREEN COLLECTIVE</li>
+      <li>FOUNDERS NETWORK</li><li>SUNCOAST ANGELS</li><li>MANUFACTURING EXCELLENCE FORUM</li>
+      <li>ADVANCE QUEENSLAND</li><li>NOOSA SHIRE COUNCIL</li>
+    </ul>
+    <ul>
+      <li>REBOOT NOOSA</li><li>CODING FROM BEACH</li><li>SUNSHINE COAST SCREEN COLLECTIVE</li>
+      <li>FOUNDERS NETWORK</li><li>SUNCOAST ANGELS</li><li>MANUFACTURING EXCELLENCE FORUM</li>
+      <li>ADVANCE QUEENSLAND</li><li>NOOSA SHIRE COUNCIL</li>
+    </ul>
+  </div>
+
+  <!-- VALUE / BUILD INTRO -->
+  <section id="build">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="eyebrow">Build</div>
+        <h2>More than just a desk.</h2>
+        <p>The Hub has a limited number of full-time and part-time memberships for people building technology businesses. Our membership, culture and programs are all designed around that mission. We eat, sleep and breathe technology — and we speak the language of building new ventures.</p>
+      </div>
+
+      <div class="grid-3 reveal">
+        <div class="card">
+          <div class="icon">🧠</div>
+          <h3>AI changed that</h3>
+          <p>You don't need to be a developer any more. Bring the idea — we'll help you bring it to life, with the programs and people you need beside you.</p>
+        </div>
+        <div class="card">
+          <div class="icon">⚡</div>
+          <h3>Pull up a chair</h3>
+          <p>The fastest way up the AI learning curve is to sit beside someone helpful who is further up it. Actual AI expertise and a "here's how I do X" culture.</p>
+        </div>
+        <div class="card">
+          <div class="icon">🏄</div>
+          <h3>Come in for the rest</h3>
+          <p>The Hub is all about being IRL. Face-to-face conversations, weekly show &amp; tells, experts beside you, and help when you're stuck — 50m from the surf.</p>
+        </div>
+      </div>
+
+      <div class="sec-head reveal" style="margin-top:76px">
+        <div class="eyebrow">A day at the Hub</div>
+        <h2>Learning, building &amp; making friends.</h2>
+      </div>
+      <div class="grid-4 reveal">
+        <div class="card"><div class="icon">☕</div><h3>Morning</h3><p>Coffee in Peregian Beach Village with a friend launching an AI startup — or one who just exited a 10-year success story.</p></div>
+        <div class="card"><div class="icon">🎓</div><h3>Learn</h3><p>Weekly AI workshops and presentations from expert practitioners to keep you at best practice.</p></div>
+        <div class="card"><div class="icon">🌅</div><h3>Midday</h3><p>10km of pristine beach 50m away. Run, swim, reset — then shower and get back to it.</p></div>
+        <div class="card"><div class="icon">🍕</div><h3>Friday</h3><p>Pub lunch with 30+ members at the Peregian Beach Hotel. New friends, new contacts.</p></div>
+      </div>
+
+      <!-- membership -->
+      <div class="split reveal" style="margin-top:80px">
+        <div>
+          <div class="eyebrow">Membership</div>
+          <h2>Simple monthly plans. No lock-in.</h2>
+        </div>
+        <p style="color:var(--muted);max-width:44ch;font-size:.97rem">Teams welcome — Bootstrapper suits teams of up to 4 with multi-seat discounts available.</p>
+      </div>
+
+      <div class="grid-2 reveal" style="margin-top:34px">
+        <div class="price pop">
+          <span class="badge">MOST POPULAR</span>
+          <div class="tag">Bootstrapper</div>
+          <div class="amount">$479<span> / month</span></div>
+          <p style="color:var(--muted);font-size:.94rem">Full-time dedicated desk for founders</p>
+          <ul>
+            <li>Dedicated sit-stand desk</li>
+            <li>Unlimited 24/7 secure access</li>
+            <li>Gigabit internet (fibre, wifi + ethernet)</li>
+            <li>Meeting room access</li>
+            <li>All programs &amp; mentoring</li>
+          </ul>
+          <a class="btn btn-primary" href="#visit" style="width:100%">Apply for Membership</a>
+        </div>
+        <div class="price">
+          <div class="tag" style="color:var(--accent-2)">Flex</div>
+          <div class="amount">$293<span> / month</span></div>
+          <p style="color:var(--muted);font-size:.94rem">Part-time hot desk for hybrid work</p>
+          <ul>
+            <li>Hot desk (any available)</li>
+            <li>7 days access per month</li>
+            <li>24/7 access on those days</li>
+            <li>Gigabit internet</li>
+            <li>All programs &amp; mentoring</li>
+          </ul>
+          <a class="btn btn-ghost" href="#visit" style="width:100%">Apply for Membership</a>
+        </div>
+      </div>
+
+      <div class="grid-3 reveal" style="margin-top:26px">
+        <div class="card"><h3>Am I locked in?</h3><p>No. We don't collect payment details when you apply, and you can withdraw your application at any time.</p></div>
+        <div class="card"><h3>How does billing work?</h3><p>Memberships are billed monthly, in advance, via credit card. T&amp;Cs are shown during sign-up.</p></div>
+        <div class="card"><h3>How are applications assessed?</h3><p>On tech industry fit, contribution to fellow members and talent programs, and your plans for growth — it's a curated space.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONNECT -->
+  <section id="connect" style="background:rgba(255,255,255,.02);border-block:1px solid var(--border)">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="eyebrow">Connect</div>
+        <h2>Find your digital tribe.</h2>
+        <p>The Digital Ecosystem is a network of networks that meet regularly at the Hub — usually an evening of drinks and gourmet pizza followed by compelling talks, panels or workshops. Led by small teams of volunteers who care deeply about their sector. Ecosystem activities are generously supported by Bendigo Bank.</p>
+      </div>
+
+      <div class="grid-2 reveal" style="gap:16px">
+        <a class="net" href="#visit"><div><h4>Digital Agencies &amp; Creatives</h4><small>Check out REBOOT Noosa</small></div><span class="arrow">→</span></a>
+        <a class="net" href="#visit"><div><h4>Technologists</h4><small>Learn about Coding from Beach</small></div><span class="arrow">→</span></a>
+        <a class="net" href="#visit"><div><h4>Digital Storytellers</h4><small>Join the Sunshine Coast Screen Collective</small></div><span class="arrow">→</span></a>
+        <a class="net" href="#visit"><div><h4>Startup Founders</h4><small>Learn more about the Founders Network</small></div><span class="arrow">→</span></a>
+        <a class="net" href="#visit"><div><h4>Angel Investors</h4><small>Learn more about the SunCoast Angels</small></div><span class="arrow">→</span></a>
+        <a class="net" href="#visit"><div><h4>Advanced Manufacturers</h4><small>Learn more about the Manufacturing Excellence Forum</small></div><span class="arrow">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FACILITIES -->
+  <section id="facilities">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="eyebrow">Facilities</div>
+        <h2>World-class facilities. A powerhouse of talent.</h2>
+        <p>The Hub facility accommodates 120 people across 4 offices, 35 full-time desk pods and flexible space. Bookable meeting rooms and video booths cover calls and meetings, while a state-of-the-art AI Lab adds content studios, an auditorium with high-tech AV, and pods for collaboration, learning and making.</p>
+      </div>
+
+      <div class="grid-3 reveal">
+        <div class="facility">
+          <div class="art">🏢</div>
+          <div class="body">
+            <h3>The Hub Facility</h3>
+            <p>Full-time desks, hot desks &amp; offices. Four fully serviced offices with secure access, five bookable meeting rooms, two video call booths, three deck &amp; verandah zones, and a barception area for casual meets.</p>
+            <div class="chips"><span class="chip">4 offices</span><span class="chip">35 desk pods</span><span class="chip">5 meeting rooms</span><span class="chip">2 video booths</span></div>
+          </div>
+        </div>
+        <div class="facility">
+          <div class="art w">🎬</div>
+          <div class="body">
+            <h3>The Wonder Pod</h3>
+            <p>80-seat multi-use venue with a 7m × 3m LED wall, multi-camera capture, AI-enabled in-ceiling mics, Dolby sound, multimedia lectern and a separate control pod. Auditorium, classroom, theatre, LED volume or film studio.</p>
+            <div class="chips"><span class="chip">80 seats</span><span class="chip">7m LED wall</span><span class="chip">3× 4K PTZ</span><span class="chip">livestream</span></div>
+          </div>
+        </div>
+        <div class="facility">
+          <div class="art s">🎙️</div>
+          <div class="body">
+            <h3>The Sound Pod</h3>
+            <p>Premium, sound-proofed podcasting studio with best-in-breed gear: RØDECaster Pro II, four RØDE Podmics, headphones and boom arms, plus an edit suite (Descript &amp; DaVinci Resolve) and media intern support.</p>
+            <div class="chips"><span class="chip">4-person booth</span><span class="chip">RØDE gear</span><span class="chip">post-production</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-4 reveal" style="margin-top:26px">
+        <div class="card"><div class="icon">📶</div><h3>Gigabit Fibre</h3><p>Best connectivity on the Sunshine Coast — wifi &amp; ethernet throughout.</p></div>
+        <div class="card"><div class="icon">🔑</div><h3>24/7 Secure Access</h3><p>Secure facilities so you can work flexibly as your schedule requires.</p></div>
+        <div class="card"><div class="icon">🚀</div><h3>Entrepreneurial Support</h3><p>In-residence support with connections to world-class mentors.</p></div>
+        <div class="card"><div class="icon">🚗</div><h3>Parking &amp; Amenities</h3><p>Car parking, bike racks, end-of-trip facilities — and a bus stop at the front door.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOKENIZER / PROGRAMS -->
+  <section id="tokenizer" style="background:rgba(255,255,255,.02);border-block:1px solid var(--border)">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="eyebrow">Learn · Tokenizer</div>
+        <h2>Surfing the AI wave on the Sunshine Coast.</h2>
+        <p>Tokenizer is a multi-year program from Noosa Council's Peregian Digital Hub to help this region build the skills, knowledge and practical experience needed to thrive in the AI era — for hub members, startups, SME leaders, storytellers, technologists, teenagers and kids. It's made possible through Advance Queensland's Regional Enabler Program, Regional Development Australia's Moreton Bay–Sunshine Coast–Noosa network, and Noosa Shire Council.</p>
+      </div>
+
+      <div class="grid-3 reveal" id="learn">
+        <div class="prog">
+          <div class="tag">Uplift · Cohort 3</div>
+          <h3>AI for SMB Leaders</h3>
+          <p>A four-week AI adoption program for Sunshine Coast business owners and senior leaders. Starts 8 October 2026 — four Thursday mornings (8, 15, 22 &amp; 29 October). $293 per business, up to 3 participants. Cohorts 1 &amp; 2 reached 80 leaders from 53 local businesses. Subsidised 1:1 mentoring and proof-of-concept support available by EOI.</p>
+          <a class="link" href="#visit">Apply to join Cohort 3 <span>→</span></a>
+        </div>
+        <div class="prog">
+          <div class="tag">Vibecamp · 21–23 Aug 2026</div>
+          <h3>Hackathon &amp; Campout</h3>
+          <p>An action-packed weekend of camping, vibe coding and creating with AI at Habitat Noosa — with a bigger beginner stream, more families, and more people willing to ship something new.</p>
+          <a class="link" href="#visit">Learn more <span>→</span></a>
+        </div>
+        <div class="prog">
+          <div class="tag">Kids &amp; Teens</div>
+          <h3>Holiday Program</h3>
+          <p>School holiday workshops at the Hub — the September program runs 21 September to 2 October 2026 with ten practical workshops for kids inventing and building with AI, 3D design/printing, coding and robotics.</p>
+          <a class="link" href="#visit">See the program <span>→</span></a>
+        </div>
+        <div class="prog">
+          <div class="tag">Cadetships</div>
+          <h3>Paid work experience</h3>
+          <p>The AI Cadetship program for grade 9–11 students runs each term 3 — launched in 2019, more than three years before the ChatGPT moment, and engaging over 200 students since 2020.</p>
+          <a class="link" href="#visit">Cadetship details <span>→</span></a>
+        </div>
+        <div class="prog">
+          <div class="tag">Residencies</div>
+          <h3>Creative Residency</h3>
+          <p>A residency program placing creatives and storytellers inside the Hub's AI Lab to experiment with new tools, techniques and formats — supported by the Sunshine Coast Screen Collective.</p>
+          <a class="link" href="#visit">Residency program <span>→</span></a>
+        </div>
+        <div class="prog">
+          <div class="tag">Weekly</div>
+          <h3>Tokenizer at the Hub</h3>
+          <p>Weekly AI workshops, talks, buildathons, networking lunches, show &amp; tells, private Slack channels and 1:1 expert mentoring — plus an online academy for knowledge professionals.</p>
+          <a class="link" href="#visit">Express your interest <span>→</span></a>
+        </div>
+      </div>
+
+      <!-- people -->
+      <div class="split reveal" style="margin-top:84px">
+        <div>
+          <div class="eyebrow">The people</div>
+          <h2>Learn from industry experts.</h2>
+        </div>
+        <p style="color:var(--muted);max-width:42ch;font-size:.97rem">Mentors at the forefront of AI, venture capital, data science and cloud — working beside members every week.</p>
+      </div>
+
+      <div class="grid-4 reveal" style="margin-top:34px">
+        <div class="person">
+          <div class="avatar">CB</div>
+          <h4>Chris Boden</h4><small>Director, Peregian Digital Hub</small>
+          <p>Has led the Hub since it opened in 2018. Previously an international career in startups and innovation across San Francisco, Beijing, Singapore and Melbourne.</p>
+        </div>
+        <div class="person">
+          <div class="avatar">ST</div>
+          <h4>Steve Telburn</h4><small>Tokenizer Uplift Stream Lead</small>
+          <p>Technology executive and business advisor spanning venture capital, enterprise consulting and startup leadership; currently at Antler's pre-seed fund working with AI startups.</p>
+        </div>
+        <div class="person">
+          <div class="avatar">IH</div>
+          <h4>Ian Hansel</h4><small>Technical Lead</small>
+          <p>Data scientist, AI engineer and Director at Verge Labs. Helps businesses make proprietary data assets and know-how legible for AI agents.</p>
+        </div>
+        <div class="person">
+          <div class="avatar">RS</div>
+          <h4>Ryan Smith</h4><small>Technical Mentor</small>
+          <p>Seasoned IT leader with deep expertise in Microsoft technologies, cloud and cybersecurity, helping SMEs turn technology into business advantage.</p>
+        </div>
+      </div>
+
+      <!-- testimonials -->
+      <div class="grid-2 reveal" style="margin-top:64px">
+        <div class="quote">
+          <p>"The work and significant effort you are putting in for businesses like Bella is far more reaching than you know. I sincerely appreciate you kick-starting my AI journey and the doors you have opened for me with productivity."</p>
+          <cite>— Andrew Blair, Director, Bella Manufacturing</cite>
+        </div>
+        <div class="quote">
+          <p>"The most valuable aspect of the Uplift program was the clear and practical explanation of how AI works. The hands-on experience and real-time demonstrations have empowered us to make smarter, data-driven decisions."</p>
+          <cite>— Adrian Reed, Reed and Co Real Estate</cite>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HAPPENINGS -->
+  <section id="happenings">
+    <div class="wrap">
+      <div class="split sec-head reveal" style="max-width:none">
+        <div>
+          <div class="eyebrow">Happenings</div>
+          <h2>Latest from the Hub.</h2>
+        </div>
+        <a class="btn btn-ghost" href="#visit">View all posts →</a>
+      </div>
+
+      <div class="grid-3 reveal">
+        <a class="post" href="#visit">
+          <span class="date">08 Sep 2026</span>
+          <h3>Uplift is back for Sunshine Coast businesses</h3>
+          <p>There is plenty of marketing designed to make business owners feel late to AI. Ignore it. The useful stuff starts with the work in front of you…</p>
+          <span class="link">Read more <span>→</span></span>
+        </a>
+        <a class="post" href="#visit">
+          <span class="date">02 Sep 2026</span>
+          <h3>September school holidays at the Hub</h3>
+          <p>The Hub's September school holiday program runs from 21 September to 2 October — ten practical workshops for kids…</p>
+          <span class="link">Read more <span>→</span></span>
+        </a>
+        <a class="post" href="#visit">
+          <span class="date">28 Aug 2026</span>
+          <h3>Vibecamp 2026 was a family affair</h3>
+          <p>Vibecamp came back to Habitat Noosa in August with a bigger beginner stream, more families and more people willing to ship…</p>
+          <span class="link">Read more <span>→</span></span>
+        </a>
+      </div>
+
+      <div class="card reveal" style="margin-top:44px;display:flex;justify-content:space-between;align-items:center;gap:26px;flex-wrap:wrap">
+        <div>
+          <div class="eyebrow" style="color:var(--accent-3)">Events</div>
+          <h2 style="font-size:1.6rem">There's never a dull moment at the Hub.</h2>
+          <p style="color:var(--muted);margin-top:8px;max-width:60ch">Meet founders, builders, technologists and curious locals at workshops, talks, meetups and hands-on learning sessions in Peregian Beach. Browse the calendar for industry meetups, training sessions and community events.</p>
+        </div>
+        <a class="btn btn-primary" href="#visit">Event Calendar →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCATION / CONTACT -->
+  <section id="visit" style="padding-top:20px">
+    <div class="wrap">
+      <div class="contact reveal">
+        <div class="info">
+          <div class="eyebrow">Visit · Partner</div>
+          <h2>Magnificent Peregian Beach.</h2>
+          <p style="color:var(--muted)">A vibrant beachside village that powers the Hub — moments from the surf, minutes from great coffee, and 20 minutes from Sunshine Coast Airport with daily flights to Sydney and Melbourne.</p>
+          <div class="info-list">
+            <div class="info-row">
+              <div class="ic">📍</div>
+              <div><b>The Hub</b><span>253–255 David Low Way, Peregian Beach, QLD 4573</span></div>
+            </div>
+            <div class="info-row">
+              <div class="ic">🤝</div>
+              <div><b>Sponsor the Hub</b><span>Reach the Sunshine Coast tech community through Hub sponsorship.</span></div>
+            </div>
+            <div class="info-row">
+              <div class="ic">💬</div>
+              <div><b>Chat with us</b><span>Questions about membership, booking a space or programs? Start a chat.</span></div>
+            </div>
+            <div class="info-row">
+              <div class="ic">🏖️</div>
+              <div><b>Location</b><span>10km of lifeguarded beach at your doorstep, 10+ eateries within 400m, bus stop at the front door.</span></div>
+            </div>
+          </div>
+          <div class="hero-cta" style="margin-top:30px">
+            <a class="btn btn-primary" href="https://www.peregianhub.com.au/book">Book a Space</a>
+            <a class="btn btn-ghost" href="https://www.peregianhub.com.au/events">See what's on</a>
+          </div>
+        </div>
+        <div class="map">
+          <div>
+            <div class="pin">📍</div>
+            <div style="font-weight:700;letter-spacing:.14em;font-size:13px">PEREGIAN DIGITAL HUB</div>
+            <div style="color:var(--muted);font-size:.9rem;margin-top:8px" class="mono">26.7307° S, 153.0907° E</div>
+            <div style="color:var(--muted);font-size:.87rem;margin-top:14px">An initiative of Noosa Shire Council</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div class="fcol">
+        <a class="logo" href="#top" style="margin-bottom:16px">
+          <span class="mark">PH</span>
+          <span>Peregian<br>Digital Hub<span class="sub">AI Lab · Sunshine Coast</span></span>
+        </a>
+        <p style="color:var(--muted);font-size:.92rem;max-width:34ch">A world-class environment for digital talent in a beautiful beachside village.</p>
+        <p style="color:var(--muted);font-size:.87rem;margin-top:18px" class="mono">253–255 David Low Way<br>Peregian Beach QLD 4573</p>
+      </div>
+      <div class="fcol">
+        <h5>The Hub</h5>
+        <a href="#build">Membership</a>
+        <a href="#facilities">The Facility</a>
+        <a href="#facilities">Wonder Pod</a>
+        <a href="#facilities">Sound Pod</a>
+        <a href="#visit">Peregian Beach</a>
+        <a href="#visit">Our Story</a>
+      </div>
+      <div class="fcol">
+        <h5>Networks</h5>
+        <a href="#connect">Digital Marketers</a>
+        <a href="#connect">Technologists</a>
+        <a href="#connect">Screen Professionals</a>
+        <a href="#connect">Tech Founders</a>
+        <a href="#connect">Angel Investors</a>
+        <a href="#connect">Manufacturers</a>
+      </div>
+      <div class="fcol">
+        <h5>Resources</h5>
+        <a href="#happenings">Event Calendar</a>
+        <a href="#happenings">Blog</a>
+        <a href="#visit">Book a Space</a>
+        <a href="#visit">Hub Wiki</a>
+        <a href="#visit">Founder Resources</a>
+        <a href="#visit">Contact</a>
+      </div>
+    </div>
+    <div class="fbot">
+      <span>© Noosa Shire Council. All rights reserved. The Hub is an initiative of Noosa Shire Council.</span>
+      <span style="display:flex;gap:20px">
+        <a href="https://www.linkedin.com/company/peregianhub">LinkedIn</a>
+        <a href="https://www.youtube.com/channel/UC564UAR3gHxEP6sE6HJ2KFw">YouTube</a>
+        <a href="https://www.facebook.com/peregianhub">Facebook</a>
+        <a href="https://www.noosa.qld.gov.au/terms-of-use">Terms of Use</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('burger').addEventListener('click',function(){
+    document.getElementById('menu').classList.toggle('open');
+  });
+  document.querySelectorAll('#menu a').forEach(a=>a.addEventListener('click',()=>{
+    document.getElementById('menu').classList.remove('open');
+  }));
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
