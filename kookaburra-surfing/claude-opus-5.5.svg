@@ -1,0 +1,225 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-labelledby="t d">
+  <title id="t">A kookaburra surfing a longboard</title>
+  <desc id="d">A laughing kookaburra crouches on the nose of a long surfboard, trimming along the face of a curling turquoise wave under a warm afternoon sky.</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffb88a"/>
+      <stop offset="0.55" stop-color="#ffd9a8"/>
+      <stop offset="1" stop-color="#fff1d6"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#fff7d1"/>
+      <stop offset="0.6" stop-color="#ffe08a"/>
+      <stop offset="1" stop-color="#ffe08a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2a9bb5"/>
+      <stop offset="1" stop-color="#11546e"/>
+    </linearGradient>
+    <linearGradient id="wave" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7fe0e0"/>
+      <stop offset="0.45" stop-color="#2bb3c4"/>
+      <stop offset="1" stop-color="#0f6f8c"/>
+    </linearGradient>
+    <linearGradient id="barrel" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#0c5470"/>
+      <stop offset="1" stop-color="#1f8ea8"/>
+    </linearGradient>
+    <linearGradient id="board" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff6e0"/>
+      <stop offset="1" stop-color="#f1d9a6"/>
+    </linearGradient>
+    <linearGradient id="back" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8a5a33"/>
+      <stop offset="1" stop-color="#5b3a20"/>
+    </linearGradient>
+    <linearGradient id="belly" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fbf5e8"/>
+      <stop offset="1" stop-color="#e9dcc2"/>
+    </linearGradient>
+    <linearGradient id="beakTop" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#2d2621"/>
+      <stop offset="1" stop-color="#4a4038"/>
+    </linearGradient>
+  </defs>
+
+  <!-- sky -->
+  <rect width="800" height="600" fill="url(#sky)"/>
+  <circle cx="640" cy="120" r="110" fill="url(#sun)"/>
+  <circle cx="640" cy="120" r="46" fill="#fff4c4"/>
+
+  <!-- clouds -->
+  <g fill="#fff" opacity="0.8">
+    <ellipse cx="150" cy="90" rx="70" ry="18"/>
+    <ellipse cx="190" cy="78" rx="40" ry="18"/>
+    <ellipse cx="470" cy="60" rx="55" ry="12"/>
+  </g>
+
+  <!-- distant headland -->
+  <path d="M0 300 C 60 250, 140 240, 210 270 C 250 285, 280 295, 320 300 Z" fill="#6f8f6a" opacity="0.7"/>
+  <path d="M0 300 C 40 275, 90 268, 140 282 L 180 300 Z" fill="#56775a" opacity="0.7"/>
+
+  <!-- flat sea behind -->
+  <rect y="298" width="800" height="302" fill="url(#sea)"/>
+  <g stroke="#bff0f0" stroke-width="2" stroke-linecap="round" opacity="0.5">
+    <line x1="40" y1="320" x2="90" y2="320"/>
+    <line x1="140" y1="338" x2="210" y2="338"/>
+    <line x1="60" y1="362" x2="120" y2="362"/>
+  </g>
+
+  <!-- the wave: face rises from right, lip curls over at top-right -->
+  <path d="M0 600 L0 470 C 120 455, 240 430, 360 380 C 470 330, 540 250, 600 205
+           C 660 160, 740 150, 800 170 L 800 600 Z" fill="url(#wave)"/>
+  <!-- barrel shadow under the lip -->
+  <path d="M600 205 C 660 160, 740 150, 800 170 L 800 330 C 760 300, 720 290, 690 300
+           C 660 310, 640 280, 630 250 Z" fill="url(#barrel)" opacity="0.85"/>
+  <!-- curling lip -->
+  <path d="M590 212 C 640 150, 730 130, 800 150 L 800 172 C 745 158, 690 168, 655 200
+           C 640 214, 632 232, 640 250 C 612 240, 596 228, 590 212 Z" fill="#9ff0ec"/>
+  <!-- foam along the lip -->
+  <g fill="#ffffff">
+    <circle cx="600" cy="208" r="9"/>
+    <circle cx="615" cy="192" r="11"/>
+    <circle cx="634" cy="178" r="12"/>
+    <circle cx="656" cy="166" r="11"/>
+    <circle cx="680" cy="158" r="10"/>
+    <circle cx="706" cy="153" r="9"/>
+    <circle cx="732" cy="150" r="9"/>
+    <circle cx="760" cy="150" r="8"/>
+    <circle cx="786" cy="153" r="8"/>
+    <circle cx="641" cy="246" r="6"/>
+    <circle cx="628" cy="234" r="5"/>
+  </g>
+  <!-- spray -->
+  <g fill="#ffffff" opacity="0.85">
+    <circle cx="582" cy="190" r="4"/>
+    <circle cx="570" cy="176" r="3"/>
+    <circle cx="596" cy="168" r="3.5"/>
+    <circle cx="560" cy="200" r="2.5"/>
+    <circle cx="620" cy="150" r="3"/>
+  </g>
+  <!-- face texture lines -->
+  <g fill="none" stroke="#c9fbf6" stroke-width="3" stroke-linecap="round" opacity="0.55">
+    <path d="M120 470 C 240 450, 330 410, 420 360"/>
+    <path d="M220 500 C 330 470, 430 420, 520 340"/>
+    <path d="M360 520 C 470 480, 560 410, 640 330"/>
+    <path d="M520 560 C 610 510, 690 440, 760 380"/>
+  </g>
+
+  <!-- wake trail behind the board -->
+  <path d="M170 470 C 230 470, 280 452, 318 432" fill="none" stroke="#ffffff" stroke-width="7" stroke-linecap="round" opacity="0.85"/>
+  <path d="M130 482 C 200 486, 260 470, 300 452" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" opacity="0.6"/>
+  <g fill="#fff" opacity="0.8">
+    <circle cx="312" cy="424" r="5"/>
+    <circle cx="300" cy="418" r="3"/>
+    <circle cx="322" cy="416" r="3"/>
+  </g>
+
+  <!-- ===== LONGBOARD ===== -->
+  <g transform="rotate(-17 470 390)">
+    <!-- shadow on water -->
+    <ellipse cx="470" cy="412" rx="205" ry="10" fill="#0b4a60" opacity="0.35"/>
+    <!-- board: long, rounded nose on the right, square-ish tail on the left -->
+    <path d="M270 392 C 272 378, 300 372, 360 370 L 560 370 C 630 370, 672 380, 680 390
+             C 672 400, 630 408, 560 408 L 360 408 C 300 407, 272 404, 270 392 Z"
+          fill="url(#board)" stroke="#7a5a33" stroke-width="2.5"/>
+    <!-- rails / stringer and stripes -->
+    <path d="M285 389 L 665 389" stroke="#a0773f" stroke-width="2"/>
+    <path d="M330 372 L 330 406" stroke="#e0612f" stroke-width="7"/>
+    <path d="M344 372 L 344 406" stroke="#2a8a9c" stroke-width="5"/>
+    <!-- fin -->
+    <path d="M300 406 L 290 426 L 318 407 Z" fill="#7a5a33"/>
+    <!-- leash -->
+    <path d="M272 392 C 250 400, 245 420, 262 430" fill="none" stroke="#333" stroke-width="2"/>
+  </g>
+
+  <!-- ===== KOOKABURRA =====
+       Stands on the front third of the board, facing right (down the line),
+       knees bent, wings slightly out for balance. -->
+  <g id="kookaburra" transform="translate(500 250)">
+    <!-- legs -->
+    <g stroke="#b88a5a" stroke-width="7" stroke-linecap="round" fill="none">
+      <path d="M-10 70 L -18 98 L -6 112"/>
+      <path d="M22 66 L 30 94 L 44 104"/>
+    </g>
+    <!-- feet -->
+    <g stroke="#b88a5a" stroke-width="4" stroke-linecap="round">
+      <path d="M-6 112 L -22 114"/>
+      <path d="M-6 112 L 6 117"/>
+      <path d="M44 104 L 30 108"/>
+      <path d="M44 104 L 56 108"/>
+    </g>
+
+    <!-- tail: rufous with dark bars, sticking out back-left -->
+    <g transform="rotate(28 -48 30)">
+      <path d="M-44 20 L -120 38 L -118 58 L -42 44 Z" fill="#b5652c" stroke="#5b3a20" stroke-width="2"/>
+      <g stroke="#3b2414" stroke-width="4">
+        <line x1="-62" y1="26" x2="-60" y2="47"/>
+        <line x1="-78" y1="30" x2="-76" y2="50"/>
+        <line x1="-94" y1="34" x2="-92" y2="53"/>
+        <line x1="-108" y1="37" x2="-106" y2="56"/>
+      </g>
+      <path d="M-116 38 L -120 38 L -118 58 L -114 57 Z" fill="#f4ecdc"/>
+    </g>
+
+    <!-- body -->
+    <ellipse cx="4" cy="30" rx="58" ry="48" fill="url(#belly)"/>
+    <!-- faint belly barring -->
+    <g stroke="#cdb894" stroke-width="2" fill="none" opacity="0.7">
+      <path d="M-10 40 q 10 4 20 0"/>
+      <path d="M-4 54 q 10 4 20 0"/>
+      <path d="M-16 26 q 10 4 20 0"/>
+    </g>
+
+    <!-- back wing (far side, raised for balance) -->
+    <path d="M-20 0 C -40 -40, 10 -60, 60 -40 C 40 -30, 20 -10, 10 8 Z" fill="#6b4527"/>
+
+    <!-- near wing: brown with blue shoulder patch, held out -->
+    <path d="M-50 4 C -60 -30, -10 -28, 30 -6 C 50 6, 56 30, 30 42 C 0 54, -40 44, -50 4 Z" fill="url(#back)"/>
+    <path d="M-30 -6 C -14 -18, 12 -14, 22 -2 C 8 4, -14 8, -30 -6 Z" fill="#3fa7d6"/>
+    <path d="M-22 -2 C -10 -8, 6 -6, 14 0" stroke="#9ddcf5" stroke-width="3" fill="none"/>
+    <!-- flight feather tips -->
+    <g fill="#4a2e19">
+      <path d="M-48 16 l -12 8 l 14 0 Z"/>
+      <path d="M-44 28 l -12 10 l 16 -2 Z"/>
+      <path d="M-36 38 l -8 12 l 14 -6 Z"/>
+    </g>
+    <g stroke="#f4ecdc" stroke-width="1.5" opacity="0.7">
+      <line x1="-38" y1="12" x2="-10" y2="20"/>
+      <line x1="-34" y1="24" x2="-4" y2="30"/>
+    </g>
+
+    <!-- head -->
+    <g transform="translate(40 -40)">
+      <!-- big head, cream with brown crown -->
+      <circle cx="0" cy="0" r="38" fill="#f6efe0"/>
+      <path d="M-36 -8 C -34 -38, 10 -48, 34 -22 C 20 -26, 0 -24, -10 -14 C -20 -8, -30 -4, -36 -8 Z" fill="#6b4527"/>
+      <!-- crown streaks -->
+      <g stroke="#3b2414" stroke-width="2" stroke-linecap="round">
+        <line x1="-20" y1="-28" x2="-14" y2="-20"/>
+        <line x1="-6" y1="-32" x2="-2" y2="-22"/>
+        <line x1="8" y1="-30" x2="10" y2="-22"/>
+      </g>
+      <!-- dark eye stripe characteristic of the laughing kookaburra -->
+      <path d="M-34 4 C -20 -6, 0 -8, 18 -4 C 10 4, -10 10, -34 10 Z" fill="#4a2e19"/>
+      <!-- eye -->
+      <circle cx="8" cy="-4" r="7" fill="#2a1a10"/>
+      <circle cx="10" cy="-6" r="2.2" fill="#fff"/>
+      <!-- beak: massive, dark top, pale lower, open in a laugh -->
+      <path d="M26 -8 C 50 -12, 80 -8, 96 2 C 80 4, 52 6, 30 6 Z" fill="url(#beakTop)"/>
+      <path d="M30 8 C 50 12, 74 18, 90 26 C 72 28, 48 24, 28 18 Z" fill="#e8d9bb" stroke="#8a7a5c" stroke-width="1.5"/>
+      <path d="M30 6 C 52 8, 72 12, 90 24 C 70 16, 50 12, 30 10 Z" fill="#b8453a"/>
+      <!-- cheek blush / laugh wrinkle -->
+      <path d="M22 12 q 6 6 0 12" stroke="#c9b894" stroke-width="2" fill="none"/>
+    </g>
+  </g>
+
+  <!-- laughter -->
+  <g font-family="Georgia, 'Times New Roman', serif" font-style="italic" fill="#fff5dc">
+    <text x="640" y="300" font-size="28" transform="rotate(-8 640 300)">kook-kook</text>
+    <text x="662" y="336" font-size="22" transform="rotate(-4 662 336)">ha-ha-HAA!</text>
+  </g>
+
+  <!-- foreground foam -->
+  <path d="M0 540 C 90 520, 180 548, 260 532 C 340 516, 420 550, 520 536 C 620 522, 700 552, 800 534 L 800 600 L 0 600 Z" fill="#e8fbfa" opacity="0.55"/>
+</svg>
