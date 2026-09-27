@@ -15,7 +15,7 @@ Usage:
     uv run harness/run.py <experiment> <model> [options]
 
 Example:
-    uv run harness/run.py peregian-digital-hub glm-5.3-flash \
+    uv run harness/run.py kookaburra-surfing glm-5.3-flash \
         --temperature 1.0 --top-p 0.95 --max-tokens 60000
 """
 
@@ -296,7 +296,7 @@ def extract_artifact(text: str, kind: str) -> str:
 
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("experiment", help="experiment folder name, e.g. peregian-digital-hub")
+    ap.add_argument("experiment", help="experiment folder name, e.g. kookaburra-surfing")
     ap.add_argument("model", help="LiteLLM model name, e.g. glm-5.3-flash")
     ap.add_argument("--max-tokens", type=int, default=60000)
     ap.add_argument("--temperature", type=float, default=None)
