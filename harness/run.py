@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # /// script
 # requires-python = ">=3.10"
+# dependencies = ["typer>=0.12"]
 # ///
 """sillybench harness — run one experiment against one homelab model.
 
@@ -19,7 +20,6 @@ Example:
         --temperature 1.0 --top-p 0.95 --max-tokens 60000
 """
 
-import argparse
 import html as htmllib
 import http.client
 import io
@@ -32,7 +32,11 @@ import time
 import urllib.error
 import urllib.parse
 import urllib.request
+from enum import Enum
 from pathlib import Path
+from typing import Annotated
+
+import typer
 
 REPO = Path(__file__).resolve().parent.parent
 DEFAULT_BASE_URL = "http://100.101.13.98:4000"
@@ -294,74 +298,81 @@ def extract_artifact(text: str, kind: str) -> str:
 
 # ---------------------------------------------------------------- main
 
-def main() -> None:
-    ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("experiment", help="experiment folder name, e.g. kookaburra-surfing")
-    ap.add_argument("model", help="LiteLLM model name, e.g. glm-5.3-flash")
-    ap.add_argument("--max-tokens", type=int, default=60000)
-    ap.add_argument("--temperature", type=float, default=None)
-    ap.add_argument("--top-p", type=float, default=None)
-    ap.add_argument("--reasoning-effort", default=None,
-                    help="thinking level sent as reasoning_effort; the proxy maps it to the lane's own dialect "
-                         "(e.g. high -> enable_thinking on a lane that serves thinking off)")
-    ap.add_argument("--kind", choices=["html", "svg", "text"], default=None,
-                    help="artifact type; default: inferred from prompt.md")
-    ap.add_argument("--no-tools", action="store_true", help="disable web_fetch/web_search")
-    ap.add_argument("--max-rounds", type=int, default=24,
-                    help="max model turns (tool rounds + final answer)")
-    ap.add_argument("--provider", default="homelab",
-                    help="OpenCode provider whose apiKey/baseURL to use (default: homelab)")
-    ap.add_argument("--base-url", default=None,
-                    help="override the provider's baseURL")
-    ap.add_argument("--out", default=None, help="override output path")
-    args = ap.parse_args()
+class Kind(str, Enum):
+    html = "html"
+    svg = "svg"
+    text = "text"
 
-    exp_dir = REPO / args.experiment
+
+# no locals in tracebacks: main() holds the provider's api key
+app = typer.Typer(add_completion=False, pretty_exceptions_show_locals=False)
+
+
+@app.command(help="Run one experiment against one model and write <experiment>/<model>.<ext>.")
+def main(
+    experiment: Annotated[str, typer.Argument(help="experiment folder name, e.g. kookaburra-surfing")],
+    model: Annotated[str, typer.Argument(help="LiteLLM model name, e.g. glm-5.3-flash")],
+    max_tokens: Annotated[int, typer.Option(help="max_tokens for each request")] = 60000,
+    temperature: Annotated[float | None, typer.Option()] = None,
+    top_p: Annotated[float | None, typer.Option()] = None,
+    reasoning_effort: Annotated[str | None, typer.Option(
+        help="thinking level sent as reasoning_effort; the proxy maps it to the lane's own dialect "
+             "(e.g. high -> enable_thinking on a lane that serves thinking off)")] = None,
+    kind_opt: Annotated[Kind | None, typer.Option(
+        "--kind", help="artifact type; default: inferred from prompt.md")] = None,
+    no_tools: Annotated[bool, typer.Option("--no-tools", help="disable web_fetch/web_search")] = False,
+    max_rounds: Annotated[int, typer.Option(help="max model turns (tool rounds + final answer)")] = 24,
+    provider: Annotated[str, typer.Option(
+        help="OpenCode provider whose apiKey/baseURL to use")] = "homelab",
+    base_url: Annotated[str | None, typer.Option(help="override the provider's baseURL")] = None,
+    out: Annotated[Path | None, typer.Option(help="override output path")] = None,
+) -> None:
+    exp_dir = REPO / experiment
     prompt_file = exp_dir / "prompt.md"
     if not prompt_file.is_file():
         sys.exit(f"no prompt.md in {exp_dir}")
     prompt = prompt_file.read_text()
 
-    kind = args.kind
+    kind = kind_opt.value if kind_opt else None
     if kind is None:
         kind = "svg" if re.search(r"\bsvg\b", prompt, re.I) else \
                "html" if re.search(r"\bhtml\b", prompt, re.I) else "text"
     ext = {"html": "html", "svg": "svg", "text": "md"}[kind]
-    out_path = Path(args.out) if args.out else exp_dir / f"{args.model}.{ext}"
+    out_path = out or exp_dir / f"{model}.{ext}"
 
-    provider_base, key = get_provider(args.provider)
-    base_url = args.base_url or provider_base or DEFAULT_BASE_URL
+    provider_base, key = get_provider(provider)
+    base_url = base_url or provider_base or DEFAULT_BASE_URL
     logs = REPO / "harness" / "logs"
     logs.mkdir(exist_ok=True)
     stamp = time.strftime("%Y%m%d-%H%M%S")
-    run_name = f"{exp_dir.name}-{args.model}-{stamp}"
+    run_name = f"{exp_dir.name}-{model}-{stamp}"
     sse_log = open(logs / f"{run_name}.sse", "w", buffering=1)
     transcript_path = logs / f"{run_name}.json"
 
     messages = [{"role": "user", "content": prompt}]
     payload_base = {
-        "model": args.model,
-        "max_tokens": args.max_tokens,
+        "model": model,
+        "max_tokens": max_tokens,
         "stream": True,
         "stream_options": {"include_usage": True},
     }
-    if args.temperature is not None:
-        payload_base["temperature"] = args.temperature
-    if args.top_p is not None:
-        payload_base["top_p"] = args.top_p
-    if args.reasoning_effort is not None:
-        payload_base["reasoning_effort"] = args.reasoning_effort
-    if not args.no_tools:
+    if temperature is not None:
+        payload_base["temperature"] = temperature
+    if top_p is not None:
+        payload_base["top_p"] = top_p
+    if reasoning_effort is not None:
+        payload_base["reasoning_effort"] = reasoning_effort
+    if not no_tools:
         payload_base["tools"] = TOOLS
 
-    print(f"experiment={args.experiment} model={args.model} kind={kind} "
-          f"provider={args.provider} base_url={base_url} "
-          f"tools={'off' if args.no_tools else 'web_fetch+web_search'}", flush=True)
+    print(f"experiment={experiment} model={model} kind={kind} "
+          f"provider={provider} base_url={base_url} "
+          f"tools={'off' if no_tools else 'web_fetch+web_search'}", flush=True)
 
     final_content, total_usage, nudges, errors = "", [], 0, 0
     t0 = time.time()
     rnd = 0
-    while rnd < args.max_rounds:
+    while rnd < max_rounds:
         rnd += 1
         print(f"[round {rnd}] requesting…", flush=True)
         content, reasoning, calls, finish, usage = stream_round(
@@ -411,12 +422,12 @@ def main() -> None:
         final_content = content
         break
     else:
-        print(f"WARNING: still calling tools after {args.max_rounds} rounds; stopping",
+        print(f"WARNING: still calling tools after {max_rounds} rounds; stopping",
               flush=True)
 
     sse_log.close()
     transcript_path.write_text(json.dumps(
-        {"experiment": args.experiment, "model": args.model, "kind": kind,
+        {"experiment": experiment, "model": model, "kind": kind,
          "elapsed_s": round(time.time() - t0), "usage": total_usage,
          "messages": messages}, indent=2))
 
@@ -434,4 +445,4 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    app()

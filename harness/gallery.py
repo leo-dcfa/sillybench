@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # /// script
 # requires-python = ">=3.10"
+# dependencies = ["typer>=0.12"]
 # ///
 """sillybench gallery — regenerate the results grid(s) in README.md.
 
@@ -18,10 +19,11 @@ Usage:
     uv run harness/gallery.py
 """
 
-import argparse
 import re
 import sys
 from pathlib import Path
+
+import typer
 
 REPO = Path(__file__).resolve().parent.parent
 README = REPO / "README.md"
@@ -46,9 +48,11 @@ def grid(experiment: str) -> str:
     return "<table>\n" + "\n".join(rows) + "\n</table>\n"
 
 
+app = typer.Typer(add_completion=False)
+
+
+@app.command(help="Regenerate the results grid(s) in README.md from each experiment's SVGs.")
 def main() -> None:
-    argparse.ArgumentParser(description=__doc__,
-                            formatter_class=argparse.RawDescriptionHelpFormatter).parse_args()
     text = README.read_text()
     new, n = BLOCK.subn(lambda m: m[1] + grid(m[2]) + m[3], text)
     if n == 0:
@@ -58,4 +62,4 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    app()
