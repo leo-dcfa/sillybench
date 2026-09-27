@@ -5,3 +5,6 @@
 
 # harness run transcripts / raw SSE streams
 harness/logs/
+
+# python bytecode
+__pycache__/
