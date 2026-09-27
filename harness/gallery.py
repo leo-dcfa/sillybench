@@ -1,9 +1,4 @@
-#!/usr/bin/env python3
-# /// script
-# requires-python = ">=3.10"
-# dependencies = ["typer>=0.12"]
-# ///
-"""sillybench gallery — regenerate the results grid(s) in README.md.
+"""`sillybench gallery` — regenerate the results grid(s) in README.md.
 
 README.md marks each grid with a pair of comments naming an experiment:
 
@@ -16,14 +11,12 @@ that experiment folder, alphabetical, captioned with the model name. Run it
 after adding, re-running or removing an output.
 
 Usage:
-    uv run harness/gallery.py
+    uv run sillybench gallery
 """
 
 import re
 import sys
 from pathlib import Path
-
-import typer
 
 REPO = Path(__file__).resolve().parent.parent
 README = REPO / "README.md"
@@ -48,18 +41,11 @@ def grid(experiment: str) -> str:
     return "<table>\n" + "\n".join(rows) + "\n</table>\n"
 
 
-app = typer.Typer(add_completion=False)
-
-
-@app.command(help="Regenerate the results grid(s) in README.md from each experiment's SVGs.")
 def main() -> None:
+    """Regenerate the results grid(s) in README.md from each experiment's SVGs."""
     text = README.read_text()
     new, n = BLOCK.subn(lambda m: m[1] + grid(m[2]) + m[3], text)
     if n == 0:
         sys.exit("no <!-- gallery: <experiment> --> block in README.md")
     README.write_text(new)
     print(f"refreshed {n} gallery block(s) in README.md")
-
-
-if __name__ == "__main__":
-    app()

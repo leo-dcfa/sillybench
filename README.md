@@ -54,21 +54,21 @@ Keep in mind:
 1. **Run it** with the harness:
 
    ```sh
-   uv run harness/run.py kookaburra-surfing <model>
+   uv run sillybench run kookaburra-surfing <model>
    # e.g. with the vendor's recommended sampling:
-   uv run harness/run.py kookaburra-surfing glm-5.3-flash --temperature 1.0 --top-p 0.95
+   uv run sillybench run kookaburra-surfing glm-5.3-flash --temperature 1.0 --top-p 0.95
    ```
 
    Or run it by hand. Give any model the prompt from `prompt.md` and save its SVG as `kookaburra-surfing/<model>.svg`.
 2. **Look at it.** Open the SVG and check that it renders and isn't cut off.
-3. **Refresh the grid** above with `uv run harness/gallery.py`. Don't edit the grid by hand.
+3. **Refresh the grid** above with `uv run sillybench gallery`. Don't edit the grid by hand.
 4. **Commit.** Put the hardware, quantization and sampling settings in the commit message. That's the only place they're recorded.
 
 Name the file after the model, in lowercase, as the model is served. Add a suffix when the variant matters (`-exl3`, `-vision-exp`). If the proxy's name for the model isn't the name you want on file, pass `--out`. Re-running a model replaces its file, and git keeps the old one.
 
 ## The harness
 
-[`harness/run.py`](harness/run.py) runs one model on one experiment. It's a [Typer](https://typer.tiangolo.com) CLI. Its dependencies are declared inline, so `uv run` installs them, and `--help` lists every flag. It does need `jq`, plus an [OpenCode](https://opencode.ai) config at `~/.config/opencode/opencode.json`. That config must have a provider with an `apiKey`, and usually a `baseURL` for an OpenAI-compatible endpoint. The harness reads both OpenCode's v1 and v2 config formats.
+`uv run sillybench run` runs one model on one experiment (code in [`harness/run.py`](harness/run.py)). `sillybench` is a [Typer](https://typer.tiangolo.com) CLI declared in `pyproject.toml`. The first `uv run` creates `.venv` and installs it, and `uv run sillybench run --help` lists every flag. The harness also needs `jq`, plus an [OpenCode](https://opencode.ai) config at `~/.config/opencode/opencode.json`. That config must have a provider with an `apiKey`, and usually a `baseURL` for an OpenAI-compatible endpoint. The harness reads both OpenCode's v1 and v2 config formats.
 
 Here's what a run does:
 
@@ -103,10 +103,12 @@ When something goes wrong:
 kookaburra-surfing/
   prompt.md             the exact prompt
   <model>.svg           one output per model, named after the model
-harness/
-  run.py                runs one model on one experiment
-  gallery.py            regenerates the results grid in this README
+harness/                the `sillybench` CLI
+  cli.py                wires the subcommands into one Typer app
+  run.py                `sillybench run`: runs one model on one experiment
+  gallery.py            `sillybench gallery`: regenerates the results grid in this README
   logs/                 run transcripts (gitignored)
+pyproject.toml          declares the `sillybench` command and its dependencies
 AGENTS.md               rules for coding agents working in this repo
 ```
 

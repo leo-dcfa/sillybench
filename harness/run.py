@@ -1,9 +1,4 @@
-#!/usr/bin/env python3
-# /// script
-# requires-python = ">=3.10"
-# dependencies = ["typer>=0.12"]
-# ///
-"""sillybench harness — run one experiment against one homelab model.
+"""`sillybench run` — run one experiment against one homelab model.
 
 Sends the experiment's prompt.md to the LiteLLM proxy as a single user
 message, with client-side tools enabled (web_fetch, web_search) so the
@@ -13,10 +8,10 @@ executes tool calls in a loop, extracts the final artifact (html/svg),
 and writes it to <experiment>/<model>.<ext>.
 
 Usage:
-    uv run harness/run.py <experiment> <model> [options]
+    uv run sillybench run <experiment> <model> [options]
 
 Example:
-    uv run harness/run.py kookaburra-surfing glm-5.3-flash \
+    uv run sillybench run kookaburra-surfing glm-5.3-flash \
         --temperature 1.0 --top-p 0.95 --max-tokens 60000
 """
 
@@ -304,11 +299,6 @@ class Kind(str, Enum):
     text = "text"
 
 
-# no locals in tracebacks: main() holds the provider's api key
-app = typer.Typer(add_completion=False, pretty_exceptions_show_locals=False)
-
-
-@app.command(help="Run one experiment against one model and write <experiment>/<model>.<ext>.")
 def main(
     experiment: Annotated[str, typer.Argument(help="experiment folder name, e.g. kookaburra-surfing")],
     model: Annotated[str, typer.Argument(help="LiteLLM model name, e.g. glm-5.3-flash")],
@@ -327,6 +317,7 @@ def main(
     base_url: Annotated[str | None, typer.Option(help="override the provider's baseURL")] = None,
     out: Annotated[Path | None, typer.Option(help="override output path")] = None,
 ) -> None:
+    """Run one experiment against one model and write <experiment>/<model>.<ext>."""
     exp_dir = REPO / experiment
     prompt_file = exp_dir / "prompt.md"
     if not prompt_file.is_file():
@@ -442,7 +433,3 @@ def main(
     print(f"\nwrote {out_path} ({len(artifact)} chars) in {mins:.1f} min, "
           f"{comp} completion tokens across {len(total_usage)} round(s)", flush=True)
     print(f"transcript: {transcript_path}", flush=True)
-
-
-if __name__ == "__main__":
-    app()
