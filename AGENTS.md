@@ -11,5 +11,5 @@
 ## Commands
 
 - `uv run sillybench run <experiment> <model> [--temperature T --top-p P --reasoning-effort E ...]` — run one model on one experiment. Needs `jq` and an OpenCode provider (`--provider`, default `homelab`) in `~/.config/opencode/opencode.json`. Gives the model `web_fetch` + `web_search` (`--no-tools` to disable). Writes `<experiment>/<model>.<ext>`; transcripts land in `harness/logs/` (gitignored). All flags are in README.md → "The harness".
-- `uv run sillybench gallery` — regenerate the README results grid(s) from the SVGs in each `<!-- gallery: <experiment> -->` block. Run it after adding, re-running or removing an output; never edit the grid by hand.
+- `uv run sillybench gallery` — regenerate the README results grid(s) from the `.svg` and `.png` outputs in each `<!-- gallery: <experiment> -->` block (so a reference photo must not be a `.png`). Run it after adding, re-running or removing an output; never edit the grid by hand.
 - When committing an output, put hardware, quantization and sampling settings in the commit message — that's the only place they're recorded.
